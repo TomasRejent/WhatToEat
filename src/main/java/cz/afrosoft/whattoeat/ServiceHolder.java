@@ -14,7 +14,7 @@ import cz.afrosoft.whattoeat.data.DataHolderServiceImpl;
  */
 public final class ServiceHolder {
     
-    private static final DataHolderService dataHolderService = new DataHolderServiceImpl();  
+    private static final DataHolderService dataHolderService = new DataHolderServiceImpl();
     
     public static DataHolderService getDataHolderService(){
         return dataHolderService;

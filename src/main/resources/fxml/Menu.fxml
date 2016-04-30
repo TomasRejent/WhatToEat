@@ -7,11 +7,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="RootPane" fx:controller="cz.afrosoft.whattoeat.gui.controller.MenuController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane fx:id="RootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.MenuController">
    <top>
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
-            <Button mnemonicParsing="false" onAction="#showRecipeList" text="Recipes" />
+            <Button mnemonicParsing="false" onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes" />
             <Button mnemonicParsing="false" onAction="#showFoodList" text="Food list" />
          </items>
       </ToolBar>

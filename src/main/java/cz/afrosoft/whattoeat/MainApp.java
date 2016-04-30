@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat;
 
+import cz.afrosoft.whattoeat.gui.I18n;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
@@ -30,27 +31,16 @@ public class MainApp extends Application {
     public void start(Stage stage) throws Exception {
         LOGGER.info("Starting application.");
 
-        BorderPane root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
-        rootPane = root;
-        
-        Scene scene = new Scene(root);
+        I18n.init("cz");
+        rootPane = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"), I18n.getResourceBundle());
+        Scene scene = new Scene(rootPane);
         scene.getStylesheets().add("/styles/Menu.css");
         
-        stage.setTitle("WhatToEat");
+        stage.setTitle(I18n.getText("cz.afrosoft.whattoeat.title"));
         stage.setScene(scene);
         stage.show();
 
         LOGGER.info("Application started.");
-    }
-    
-    private BorderPane getBorderPane(Parent sceneRoot){
-        for(Node node : sceneRoot.getChildrenUnmodifiable()){
-            if(node instanceof BorderPane){
-                return (BorderPane) node;
-            }
-        }
-        
-        throw new IllegalStateException("Parent does not contain border pane.");
     }
 
     /**
