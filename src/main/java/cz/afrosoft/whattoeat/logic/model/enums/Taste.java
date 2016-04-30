@@ -5,10 +5,26 @@
  */
 package cz.afrosoft.whattoeat.logic.model.enums;
 
+import cz.afrosoft.whattoeat.gui.Labeled;
+
 /**
  *
  * @author Alexandra
  */
-public enum Taste {
-    SWEET, SALTY, NEUTRAL
+public enum Taste implements Labeled {
+    SWEET("cz.afrosoft.whattoeat.taste.sweet"),
+    SALTY("cz.afrosoft.whattoeat.taste.salty"),
+    NEUTRAL("cz.afrosoft.whattoeat.taste.neutral");
+
+    private final String labelKey;
+
+    private Taste(String labelKey){
+        this.labelKey = labelKey;
+    }
+
+    @Override
+    public String getLabelKey() {
+        return labelKey;
+    }
+
 }

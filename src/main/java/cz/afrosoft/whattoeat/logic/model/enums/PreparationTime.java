@@ -5,10 +5,26 @@
  */
 package cz.afrosoft.whattoeat.logic.model.enums;
 
+import cz.afrosoft.whattoeat.gui.Labeled;
+
 /**
  *
  * @author Alexandra
  */
-public enum PreparationTime {
-    SHORT, MEDIUM, LONG
+public enum PreparationTime implements Labeled {
+    SHORT("cz.afrosoft.whattoeat.preparationTime.short"),
+    MEDIUM("cz.afrosoft.whattoeat.preparationTime.medium"),
+    LONG("cz.afrosoft.whattoeat.preparationTime.long");
+
+    private final String labelKey;
+
+    private PreparationTime(String labelKey){
+        this.labelKey = labelKey;
+    }
+
+    @Override
+    public String getLabelKey() {
+        return labelKey;
+    }
+
 }

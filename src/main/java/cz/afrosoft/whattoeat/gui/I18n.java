@@ -15,6 +15,7 @@ import java.util.ResourceBundle;
 public final class I18n {
 
     private static final String TEXTS_BUNDLE_NAME = "text/messages";
+    private static final String EMPTY_VALUE_KEY = "cz.afrosoft.whattoeat.value.empty";
 
     private static ResourceBundle resourceBundle;
 
@@ -25,8 +26,21 @@ public final class I18n {
         I18n.resourceBundle = ResourceBundle.getBundle(TEXTS_BUNDLE_NAME, locale);
     }
 
+    /**
+     * Get localized text for specified key.
+     * @param key
+     * @return
+     */
     public static String getText(String key){
         return resourceBundle.getString(key);
+    }
+
+    /**
+     * Gets localized text for representing empty value.
+     * @return 
+     */
+    public static String getEmptyValueText(){
+        return getText(EMPTY_VALUE_KEY);
     }
 
     public static ResourceBundle getResourceBundle(){

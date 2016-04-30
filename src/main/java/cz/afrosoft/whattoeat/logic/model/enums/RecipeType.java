@@ -5,10 +5,30 @@
  */
 package cz.afrosoft.whattoeat.logic.model.enums;
 
+import cz.afrosoft.whattoeat.gui.Labeled;
+
 /**
  *
  * @author Alexandra
  */
-public enum RecipeType {
-    BREAKFAST, SNACK, LUNCH, SOUP, DINNER, SIDE_DISH, DESSERT;
+public enum RecipeType implements Labeled{
+    BREAKFAST("cz.afrosoft.whattoeat.recipeType.breakfast"),
+    SNACK("cz.afrosoft.whattoeat.recipeType.snack"),
+    LUNCH("cz.afrosoft.whattoeat.recipeType.lunch"),
+    SOUP("cz.afrosoft.whattoeat.recipeType.soup"),
+    DINNER("cz.afrosoft.whattoeat.recipeType.dinner"),
+    SIDE_DISH("cz.afrosoft.whattoeat.recipeType.sideDish"),
+    DESSERT("cz.afrosoft.whattoeat.recipeType.dessert");
+
+    private final String labelKey;
+
+    private RecipeType(String labelKey){
+        this.labelKey = labelKey;
+    }
+
+    @Override
+    public String getLabelKey() {
+        return labelKey;
+    }
+
 }

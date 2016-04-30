@@ -9,6 +9,8 @@ import cz.afrosoft.whattoeat.logic.model.enums.PreparationTime;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import cz.afrosoft.whattoeat.logic.model.enums.Taste;
 import java.io.Serializable;
+import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -46,7 +48,7 @@ public final class Recipe implements Serializable{
     }
 
     public Set<Ingredient> getIngredients() {
-        return ingredients;
+        return Optional.ofNullable(ingredients).orElse(Collections.emptySet());
     }
 
     public void setIngredients(Set<Ingredient> ingredients) {
@@ -86,7 +88,7 @@ public final class Recipe implements Serializable{
     }
 
     public Set<String> getKeywords() {
-        return keywords;
+        return Optional.ofNullable(keywords).orElse(Collections.emptySet());
     }
 
     public void setKeywords(Set<String> keywords) {
@@ -94,7 +96,7 @@ public final class Recipe implements Serializable{
     }
 
     public Set<String> getSideDishes() {
-        return sideDishes;
+        return Optional.ofNullable(sideDishes).orElse(Collections.emptySet());
     }
 
     public void setSideDishes(Set<String> sideDishes) {

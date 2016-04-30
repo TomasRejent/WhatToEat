@@ -6,6 +6,7 @@
 package cz.afrosoft.whattoeat.gui.controller;
 
 import cz.afrosoft.whattoeat.MainApp;
+import cz.afrosoft.whattoeat.gui.I18n;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,6 +17,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
 
 /**
@@ -36,7 +38,7 @@ public class MenuController implements Initializable {
     @FXML
     private void showRecipeList(ActionEvent actionEvent){
         try {
-            Parent recipeListPane = FXMLLoader.load(getClass().getResource("/fxml/RecipeList.fxml"));
+            Parent recipeListPane = FXMLLoader.load(getClass().getResource("/fxml/RecipeList.fxml"), I18n.getResourceBundle());
             BorderPane rootPane = MainApp.getRootPane();
             rootPane.setCenter(recipeListPane);
         } catch (IOException ex) {
@@ -47,7 +49,7 @@ public class MenuController implements Initializable {
     @FXML
     private void showFoodList(ActionEvent actionEvent){
         try {
-            Parent foodListPane = FXMLLoader.load(getClass().getResource("/fxml/FoodList.fxml"));
+            Parent foodListPane = FXMLLoader.load(getClass().getResource("/fxml/FoodList.fxml"), I18n.getResourceBundle());
             BorderPane rootPane = MainApp.getRootPane();
             rootPane.setCenter(foodListPane);
         } catch (IOException ex) {

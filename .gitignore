@@ -1,4 +1,5 @@
 nbactions.xml
 nb-configuration.xml
+nbactions-release-profile.xml
 target
 log.txt

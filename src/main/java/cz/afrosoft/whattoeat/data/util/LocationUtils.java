@@ -60,9 +60,11 @@ public final class LocationUtils {
         } catch (URISyntaxException ex) {
             throw new DataLoadException("Cannot get program location because URI syntax.", ex);
         }
-        
+
+
         //return new File(path).getParentFile();
-        return new File("C:\\Users\\Alexandra\\Documents\\NetBeansProjects\\WhatToEat");
+        //Temp soultion because NetBeans is running jar in target folder and config files get deleted
+        return new File(path).getParentFile().getParentFile();
     }
     
     private LocationUtils() {

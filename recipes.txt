@@ -2,6 +2,7 @@
 	{
 		"name" : "Test recipe",
 		"preparation" : "boil water",
+		"recipeType" : "SNACK",
 		"ingredients" : [
 			{"name" : "garlic", "quantity" : "2.5"},
 			{"name" : "beef", "quantity" : "1"}
