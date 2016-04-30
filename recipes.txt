@@ -1,17 +1,23 @@
 [
 	{
-		"name" : "Test recipe",
-		"preparation" : "boil water",
-		"recipeType" : "SNACK",
+		"name" : "Špenátová polévka",
+		"preparation" : "Nakrájíme cibuli na kostièky. Do hrnce kápneme trochu oleje a cibulku osmahneme. Poté pøidáme mouku a intenzivnì mícháme, vzniká tak jíška. Po chvíli zalejeme vodou a stále mícháme. Špenát mùže být èerstvý listový, mražený nebo kombinace. Nakrájíme ho na støední proužky. Nakrájíme brambory na kostièky a pøidáme se špenátem do hrnce. Necháme chvíli povaøit. Poté ochutíme solí, pepøem, kmínem a èesnekem. Nakonec rozklepneme vajíèko.",
+		"recipeType" : "SOUP",
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "5",
 		"ingredients" : [
-			{"name" : "garlic", "quantity" : "2.5"},
-			{"name" : "beef", "quantity" : "1"}
-		
-		]
-	},
-
-	{
-		"name" : "Test recipe 2",
-		"preparation" : "freeze water"
+			{"name" : "vajíèko", "quantity" : "1"},
+			{"name" : "bezlepková mouka", "quantity" : "30"},
+			{"name" : "brambory", "quantity" : "150"},
+			{"name" : "špenát", "quantity" : "150"},
+			{"name" : "cibule", "quantity" : "1"},
+			{"name" : "èesnek", "quantity" : "0.4"},
+			{"name" : "kmín", "quantity" : "0.2"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "olej", "quantity" : "5"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
 	}
 ]
