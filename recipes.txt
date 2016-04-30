@@ -1,0 +1,16 @@
+[
+	{
+		"name" : "Test recipe",
+		"preparation" : "boil water",
+		"ingredients" : [
+			{"name" : "garlic", "quantity" : "2.5"},
+			{"name" : "beef", "quantity" : "1"}
+		
+		]
+	},
+
+	{
+		"name" : "Test recipe 2",
+		"preparation" : "freeze water"
+	}
+]

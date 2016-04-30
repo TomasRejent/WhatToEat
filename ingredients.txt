@@ -1,0 +1,4 @@
+[
+	{"name" : "èesnek", "ingredientUnit" : "PIECE", "price" : "10", "keywords" : ["zelenina"]},
+	{"name" : "mléko", "ingredientUnit" : "VOLUME", "price" : "20", "keywords" : ["mléèný výrobek"]}
+]
