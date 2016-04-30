@@ -8,9 +8,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class MainApp extends Application {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(MainApp.class);
 
     private static BorderPane rootPane;
     
@@ -24,6 +28,8 @@ public class MainApp extends Application {
     
     @Override
     public void start(Stage stage) throws Exception {
+        LOGGER.info("Starting application.");
+
         BorderPane root = FXMLLoader.load(getClass().getResource("/fxml/Menu.fxml"));
         rootPane = root;
         
@@ -32,7 +38,9 @@ public class MainApp extends Application {
         
         stage.setTitle("WhatToEat");
         stage.setScene(scene);
-        stage.show();       
+        stage.show();
+
+        LOGGER.info("Application started.");
     }
     
     private BorderPane getBorderPane(Parent sceneRoot){
