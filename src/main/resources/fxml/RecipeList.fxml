@@ -7,31 +7,40 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.RecipeListController">
-   <top>
-      <HBox prefHeight="40.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+<GridPane minHeight="200.0" minWidth="200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.RecipeListController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+      <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="SOMETIMES" />
+      <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
+   </rowConstraints>
+   <children>
+      <HBox GridPane.columnSpan="2">
          <children>
-            <Label contentDisplay="CENTER" lineSpacing="1.0" prefHeight="40.0" prefWidth="68.0" text="%cz.afrosoft.whattoeat.recipes.filter.title" />
+            <Label contentDisplay="CENTER" lineSpacing="1.0" prefHeight="31.0" prefWidth="132.0" text="%cz.afrosoft.whattoeat.recipes.filter.title" />
          </children>
       </HBox>
-   </top>
-   <left>
-      <VBox prefHeight="300.0" prefWidth="40.0" BorderPane.alignment="CENTER">
+      <VBox alignment="TOP_CENTER" prefHeight="300.0" prefWidth="3.0" GridPane.rowIndex="1">
          <children>
+            <Separator prefWidth="200.0" />
             <Label alignment="CENTER" prefHeight="21.0" prefWidth="46.0" text="%cz.afrosoft.whattoeat.recipes.actions.title" />
+            <Button id="viewRecipeButton" mnemonicParsing="false" onAction="#showRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.view" />
          </children>
       </VBox>
-   </left>
-   <center>
-      <TableView fx:id="recipeTable" prefHeight="367.0" prefWidth="560.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="recipeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="nameColumn" editable="false" minWidth="50.0" prefWidth="100.0" text="%cz.afrosoft.whattoeat.recipes.table.header.name" />
-          <TableColumn fx:id="recipeTypeColumn" editable="false" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType" />
-            <TableColumn fx:id="tasteColumn" editable="false" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.taste" />
-            <TableColumn fx:id="preparationTimeColumn" editable="false" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime" />
-            <TableColumn fx:id="ratingColumn" editable="false" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.rating" />
-            <TableColumn fx:id="keywordsColumn" editable="false" prefWidth="184.0" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords" />
+          <TableColumn fx:id="nameColumn" editable="false" minWidth="50.0" prefWidth="200.0" text="%cz.afrosoft.whattoeat.recipes.table.header.name" />
+          <TableColumn fx:id="recipeTypeColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType" />
+            <TableColumn fx:id="tasteColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.taste" />
+            <TableColumn fx:id="preparationTimeColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime" />
+            <TableColumn fx:id="ratingColumn" editable="false" maxWidth="100.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.rating" />
+            <TableColumn fx:id="keywordsColumn" editable="false" prefWidth="625.0" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords" />
         </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
       </TableView>
-   </center>
-</BorderPane>
+   </children>
+</GridPane>

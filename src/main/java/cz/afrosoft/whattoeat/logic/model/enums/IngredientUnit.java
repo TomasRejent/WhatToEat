@@ -5,21 +5,35 @@
  */
 package cz.afrosoft.whattoeat.logic.model.enums;
 
+import cz.afrosoft.whattoeat.gui.Labeled;
+
 /**
  *
  * @author Alexandra
  */
-public enum IngredientUnit {
-    PIECE("pcs"), WEIGHT("Kg"), VOLUME("l");
-    
-    private String unitCode;
+public enum IngredientUnit implements Labeled{
+    /**
+     * Quantity expressed by number of units. For example three pieces of lemon.
+     */
+    PIECE("cz.afrosoft.whattoeat.ingredientUnit.piece"),
+    /**
+     * Quantity expressed by weight. Unit is gram. For example 500g of flour.
+     */
+    WEIGHT("cz.afrosoft.whattoeat.ingredientUnit.weight"),
+    /**
+     * Quantity expressed by volume. Unit is milliliter. For example 350ml of milk.
+     */
+    VOLUME("cz.afrosoft.whattoeat.ingredientUnit.volume");
 
-    private IngredientUnit(String unitCode) {
-        this.unitCode = unitCode;
+    private String labelKey;
+
+    private IngredientUnit(String labelKey) {
+        this.labelKey = labelKey;
     }
 
-    public String getUnitCode() {
-        return unitCode;
+    @Override
+    public String getLabelKey() {
+        return labelKey;
     }
         
 }

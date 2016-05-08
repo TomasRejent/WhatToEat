@@ -45,7 +45,14 @@ public final class DataHolderServiceImpl implements DataHolderService{
     public Collection<IngredientInfo> getIngredients() {
         return Collections.unmodifiableCollection(ingredients.values());
     }
-    
+
+    @Override
+    public IngredientInfo getIngredientByName(String name) {
+        return ingredients.get(name);
+    }
+
+
+
     private void loadRecipes(){
         try {
             File recipeFile = LocationUtils.getRecipeFile();

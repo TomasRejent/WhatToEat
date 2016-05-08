@@ -5,24 +5,34 @@
  */
 package cz.afrosoft.whattoeat.gui.controller;
 
+import cz.afrosoft.whattoeat.MainApp;
 import cz.afrosoft.whattoeat.ServiceHolder;
 import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.Labeled;
+import cz.afrosoft.whattoeat.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.logging.Level;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.control.Button;
+import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,6 +101,15 @@ public class RecipeListController implements Initializable {
 
     private ObservableValue<String> getValueFromSet(Set<String> stringSet){
         return new ReadOnlyObjectWrapper<>(StringUtils.join(stringSet, KEYWORD_SEPARATOR));
+    }
+
+    @FXML
+    private void showRecipe(ActionEvent actionEvent){
+
+        Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
+        RecipeViewDialog dialog = new RecipeViewDialog();
+        dialog.showRecipe(selectedItem);
+
     }
     
 }

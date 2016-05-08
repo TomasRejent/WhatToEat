@@ -7,7 +7,9 @@ package cz.afrosoft.whattoeat.logic.model;
 
 import cz.afrosoft.whattoeat.logic.model.enums.IngredientUnit;
 import java.io.Serializable;
+import java.util.Collections;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -46,7 +48,7 @@ public final class IngredientInfo implements Serializable{
     }
 
     public Set<String> getKeywords() {
-        return keywords;
+        return Optional.ofNullable(keywords).orElse(Collections.emptySet());
     }
 
     public void setKeywords(Set<String> keywords) {
