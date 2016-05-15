@@ -36,5 +36,22 @@
 			{"name" : "olej", "quantity" : "5"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  {
+		"name" : "Øepovej salát ",
+		"preparation" : "Øepu dáme vaøit(nemusíme).Necháme vystydnout, nakrájíme/nastrouháme do mísy, prihodíme konzervu mrkev+hrášek, nakrájíme okurky a pridáme taky.Dochutíme solí, olejem peprem.", 
+		"recipeType" : "DINNER",
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "6",
+		"ingredients" : [
+			{"name" : "øepa", "quantity" : "1"},
+			{"name" : " mrkev+hrášek konzerva", "quantity" : "1"},
+			{"name" : "kyselá okurka", "quantity" : "4"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "olej", "quantity" : "5"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé", "zeleninové"]
 	}
 ]

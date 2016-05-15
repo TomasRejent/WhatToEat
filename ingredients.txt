@@ -9,10 +9,14 @@
 	{"name" : "èesnek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
 	{"name" : "špenát", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},	
 	{"name" : "brambory", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "øepa", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "kyselá okurka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
+  {"name" : "mrkev hrášek+konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
+  
 
 	{"name" : "kmín", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "sùl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "pepø", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
-  {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]}
 	
 ]
