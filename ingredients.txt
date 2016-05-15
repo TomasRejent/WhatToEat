@@ -12,6 +12,7 @@
 
 	{"name" : "kmín", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "sùl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
-	{"name" : "pepø", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]}
+	{"name" : "pepø", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	
 ]
