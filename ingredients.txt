@@ -2,6 +2,8 @@
 	{"name" : "vajíèko", "ingredientUnit" : "PIECE", "price" : "0"},
 	{"name" : "bezlepková mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
+  
+  {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "15"},
 
 	{"name" : "cibule", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
 	{"name" : "èesnek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
