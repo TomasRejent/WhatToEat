@@ -38,7 +38,7 @@
 		"keywords" : ["bezlepkové", "bezmasé"]
 	},
   {
-		"name" : "Øepovej salát ",
+		"name" : "Øepovej salát",
 		"preparation" : "Øepu dáme vaøit(nemusíme).Necháme vystydnout, nakrájíme/nastrouháme do mísy, prihodíme konzervu mrkev+hrášek, nakrájíme okurky a pridáme taky.Dochutíme solí, olejem peprem.", 
 		"recipeType" : "DINNER",
 		"preparationTime" : "SHORT",
@@ -46,12 +46,31 @@
 		"rating" : "6",
 		"ingredients" : [
 			{"name" : "øepa", "quantity" : "1"},
-			{"name" : " mrkev+hrášek konzerva", "quantity" : "1"},
+			{"name" : "mrkev+hrášek konzerva", "quantity" : "1"},
 			{"name" : "kyselá okurka", "quantity" : "4"},
 			{"name" : "sùl", "quantity" : "0.2"},
 			{"name" : "pepø", "quantity" : "0.1"},
 			{"name" : "olej", "quantity" : "5"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé", "zeleninové"]
+	},
+  
+  {
+		"name" : "Fazole s mrkví aka Pánev",
+		"preparation" : "Oèistíme mrkev a nakrájíme na asi 3cm dlouhé hranolky. Rozehøejem olej na pánvi a dáme mrkev osmahnout. Nakrájíme klobásu na drobné kousky. Nakrájíme èesnek na jemno. Když je mrkev osmahnutá, pøidáme fazole s omáèkou, klobásu a èesnek. Trochu naøedíme vodou. Posypeme rozmarýnem a opepøíme. Vše zamícháme a necháme chvíli povaøit.", 
+		"recipeType" : "DINNER",
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "6",
+		"ingredients" : [
+			{"name" : "mrkev", "quantity" : "2"},
+			{"name" : "klobása", "quantity" : "1"},
+			{"name" : "fazole s rajèatovou omáèkou konzerva", "quantity" : "1"},
+      {"name" : "èesnek", "quantity" : "0.4"},
+			{"name" : "pepø", "quantity" : "0.1"},
+      {"name" : "rozmarýn", "quantity" : "0.1"},
+			{"name" : "olej", "quantity" : "5"}
+		],
+		"keywords" : ["bezlepkové", "zeleninové"]
 	}
 ]
