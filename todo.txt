@@ -5,4 +5,4 @@ FEATURES:
 - Add UI for food list generator.
 
 BUGS:
-- Ingredient keywords overlaps in recipe detail dialog. 
+X - Ingredient keywords overlaps in recipe detail dialog.

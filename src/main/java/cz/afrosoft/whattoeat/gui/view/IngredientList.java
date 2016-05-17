@@ -25,6 +25,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.util.Callback;
@@ -76,9 +77,10 @@ public final class IngredientList extends ListView<IngredientView>{
         private final HBox cellBox = new HBox();
         private final Label nameText = new Label();
         private final Label quantityText = new Label();
-        private final Pane keywordsPane = new Pane();
+        private final FlowPane keywordsPane = new FlowPane();
 
         public IngredientViewCell() {
+            keywordsPane.setHgap(ITEM_ELEMENT_SPACING);
             cellBox.getChildren().addAll(quantityText, nameText, keywordsPane);
             cellBox.setSpacing(ITEM_ELEMENT_SPACING);
         }
