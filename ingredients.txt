@@ -4,6 +4,9 @@
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "15", "keywords" : ["uzenina"]},
+  {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
+  
+  {"name" : "máslo", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mléèný výrobek"]},
 
 	{"name" : "cibule", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
 	{"name" : "èesnek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},

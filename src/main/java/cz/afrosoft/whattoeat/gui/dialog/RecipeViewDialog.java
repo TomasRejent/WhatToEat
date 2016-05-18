@@ -124,7 +124,7 @@ public class RecipeViewDialog extends Dialog<Void>{
         checkNotNull(recipe, "Recipe to show cannot be null.");
 
         this.setTitle(recipe.getName());
-        typeText.setText(I18n.getText(recipe.getRecipeType().getLabelKey()));
+        typeText.setText(StringUtils.join(recipe.getRecipeTypes().stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), ","));
         tasteText.setText(I18n.getText(recipe.getTaste().getLabelKey()));
         timeText.setText(I18n.getText(recipe.getPreparationTime().getLabelKey()));
         ratingText.setText(String.valueOf(recipe.getRating()));

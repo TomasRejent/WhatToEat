@@ -12,13 +12,17 @@ import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.Labeled;
 import cz.afrosoft.whattoeat.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
+import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.logging.Level;
+import java.util.stream.Collectors;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -86,7 +90,7 @@ public class RecipeListController implements Initializable {
 
     private void initColumnsValueFactories(){
         nameColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> new ReadOnlyObjectWrapper<>( param.getValue().getName()));
-        recipeTypeColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getLabel(param.getValue().getRecipeType()));
+        recipeTypeColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getValueFromRecipeTypeSet(param.getValue().getRecipeTypes()));
         tasteColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getLabel(param.getValue().getTaste()));
         preparationTimeColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getLabel(param.getValue().getPreparationTime()));
         ratingColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> new ReadOnlyObjectWrapper<>(String.valueOf(param.getValue().getRating())));
@@ -101,6 +105,10 @@ public class RecipeListController implements Initializable {
 
     private ObservableValue<String> getValueFromSet(Set<String> stringSet){
         return new ReadOnlyObjectWrapper<>(StringUtils.join(stringSet, KEYWORD_SEPARATOR));
+    }
+
+    private ObservableValue<String> getValueFromRecipeTypeSet(Set<RecipeType> recipeTypeSet){
+        return new ReadOnlyObjectWrapper<>(StringUtils.join(recipeTypeSet.stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), KEYWORD_SEPARATOR));
     }
 
     @FXML

@@ -10,6 +10,7 @@ import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import cz.afrosoft.whattoeat.logic.model.enums.Taste;
 import java.io.Serializable;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -24,7 +25,7 @@ public final class Recipe implements Serializable{
     private Set<Ingredient> ingredients;
     
     private PreparationTime preparationTime;
-    private RecipeType recipeType;
+    private Set<RecipeType> recipeTypes;
     private Taste taste;
     private int rating;
     
@@ -63,12 +64,12 @@ public final class Recipe implements Serializable{
         this.preparationTime = preparationTime;
     }
 
-    public RecipeType getRecipeType() {
-        return recipeType;
+    public Set<RecipeType> getRecipeTypes() {
+        return Optional.ofNullable(recipeTypes).orElse(EnumSet.noneOf(RecipeType.class));
     }
 
-    public void setRecipeType(RecipeType recipeType) {
-        this.recipeType = recipeType;
+    public void setRecipeTypes(Set<RecipeType> recipeTypes) {
+        this.recipeTypes = recipeTypes;
     }
 
     public Taste getTaste() {
@@ -105,6 +106,6 @@ public final class Recipe implements Serializable{
 
     @Override
     public String toString() {
-        return "Recipe{" + "name=" + name + ", preparation=" + preparation + ", ingredients=" + ingredients + ", preparationTime=" + preparationTime + ", recipeType=" + recipeType + ", taste=" + taste + ", rating=" + rating + ", keywords=" + keywords + ", sideDishes=" + sideDishes + '}';
+        return "Recipe{" + "name=" + name + ", preparation=" + preparation + ", ingredients=" + ingredients + ", preparationTime=" + preparationTime + ", recipeType=" + recipeTypes + ", taste=" + taste + ", rating=" + rating + ", keywords=" + keywords + ", sideDishes=" + sideDishes + '}';
     }
 }

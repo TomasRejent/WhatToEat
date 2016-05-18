@@ -2,7 +2,7 @@
 	{
 		"name" : "Špenátová polévka",
 		"preparation" : "Nakrájíme cibuli na kostièky. Do hrnce kápneme trochu oleje a cibulku osmahneme. Poté pøidáme mouku a intenzivnì mícháme, vzniká tak jíška. Po chvíli zalejeme vodou a stále mícháme.\n\nŠpenát mùe bıt èerstvı listovı, mraenı nebo kombinace. Nakrájíme ho na støední prouky. Nakrájíme brambory na kostièky a pøidáme se špenátem do hrnce. Necháme chvíli povaøit. Poté ochutíme solí, pepøem, kmínem a èesnekem. Nakonec rozklepneme vajíèko.",
-		"recipeType" : "SOUP",
+		"recipeTypes" : ["SOUP"],
 		"preparationTime" : "MEDIUM",
 		"taste" : "SALTY",
 		"rating" : "5",
@@ -24,7 +24,7 @@
 	{
 		"name" : "Míchaná vajíèka",
 		"preparation" : "Oèistíme a nakrájíme cibuli. Na pánvi rozehøejem olej. Cibulku posmaíme do zlatova. Pøidáme vejce, sùl a pepø. Mícháme dokud není konzistence optimální.",
-		"recipeType" : "BREAKFAST",
+		"recipeTypes" : ["BREAKFAST","DINNER"],
 		"preparationTime" : "SHORT",
 		"taste" : "SALTY",
 		"rating" : "6",
@@ -40,7 +40,7 @@
   {
 		"name" : "Øepovej salát",
 		"preparation" : "Øepu dáme vaøit(nemusíme).Necháme vystydnout, nakrájíme/nastrouháme do mísy, prihodíme konzervu mrkev+hrášek, nakrájíme okurky a pridáme taky.Dochutíme solí, olejem peprem.", 
-		"recipeType" : "DINNER",
+		"recipeTypes" : ["DINNER"],
 		"preparationTime" : "SHORT",
 		"taste" : "SALTY",
 		"rating" : "6",
@@ -58,7 +58,7 @@
   {
 		"name" : "Fazole s mrkví aka Pánev",
 		"preparation" : "Oèistíme mrkev a nakrájíme na asi 3cm dlouhé hranolky. Rozehøejem olej na pánvi a dáme mrkev osmahnout. Nakrájíme klobásu na drobné kousky. Nakrájíme èesnek na jemno. Kdy je mrkev osmahnutá, pøidáme fazole s omáèkou, klobásu a èesnek. Trochu naøedíme vodou. Posypeme rozmarınem a opepøíme. Vše zamícháme a necháme chvíli povaøit.", 
-		"recipeType" : "DINNER",
+		"recipeTypes" : ["DINNER"],
 		"preparationTime" : "SHORT",
 		"taste" : "SALTY",
 		"rating" : "6",
@@ -72,5 +72,23 @@
 			{"name" : "olej", "quantity" : "5"}
 		],
 		"keywords" : ["bezlepkové", "zeleninové"]
+	},
+  {
+		"name" : "Šouchané brambory",
+		"preparation" : "Oloupeme brambory a dáme je vaøit. Mezi tím nakrájime slaninu na drobné kostièky a dáme smait na pánev. Nakrájíme cibuli na drobno a pøidáme smait ke slaninì. Brambory vaøíme dokud nejsou mìké. Cibulku smaíme do zlatova. Slejeme vodu z brambor, pøidáme obsah pánve a brambory rozmaèkáme. Dochutíme kmínem, solí a pøípadnì máslem pro zjemnìní.", 
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "brambory", "quantity" : "150"},
+      {"name" : "slanina", "quantity" : "50"},
+      {"name" : "cibule", "quantity" : "0.5"},
+      {"name" : "sùl", "quantity" : "5"},
+      {"name" : "kmín", "quantity" : "1"},
+      {"name" : "máslo", "quantity" : "25"},
+      {"name" : "olej", "quantity" : "5"}
+		],
+		"keywords" : ["bezlepkové"]
 	}
 ]
