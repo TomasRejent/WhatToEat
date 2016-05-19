@@ -90,5 +90,20 @@
       {"name" : "olej", "quantity" : "5"}
 		],
 		"keywords" : ["bezlepkové"]
+	},
+  {
+		"name" : "Vaøené brambory",
+		"preparation" : "Oloupeme brambory a dáme vaøit dokud nezmìknou. Slejeme vodu posypeme kmínem a po servírování pøidáme kousek másla.", 
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "4",
+		"ingredients" : [
+			{"name" : "brambory", "quantity" : "200"},
+      {"name" : "kmín", "quantity" : "1"},
+      {"name" : "máslo", "quantity" : "10"}
+		],
+		"keywords" : ["bezlepkové"]
 	}
+  
 ]
