@@ -2,6 +2,7 @@
 	{"name" : "vajíèko", "ingredientUnit" : "PIECE", "price" : "0"},
 	{"name" : "bezlepková mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
+  {"name" : "máslo", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "15", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -14,14 +15,21 @@
 	{"name" : "brambory", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "øepa", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "mrkev", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "petržel", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "kedluben", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "celer", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "paprika", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kyselá okurka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
-  {"name" : "mrkev+hrášek konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
+  {"name" : "mrkev+hrášek konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},   
   {"name" : "fazole s rajèatovou omáèkou konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
+  {"name" : "rajský protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
   
-
+  {"name" : "bobkový list", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "nové koøení", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},   
 	{"name" : "kmín", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "sùl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "pepø", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
-  {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]}
+  {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "pesto", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]}
 	
 ]

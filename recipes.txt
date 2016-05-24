@@ -104,6 +104,47 @@
       {"name" : "máslo", "quantity" : "10"}
 		],
 		"keywords" : ["bezlepkové"]
-	}
+	},
+
+  {
+		"name" : "Hrášková polévka",
+		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sul a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
+		"recipeType" : "SOUP",
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "hrášek", "quantity" : "400"},
+			{"name" : "máslo", "quantity" : "50"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "pesto", "quantity" : "1"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
   
+  {
+		"name" : "Boršèová polévka",
+		"preparation" : "Na olivovém oleji osmažíme nakrajenou cibulku, pak pridame nakrájenou/nastrouhanou mrkev+ petržel, osmahneme, pak pridame nastrouhanej kedluben a celer, posmazime a nakonec pridame repu, rajèatovej protlak, bobkový list, nové koøení, sul, pepø a zalijeme vodou-jenom aby zakryla zeleninu a povaøíme.Když je zelenina polomekka prihodime nakrajenou papriku na nudlièky a prolisované stroužky èesneku.  ",
+		"recipeType" : "SOUP",
+		"preparationTime" : "LARGE",
+		"taste" : "SALTY",
+		"rating" : "5",
+		"ingredients" : [
+      {"name" : "cibule", "quantity" : "1"},
+			{"name" : "mrkev", "quantity" : "1"},
+			{"name" : "petržel", "quantity" : "1"},
+      {"name" : "kedluben", "quantity" : "1"},
+      {"name" : "celer", "quantity" : "1"},
+      {"name" : "øepa", "quantity" : "3"},
+      {"name" : "paprika", "quantity" : "1"},
+      {"name" : "èesnek", "quantity" : "6"},
+      {"name" : "bobkový list", "quantity" : "6"},
+      {"name" : "nové koøení", "quantity" : "6"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "rajský protlak", "quantity" : "100"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	}
 ]
