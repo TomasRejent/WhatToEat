@@ -30,6 +30,12 @@
 	{"name" : "sùl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "pepø", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
-  {"name" : "pesto", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]}
+  {"name" : "pesto", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
+
+  {"name" : "jáhly", "ingredientUnit" : "PIECE", "price" : "0"},
+  {"name" : "mléko", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèné"]},
+  {"name" : "cukr", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "jablko", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "banán", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]}  
 	
 ]
