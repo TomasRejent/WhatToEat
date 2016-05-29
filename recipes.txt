@@ -109,7 +109,7 @@
   {
 		"name" : "Hrášková polévka",
 		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sul a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
-		"recipeType" : "SOUP",
+		"recipeTypes" : ["SOUP", "DINNER"],
 		"preparationTime" : "SHORT",
 		"taste" : "SALTY",
 		"rating" : "7",
@@ -126,7 +126,7 @@
   {
 		"name" : "Boršèová polévka",
 		"preparation" : "Na olivovém oleji osmažíme nakrajenou cibulku, pak pridame nakrájenou/nastrouhanou mrkev+ petržel, osmahneme, pak pridame nastrouhanej kedluben a celer, posmazime a nakonec pridame repu, rajèatovej protlak, bobkový list, nové koøení, sul, pepø a zalijeme vodou-jenom aby zakryla zeleninu a povaøíme.Když je zelenina polomekka prihodime nakrajenou papriku na nudlièky a prolisované stroužky èesneku.  ",
-		"recipeType" : "SOUP",
+		"recipeTypes" : ["SOUP"],
 		"preparationTime" : "LONG",
 		"taste" : "SALTY",
 		"rating" : "5",
@@ -151,7 +151,7 @@
   {
 		"name" : "Jáhlová kaše s ovocem",
 		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sul a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
-		"recipeType" : "BREAKFAST",
+		"recipeTypes" : ["BREAKFAST"],
 		"preparationTime" : "SHORT",
 		"taste" : "SWEET",
 		"rating" : "7",
