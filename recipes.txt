@@ -118,7 +118,7 @@
 			{"name" : "máslo", "quantity" : "50"},
 			{"name" : "sùl", "quantity" : "0.2"},
 			{"name" : "pepø", "quantity" : "0.1"},
-			{"name" : "pesto", "quantity" : "1"}
+			{"name" : "pesto", "quantity" : "20"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
 	},
@@ -150,7 +150,7 @@
   
   {
 		"name" : "Jáhlová kaše s ovocem",
-		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sul a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
+		"preparation" : "Jáhle si propláchneme v sítku, pøesypeme do hrnce a zalijeme mlékem a osladíme cukrem a posypeme skoøicí. Povaøíme za stálého míchání dokud smìs nezhoustne. Do talíøe si nakrájíme jablko a banán, zalijeme kaší a podáváme.",
 		"recipeTypes" : ["BREAKFAST"],
 		"preparationTime" : "SHORT",
 		"taste" : "SWEET",
@@ -160,8 +160,23 @@
 			{"name" : "mléko", "quantity" : "100"},
 			{"name" : "cukr", "quantity" : "10"},
 			{"name" : "jablko", "quantity" : "1"},
-			{"name" : "banán", "quantity" : "1"}
+			{"name" : "banán", "quantity" : "1"},
+      {"name" : "skoøice", "quantity" : "0.1"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+  {
+		"name" : "Srdíèko s tatrankou",
+		"preparation" : "Vezmem srdíèko a tatranku, rozbalíme a sníme.",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "SHORT",
+		"taste" : "SWEET",
+		"rating" : "5",
+		"ingredients" : [
+			{"name" : "srdíèko", "quantity" : "1"},
+			{"name" : "tatranka", "quantity" : "1"}
+		],
+		"keywords" : ["bezmasé"]
 	}
 ]
