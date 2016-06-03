@@ -283,4 +283,41 @@
       {"name" : "majoránka", "quantity" : "0.3"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
+	}, 
+  
+ {
+		"name" : "Chøestová polévka",
+		"preparation" : " Bokem uvaøíme brambory.Chøet umyjeme, oèistíme od tvrdých vnìjším obalu, dáme vaøit na 10 minut s bujonovou kostkou a solí, pepøem a muškátovým oøíškem. Vypneme plotýnku, nalijeme smetanu, pridáme èást brambor a ponorným mixérem rozmixujeme dohladka.",
+		"recipeTypes" : ["SOUP"],
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "brambory", "quantity" : "400"},
+			{"name" : "chøest", "quantity" : "400"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "muškátový oøech", "quantity" : "0.6"},
+      {"name" : "bujonová kostka", "quantity" : "1"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  {
+		"name" : "Zeleninová polévka",
+		"preparation" : "Cibuli nakrájíme nadrobno, Ocistíme si a nakrájíme mrkev, petržel, celer, cuketu. Cibuli osmažíme na oleji, pridáme mrkev, osmažím, pak pøidám petržel, taky osmažím a nakonecceler a pak zaliju vodou, pøidám sul, pepø a nechám vaøit. Když bude zelenina polomìkká tak pøidám cuketu na malé kousky a dochutím petrželkou nebo libeèkem.  ",
+		"recipeTypes" : ["SOUP"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "cibule", "quantity" : "1"},
+			{"name" : "mrkev", "quantity" : "2"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "pepø", "quantity" : "0.1"},
+			{"name" : "petržel", "quantity" : "1"},
+      {"name" : "celer", "quantity" : "0.25"},
+      {"name" : "petrželka", "quantity" : "3"},
+      {"name" : "libeèek", "quantity" : "0.25"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
 	} 
