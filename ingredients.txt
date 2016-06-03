@@ -37,6 +37,8 @@
   {"name" : "cukr", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "med" "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "skoøice", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "sušenej èesnek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "majoránka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 
   {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
@@ -45,8 +47,10 @@
   
   {"name" : "jablko", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
   {"name" : "banán", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
-  "name" : "hruška", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
-  "name" : "jahody", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]}, 
+  {"name" : "hruška", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  {"name" : "jahody", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]}, 
+  {"name" : "kiwi", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]}, 
+  
   
   {"name" : "tatranka", "ingredientUnit" : "PIECE", "price" : "9", "keywords" : ["sladkost"]}
 	

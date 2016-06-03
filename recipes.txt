@@ -239,7 +239,7 @@
    {
 		"name" : "Jogurt s oøechy",
 		"preparation" : "Jogurt smícháme s mletými oøechy, skoøicí a medem.",
-		"recipeTypes" : ["SHORT"],
+		"recipeTypes" : ["BREAKFAST"],
 		"preparationTime" : "MEDIUM",
 		"taste" : "SWEET",
 		"rating" : "7",
@@ -251,3 +251,36 @@
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
 	}, 
+  
+  {
+		"name" : "Dìlové koule s oøechy",
+		"preparation" : "banán nakrájíme, kiwi oèistíme a nakrájme posypeme mletými oøechy, skoøicí a medem.",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "SHORT",
+		"taste" : "SWEET",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "Banán", "quantity" : "1"},
+      {"name" : "kiwi", "quantity" : "2"},
+			{"name" : "med", "quantity" : "10"},
+			{"name" : "skoøice", "quantity" : "0.3"},
+      {"name" : "oøechy", "quantity" : "15"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+   {
+		"name" : "Pohanka na slano",
+		"preparation" : "Pohanku namoèíme (celé zrná na celý deò a celú noc, vloèky na asi 5 min) do vody, pridáme sul,sušenej èesnek, majoránku. ",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "5",
+		"ingredients" : [
+			{"name" : "pohanka", "quantity" : "50"},
+			{"name" : "sul", "quantity" : "0.3"},
+			{"name" : "sušenej èesnek", "quantity" : "0.3"},
+      {"name" : "majoránka", "quantity" : "0.3"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	} 
