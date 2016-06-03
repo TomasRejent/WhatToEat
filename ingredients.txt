@@ -8,6 +8,7 @@
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
   
   {"name" : "máslo", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "jogurt bílý", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mléèný výrobek"]},
   {"name" : "mléko", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
   {"name" : "srdíèko", "ingredientUnit" : "PIECE", "price" : "6", "keywords" : ["mléèný výrobek"]},
 
@@ -34,12 +35,18 @@
   {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "pesto", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "cukr", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "med" "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "skoøice", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 
-  {"name" : "jáhly", "ingredientUnit" : "PIECE", "price" : "0"},
+  {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "oøechy", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "chia semínka", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "jablko", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
-  {"name" : "banán", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]}, 
+  {"name" : "banán", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  "name" : "hruška", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  "name" : "jahody", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]}, 
   
   {"name" : "tatranka", "ingredientUnit" : "PIECE", "price" : "9", "keywords" : ["sladkost"]}
 	

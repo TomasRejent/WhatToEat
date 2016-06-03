@@ -180,3 +180,74 @@
 		"keywords" : ["bezmasé"]
 	}
 ]
+{
+		"name" : "Pohanka s ovocem",
+		"preparation" : "Pohanku namoèíme( celé zrná na celou noc, vloèky na 5 min) do vody/mléka. Když se nasaje tak pøidáme cukr nebo med, nebo jiné sladidlo, skoøici, a ovoce/ zeleninu dle libovule",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "SHORT",
+		"taste" : "SWEET",
+		"rating" : "5",
+		"ingredients" : [
+			{"name" : "pohanka", "quantity" : "30"},
+			{"name" : "mléko", "quantity" : "100"},
+			{"name" : "cukr", "quantity" : "10"},
+			{"name" : "hruška", "quantity" : "1"},
+			{"name" : "banán", "quantity" : "1"},
+      {"name" : "skoøice", "quantity" : "0.1"},
+      {"name" : "med", "quantity" : "10"},
+      {"name" : "oøechy", "quantity" : "15"}
+      
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+ {
+		"name" : "Jáhlová kaše s ovocem",
+		"preparation" : "Namoèíme si chia semínka do vody/ mléka.Jáhle si propláchneme v sítku, pøesypeme do hrnce a zalijeme mlékem a osladíme cukrem a posypeme skoøicí. Povaøíme za stálého míchání dokud smìs nezhoustne. Do talíøe si nakrájíme banán, oèistíme a nakrájíme jahody, pøidáme chia semínka, zalijeme kaší a podáváme.",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "SHORT",
+		"taste" : "SWEET",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "jáhly", "quantity" : "30"},
+			{"name" : "mléko", "quantity" : "100"},
+			{"name" : "cukr", "quantity" : "10"},
+			{"name" : "jahody", "quantity" : "100"},
+			{"name" : "banán", "quantity" : "1"},
+      {"name" : "chia semínka", "quantity" : "5"},
+      {"name" : "oøechy", "quantity" : "15"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+ 
+ {
+		"name" : "mrkev s jablkem",
+		"preparation" : "Jablko a mrkev umyjeme, ocistime, jablko zbavíme jádrovníku a nastruháme jablko na hrubém struhadle a mrkev na jemném struhadle.Objemove + - na stejno, pøidáme oøechy mleté, ochutíme medem a skoøicí. Zamícháme dohromady.",
+		"recipeTypes" : ["BREAKFAST"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SWEET",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "Jablko", "quantity" : "1"},
+			{"name" : "mrkev", "quantity" : "1"},
+			{"name" : "med", "quantity" : "10"},
+			{"name" : "skoøice", "quantity" : "0.3"},
+      {"name" : "oøechy", "quantity" : "15"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	}, 
+  
+   {
+		"name" : "Jogurt s oøechy",
+		"preparation" : "Jogurt smícháme s mletými oøechy, skoøicí a medem.",
+		"recipeTypes" : ["SHORT"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SWEET",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "Jogurt bílý", "quantity" : "1"},
+			{"name" : "med", "quantity" : "10"},
+			{"name" : "skoøice", "quantity" : "0.3"},
+      {"name" : "oøechy", "quantity" : "15"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	}, 
