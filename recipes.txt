@@ -178,8 +178,8 @@
 			{"name" : "tatranka", "quantity" : "1"}
 		],
 		"keywords" : ["bezmasé"]
-	}
-]
+	},
+
 {
 		"name" : "Pohanka s ovocem",
 		"preparation" : "Pohanku namoèíme( celé zrná na celou noc, vloèky na 5 min) do vody/mléka. Když se nasaje tak pøidáme cukr nebo med, nebo jiné sladidlo, skoøici, a ovoce/ zeleninu dle libovule",
@@ -356,3 +356,4 @@
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
 	}    
+]

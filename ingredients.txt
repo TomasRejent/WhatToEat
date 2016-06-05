@@ -36,7 +36,7 @@
   {"name" : "rozmarýn", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "pesto", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "cukr", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
-  {"name" : "med" "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "med", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "skoøice", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "sušenej èesnek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "majoránka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
