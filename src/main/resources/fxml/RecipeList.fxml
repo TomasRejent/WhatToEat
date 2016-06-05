@@ -9,7 +9,7 @@
 
 <GridPane minHeight="200.0" minWidth="200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.RecipeListController">
    <columnConstraints>
-      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="10.0" prefWidth="50.0" />
+      <ColumnConstraints hgrow="ALWAYS" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
       <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
    </columnConstraints>
    <rowConstraints>

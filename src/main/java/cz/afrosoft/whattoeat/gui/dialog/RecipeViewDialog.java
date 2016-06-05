@@ -7,12 +7,14 @@
 package cz.afrosoft.whattoeat.gui.dialog;
 
 import com.sun.webkit.dom.KeyboardEventImpl;
+import cz.afrosoft.whattoeat.ServiceHolder;
 import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.view.IngredientList;
 import cz.afrosoft.whattoeat.gui.view.KeywordLabelFactory;
 
 import cz.afrosoft.whattoeat.logic.model.Recipe;
+import cz.afrosoft.whattoeat.logic.services.PriceCalculatorService;
 import java.util.ArrayList;
 import java.util.Collection;
 import javafx.collections.ObservableList;
@@ -107,7 +109,11 @@ public class RecipeViewDialog extends Dialog<Void>{
     private final Label priceLabel = new Label();
     private final Label priceText = new Label();
     private final IngredientList ingredientList = new IngredientList();
-
+    
+    private final PriceCalculatorService priceCalculatorService = ServiceHolder.getPriceCalculatorService();
+ 
+    private Recipe recipe;
+    
     public RecipeViewDialog() {
         super();
         this.setResizable(true);
@@ -122,6 +128,8 @@ public class RecipeViewDialog extends Dialog<Void>{
 
     public void showRecipe(final Recipe recipe){
         checkNotNull(recipe, "Recipe to show cannot be null.");
+        
+        this.recipe = recipe;
 
         this.setTitle(recipe.getName());
         typeText.setText(StringUtils.join(recipe.getRecipeTypes().stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), ","));
@@ -137,7 +145,8 @@ public class RecipeViewDialog extends Dialog<Void>{
         preparationText.setText(recipe.getPreparation());
 
         ingredientList.setIngredients(recipe.getIngredients());
-
+ 
+        updatePrice(1);
         this.show();
     }
 
@@ -237,6 +246,11 @@ public class RecipeViewDialog extends Dialog<Void>{
         setupIngredientPaneEvents();
     }
 
+    private void updatePrice(int servings) {
+        float price = priceCalculatorService.calculatePrice(recipe, servings);
+        priceText.setText(String.valueOf(price));
+    }
+    
     private void setupIngredientPaneEvents(){
         servingsField.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
             @Override
@@ -244,6 +258,8 @@ public class RecipeViewDialog extends Dialog<Void>{
                 if(KeyCode.ENTER.equals(event.getCode()) && StringUtils.isNumeric(servingsField.getText())){
                     int servings =Integer.parseInt(servingsField.getText());
                     ingredientList.setServings(servings);
+                    
+                    updatePrice(servings);
                 }
             }
         });
