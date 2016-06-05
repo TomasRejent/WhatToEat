@@ -2,7 +2,7 @@
 	{"name" : "vajíèko", "ingredientUnit" : "PIECE", "price" : "0"},
 	{"name" : "bezlepková mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
-  {"name" : "máslo", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "houby", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "15", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -16,6 +16,7 @@
 	{"name" : "èesnek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
 	{"name" : "špenát", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},	
 	{"name" : "brambory", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "rýže", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "øepa", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "mrkev", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "petržel", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
@@ -43,6 +44,7 @@
   {"name" : "muškátový oøech", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "petrželka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "libeèek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+   {"name" : "høebíèek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
 
   {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},

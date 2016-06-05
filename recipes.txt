@@ -320,4 +320,39 @@
       {"name" : "libeèek", "quantity" : "0.25"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
-	} 
+	},
+   {
+		"name" : "Rajská polévka",
+		"preparation" : "Cibuli nakrájíme nadrobno. Cibuli osmažíme na oleji, pridáme mouku, opražíme a pak zalijeme vodou, pøidám sul, cukr, protlak, tìstoviny/rýže a høebíèky a nechám vaøit.Obèas promíchat.  ",
+		"recipeTypes" : ["SOUP"],
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "7",
+		"ingredients" : [
+			{"name" : "cibule", "quantity" : "1"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "cukr", "quantity" : "0.1"},
+      {"name" : "høebíèek", "quantity" : "4"},
+      {"name" : "rajskej protlak", "quantity" : "100"},
+      {"name" : "rýže", "quantity" : "60"},
+      {"name" : "pepø", "quantity" : "0.25"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  {
+		"name" : "Palaèinky s houbami",
+		"preparation" : "Cibuli nakrájíme nadrobno. Cibuli osmažíme na másle,houby opeèeme, osolíme,opepøíme a podusíme. Udìláme tìsto na palaèinky,bez cukru, upeèeme je, naplníme houbami.",
+		"recipeTypes" : ["LUNCH", "DINNER"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "6",
+		"ingredients" : [
+			{"name" : "cibule", "quantity" : "1"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : " bezlepková mouka", "quantity" : "300"},
+      {"name" : "mléko", "quantity" : "500"},
+      {"name" : "houby", "quantity" : "500"},
+      {"name" : "pepø", "quantity" : "0.25"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	}    
