@@ -7,6 +7,7 @@ package cz.afrosoft.whattoeat.data;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.gson.Gson;
+import cz.afrosoft.whattoeat.data.util.ParameterCheckUtils;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import java.io.BufferedReader;
 import java.io.File;
@@ -32,10 +33,8 @@ public class JsonRecipeLoader implements RecipeLoader{
     
     @Override
     public Set<Recipe> loadRecipes(File recipeFile) throws FileNotFoundException{
-        if(recipeFile == null){
-            throw new IllegalArgumentException("Recipe file cannot be null.");
-        } 
-        
+        ParameterCheckUtils.checkNotNull(recipeFile, "Recipe file cannot be null.");
+
         BufferedReader fileReader = new BufferedReader(new FileReader(recipeFile));
         Recipe[] recipes = gson.fromJson(fileReader, Recipe[].class);
         return ImmutableSet.copyOf(recipes);

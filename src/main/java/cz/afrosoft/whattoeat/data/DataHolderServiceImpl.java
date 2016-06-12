@@ -7,23 +7,28 @@ package cz.afrosoft.whattoeat.data;
 
 import cz.afrosoft.whattoeat.data.exception.DataLoadException;
 import cz.afrosoft.whattoeat.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.logic.model.Diet;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author Alexandra
  */
 public final class DataHolderServiceImpl implements DataHolderService{
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(DataHolderServiceImpl.class);
 
     private final Map<String, Recipe> recipes;
     private final Map<String, IngredientInfo> ingredients;
@@ -62,7 +67,7 @@ public final class DataHolderServiceImpl implements DataHolderService{
                 recipes.put(recipe.getName(), recipe);
             }
         } catch (DataLoadException | FileNotFoundException ex) {
-            Logger.getLogger(DataHolderServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error("Cannot load recipes.", ex);
         }
     }
     
@@ -75,7 +80,33 @@ public final class DataHolderServiceImpl implements DataHolderService{
                 ingredients.put(ingredient.getName(), ingredient);
             }
         } catch (DataLoadException | FileNotFoundException ex) {
-            Logger.getLogger(DataHolderServiceImpl.class.getName()).log(Level.SEVERE, null, ex);
+            LOGGER.error("Cannot load ingredients.", ex);
         }
     }
+
+    @Override
+    public Collection<Diet> getDiets() {
+        try {
+            File dietFile = LocationUtils.getDietFile();
+            DietLoader dietLoader = JsonDietLoader.getInstance();
+            return dietLoader.getAllDiets(dietFile);
+        } catch (DataLoadException | IOException ex) {
+            LOGGER.error("Cannot load diets.", ex);
+            return Collections.emptyList();
+        }
+    }
+
+    @Override
+    public void addDiet(Diet diet) {
+        try {
+            File dietFile = LocationUtils.getDietFile();
+
+            DietLoader dietLoader = JsonDietLoader.getInstance();
+            dietLoader.saveDiet(dietFile, diet);
+        } catch (DataLoadException | IOException ex) {
+            LOGGER.error("Cannot add diet.", ex);
+        }
+    }
+
+
 }

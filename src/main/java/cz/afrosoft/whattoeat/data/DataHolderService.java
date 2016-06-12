@@ -6,6 +6,7 @@
 package cz.afrosoft.whattoeat.data;
 
 import com.google.common.collect.ImmutableMap;
+import cz.afrosoft.whattoeat.logic.model.Diet;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import java.util.Collection;
@@ -22,5 +23,9 @@ public interface DataHolderService {
     Collection<IngredientInfo> getIngredients();
 
     IngredientInfo getIngredientByName(String name);
+
+    Collection<Diet> getDiets();
+
+    void addDiet(Diet diet);
     
 }
