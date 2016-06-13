@@ -13,6 +13,7 @@
          <items>
             <Button mnemonicParsing="false" onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes" />
             <Button mnemonicParsing="false" onAction="#showFoodList" text="Food list" />
+            <Button mnemonicParsing="false" onAction="#showGenerator" text="%cz.afrosoft.whattoeat.menu.diet.generator" />
          </items>
       </ToolBar>
    </top>

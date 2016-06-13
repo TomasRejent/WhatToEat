@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+  <columnConstraints>
+    <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="500.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints fillHeight="false" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints fillHeight="false" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+    <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="500.0" vgrow="SOMETIMES" />
+  </rowConstraints>
+   <children>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+         <children>
+            <Label id="nameLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.name" />
+            <TextField id="nameField" />
+            <Label id="fromLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.from" />
+            <DatePicker id="fromField" />
+            <Label id="toLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.to" />
+            <DatePicker id="toField" />
+            <Label id="generatorLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.generator" />
+            <ComboBox id="generatorField" prefWidth="150.0" />
+         </children>
+         <padding>
+            <Insets left="10.0" top="10.0" />
+         </padding>
+      </HBox>
+      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
+         <children>
+            <Label id="dishLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.dishes" />
+            <CheckBox id="breakfastField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.breakfast" />
+            <CheckBox id="snackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.morningSnack" />
+            <CheckBox id="soupField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.soup" />
+            <CheckBox id="lunchField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.lunch" />
+            <CheckBox id="sideDishField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.sideDish" />
+            <CheckBox id="afternoonSnackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.afternoonSnack" />
+            <CheckBox id="dinnerField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.dinner" />
+         </children>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+         <GridPane.margin>
+            <Insets left="10.0" />
+         </GridPane.margin>
+      </HBox>
+   </children>
+</GridPane>
