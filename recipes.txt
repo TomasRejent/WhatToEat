@@ -355,5 +355,40 @@
       {"name" : "pepø", "quantity" : "0.25"}
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
-	}    
+	},    
+ {
+		"name" : "Bramborová kaše",
+		"preparation" : "Brambory oèistíme,osolíme, pokmínujeme, uvaøíme domìka,rozšoucháme, pøidáme máslo, pøevaøené mlíko a zmixujeme dhromady. ",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "6",
+		"ingredients" : [
+			{"name" : "brambory", "quantity" : "100"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "kmín", "quantity" : "0.3"},
+      {"name" : "mléko", "quantity" : "50"},
+      {"name" : "máslo", "quantity" : "20"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+   {
+		"name" : "Guláš",
+		"preparation" : "Cibuli nakrájíme nadrobno. Cibuli osmaíme na sádle,/oleji do sklovata, prihodíme nakrajenené maso, osmaíme,osolíme a opepøíme, podlijeme priame papriku a rajèata, dochutíme kmínem, paprikou, koøením na guláš, majoránkou, solí, pepøem a dáme dusit.Kdy je maso polomìkké pøidáme brambory a zahustíme bramborovım škrobem, dochutíme èesnekem.",
+		"recipeTypes" : ["LUNCH", "DINNER"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "6",
+		"ingredients" : [
+			{"name" : "cibule", "quantity" : "1"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : " bezlepková mouka", "quantity" : "300"},
+      {"name" : "mléko", "quantity" : "500"},
+      {"name" : "houby", "quantity" : "500"},
+      {"name" : "pepø", "quantity" : "0.25"}
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	}
+
 ]
