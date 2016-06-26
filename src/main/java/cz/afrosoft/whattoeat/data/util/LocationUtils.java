@@ -19,6 +19,7 @@ public final class LocationUtils {
     
     private static final String RECIPE_FILE_NAME = "recipes.txt";
     private static final String INGREDIENTS_FILE_NAME = "ingredients.txt";
+    private static final String DIETS_FILE_NAME = "diets.txt";
     
     public static File getRecipeFile() throws DataLoadException{
         return getDataFile(RECIPE_FILE_NAME);
@@ -26,6 +27,10 @@ public final class LocationUtils {
     
     public static File getIngredientFile() throws DataLoadException{
         return getDataFile(INGREDIENTS_FILE_NAME);
+    }
+
+    public static File getDietFile() throws DataLoadException{
+        return getDataFile(DIETS_FILE_NAME);
     }
     
     private static File getDataFile(String name) throws DataLoadException{

@@ -1,6 +1,10 @@
 package cz.afrosoft.whattoeat;
 
+import com.google.common.collect.ImmutableList;
 import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.logic.model.Diet;
+import java.util.Date;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
