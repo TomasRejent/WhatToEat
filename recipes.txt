@@ -170,7 +170,7 @@
 		"name" : "Srdíèko s tatrankou",
 		"preparation" : "Vezmem srdíèko a tatranku, rozbalíme a sníme.",
 		"recipeTypes" : ["BREAKFAST"],
-		"preparationTime" : "SHORT",
+		"preparationTime" : "INSTANT",
 		"taste" : "SWEET",
 		"rating" : "5",
 		"ingredients" : [
