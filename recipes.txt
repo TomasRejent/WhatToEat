@@ -339,6 +339,103 @@
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
 	},
+ 
+ {
+		"name" : "Tìstoviny",
+		"preparation" : "Hrnec si naplníme vodou cca 2 litre privedeme k varu. Kdy voda vaøí tak ji osolíme, prilijeme olej a pridáme testoviny. Vaøíme tak dlouho jak je uvedeno na obalu testovin. ",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "4",
+		"ingredients" : [
+			{"name" : "tìstoviny", "quantity" : "150"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "olej", "quantity" : "20"}
+      
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+   {
+		"name" : "Rıe",
+		"preparation" : "Rıi si pøesypeme do sítka a propláchneme pod tekoucí vodou. Pøehodíme do hrnce a zalijeme vodou, osolíme, pøivedeme k varu. Pak stlumíme oheò a necháme a rıe natáhne všechnu vodu do sebe. Rıe je hotová kdy je na skus mìkká. ",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "SHORT",
+		"taste" : "SALTY",
+		"rating" : "4",
+		"ingredients" : [
+			{"name" : "rıe", "quantity" : "150"},
+			{"name" : "sùl", "quantity" : "0.2"},
+			{"name" : "voda", "quantity" : "500"}
+      
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+   {
+		"name" : "Knedlíky",
+		"preparation" : "Do hrnce si nalejeme naspod 100 ml vody, a dáme do nìj paøáèek. Pøivedeme k varu, pak vloíme knedlíky do paøáèku a 2 minuty necháme nahøát. Zjistíme to tak e na dotek jsou mìkké a teplé.",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "QUICK",
+		"taste" : "SALTY",
+		"rating" : "4",
+		"ingredients" : [
+			{"name" : "knedlíky", "quantity" : "150"},
+			{"name" : "voda", "quantity" : "100"}
+      
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+   {
+		"name" : "Bramborové hranolky",
+		"preparation" : "Brambory si oèistíme, nakrájíme na hranolky a upeèeme( osolíme a peèeme asi 40 min) nebo usmaíme (15 min pak vytáhneme z oleje a pak osolíme).",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "8",
+		"ingredients" : [
+			{"name" : "Brambory", "quantity" : "150"},
+			{"name" : "Olej", "quantity" : "50"},
+      {"name" : "sùl", "quantity" : "0.2"}                             
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+  {
+		"name" : "Celerové hranolky",
+		"preparation" : "Celer si oèistíme, nakrájíme na tenké hranolky osmaíme 15 min a pak osolíme anebo osolíme a následnì upeèeme cca 30 min.",
+		"recipeTypes" : ["SIDE_DISH"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "8",
+		"ingredients" : [
+			{"name" : "celer", "quantity" : "150"},
+			{"name" : "Olej", "quantity" : "50"},
+      {"name" : "sùl", "quantity" : "0.2"}                             
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
+  {
+		"name" : "Bramboráky",
+		"preparation" : "Brambory si oèistíme, nastrouháme na struhadle napùl nahrubo napùl na jemno. Pøihodíme vajíèko, mouku, prolisovanı èesnek, majoránku, zamícháme. Na pánvi vytvoøíme tenkou placku a smaíme.",
+		"recipeTypes" : ["SIDE_DISH", "DINNER", "LUNCH"],
+		"preparationTime" : "MEDIUM",
+		"taste" : "SALTY",
+		"rating" : "8",
+		"ingredients" : [
+			{"name" : "Brambory", "quantity" : "300"},
+			{"name" : "Olej", "quantity" : "50"},
+      {"name" : "mouka", "quantity" : "200"},
+      {"name" : "vajíèko", "quantity" : "2"},
+      {"name" : "majoránka", "quantity" : "0.5"},
+      {"name" : "èesnek", "quantity" : "3"},
+      {"name" : "sùl", "quantity" : "0.2"}                             
+		],
+		"keywords" : ["bezlepkové", "bezmasé"]
+	},
+  
   {
 		"name" : "Palaèinky s houbami",
 		"preparation" : "Cibuli nakrájíme nadrobno. Cibuli osmaíme na másle,houby opeèeme, osolíme,opepøíme a podusíme. Udìláme tìsto na palaèinky,bez cukru, upeèeme je, naplníme houbami.",
@@ -377,7 +474,7 @@
 		"name" : "Guláš",
 		"preparation" : "Cibuli nakrájíme nadrobno. Cibuli osmaíme na sádle,/oleji do sklovata, prihodíme nakrajenené maso, osmaíme,osolíme a opepøíme, podlijeme priame papriku a rajèata, dochutíme kmínem, paprikou, koøením na guláš, majoránkou, solí, pepøem a dáme dusit.Kdy je maso polomìkké pøidáme brambory a zahustíme bramborovım škrobem, dochutíme èesnekem.",
 		"recipeTypes" : ["LUNCH", "DINNER"],
-		"preparationTime" : "MEDIUM",
+		"preparationTime" : "LONG",
 		"taste" : "SALTY",
 		"rating" : "6",
 		"ingredients" : [
@@ -388,7 +485,7 @@
       {"name" : "houby", "quantity" : "500"},
       {"name" : "pepø", "quantity" : "0.25"}
 		],
-		"keywords" : ["bezlepkové", "bezmasé"]
+		"keywords" : ["bezlepkové"]
 	}
 
 ]

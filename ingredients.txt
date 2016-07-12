@@ -3,6 +3,8 @@
 	{"name" : "bezlepková mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
   {"name" : "houby", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "tìstoviny", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "knedlíky", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "23", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -29,6 +31,7 @@
   {"name" : "rajský protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
   
   {"name" : "bobkový list", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "koøení na americké brambory", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "nové koøení", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},   
 	{"name" : "kmín", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
 	{"name" : "sùl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
