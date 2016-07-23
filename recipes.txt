@@ -7,7 +7,7 @@
 		"taste" : "SALTY",
 		"rating" : "5",
 		"ingredients" : [
-			{"name" : "vajíèko", "quantity" : "1"},
+			{"name" : "vajíèko", "quantity" : "0.5"},
 			{"name" : "bezlepková mouka", "quantity" : "30"},
 			{"name" : "brambory", "quantity" : "150"},
 			{"name" : "špenát", "quantity" : "150"},

@@ -1,10 +1,11 @@
 FEATURES:
 - Add dialg for creating new recipes and ingredients.
-- Ingredients with PIECE type should support fraction values and round them up in view.
+X - Ingredients with PIECE type should support fraction values and round them up in view.
 X - Add service for computing recipe price.
 - Add UI for food list generator.
 - Add config file for setting application settings.
 - Add file coding settings.
+- Add possibility to open recipe by double click in recipe view table.
 
 BUGS:
 X - Ingredient keywords overlaps in recipe detail dialog.

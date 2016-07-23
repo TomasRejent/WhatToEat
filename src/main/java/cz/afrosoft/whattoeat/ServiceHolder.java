@@ -1,12 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat;
 
 import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.data.DataHolderServiceImpl;
+import cz.afrosoft.whattoeat.logic.services.IngredientQuantityService;
+import cz.afrosoft.whattoeat.logic.services.IngredientQuantityServiceImpl;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorService;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorServiceImpl;
 
@@ -17,7 +14,8 @@ import cz.afrosoft.whattoeat.logic.services.PriceCalculatorServiceImpl;
 public final class ServiceHolder {
     
     private static final DataHolderService dataHolderService = new DataHolderServiceImpl();
-    private static final PriceCalculatorService priceCalculatorService = new PriceCalculatorServiceImpl(dataHolderService);
+    private static final IngredientQuantityService ingredientQuantityService = new IngredientQuantityServiceImpl(dataHolderService);
+    private static final PriceCalculatorService priceCalculatorService = new PriceCalculatorServiceImpl(dataHolderService, ingredientQuantityService);
     
     public static DataHolderService getDataHolderService(){
         return dataHolderService;
@@ -26,9 +24,9 @@ public final class ServiceHolder {
     public static PriceCalculatorService getPriceCalculatorService() {
         return priceCalculatorService;
     }
-    
-    
-    
-    
+
+    public static IngredientQuantityService getIngredientQuantityService() {
+        return ingredientQuantityService;
+    }
     
 }

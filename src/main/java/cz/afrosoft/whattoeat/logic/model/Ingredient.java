@@ -38,6 +38,7 @@ public final class Ingredient implements Serializable {
         StringBuilder sb = new StringBuilder(Ingredient.class.getSimpleName());
         sb.append("{name=").append(name);
         sb.append(", quantity=").append(quantity);
+        sb.append("}");
         return sb.toString();
     }
 

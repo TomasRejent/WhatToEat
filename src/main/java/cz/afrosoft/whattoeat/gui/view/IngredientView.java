@@ -8,7 +8,9 @@ package cz.afrosoft.whattoeat.gui.view;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
+import cz.afrosoft.whattoeat.ServiceHolder;
 import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.logic.exception.IngredientInfoNotFound;
 import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.logic.model.enums.IngredientUnit;
@@ -37,7 +39,7 @@ final class IngredientView{
         }
 
         public float getQuantity(){
-            return ingredient.getQuantity() * servings;
+            return ServiceHolder.getIngredientQuantityService().getQuantity(ingredient, ingredientInfo, servings);
         }
 
         public IngredientUnit getIngredientUnit(){

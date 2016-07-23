@@ -5,6 +5,8 @@
  */
 package cz.afrosoft.whattoeat.logic.services;
 
+import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+
 import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
@@ -18,29 +20,37 @@ import java.util.Set;
  */
 public class PriceCalculatorServiceImpl implements PriceCalculatorService {  
     
-    private DataHolderService dataHolderService;
+    private final DataHolderService dataHolderService;
+    private final IngredientQuantityService ingredientQuantityService;
     
-    public PriceCalculatorServiceImpl (DataHolderService dataHolderService) {
+    public PriceCalculatorServiceImpl (final DataHolderService dataHolderService, final IngredientQuantityService ingredientQuantityService) {
+        checkNotNull(dataHolderService, "Data holder service cannot be null.");
+        checkNotNull(ingredientQuantityService, "IngredientQuantity service cannot be null.");
+
         this.dataHolderService = dataHolderService;
+        this.ingredientQuantityService = ingredientQuantityService;
     }
     
     @Override
-    public float calculatePrice (Recipe recipe,int servings){
+    public float calculatePrice (final Recipe recipe, final int servings){
         checkParameters(recipe, servings);
         
         if (servings == 0){
             return 0;
         }
-        Set<Ingredient> ingredients = recipe.getIngredients();
-        float price=0;
-        for(Ingredient ingredient :ingredients){
-            IngredientInfo ingredientInfo = dataHolderService.getIngredientByName(ingredient.getName());
-            price += ingredientInfo.getPrice();
+
+        float totalPrice = 0;
+        for(Ingredient ingredient : recipe.getIngredients()){
+            final IngredientInfo ingredientInfo = dataHolderService.getIngredientByName(ingredient.getName());
+            final float quantity = ingredientQuantityService.getQuantity(ingredient, ingredientInfo, servings);
+
+            totalPrice += quantity * ingredientInfo.getPrice();
         }
-        return price*servings;
+
+        return totalPrice;
     }   
     
-    private void checkParameters (Recipe recipe,int servings){
+    private void checkParameters (final Recipe recipe, final int servings){
         if (recipe == null){
             throw new IllegalArgumentException("Recipe can not be null");
         }
