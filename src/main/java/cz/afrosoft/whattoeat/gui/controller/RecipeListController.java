@@ -11,6 +11,7 @@ import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.Labeled;
 import cz.afrosoft.whattoeat.gui.dialog.RecipeViewDialog;
+import cz.afrosoft.whattoeat.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import java.io.IOException;
@@ -113,11 +114,14 @@ public class RecipeListController implements Initializable {
 
     @FXML
     private void showRecipe(ActionEvent actionEvent){
-
-        Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
-        RecipeViewDialog dialog = new RecipeViewDialog();
-        dialog.showRecipe(selectedItem);
-
+        try{
+            Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
+            RecipeViewDialog dialog = new RecipeViewDialog();
+            dialog.showRecipe(selectedItem);
+        }catch(Exception e){
+            LOGGER.error("Cannot display recipe.", e);
+            DialogUtils.showErrorDialog(e.getMessage());
+        }
     }
     
 }

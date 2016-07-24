@@ -43,7 +43,7 @@ public class IngredientQuantityServiceImpl implements IngredientQuantityService{
     @Override
     public float getQuantity(final Ingredient ingredient, final IngredientInfo ingredientInfo, final int numberOfServings) {
         checkNotNull(ingredient, "Ingredient cannot be null.");
-        checkNotNull(ingredientInfo, "IngredientInfo cannot be null.");
+        checkNotNull(ingredientInfo, "IngredientInfo cannot be null for ingredient: " + ingredient);
         checkServings(numberOfServings);
         if(ingredient.getName() == null || !ingredient.getName().equals(ingredientInfo.getName())){
             throw new IllegalArgumentException("Ingredient name is not matching with ingredient info name.");

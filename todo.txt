@@ -6,7 +6,7 @@ X - Add UI for food list generator.
 - Create mechanism for Generator with custom settings
 - Create view forgenerated food lists
 - Create mechanism for manual editing of generated food list before saving
-- Display error dialog when recipe cannot be displayed because of invalid ingredient info
+X - Display error dialog when recipe cannot be displayed because of invalid ingredient info
 - Translate new cz messages to en
 - Add config file for setting application settings.
 - Add file coding settings.
