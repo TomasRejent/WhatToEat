@@ -7,6 +7,7 @@
 package cz.afrosoft.whattoeat.logic.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Calendar;
 import java.util.Date;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -19,7 +20,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class DayDiet implements Serializable, Comparable<DayDiet> {
 
-    private Date day;
+    private LocalDate day;
 
     private String breakfast;
     private String morningSnack;
@@ -31,11 +32,11 @@ public class DayDiet implements Serializable, Comparable<DayDiet> {
     private String afternoonSnack;
     private String dinner;
 
-    public Date getDay() {
+    public LocalDate getDay() {
         return day;
     }
 
-    public void setDay(Date day) {
+    public void setDay(LocalDate day) {
         this.day = day;
     }
 

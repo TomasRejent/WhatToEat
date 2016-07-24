@@ -2,7 +2,12 @@ FEATURES:
 - Add dialg for creating new recipes and ingredients.
 X - Ingredients with PIECE type should support fraction values and round them up in view.
 X - Add service for computing recipe price.
-- Add UI for food list generator.
+X - Add UI for food list generator.
+- Create mechanism for Generator with custom settings
+- Create view forgenerated food lists
+- Create mechanism for manual editing of generated food list before saving
+- Display error dialog when recipe cannot be displayed because of invalid ingredient info
+- Translate new cz messages to en
 - Add config file for setting application settings.
 - Add file coding settings.
 - Add possibility to open recipe by double click in recipe view table.

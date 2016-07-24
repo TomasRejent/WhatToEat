@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.DietGeneratorController">
   <columnConstraints>
     <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="10.0" prefWidth="500.0" />
   </columnConstraints>
@@ -19,14 +19,17 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Label id="nameLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.name" />
-            <TextField id="nameField" />
-            <Label id="fromLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.from" />
-            <DatePicker id="fromField" />
-            <Label id="toLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.to" />
-            <DatePicker id="toField" />
-            <Label id="generatorLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.generator" />
-            <ComboBox id="generatorField" prefWidth="150.0" />
+            <Label fx:id="nameLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.name" />
+            <TextField fx:id="nameField" />
+            <Label fx:id="fromLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.from" />
+            <DatePicker fx:id="fromField" />
+            <Label fx:id="toLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.to" />
+            <DatePicker fx:id="toField" />
+            <Label fx:id="generatorLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.generator" />
+            <ComboBox fx:id="generatorField" maxWidth="1.7976931348623157E308" prefHeight="31.0" prefWidth="150.0" HBox.hgrow="SOMETIMES">
+               <HBox.margin>
+                  <Insets right="10.0" />
+               </HBox.margin></ComboBox>
          </children>
          <padding>
             <Insets left="10.0" top="10.0" />
@@ -34,14 +37,15 @@
       </HBox>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0" GridPane.rowIndex="1">
          <children>
-            <Label id="dishLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.dishes" />
-            <CheckBox id="breakfastField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.breakfast" />
-            <CheckBox id="snackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.morningSnack" />
-            <CheckBox id="soupField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.soup" />
-            <CheckBox id="lunchField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.lunch" />
-            <CheckBox id="sideDishField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.sideDish" />
-            <CheckBox id="afternoonSnackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.afternoonSnack" />
-            <CheckBox id="dinnerField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.dinner" />
+            <Label fx:id="dishLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.dishes" />
+            <CheckBox fx:id="breakfastField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.breakfast" />
+            <CheckBox fx:id="snackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.morningSnack" />
+            <CheckBox fx:id="soupField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.soup" />
+            <CheckBox fx:id="lunchField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.lunch" />
+            <CheckBox fx:id="sideDishField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.sideDish" />
+            <CheckBox fx:id="afternoonSnackField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.afternoonSnack" />
+            <CheckBox fx:id="dinnerField" mnemonicParsing="false" nodeOrientation="RIGHT_TO_LEFT" text="%cz.afrosoft.whattoeat.diet.generator.input.dinner" />
+            <Button fx:id="generateButton" mnemonicParsing="false" onAction="#generateDiet" prefHeight="31.0" prefWidth="165.0" text="%cz.afrosoft.whattoeat.diet.generator.input.generate" />
          </children>
          <padding>
             <Insets top="10.0" />

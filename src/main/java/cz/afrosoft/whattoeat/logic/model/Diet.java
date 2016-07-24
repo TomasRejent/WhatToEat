@@ -7,6 +7,7 @@
 package cz.afrosoft.whattoeat.logic.model;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 import java.util.Objects;
@@ -21,8 +22,8 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 public class Diet implements Serializable{
 
     private String name;
-    private Date from;
-    private Date to;
+    private LocalDate from;
+    private LocalDate to;
     private String generatorId;
 
     private List<DayDiet> days;
@@ -35,19 +36,19 @@ public class Diet implements Serializable{
         this.name = name;
     }
 
-    public Date getFrom() {
+    public LocalDate getFrom() {
         return from;
     }
 
-    public void setFrom(Date from) {
+    public void setFrom(LocalDate from) {
         this.from = from;
     }
 
-    public Date getTo() {
+    public LocalDate getTo() {
         return to;
     }
 
-    public void setTo(Date to) {
+    public void setTo(LocalDate to) {
         this.to = to;
     }
 
