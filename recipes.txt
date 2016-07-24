@@ -108,7 +108,7 @@
 
   {
 		"name" : "Hrášková polévka",
-		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sul a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
+		"preparation" : "Mražený nebo èerstvý hrášek dáme do vody, pøidáme sùl a pepø, vaøíme asi 20 minut až hrášek zmìkne. Vypneme plotýnku, pridáme máslo a lžíci bazalkového pesta a ponorným mixérem rozmixujeme dohladka.",
 		"recipeTypes" : ["SOUP", "DINNER"],
 		"preparationTime" : "SHORT",
 		"taste" : "SALTY",
@@ -227,7 +227,7 @@
 		"taste" : "SWEET",
 		"rating" : "7",
 		"ingredients" : [
-			{"name" : "Jablko", "quantity" : "1"},
+			{"name" : "jablko", "quantity" : "1"},
 			{"name" : "mrkev", "quantity" : "1"},
 			{"name" : "med", "quantity" : "10"},
 			{"name" : "skoøice", "quantity" : "0.3"},
@@ -244,7 +244,7 @@
 		"taste" : "SWEET",
 		"rating" : "7",
 		"ingredients" : [
-			{"name" : "Jogurt bílý", "quantity" : "1"},
+			{"name" : "jogurt bílý", "quantity" : "1"},
 			{"name" : "med", "quantity" : "10"},
 			{"name" : "skoøice", "quantity" : "0.3"},
       {"name" : "oøechy", "quantity" : "15"}
@@ -260,7 +260,7 @@
 		"taste" : "SWEET",
 		"rating" : "7",
 		"ingredients" : [
-			{"name" : "Banán", "quantity" : "1"},
+			{"name" : "banán", "quantity" : "1"},
       {"name" : "kiwi", "quantity" : "2"},
 			{"name" : "med", "quantity" : "10"},
 			{"name" : "skoøice", "quantity" : "0.3"},
@@ -278,7 +278,7 @@
 		"rating" : "5",
 		"ingredients" : [
 			{"name" : "pohanka", "quantity" : "50"},
-			{"name" : "sul", "quantity" : "0.3"},
+			{"name" : "sùl", "quantity" : "0.3"},
 			{"name" : "sušenej èesnek", "quantity" : "0.3"},
       {"name" : "majoránka", "quantity" : "0.3"}
 		],
@@ -333,7 +333,7 @@
 			{"name" : "sùl", "quantity" : "0.2"},
 			{"name" : "cukr", "quantity" : "0.1"},
       {"name" : "høebíèek", "quantity" : "4"},
-      {"name" : "rajskej protlak", "quantity" : "100"},
+      {"name" : "rajský protlak", "quantity" : "100"},
       {"name" : "rýže", "quantity" : "60"},
       {"name" : "pepø", "quantity" : "0.25"}
 		],
@@ -380,8 +380,7 @@
 		"taste" : "SALTY",
 		"rating" : "4",
 		"ingredients" : [
-			{"name" : "knedlíky", "quantity" : "150"},
-			{"name" : "voda", "quantity" : "100"}
+			{"name" : "knedlíky", "quantity" : "150"}
       
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
@@ -395,8 +394,8 @@
 		"taste" : "SALTY",
 		"rating" : "8",
 		"ingredients" : [
-			{"name" : "Brambory", "quantity" : "150"},
-			{"name" : "Olej", "quantity" : "50"},
+			{"name" : "brambory", "quantity" : "150"},
+			{"name" : "olej", "quantity" : "50"},
       {"name" : "sùl", "quantity" : "0.2"}                             
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
@@ -411,7 +410,7 @@
 		"rating" : "8",
 		"ingredients" : [
 			{"name" : "celer", "quantity" : "150"},
-			{"name" : "Olej", "quantity" : "50"},
+			{"name" : "olej", "quantity" : "50"},
       {"name" : "sùl", "quantity" : "0.2"}                             
 		],
 		"keywords" : ["bezlepkové", "bezmasé"]
@@ -425,9 +424,9 @@
 		"taste" : "SALTY",
 		"rating" : "8",
 		"ingredients" : [
-			{"name" : "Brambory", "quantity" : "300"},
-			{"name" : "Olej", "quantity" : "50"},
-      {"name" : "mouka", "quantity" : "200"},
+			{"name" : "brambory", "quantity" : "300"},
+			{"name" : "olej", "quantity" : "50"},
+      {"name" : "bezlepková mouka", "quantity" : "200"},
       {"name" : "vajíèko", "quantity" : "2"},
       {"name" : "majoránka", "quantity" : "0.5"},
       {"name" : "èesnek", "quantity" : "3"},
@@ -446,7 +445,7 @@
 		"ingredients" : [
 			{"name" : "cibule", "quantity" : "1"},
 			{"name" : "sùl", "quantity" : "0.2"},
-			{"name" : " bezlepková mouka", "quantity" : "300"},
+			{"name" : "bezlepková mouka", "quantity" : "300"},
       {"name" : "mléko", "quantity" : "500"},
       {"name" : "houby", "quantity" : "500"},
       {"name" : "pepø", "quantity" : "0.25"}
@@ -480,7 +479,7 @@
 		"ingredients" : [
 			{"name" : "cibule", "quantity" : "1"},
 			{"name" : "sùl", "quantity" : "0.2"},
-			{"name" : " bezlepková mouka", "quantity" : "300"},
+			{"name" : "bezlepková mouka", "quantity" : "300"},
       {"name" : "mléko", "quantity" : "500"},
       {"name" : "houby", "quantity" : "500"},
       {"name" : "pepø", "quantity" : "0.25"}

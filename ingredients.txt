@@ -1,10 +1,12 @@
 [
 	{"name" : "vajíèko", "ingredientUnit" : "PIECE", "price" : "0"},
 	{"name" : "bezlepková mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "mouka", "ingredientUnit" : "WEIGHT", "price" : "0"},
 	{"name" : "olej", "ingredientUnit" : "VOLUME", "price" : "0"},
   {"name" : "houby", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "tìstoviny", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "knedlíky", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "voda", "ingredientUnit" : "VOLUME", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "PIECE", "price" : "23", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -25,10 +27,13 @@
   {"name" : "kedluben", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "celer", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "paprika", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "hrášek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "chøest", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kyselá okurka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
   {"name" : "mrkev+hrášek konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},   
   {"name" : "fazole s rajèatovou omáèkou konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
   {"name" : "rajský protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
+  
   
   {"name" : "bobkový list", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "koøení na americké brambory", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
@@ -48,14 +53,7 @@
   {"name" : "petrželka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "libeèek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
    {"name" : "høebíèek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
-
-  {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "oøechy", "ingredientUnit" : "WEIGHT", "price" : "0"},
-
-  {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "oøechy", "ingredientUnit" : "WEIGHT", "price" : "0"},
+   {"name" : "bujonová kostka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení", "ochucovadlo"]},
 
   {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
