@@ -19,13 +19,21 @@ import java.util.Set;
 public interface DataHolderService {
     
     Collection<Recipe> getRecipes();
+
+    Set<String> getAllRecipeKeywords();
+
+    void addRecipe(Recipe recipe);
     
     Collection<IngredientInfo> getIngredients();
+
+    Set<String> getIngredientNames();
 
     IngredientInfo getIngredientByName(String name);
 
     Collection<Diet> getDiets();
 
     void addDiet(Diet diet);
+
+    
     
 }

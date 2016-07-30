@@ -17,6 +17,14 @@ public final class Ingredient implements Serializable {
     private String name;
     private float quantity;
 
+    public Ingredient() {
+    }
+
+    public Ingredient(String name, float quantity) {
+        this.name = name;
+        this.quantity = quantity;
+    }
+
     public String getName() {
         return name;
     }

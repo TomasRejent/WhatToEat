@@ -36,6 +36,13 @@
             <version>3.4</version>
         </dependency>
 
+        <!-- GUI -->
+        <dependency>
+            <groupId>org.controlsfx</groupId>
+            <artifactId>controlsfx</artifactId>
+            <version>8.40.11</version>
+        </dependency>
+
         <!-- Logging -->
         <dependency>
             <groupId>ch.qos.logback</groupId>

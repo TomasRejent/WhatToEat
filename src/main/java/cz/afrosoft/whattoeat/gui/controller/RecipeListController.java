@@ -5,39 +5,29 @@
  */
 package cz.afrosoft.whattoeat.gui.controller;
 
-import cz.afrosoft.whattoeat.MainApp;
 import cz.afrosoft.whattoeat.ServiceHolder;
 import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.Labeled;
+import cz.afrosoft.whattoeat.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
-import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
-import java.util.logging.Level;
-import java.util.stream.Collectors;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Dialog;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -69,6 +59,14 @@ public class RecipeListController implements Initializable {
 
 
     private final ObservableList<Recipe> tableRowsList = FXCollections.observableArrayList();
+
+    private final DataHolderService dataHolderService;
+
+    public RecipeListController() {
+        this.dataHolderService = ServiceHolder.getDataHolderService();
+    }
+
+
 
     /**
      * Initializes the controller class.
@@ -121,6 +119,17 @@ public class RecipeListController implements Initializable {
         }catch(Exception e){
             LOGGER.error("Cannot display recipe.", e);
             DialogUtils.showErrorDialog(e.getMessage());
+        }
+    }
+
+    @FXML
+    private void addRecipe(ActionEvent actionEvent){
+        RecipeAddDialog recipeAddDialog = new RecipeAddDialog();
+        Optional<Recipe> newRecipe = recipeAddDialog.showAndWait();
+        LOGGER.debug("Returned recipe: {}", newRecipe);
+        if(newRecipe.isPresent()){
+            dataHolderService.addRecipe(newRecipe.get());
+            tableRowsList.add(0, newRecipe.get());
         }
     }
     

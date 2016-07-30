@@ -6,7 +6,6 @@
 
 package cz.afrosoft.whattoeat.gui.dialog;
 
-import com.sun.webkit.dom.KeyboardEventImpl;
 import cz.afrosoft.whattoeat.ServiceHolder;
 import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.gui.I18n;
@@ -17,12 +16,9 @@ import cz.afrosoft.whattoeat.logic.model.Recipe;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorService;
 import java.util.ArrayList;
 import java.util.Collection;
-import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.Node;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.Label;
@@ -30,30 +26,15 @@ import javafx.scene.control.Separator;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
-import javafx.scene.input.InputMethodEvent;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.Border;
-import javafx.scene.layout.BorderStroke;
-import javafx.scene.layout.BorderStrokeStyle;
-import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Priority;
-import javafx.scene.layout.RowConstraints;
 import javafx.scene.layout.VBox;
-import javafx.scene.paint.Paint;
-import javafx.scene.text.Text;
-import javafx.scene.text.TextFlow;
 import javafx.stage.Modality;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

@@ -16,7 +16,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 import org.slf4j.Logger;
@@ -32,6 +32,7 @@ public final class DataHolderServiceImpl implements DataHolderService{
 
     private final Map<String, Recipe> recipes;
     private final Map<String, IngredientInfo> ingredients;
+    private final Set<String> recipeKeywords = new HashSet<>();
     
     public DataHolderServiceImpl() {
         recipes = new HashMap<>();
@@ -47,8 +48,31 @@ public final class DataHolderServiceImpl implements DataHolderService{
     }
 
     @Override
+    public void addRecipe(Recipe recipe) {
+        try {
+            File recipeFile = LocationUtils.getRecipeFile();
+
+            RecipeLoader recipeLoader = JsonRecipeLoader.getInstance();
+            recipeLoader.saveRecipe(recipeFile, recipe);
+            recipes.put(recipe.getName(), recipe);
+            if(recipe.getKeywords() != null){
+                recipeKeywords.addAll(recipe.getKeywords());
+            }
+        } catch (DataLoadException | IOException ex) {
+            LOGGER.error("Cannot add diet.", ex);
+        }
+    }
+
+
+
+    @Override
     public Collection<IngredientInfo> getIngredients() {
         return Collections.unmodifiableCollection(ingredients.values());
+    }
+
+    @Override
+    public Set<String> getIngredientNames() {
+        return Collections.unmodifiableSet(ingredients.keySet());
     }
 
     @Override
@@ -56,7 +80,10 @@ public final class DataHolderServiceImpl implements DataHolderService{
         return ingredients.get(name);
     }
 
-
+    @Override
+    public Set<String> getAllRecipeKeywords() {
+        return Collections.unmodifiableSet(recipeKeywords);
+    }
 
     private void loadRecipes(){
         try {
@@ -65,6 +92,10 @@ public final class DataHolderServiceImpl implements DataHolderService{
             Set<Recipe> recipeSet = recipeLoader.loadRecipes(recipeFile);
             for(Recipe recipe : recipeSet){
                 recipes.put(recipe.getName(), recipe);
+                Set<String> keywords = recipe.getKeywords();
+                if(keywords != null){
+                    recipeKeywords.addAll(keywords);
+                }
             }
         } catch (DataLoadException | FileNotFoundException ex) {
             LOGGER.error("Cannot load recipes.", ex);

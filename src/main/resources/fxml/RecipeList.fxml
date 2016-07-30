@@ -27,6 +27,7 @@
             <Separator prefWidth="200.0" />
             <Label alignment="CENTER" prefHeight="21.0" prefWidth="46.0" text="%cz.afrosoft.whattoeat.recipes.actions.title" />
             <Button id="viewRecipeButton" mnemonicParsing="false" onAction="#showRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.view" />
+            <Button mnemonicParsing="false" onAction="#addRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.add" />
          </children>
       </VBox>
       <TableView fx:id="recipeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
