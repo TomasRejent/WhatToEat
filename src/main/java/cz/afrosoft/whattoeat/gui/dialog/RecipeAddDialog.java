@@ -17,6 +17,7 @@ import cz.afrosoft.whattoeat.logic.model.dto.IngredientCouple;
 import cz.afrosoft.whattoeat.logic.model.enums.PreparationTime;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import cz.afrosoft.whattoeat.logic.model.enums.Taste;
+import cz.afrosoft.whattoeat.logic.validator.entity.RecipeValidator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
@@ -170,6 +171,12 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         recipe.setPreparation(preparationField.getText());
         recipe.setIngredients(ingredientList.stream().map((ingredientCouple) -> ingredientCouple.getIngredient()).collect(Collectors.toSet()));
         recipe.setSideDishes(new HashSet<>(sideDishList));
+
+        RecipeValidator validator = new RecipeValidator();
+        Map<String, String> validationResult = validator.validate(recipe);
+        if(!validationResult.isEmpty()){
+            throw new IllegalStateException(validationResult.toString());
+        }
 
         return recipe;
     }

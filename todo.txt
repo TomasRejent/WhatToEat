@@ -7,7 +7,8 @@ FEATURES:
     - Add way to edit added ingredient quantity
     - Add internationalization for combo box values.
     - Add way to remove ingredients
-    - Add validations
+    X - Add validations
+    - Add validation errors to UI
     X - Add possible side dishes
 
 X - Ingredients with PIECE type should support fraction values and round them up in view.
