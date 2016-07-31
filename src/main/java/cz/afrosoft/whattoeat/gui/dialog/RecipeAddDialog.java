@@ -19,12 +19,14 @@ import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import cz.afrosoft.whattoeat.logic.model.enums.Taste;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
@@ -67,6 +69,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private static final String I18N_INGREDIENTS_NAME = "cz.afrosoft.whattoeat.recipes.add.ingredients.name";
     private static final String I18N_INGREDIENTS_QUANTITY = "cz.afrosoft.whattoeat.recipes.add.ingredients.quantity";
     private static final String I18N_PREPARATION = "cz.afrosoft.whattoeat.recipes.add.preparation";
+    private static final String I18N_SIDE_DISHES = "cz.afrosoft.whattoeat.recipes.add.sideDishes";
+    private static final String I18N_SIDE_DISH_NAME = "cz.afrosoft.whattoeat.recipes.add.sideDishes.name";
 
     private static final String KEYWORD_SEPARATOR = ",";
 
@@ -82,6 +86,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private final HBox thirdRow = new HBox();
     private final HBox fourthRow = new HBox();
     private final HBox fifthRow = new HBox();
+    private final HBox sixthRow = new HBox();
 
     private final Label nameLabel = new Label();
     private final TextField nameField = new TextField();
@@ -117,6 +122,13 @@ public class RecipeAddDialog extends Dialog<Recipe>{
 
     private final Label preparationLabel = new Label();
     private final TextArea preparationField = new TextArea();
+
+    private final Label sideDishLabel = new Label();
+    private final Label sideDishNameLabel = new Label();
+    private final TextField sideDishNameField = new TextField();
+    private final TableView<String> sideDishView = new TableView<>();
+    private final TableColumn<String, String> sideDishNameColumn = new TableColumn<>();
+    private final ObservableList<String> sideDishList = FXCollections.observableArrayList();
 
     private final DataHolderService dataHolderService;
 
@@ -157,6 +169,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         recipe.setKeywords(keywordSet);
         recipe.setPreparation(preparationField.getText());
         recipe.setIngredients(ingredientList.stream().map((ingredientCouple) -> ingredientCouple.getIngredient()).collect(Collectors.toSet()));
+        recipe.setSideDishes(new HashSet<>(sideDishList));
 
         return recipe;
     }
@@ -172,6 +185,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         typeField.getItems().addAll(RecipeType.values());
         tasteField.getItems().addAll(Taste.values());
         timeField.getItems().addAll(PreparationTime.values());
+        setupTypeEvents();
         secondRow.getChildren().addAll(typeLabel, typeField, tasteLabel, tasteField, timeLabel, timeField);
 
         ratingLabel.setText(I18n.getText(I18N_RATING));
@@ -191,7 +205,14 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         
         preparationLabel.setText(I18n.getText(I18N_PREPARATION));
 
-        verticalBox.getChildren().addAll(firstRow, secondRow, thirdRow, fourthRow, keywordsView, ingredientLabel, fifthRow, ingredientView,  preparationLabel, preparationField);
+        setSideDishesVisibility(false);
+        sideDishLabel.setText(I18n.getText(I18N_SIDE_DISHES));
+        sideDishNameLabel.setText(I18n.getText(I18N_SIDE_DISH_NAME));
+        setupSideDishSuggestions();
+        setupSideDishTable();
+        sixthRow.getChildren().addAll(sideDishNameLabel, sideDishNameField);
+
+        verticalBox.getChildren().addAll(firstRow, secondRow, thirdRow, fourthRow, keywordsView, ingredientLabel, fifthRow, ingredientView,  preparationLabel, preparationField, sideDishLabel, sixthRow, sideDishView);
         verticalBox.setFillWidth(true);
         verticalBox.setPadding(Insets.EMPTY);
 
@@ -292,6 +313,55 @@ public class RecipeAddDialog extends Dialog<Recipe>{
 
     private ObservableValue<String> getValueFromSet(Set<String> stringSet){
         return new ReadOnlyObjectWrapper<>(StringUtils.join(stringSet, KEYWORD_SEPARATOR));
+    }
+
+    private void setupTypeEvents(){
+        typeField.getCheckModel().getCheckedItems().addListener((ListChangeListener.Change<? extends RecipeType> change) -> {
+            change.next();
+            final ObservableList<? extends RecipeType> types = change.getList();
+
+            if(types.contains(RecipeType.LUNCH) || types.contains(RecipeType.DINNER)){
+                setSideDishesVisibility(true);
+            }else{
+                setSideDishesVisibility(false);
+                sideDishView.getItems().clear();
+            }
+        });
+    }
+
+    private void setSideDishesVisibility(final boolean visible){
+        sideDishLabel.setVisible(visible);
+        sixthRow.setVisible(visible);
+        sideDishView.setVisible(visible);
+    }
+
+    private void setupSideDishSuggestions(){
+        final Set<String> sideDishNames = dataHolderService.getRecipes().stream().filter((recipe) -> recipe.getRecipeTypes().contains(RecipeType.SIDE_DISH)).map((recipe) -> recipe.getName()).collect(Collectors.toSet());
+
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(sideDishNameField, sideDishNames);
+        autoCompletion.setOnAutoCompleted((completionEvent -> {
+            final String sideDishName = completionEvent.getCompletion();
+            sideDishList.add(sideDishName);
+            sideDishNameField.clear();
+        }));
+
+        sideDishNameField.setOnKeyPressed((keyEvent) -> {
+            switch (keyEvent.getCode()) {
+                case ENTER:
+                    keyEvent.consume();
+                    break;
+                default:
+                    break;
+                }
+        });
+    }
+
+    private void setupSideDishTable(){
+        sideDishView.getColumns().addAll(sideDishNameColumn);
+        sideDishView.setItems(sideDishList);
+
+        sideDishNameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue()));
+        sideDishNameColumn.setMinWidth(300);
     }
 
 }

@@ -1,11 +1,14 @@
 FEATURES:
 - Add dialg for creating new recipes and ingredients.
+    X - Basic dialog.
     - Styling dialog
     - Add way to remove added keywords
+    - Add way to remove ingredients and side dishes
+    - Add way to edit added ingredient quantity
     - Add internationalization for combo box values.
     - Add way to remove ingredients
     - Add validations
-    - Add possible side dishes
+    X - Add possible side dishes
 
 X - Ingredients with PIECE type should support fraction values and round them up in view.
 X - Add service for computing recipe price.
