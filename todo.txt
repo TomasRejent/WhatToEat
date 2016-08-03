@@ -21,7 +21,7 @@ X - Display error dialog when recipe cannot be displayed because of invalid ingr
 - Translate new cz messages to en
 - Add config file for setting application settings.
 - Add file coding settings.
-- Add possibility to open recipe by double click in recipe view table.
+X- Add possibility to open recipe by double click in recipe view table.
 
 BUGS:
 X - Ingredient keywords overlaps in recipe detail dialog.

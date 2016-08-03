@@ -27,7 +27,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
+import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -75,6 +77,7 @@ public class RecipeListController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         LOGGER.info("Controller init");
         initColumnsValueFactories();
+        setUpTableEvents();
 
         DataHolderService dataHolderService = ServiceHolder.getDataHolderService();
         fillRecipeTable(dataHolderService.getRecipes());
@@ -110,16 +113,37 @@ public class RecipeListController implements Initializable {
         return new ReadOnlyObjectWrapper<>(StringUtils.join(recipeTypeSet.stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), KEYWORD_SEPARATOR));
     }
 
-    @FXML
-    private void showRecipe(ActionEvent actionEvent){
+    private final void showRecipe( final Recipe recipe){
         try{
-            Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
             RecipeViewDialog dialog = new RecipeViewDialog();
-            dialog.showRecipe(selectedItem);
+            dialog.showRecipe(recipe);
         }catch(Exception e){
             LOGGER.error("Cannot display recipe.", e);
             DialogUtils.showErrorDialog(e.getMessage());
         }
+    }
+
+
+
+    private final void setUpTableEvents(){
+        recipeTable.setRowFactory((tableView) -> {
+            TableRow<Recipe> row = new TableRow<>();
+            row.setOnMouseClicked(event ->{
+                if(event.getClickCount() == 2 && (! row.isEmpty()) ){
+                    Recipe recipe = row.getItem();
+                    showRecipe(recipe);
+                }
+            });
+
+            return row;
+        });
+    }
+
+
+    @FXML
+    private void showRecipe(ActionEvent actionEvent){
+        Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
+        showRecipe(selectedItem);
     }
 
     @FXML
