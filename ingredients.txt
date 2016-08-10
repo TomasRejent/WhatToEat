@@ -41,14 +41,29 @@
   {"name" : "máslo", "ingredientUnit" : "WEIGHT", "price" : "0.168", "keywords" : ["mléèný výrobek"]},
   {"name" : "jogurt bílý", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mléèný výrobek"]},
   {"name" : "hermelín", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "bryndza", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "sýr Eidam", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "sýr niva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "luèina", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
+  {"name" : "sýr balkán", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["mléèný výrobek"]},
   {"name" : "mléko", "ingredientUnit" : "PIECE", "price" : "18", "keywords" : ["mléèný výrobek"]},
+  {"name" : "tvaroh", "ingredientUnit" : "PIECE", "price" : "18", "keywords" : ["mléèný výrobek"]},
   {"name" : "srdíèko", "ingredientUnit" : "PIECE", "price" : "6", "keywords" : ["mléèný výrobek"]},
 
 	{"name" : "cibule", "ingredientUnit" : "PIECE", "price" : "3.25", "keywords" : ["zelenina"]},
+  {"name" : "okurek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "špenát", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "zázvor", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "zelí", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "salát", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "pórek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "øedkvièka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "cibule èervená", "ingredientUnit" : "PIECE", "price" : "4.2", "keywords" : ["zelenina"]},
   {"name" : "cuketa", "ingredientUnit" : "PIECE", "price" : "3.25", "keywords" : ["zelenina"]},
 	{"name" : "èesnek", "ingredientUnit" : "PIECE", "price" : "7", "keywords" : ["zelenina"]},
 	{"name" : "špenát", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},	
+  {"name" : "olivy zelené", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "olivy èerné", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
 	{"name" : "brambory", "ingredientUnit" : "WEIGHT", "price" : "0.02", "keywords" : ["zelenina"]},
   {"name" : "rýže", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "øepa", "ingredientUnit" : "PIECE", "price" : "2.7", "keywords" : ["zelenina"]},
@@ -71,11 +86,14 @@
   {"name" : "køen", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kukuøice", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kvìták", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "dýnì", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "petržel", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kyselá okurka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
   {"name" : "mrkev+hrášek konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},   
   {"name" : "kukuøice konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
   {"name" : "fazole s rajèatovou omáèkou konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
   {"name" : "rajský protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
+  {"name" : "špenátový protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
   
   
   {"name" : "bobkový list", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
@@ -106,11 +124,13 @@
   {"name" : "kurkuma", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
   {"name" : "bazalka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
   {"name" : "oregano", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
+  {"name" : "pažitka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
 
 
   {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "oøechy", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "mandle", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "chia semínka", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "cizrna", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "èoèka", "ingredientUnit" : "WEIGHT", "price" : "0"},
@@ -123,13 +143,13 @@
   {"name" : "hlíva", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "høíby", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "žampiòony", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "chøest", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "chøest", "ingredientUnit" : "WEIGHT", "price" : "0"},                                                                                 f
   {"name" : "kuskus", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  
-  
+  {"name" : "tofu", "ingredientUnit" : "WEIGHT", "price" : "0"}, 
   
   
   {"name" : "jablko", "ingredientUnit" : "PIECE", "price" : "2.16", "keywords" : ["ovoce"]},
+  {"name" : "ostružina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]},
   {"name" : "datle", "ingredientUnit" : "PIECE", "price" : "2.16", "keywords" : ["ovoce"]},
   {"name" : "ananas", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
   {"name" : "angrešt", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
@@ -142,9 +162,15 @@
   {"name" : "jahody", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]}, 
   {"name" : "kiwi", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
   {"name" : "citrón", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]}, 
-  {"name" : "nektarinka", "ingredientUnit" : "PIECE", "price" : "4.212", "keywords" : ["ovoce"]}, 
-  
-  
+  {"name" : "nektarinka", "ingredientUnit" : "PIECE", "price" : "4.212", "keywords" : ["ovoce"]},
+  {"name" : "maliny", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ovoce"]},
+  {"name" : "mango", "ingredientUnit" : "PIECE", "price" : "25", "keywords" : ["ovoce"]},
+  {"name" : "meruòka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  {"name" : "pomeranè", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  {"name" : "švestka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},  
+  {"name" : "višeò", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+  {"name" : "tøešeò", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["ovoce"]},
+    
   {"name" : "tatranka", "ingredientUnit" : "PIECE", "price" : "9", "keywords" : ["sladkost"]}
 	
 ]
