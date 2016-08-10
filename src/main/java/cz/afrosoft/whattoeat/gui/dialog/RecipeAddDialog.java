@@ -9,6 +9,7 @@ package cz.afrosoft.whattoeat.gui.dialog;
 import cz.afrosoft.whattoeat.ServiceHolder;
 import cz.afrosoft.whattoeat.data.DataHolderService;
 import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.gui.controller.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.gui.view.KeywordLabelFactory;
 import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
@@ -18,9 +19,10 @@ import cz.afrosoft.whattoeat.logic.model.enums.PreparationTime;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
 import cz.afrosoft.whattoeat.logic.model.enums.Taste;
 import cz.afrosoft.whattoeat.logic.validator.entity.RecipeValidator;
-import java.util.HashMap;
+import impl.org.controlsfx.autocompletion.SuggestionProvider;
+import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -29,8 +31,6 @@ import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
-import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ButtonType;
@@ -227,7 +227,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     }
 
     private void setupKeywordSuggestion(){
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(keywordField, dataHolderService.getAllRecipeKeywords());
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(keywordField, new FullWordSuggestionProvider(dataHolderService.getAllRecipeKeywords()));
 
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String keyword = completionEvent.getCompletion();
@@ -258,7 +258,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     }
 
     private void setupIngredientSuggestion(){
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, dataHolderService.getIngredientNames());
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, new FullWordSuggestionProvider(dataHolderService.getIngredientNames()));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String ingredientName = completionEvent.getCompletion();
             final IngredientInfo ingredientInfo = dataHolderService.getIngredientByName(ingredientName);
@@ -345,7 +345,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private void setupSideDishSuggestions(){
         final Set<String> sideDishNames = dataHolderService.getRecipes().stream().filter((recipe) -> recipe.getRecipeTypes().contains(RecipeType.SIDE_DISH)).map((recipe) -> recipe.getName()).collect(Collectors.toSet());
 
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(sideDishNameField, sideDishNames);
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(sideDishNameField, new FullWordSuggestionProvider(sideDishNames));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String sideDishName = completionEvent.getCompletion();
             sideDishList.add(sideDishName);
