@@ -143,7 +143,6 @@
   {"name" : "hlíva", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "høíby", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "žampiòony", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "chøest", "ingredientUnit" : "WEIGHT", "price" : "0"},                                                                                 f
   {"name" : "kuskus", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "tofu", "ingredientUnit" : "WEIGHT", "price" : "0"}, 
   

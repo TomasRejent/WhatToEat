@@ -7,11 +7,27 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="cz.afrosoft.whattoeat.gui.controller.FoodListController">
-    <stylesheets>
-        <URL value="@/styles/Foodlist.css" />
-    </stylesheets>
+<GridPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.gui.controller.FoodListController">
+  <columnConstraints>
+    <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+  </columnConstraints>
+  <rowConstraints>
+    <RowConstraints fillHeight="false" maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="NEVER" />
+    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+  </rowConstraints>
    <children>
-      <Label layoutX="111.0" layoutY="110.0" text="Food list" />
+      <HBox maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.hgrow="SOMETIMES" />
+      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#viewDiet" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.dietlist.action.view" />
+         </children></VBox>
+      <TableView fx:id="dietTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+        <columns>
+          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="295.0" text="%cz.afrosoft.whattoeat.dietlist.table.name" />
+          <TableColumn fx:id="fromColumn" maxWidth="150.0" minWidth="0.0" prefWidth="150.0" text="%cz.afrosoft.whattoeat.dietlist.table.from" />
+            <TableColumn fx:id="toColumn" maxWidth="150.0" minWidth="50.0" prefWidth="150.0" text="%cz.afrosoft.whattoeat.dietlist.table.to" />
+        </columns>
+      </TableView>
    </children>
-</AnchorPane>
+</GridPane>
