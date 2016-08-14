@@ -124,9 +124,7 @@ public class DietGeneratorController implements Initializable {
         }
         
         Diet generatedDiet = generatorService.generateAndSaveDiet(generator, getGeneratorParameters());
-        // TODO - Temporary display of result in dialog, in future will be replaced by specialized view and there will be only redirect
-        Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        DialogUtils.showInfoDialog(I18n.getText(INFO_HEADER_DIET_GENERATED_KEY), gson.toJson(generatedDiet));
+        DietViewController.showDiet(generatedDiet);
     }
 
     private GeneratorParameters getGeneratorParameters(){

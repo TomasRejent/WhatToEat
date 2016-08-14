@@ -63,7 +63,10 @@ public final class DataHolderServiceImpl implements DataHolderService{
         }
     }
 
-
+    @Override
+    public Recipe getRecipeByName(String name) {
+        return recipes.get(name);
+    }
 
     @Override
     public Collection<IngredientInfo> getIngredients() {
