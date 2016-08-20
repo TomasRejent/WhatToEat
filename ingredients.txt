@@ -86,6 +86,7 @@
   {"name" : "køen", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kukuøice", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kvìták", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "lilek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "dýnì", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "petržel", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kyselá okurka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
