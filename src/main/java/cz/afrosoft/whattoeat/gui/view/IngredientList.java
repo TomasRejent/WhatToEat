@@ -6,16 +6,13 @@
 
 package cz.afrosoft.whattoeat.gui.view;
 
-import com.google.common.collect.ImmutableSet;
-import com.google.common.collect.ImmutableSortedSet;
 import cz.afrosoft.whattoeat.ServiceHolder;
 import cz.afrosoft.whattoeat.data.DataHolderService;
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.gui.I18n;
 
 import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
-import cz.afrosoft.whattoeat.logic.model.enums.IngredientUnit;
+import cz.afrosoft.whattoeat.logic.services.PieceConversionService;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.Set;
@@ -24,12 +21,8 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.util.Callback;
-import javax.swing.DefaultListCellRenderer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -42,12 +35,13 @@ public final class IngredientList extends ListView<IngredientView>{
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientList.class);
 
     private final DataHolderService dataHolderService = ServiceHolder.getDataHolderService();
+    private final PieceConversionService pieceConversionService = ServiceHolder.getPieceConversionService();
 
     private final ObservableList<IngredientView> ingredientList = FXCollections.observableList(new LinkedList<IngredientView>());
 
     public IngredientList() {
         setItems(ingredientList);
-        setCellFactory((ListView<IngredientView> param) -> new IngredientViewCell());
+        setCellFactory((ListView<IngredientView> param) -> new IngredientViewCell(pieceConversionService));
     }
 
     public void setServings(int servings){
@@ -78,11 +72,13 @@ public final class IngredientList extends ListView<IngredientView>{
         private final Label nameText = new Label();
         private final Label quantityText = new Label();
         private final FlowPane keywordsPane = new FlowPane();
+        private final PieceConversionService pieceConversionService;
 
-        public IngredientViewCell() {
+        public IngredientViewCell(PieceConversionService pieceConversionService) {
             keywordsPane.setHgap(ITEM_ELEMENT_SPACING);
             cellBox.getChildren().addAll(quantityText, nameText, keywordsPane);
             cellBox.setSpacing(ITEM_ELEMENT_SPACING);
+            this.pieceConversionService = pieceConversionService;
         }
 
         @Override
@@ -98,9 +94,20 @@ public final class IngredientList extends ListView<IngredientView>{
         }
 
         private void updateCellContent(IngredientView item){
-            quantityText.setText(String.valueOf(item.getQuantity()) + I18n.getText(item.getIngredientUnit().getLabelKey()));
+            quantityText.setText(getQuantityText(item));
             nameText.setText(item.getName());
             updateKeywords(item.getKeywords());
+        }
+
+        private String getQuantityText(IngredientView ingredientView){
+            StringBuilder stringBuilder = new StringBuilder();
+            String unitLabel = I18n.getText(ingredientView.getIngredientUnit().getLabelKey());
+            stringBuilder.append(ingredientView.getQuantity()).append(unitLabel);
+            if(pieceConversionService.hasPieceConversion(ingredientView.getName())){
+                String pieceInfo = pieceConversionService.getPieceText(ingredientView.getName(), (int) ingredientView.getQuantity());
+                stringBuilder.append(" (").append(pieceInfo).append(")");
+            }
+            return stringBuilder.toString();
         }
 
         private void updateKeywords(Set<String> keywordsSet){

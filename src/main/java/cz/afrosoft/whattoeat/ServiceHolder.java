@@ -6,6 +6,8 @@ import cz.afrosoft.whattoeat.logic.services.GeneratorService;
 import cz.afrosoft.whattoeat.logic.services.GeneratorServiceImpl;
 import cz.afrosoft.whattoeat.logic.services.IngredientQuantityService;
 import cz.afrosoft.whattoeat.logic.services.IngredientQuantityServiceImpl;
+import cz.afrosoft.whattoeat.logic.services.PieceConversionService;
+import cz.afrosoft.whattoeat.logic.services.PieceConversionServiceImpl;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorService;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorServiceImpl;
 
@@ -19,6 +21,7 @@ public final class ServiceHolder {
     private static final IngredientQuantityService ingredientQuantityService = new IngredientQuantityServiceImpl(dataHolderService);
     private static final PriceCalculatorService priceCalculatorService = new PriceCalculatorServiceImpl(dataHolderService, ingredientQuantityService);
     private static final GeneratorService generatorService = new GeneratorServiceImpl(dataHolderService);
+    private static final PieceConversionService pieceConversionService = new PieceConversionServiceImpl(dataHolderService);
     
     public static DataHolderService getDataHolderService(){
         return dataHolderService;
@@ -34,6 +37,10 @@ public final class ServiceHolder {
 
     public static GeneratorService getGeneratorService() {
         return generatorService;
+    }
+
+    public static PieceConversionService getPieceConversionService() {
+        return pieceConversionService;
     }
     
 }

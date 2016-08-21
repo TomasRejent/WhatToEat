@@ -5,13 +5,20 @@
  */
 package cz.afrosoft.whattoeat.data;
 
+import com.google.common.collect.ImmutableSet;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import cz.afrosoft.whattoeat.data.exception.DataLoadException;
 import cz.afrosoft.whattoeat.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.logic.model.BasicConversionInfo;
 import cz.afrosoft.whattoeat.logic.model.Diet;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
@@ -139,6 +146,20 @@ public final class DataHolderServiceImpl implements DataHolderService{
             dietLoader.saveDiet(dietFile, diet);
         } catch (DataLoadException | IOException ex) {
             LOGGER.error("Cannot add diet.", ex);
+        }
+    }
+
+    @Override
+    public Collection<? extends PieceConversionInfo> getPieceConversionInfo() {
+        try {
+            Gson gson = new Gson();
+            File pieceConversionFile = LocationUtils.getPieceConversionFile();
+            BufferedReader fileReader = new BufferedReader(new FileReader(pieceConversionFile));
+            PieceConversionInfo[] recipes = gson.fromJson(fileReader, BasicConversionInfo[].class);
+            return ImmutableSet.copyOf(recipes);
+        } catch (DataLoadException | IOException ex) {
+            LOGGER.error("Cannot add diet.", ex);
+            return Collections.emptyList();
         }
     }
 

@@ -13,6 +13,7 @@ import cz.afrosoft.whattoeat.gui.view.IngredientList;
 import cz.afrosoft.whattoeat.gui.view.KeywordLabelFactory;
 
 import cz.afrosoft.whattoeat.logic.model.Recipe;
+import cz.afrosoft.whattoeat.logic.services.PieceConversionService;
 import cz.afrosoft.whattoeat.logic.services.PriceCalculatorService;
 import java.util.ArrayList;
 import java.util.Collection;

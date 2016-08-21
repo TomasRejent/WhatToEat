@@ -1,0 +1,3 @@
+[
+  {"ingredientName" : "øepa", "gramsOfAveragePiece" : 190}
+]

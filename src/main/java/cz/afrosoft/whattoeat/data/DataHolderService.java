@@ -7,6 +7,7 @@ package cz.afrosoft.whattoeat.data;
 
 import cz.afrosoft.whattoeat.logic.model.Diet;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import java.util.Collection;
 import java.util.Set;
@@ -34,4 +35,6 @@ public interface DataHolderService {
     Collection<Diet> getDiets();
 
     void addDiet(Diet diet);
+
+    Collection<? extends PieceConversionInfo> getPieceConversionInfo();
 }
