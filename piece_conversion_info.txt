@@ -1,3 +1,5 @@
 [
-  {"ingredientName" : "øepa", "gramsOfAveragePiece" : 190}
+  {"ingredientName" : "øepa", "gramsOfAveragePiece" : 190},
+  {"ingredientName" : "cibule", "gramsOfAveragePiece" : 120},
+  {"ingredientName" : "klobása", "gramsOfAveragePiece" : 100}
 ]
