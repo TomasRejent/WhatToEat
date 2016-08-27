@@ -23,14 +23,21 @@ public class DayDiet implements Serializable, Comparable<DayDiet> {
     private LocalDate day;
 
     private String breakfast;
+    private int breakfastServings = 1;
     private String morningSnack;
+    private int morningSnackServings = 1;
 
     private String soup;
+    private int soupServings = 1;
     private String lunch;
+    private int lunchServings = 1;
     private String sideDish;
+    private int sideDishServings = 1;
 
     private String afternoonSnack;
+    private int afternoonSnackServings = 1;
     private String dinner;
+    private int dinnerServings = 1;
 
     public LocalDate getDay() {
         return day;
@@ -96,7 +103,63 @@ public class DayDiet implements Serializable, Comparable<DayDiet> {
         this.dinner = dinner;
     }
 
+    public int getBreakfastServings() {
+        return breakfastServings;
+    }
 
+    public void setBreakfastServings(int breakfastServings) {
+        this.breakfastServings = breakfastServings;
+    }
+
+    public int getMorningSnackServings() {
+        return morningSnackServings;
+    }
+
+    public void setMorningSnackServings(int morningSnackServings) {
+        this.morningSnackServings = morningSnackServings;
+    }
+
+    public int getSoupServings() {
+        return soupServings;
+    }
+
+    public void setSoupServings(int soupServings) {
+        this.soupServings = soupServings;
+    }
+
+    public int getLunchServings() {
+        return lunchServings;
+    }
+
+    public void setLunchServings(int lunchServings) {
+        this.lunchServings = lunchServings;
+    }
+
+    public int getSideDishServings() {
+        return sideDishServings;
+    }
+
+    public void setSideDishServings(int sideDishServings) {
+        this.sideDishServings = sideDishServings;
+    }
+
+    public int getAfternoonSnackServings() {
+        return afternoonSnackServings;
+    }
+
+    public void setAfternoonSnackServings(int afternoonSnackServings) {
+        this.afternoonSnackServings = afternoonSnackServings;
+    }
+
+    public int getDinnerServings() {
+        return dinnerServings;
+    }
+
+    public void setDinnerServings(int dinnerServings) {
+        this.dinnerServings = dinnerServings;
+    }
+
+    
 
     @Override
     public int compareTo(DayDiet comparedDiet) {
