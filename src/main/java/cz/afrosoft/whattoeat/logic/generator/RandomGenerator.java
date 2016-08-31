@@ -10,10 +10,10 @@ import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.logic.model.DayDiet;
 
 import cz.afrosoft.whattoeat.logic.model.Diet;
+import cz.afrosoft.whattoeat.logic.model.Meal;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import cz.afrosoft.whattoeat.logic.model.dto.GeneratorParameters;
 import cz.afrosoft.whattoeat.logic.model.enums.RecipeType;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -52,13 +52,13 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
         final Diet diet = createDietSkeleton(parameters);
         List<DayDiet> dayDiets = createDayDietSkeleton(parameters);
 
-        generateIfNeeded(parameters.getBreakfast(), dayDiets, recipes, RecipeType.BREAKFAST, (callbackParams) -> {callbackParams.dayDiet.setBreakfast(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getMorningSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setMorningSnack(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getSoup(), dayDiets, recipes, RecipeType.SOUP, (callbackParams) -> {callbackParams.dayDiet.setSoup(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getLunch(), dayDiets, recipes, RecipeType.LUNCH, (callbackParams) -> {callbackParams.dayDiet.setLunch(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getSideDish(), dayDiets, recipes, RecipeType.SIDE_DISH, (callbackParams) -> {callbackParams.dayDiet.setSideDish(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getAfternoonSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setAfternoonSnack(callbackParams.recipeName); return null;});
-        generateIfNeeded(parameters.getDinner(), dayDiets, recipes, RecipeType.DINNER, (callbackParams) -> {callbackParams.dayDiet.setDinner(callbackParams.recipeName); return null;});
+        generateIfNeeded(parameters.getBreakfast(), dayDiets, recipes, RecipeType.BREAKFAST, (callbackParams) -> {callbackParams.dayDiet.setBreakfast(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getMorningSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setMorningSnack(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getSoup(), dayDiets, recipes, RecipeType.SOUP, (callbackParams) -> {callbackParams.dayDiet.setSoup(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getLunch(), dayDiets, recipes, RecipeType.LUNCH, (callbackParams) -> {callbackParams.dayDiet.setLunch(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getSideDish(), dayDiets, recipes, RecipeType.SIDE_DISH, (callbackParams) -> {callbackParams.dayDiet.setSideDish(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getAfternoonSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setAfternoonSnack(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getDinner(), dayDiets, recipes, RecipeType.DINNER, (callbackParams) -> {callbackParams.dayDiet.setDinner(new Meal(callbackParams.recipeName)); return null;});
 
         diet.setDays(dayDiets);
         return diet;

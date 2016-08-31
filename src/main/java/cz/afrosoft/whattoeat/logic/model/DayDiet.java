@@ -8,8 +8,6 @@ package cz.afrosoft.whattoeat.logic.model;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -22,22 +20,15 @@ public class DayDiet implements Serializable, Comparable<DayDiet> {
 
     private LocalDate day;
 
-    private String breakfast;
-    private int breakfastServings = 1;
-    private String morningSnack;
-    private int morningSnackServings = 1;
+    private Meal breakfast;
+    private Meal morningSnack;
 
-    private String soup;
-    private int soupServings = 1;
-    private String lunch;
-    private int lunchServings = 1;
-    private String sideDish;
-    private int sideDishServings = 1;
+    private Meal soup;
+    private Meal lunch;
+    private Meal sideDish;
 
-    private String afternoonSnack;
-    private int afternoonSnackServings = 1;
-    private String dinner;
-    private int dinnerServings = 1;
+    private Meal afternoonSnack;
+    private Meal dinner;
 
     public LocalDate getDay() {
         return day;
@@ -47,119 +38,61 @@ public class DayDiet implements Serializable, Comparable<DayDiet> {
         this.day = day;
     }
 
-    public String getBreakfast() {
+    public Meal getBreakfast() {
         return breakfast;
     }
 
-    public void setBreakfast(String breakfast) {
+    public void setBreakfast(Meal breakfast) {
         this.breakfast = breakfast;
     }
 
-    public String getMorningSnack() {
+    public Meal getMorningSnack() {
         return morningSnack;
     }
 
-    public void setMorningSnack(String morningSnack) {
+    public void setMorningSnack(Meal morningSnack) {
         this.morningSnack = morningSnack;
     }
 
-    public String getSoup() {
+    public Meal getSoup() {
         return soup;
     }
 
-    public void setSoup(String soup) {
+    public void setSoup(Meal soup) {
         this.soup = soup;
     }
 
-    public String getLunch() {
+    public Meal getLunch() {
         return lunch;
     }
 
-    public void setLunch(String lunch) {
+    public void setLunch(Meal lunch) {
         this.lunch = lunch;
     }
 
-    public String getSideDish() {
+    public Meal getSideDish() {
         return sideDish;
     }
 
-    public void setSideDish(String sideDish) {
+    public void setSideDish(Meal sideDish) {
         this.sideDish = sideDish;
     }
 
-    public String getAfternoonSnack() {
+    public Meal getAfternoonSnack() {
         return afternoonSnack;
     }
 
-    public void setAfternoonSnack(String afternoonSnack) {
+    public void setAfternoonSnack(Meal afternoonSnack) {
         this.afternoonSnack = afternoonSnack;
     }
 
-    public String getDinner() {
+    public Meal getDinner() {
         return dinner;
     }
 
-    public void setDinner(String dinner) {
+    public void setDinner(Meal dinner) {
         this.dinner = dinner;
     }
-
-    public int getBreakfastServings() {
-        return breakfastServings;
-    }
-
-    public void setBreakfastServings(int breakfastServings) {
-        this.breakfastServings = breakfastServings;
-    }
-
-    public int getMorningSnackServings() {
-        return morningSnackServings;
-    }
-
-    public void setMorningSnackServings(int morningSnackServings) {
-        this.morningSnackServings = morningSnackServings;
-    }
-
-    public int getSoupServings() {
-        return soupServings;
-    }
-
-    public void setSoupServings(int soupServings) {
-        this.soupServings = soupServings;
-    }
-
-    public int getLunchServings() {
-        return lunchServings;
-    }
-
-    public void setLunchServings(int lunchServings) {
-        this.lunchServings = lunchServings;
-    }
-
-    public int getSideDishServings() {
-        return sideDishServings;
-    }
-
-    public void setSideDishServings(int sideDishServings) {
-        this.sideDishServings = sideDishServings;
-    }
-
-    public int getAfternoonSnackServings() {
-        return afternoonSnackServings;
-    }
-
-    public void setAfternoonSnackServings(int afternoonSnackServings) {
-        this.afternoonSnackServings = afternoonSnackServings;
-    }
-
-    public int getDinnerServings() {
-        return dinnerServings;
-    }
-
-    public void setDinnerServings(int dinnerServings) {
-        this.dinnerServings = dinnerServings;
-    }
-
-    
 
     @Override
     public int compareTo(DayDiet comparedDiet) {

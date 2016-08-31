@@ -12,11 +12,15 @@ import cz.afrosoft.whattoeat.gui.I18n;
 import cz.afrosoft.whattoeat.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.logic.model.Diet;
+import cz.afrosoft.whattoeat.logic.model.Meal;
 import cz.afrosoft.whattoeat.logic.model.Recipe;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
@@ -46,19 +51,19 @@ public class DietViewController implements Initializable {
     @FXML
     private TableColumn<DayDiet, String> dayColumn;
     @FXML
-    private TableColumn<DayDiet, String> breakfastColumn;
+    private TableColumn<DayDiet, Meal> breakfastColumn;
     @FXML
-    private TableColumn<DayDiet, String> morningSnackColumn;
+    private TableColumn<DayDiet, Meal> morningSnackColumn;
     @FXML
-    private TableColumn<DayDiet, String> soupColumn;
+    private TableColumn<DayDiet, Meal> soupColumn;
     @FXML
-    private TableColumn<DayDiet, String> lunchColumn;
+    private TableColumn<DayDiet, Meal> lunchColumn;
     @FXML
-    private TableColumn<DayDiet, String> sideDishColumn;
+    private TableColumn<DayDiet, Meal> sideDishColumn;
     @FXML
-    private TableColumn<DayDiet, String> afternoonSnackColumn;
+    private TableColumn<DayDiet, Meal> afternoonSnackColumn;
     @FXML
-    private TableColumn<DayDiet, String> dinnerColumn;
+    private TableColumn<DayDiet, Meal> dinnerColumn;
     
     private ObservableList<DayDiet> dayDietList = FXCollections.observableArrayList();
     
@@ -92,6 +97,7 @@ public class DietViewController implements Initializable {
         
         initColumnsValueFactories();
         dietViewTable.getSelectionModel().setCellSelectionEnabled(true);
+        dietViewTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
         
         dietViewTable.setItems(dayDietList);
     }    
@@ -123,6 +129,22 @@ public class DietViewController implements Initializable {
         recipeViewDialog.showRecipe(recipe);
     }
     
+    @FXML
+    public void showShoppingList(){
+        ObservableList<TablePosition> selectedCells = dietViewTable.getSelectionModel().getSelectedCells();
+        List<Meal> mealList = (List<Meal>) selectedCells.stream().filter(
+                tablePosition -> !dayColumn.equals(tablePosition.getTableColumn())
+        ).map(
+                tablePosition -> getCellData(tablePosition)
+        ).collect(Collectors.toList());
+        
+    }
+    
+    private <T> T getCellData(TablePosition<DayDiet, T> tablePosition){
+        T cellData = tablePosition.getTableColumn().getCellData(tablePosition.getRow());
+        return cellData;
+    }
+    
     private void initColumnsValueFactories() {
         LOGGER.debug("Column {}", dayColumn);
         
@@ -131,13 +153,13 @@ public class DietViewController implements Initializable {
             final String dayString = day == null ? StringUtils.EMPTY : day.toString();
             return new ReadOnlyObjectWrapper<>(dayString);
         });
-        breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getBreakfast()));
-        morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getMorningSnack()));
-        soupColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSoup()));
-        lunchColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getLunch()));
-        sideDishColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSideDish()));
-        afternoonSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getAfternoonSnack()));
-        dinnerColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getDinner()));
+        breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getBreakfast()));
+        morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getMorningSnack()));
+        soupColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSoup()));
+        lunchColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getLunch()));
+        sideDishColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSideDish()));
+        afternoonSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getAfternoonSnack()));
+        dinnerColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getDinner()));
     }
     
 }
