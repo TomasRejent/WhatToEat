@@ -14,6 +14,7 @@ import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.logic.model.enums.IngredientUnit;
 import java.util.Set;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 /**
@@ -78,24 +79,16 @@ final class IngredientView implements Comparable<IngredientView>{
 
         if(thisKeyWords.equals(thatKeyWords)){
             return thisName.compareTo(thatName);
-        }else if(thisKeyWords.size() < thatKeyWords.size()){
-            if(thatKeyWords.containsAll(thisKeyWords)){
-                return LESS;
-            }else{
-                return GREATER;
-            }
-        }else if(thisKeyWords.size() > thatKeyWords.size()){
-            if(thisKeyWords.containsAll(thatKeyWords)){
-                return GREATER;
-            }else{
-                return LESS;
-            }
         }else if(thisKeyWords.size() == 1 && thatKeyWords.size() == 1){
             final String thisKeyWord = thisKeyWords.iterator().next();
             final String thatKeyWord = thatKeyWords.iterator().next();
             return thisKeyWord.compareTo(thatKeyWord);
-        } else{
-            return EQUAL;
+        } else if(thisKeyWords.size() < thatKeyWords.size()){
+            return LESS;
+        }else if (thisKeyWords.size() > thatKeyWords.size()){
+            return GREATER;
+        }else{
+            return StringUtils.join(thisKeyWords).compareTo(StringUtils.join(thatKeyWords));
         }
     }
 
