@@ -27,18 +27,30 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
+import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.TextFieldTableCell;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -106,10 +118,57 @@ public class DietViewController implements Initializable {
         initColumnsValueFactories();
         dietViewTable.getSelectionModel().setCellSelectionEnabled(true);
         dietViewTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        
+
         dietViewTable.setItems(dayDietList);
+
+        dietViewTable.addEventHandler(KeyEvent.KEY_RELEASED, new EventHandler<KeyEvent>() {
+            @Override
+            public void handle(KeyEvent event) {
+                if(KeyCode.ESCAPE.equals(event.getCode())){
+                    dietViewTable.getSelectionModel().clearSelection();
+                }
+            }
+        });
+
+        dietViewTable.getSelectionModel().getSelectedCells().addListener(new ListChangeListener<TablePosition>() {
+            @Override
+            public void onChanged(ListChangeListener.Change<? extends TablePosition> selectionChange) {
+                final Set<Integer> selectedRows = new HashSet<>();
+                while (selectionChange.next()) {
+                    if (selectionChange.wasAdded()) {
+                        for (TablePosition<DayDiet, ?> position : selectionChange.getAddedSubList()) {
+                            if (position.getTableColumn().equals(dayColumn)) {
+                                selectedRows.add(position.getRow());
+                            }
+                        }
+                    }
+                }
+                
+                if(selectedRows.isEmpty()){
+                    return;
+                }
+
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        final Set<TableColumn<DayDiet, ?>> mealColumns = getMealColumns();
+                        for(Integer rowIndex : selectedRows){
+                            for(TableColumn<DayDiet, ?> mealColumn : mealColumns){
+                                dietViewTable.getSelectionModel().select(rowIndex, mealColumn);
+                            }
+                        }
+                    }
+                });
+            }
+        });
     }    
-    
+
+    private Set<TableColumn<DayDiet, ?>> getMealColumns(){
+        final Set<TableColumn<DayDiet, ?>> columns = new HashSet<>(dietViewTable.getColumns());
+        columns.remove(dayColumn);
+        return columns;
+    }
+
     public void viewDiet(final Diet diet){
         LOGGER.debug("Viewing diet: {}", diet);
         
@@ -124,13 +183,13 @@ public class DietViewController implements Initializable {
             return;
         }
         
-        TablePosition<DayDiet, String> selectedPosition = selectedCells.get(0);
-        TableColumn<DayDiet, String> selectedColumn = selectedPosition.getTableColumn();
+        TablePosition<DayDiet, ?> selectedPosition = selectedCells.get(0);
+        TableColumn<DayDiet, ?> selectedColumn = selectedPosition.getTableColumn();
         if(dayColumn.equals(selectedColumn)){
             return;
         }
-        String cellData = selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
-        Recipe recipe = dataHolderService.getRecipeByName(cellData);
+        Meal cellData = (Meal) selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
+        Recipe recipe = dataHolderService.getRecipeByName(cellData.getRecipeName());
         if(recipe == null){
             return;
         }
@@ -148,6 +207,10 @@ public class DietViewController implements Initializable {
 
         final Map<String, Ingredient> ingredientSumMap = new HashMap<>();
         for(Meal meal : mealList){
+            if(meal == null){
+                continue;
+            }
+
             final Recipe recipe = dataHolderService.getRecipeByName(meal.getRecipeName());
             Set<Ingredient> ingredients = recipe.getIngredients();
             for(Ingredient recipeIngredient : ingredients){
@@ -173,12 +236,11 @@ public class DietViewController implements Initializable {
     }
     
     private void initColumnsValueFactories() {
-        LOGGER.debug("Column {}", dayColumn);
-        
         dayColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> {
             final LocalDate day = param.getValue().getDay();
             final String dayString = day == null ? StringUtils.EMPTY : day.toString();
-            return new ReadOnlyObjectWrapper<>(dayString);
+            final ReadOnlyObjectWrapper<String> cell = new ReadOnlyObjectWrapper<>(dayString);
+            return cell;
         });
         breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getBreakfast()));
         morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getMorningSnack()));

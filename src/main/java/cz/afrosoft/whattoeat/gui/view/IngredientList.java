@@ -14,6 +14,7 @@ import cz.afrosoft.whattoeat.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.logic.services.PieceConversionService;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -62,11 +63,13 @@ public final class IngredientList extends ListView<IngredientView>{
 
             ingredientList.add(new IngredientView(ingredient, ingredientInfo));
         }
+        Collections.sort(ingredientList);
     }
 
     public void setIngredientViews(final Collection<IngredientView> ingredients){
         ingredientList.clear();
         ingredientList.addAll(ingredients);
+        Collections.sort(ingredientList);
     }
 
     private static class IngredientViewCell extends ListCell<IngredientView>{
