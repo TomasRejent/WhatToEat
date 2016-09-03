@@ -19,8 +19,8 @@
       <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" />
       <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
          <children>
-            <Button mnemonicParsing="false" onAction="#showRecipe" text="%cz.afrosoft.whattoeat.dietview.action.show" />
-            <Button mnemonicParsing="false" onAction="#showShoppingList" text="%cz.afrosoft.whattoeat.dietlist.action.shopping" />
+            <Button maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#showRecipe" prefWidth="35.0" text="%cz.afrosoft.whattoeat.dietview.action.show" />
+            <Button maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#showShoppingList" prefWidth="35.0" text="%cz.afrosoft.whattoeat.dietview.action.shopping" />
          </children></VBox>
       <TableView fx:id="dietViewTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>

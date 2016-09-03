@@ -64,6 +64,11 @@ public final class IngredientList extends ListView<IngredientView>{
         }
     }
 
+    public void setIngredientViews(final Collection<IngredientView> ingredients){
+        ingredientList.clear();
+        ingredientList.addAll(ingredients);
+    }
+
     private static class IngredientViewCell extends ListCell<IngredientView>{
 
         private static final double ITEM_ELEMENT_SPACING = 5;
