@@ -17,8 +17,8 @@ public final class GarlicConversionInfo implements PieceConversionInfo {
 
     private static final String[] EXCLUDED_FIELDS = new String[]{"gramsOfAveragePiece"};
     private static final String INGREDIENT_NAME = I18n.getText("cz.afrosoft.whattoeat.ingredient.piece.conversion.garlic.name");
-    private static final int GRAMS_OF_AVERAGE_GARLIC_BULB = 70;
-    private static final int GRAMS_OF_AVERAGE_GARLIC_CLOVE = 10;
+    private static final int GRAMS_OF_AVERAGE_GARLIC_BULB = 65;
+    private static final int GRAMS_OF_AVERAGE_GARLIC_CLOVE = 4;
 
     private static final GarlicConversionInfo INSTANCE = new GarlicConversionInfo();
 

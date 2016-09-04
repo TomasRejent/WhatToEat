@@ -78,6 +78,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private static final double WIDTH = 600;
     private static final double HEIGHT = 800;
 
+    private static final double PREPARATION_FIELD_MIN_HEIGHT = 150;
+
     private static final int MAX_RATING = 10;
 
     private final VBox verticalBox = new VBox();
@@ -211,6 +213,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         fifthRow.getChildren().addAll(ingredientNameLabel, ingredientNameField, ingredientQuantityLabel, ingredientQuantityField, ingredientUnitLabel);
         
         preparationLabel.setText(I18n.getText(I18N_PREPARATION));
+        preparationField.setWrapText(true);
+        preparationField.setMinHeight(PREPARATION_FIELD_MIN_HEIGHT);
 
         setSideDishesVisibility(false);
         sideDishLabel.setText(I18n.getText(I18N_SIDE_DISHES));
