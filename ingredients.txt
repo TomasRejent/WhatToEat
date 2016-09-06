@@ -11,7 +11,8 @@
   {"name" : "knedlíky", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "voda", "ingredientUnit" : "VOLUME", "price" : "0"},
   {"name" : "kokos strouhaný", "ingredientUnit" : "WEIGHT", "price" : "0"},
-  {"name" : "mák", "ingredientUnit" : "WIEGHT", "price" : "0"},
+  {"name" : "mák", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "peèivo", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
