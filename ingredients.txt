@@ -55,6 +55,7 @@
   {"name" : "mléko", "ingredientUnit" : "VOLUME", "price" : "0.018", "keywords" : ["mléèný výrobek"]},
   {"name" : "tvaroh", "ingredientUnit" : "WEIGHT", "price" : "0.1", "keywords" : ["mléèný výrobek"]},
   {"name" : "srdíèko", "ingredientUnit" : "PIECE", "price" : "6", "keywords" : ["mléèný výrobek"]},
+  {"name" : "parmazán", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mléèný výrobek"},
 
 	{"name" : "cibule", "ingredientUnit" : "WEIGHT", "price" : "0.016", "keywords" : ["zelenina"]},
   {"name" : "okurek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
