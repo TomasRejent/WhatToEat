@@ -13,6 +13,7 @@
   {"name" : "kokos strouhaný", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "mák", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "peèivo", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "kypøící prášek", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
