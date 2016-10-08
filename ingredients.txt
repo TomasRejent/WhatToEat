@@ -8,12 +8,14 @@
   {"name" : "tìstoviny", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "špagety", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["tìstovina"]},
   {"name" : "gnocchi", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["tìstovina"]},
+  {"name" : "rıové nudle", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "knedlíky", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "voda", "ingredientUnit" : "VOLUME", "price" : "0"},
   {"name" : "kokos strouhanı", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "mák", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "peèivo", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "kypøící prášek", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "solamyl", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zahušovadlo"]},
   
   {"name" : "klobása", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -104,7 +106,7 @@
   {"name" : "fazole s rajèatovou omáèkou konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},
   {"name" : "rajskı protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
   {"name" : "špenátovı protlak", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["konzerva"]},
-  
+  {"name" : "zeleninová smìs", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["mraené"]},
   
   {"name" : "bobkovı list", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "koøení na americké brambory", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
@@ -124,6 +126,9 @@
   {"name" : "petrelka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "libeèek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "høebíèek", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "sypaná sladká paprika", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "sypaná pálivá paprika", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
+  {"name" : "koøení na èínu", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["koøení"]},
   {"name" : "bujonová kostka", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["koøení", "ochucovadlo"]},
   {"name" : "ocet", "ingredientUnit" : "VOLUME", "price" : "0", "keywords" : ["ochucovadlo"]},
   {"name" : "sirup", "ingredientUnit" : "VOLUME", "price" : "0", "keywords" : ["ochucovadlo"]},
@@ -135,7 +140,7 @@
   {"name" : "bazalka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
   {"name" : "oregano", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
   {"name" : "paitka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
-
+  {"name" : "podravka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["ochucovadlo"]},
 
   {"name" : "jáhly", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "pohanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
