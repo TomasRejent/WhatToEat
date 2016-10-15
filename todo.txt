@@ -14,6 +14,7 @@ FEATURES:
 - Recipe view dialog
     - styling so preparation has more space and whole dialog space is used even
     when some categories are closed
+- Ingredient view
 X - Ingredients with PIECE type should support fraction values and round them up in view.
 X - Add service for computing recipe price.
 X - Add UI for food list generator.
@@ -21,12 +22,13 @@ X - Add UI for food list generator.
 X - Create view for generated food lists
 - Diet view
     - Create mechanism for manual editing of generated food lists
-    - Update DayDiet to contain numer of servings which will be used for shopping list generation
+    X - Update DayDiet to contain numer of servings which will be used for shopping list generation
     - Add editation mechanism for number of servings
-    - Add shopping list generation from selected recipes
+    X - Add shopping list generation from selected recipes
+    - Add export for shopping list
     - Show recipe on double cilck
 
-- Show diet view on double click
+X - Show diet view on double click
 - Add ability to delete diet
 X - Display error dialog when recipe cannot be displayed because of invalid ingredient info
 - Translate new cz messages to en

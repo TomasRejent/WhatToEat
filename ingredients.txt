@@ -14,6 +14,8 @@
   {"name" : "mák", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "peèivo", "ingredientUnit" : "WEIGHT", "price" : "0"},
   {"name" : "kypøící prášek", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "strouhanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
+  {"name" : "kukuøièná strouhanka", "ingredientUnit" : "WEIGHT", "price" : "0"},
   
   {"name" : "klobása", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
   {"name" : "slanina", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["uzenina"]},
@@ -97,6 +99,7 @@
   {"name" : "kvìták", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "lilek", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "dýnì", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
+  {"name" : "dýnì hokaido", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "petržel", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina"]},
   {"name" : "kyselá okurka", "ingredientUnit" : "WEIGHT", "price" : "0", "keywords" : ["zelenina", "zavaøenina"]},
   {"name" : "mrkev+hrášek konzerva", "ingredientUnit" : "PIECE", "price" : "0", "keywords" : ["zelenina", "konzerva"]},   
