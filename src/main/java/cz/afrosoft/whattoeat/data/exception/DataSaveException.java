@@ -3,27 +3,27 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package cz.afrosoft.whattoeat.data.exception;
 
 /**
  *
- * @author Alexandra
+ * @author Tomas Rejent
  */
-public class DataLoadException extends RuntimeException{
+public class DataSaveException extends RuntimeException{
 
-    public DataLoadException() {
+    public DataSaveException() {
     }
 
-    public DataLoadException(String message) {
+    public DataSaveException(String message) {
         super(message);
     }
 
-    public DataLoadException(String message, Throwable cause) {
+    public DataSaveException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public DataLoadException(Throwable cause) {
+    public DataSaveException(Throwable cause) {
         super(cause);
-    }    
-    
+    }
 }

@@ -3,27 +3,30 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package cz.afrosoft.whattoeat.data.exception;
 
 /**
- *
- * @author Alexandra
+ * Exception indicating that something was not found.
+ * @author Tomas Rejent
  */
-public class DataLoadException extends RuntimeException{
+public class NotFoundException extends RuntimeException{
 
-    public DataLoadException() {
+    public NotFoundException() {
     }
 
-    public DataLoadException(String message) {
+    public NotFoundException(String message) {
         super(message);
     }
 
-    public DataLoadException(String message, Throwable cause) {
+    public NotFoundException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public DataLoadException(Throwable cause) {
+    public NotFoundException(Throwable cause) {
         super(cause);
-    }    
-    
+    }
+
+
+
 }
