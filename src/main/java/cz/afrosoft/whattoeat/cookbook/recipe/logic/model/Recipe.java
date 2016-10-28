@@ -91,6 +91,10 @@ public final class Recipe implements Serializable, PersistentEntity<String>{
         this.rating = rating;
     }
 
+    /**
+     *
+     * @return (NotNull) Set of keywords of recipe or empty set.
+     */
     public Set<String> getKeywords() {
         return Optional.ofNullable(keywords).orElse(Collections.emptySet());
     }

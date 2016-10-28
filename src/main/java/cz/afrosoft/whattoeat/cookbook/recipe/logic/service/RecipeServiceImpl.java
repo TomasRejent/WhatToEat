@@ -9,8 +9,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 import com.google.common.collect.ImmutableSet;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import java.util.Collections;
-import java.util.HashSet;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.util.List;
 import java.util.Set;
 import org.apache.commons.lang3.Validate;
@@ -41,6 +40,12 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    public Set<Recipe> getAllSideDishes() {
+        final List<Recipe> sideDishes = recipeDao.getRecipeByType(RecipeType.SIDE_DISH);
+        return ImmutableSet.copyOf(sideDishes);
+    }
+
+    @Override
     public Set<Recipe> getAllRecipes() {
         LOGGER.debug("Reading all recipes.");
         final List<Recipe> recipeList = recipeDao.readAll();
@@ -57,15 +62,6 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public Set<String> getAllRecipeKeywords() {
         LOGGER.debug("Geting all keywords from recipes.");
-        final List<Recipe> recipes = recipeDao.readAll();
-        final Set<String> keywords = new HashSet<>();
-        for(Recipe recipe : recipes){
-            final Set<String> recipeKeywords = recipe.getKeywords();
-            if(recipeKeywords != null){
-                keywords.addAll(recipeKeywords);
-            }
-        }
-        LOGGER.debug("Found {} keywords.", keywords.size());
-        return Collections.unmodifiableSet(keywords);
+        return recipeDao.getRecipeKeywords();
     }
 }

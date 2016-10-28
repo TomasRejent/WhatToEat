@@ -347,7 +347,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     }
 
     private void setupSideDishSuggestions(){
-        final Set<String> sideDishNames = recipeService.getAllRecipes().stream().filter((recipe) -> recipe.getRecipeTypes().contains(RecipeType.SIDE_DISH)).map((recipe) -> recipe.getName()).collect(Collectors.toSet());
+        final Set<String> sideDishNames = recipeService.getAllSideDishes().stream().map((recipe) -> recipe.getName()).collect(Collectors.toSet());
 
         AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(sideDishNameField, new FullWordSuggestionProvider(sideDishNames));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
