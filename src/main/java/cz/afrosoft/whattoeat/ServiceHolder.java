@@ -36,11 +36,11 @@ public final class ServiceHolder {
     private static final BasicConversionInfoDao BASIC_CONVERSION_INFO_DAO = new BasicConversionInfoJsonDao();
 
     /* Cookbook business layer services. */
-    private static final RecipeService RECIPE_SERVICE = new RecipeServiceImpl(RECIPE_DAO);
-    private static final IngredientInfoService INGREDIENT_INFO_SERVICE = new IngredientInfoServiceImpl(INGREDIENT_INFO_DAO);
+    private static final RecipeService RECIPE_SERVICE = new RecipeServiceImpl(RECIPE_DAO);   
     private static final PieceConversionService PIECE_CONVERSION_INFO = new PieceConversionServiceImpl(BASIC_CONVERSION_INFO_DAO);
     private static final IngredientQuantityService INGREDIENT_QUANTITY_SERVICE = new IngredientQuantityServiceImpl(INGREDIENT_INFO_DAO);
     private static final PriceCalculatorService PRICE_CALCULATOR_SERVICE = new PriceCalculatorServiceImpl(INGREDIENT_INFO_DAO, INGREDIENT_QUANTITY_SERVICE);
+    private static final IngredientInfoService INGREDIENT_INFO_SERVICE = new IngredientInfoServiceImpl(INGREDIENT_INFO_DAO, PIECE_CONVERSION_INFO);
 
     /* Diet business layer services. */
     private static final DietService DIET_SERVICE = new DietServiceImpl(DIET_DAO);

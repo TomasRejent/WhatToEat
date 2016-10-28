@@ -7,6 +7,8 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.data.exception.NotFoundException;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -27,5 +29,11 @@ public interface IngredientInfoService {
      * @return (NotNull)(ReadOnly) Set of names from all defined IngredientInfos.
      */
     Set<String> getIngredientNames();
+
+    /**
+     *
+     * @return (NotNull)(ReadOnly) Gets list of ingredients with all data needed for view in ingredient table.
+     */
+    List<IngredientRow> getIngredientRows();
 
 }

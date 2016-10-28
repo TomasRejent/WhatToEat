@@ -8,6 +8,8 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -25,11 +27,14 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientInfoServiceImpl.class);
 
     private final IngredientInfoDao ingredientInfoDao;
+    private final PieceConversionService pieceConversionService;
 
-    public IngredientInfoServiceImpl(final IngredientInfoDao ingredientInfoDao) {
+    public IngredientInfoServiceImpl(final IngredientInfoDao ingredientInfoDao, final PieceConversionService pieceConversionService) {
         LOGGER.debug("Creating Ingredient Info service.");
         Validate.notNull(ingredientInfoDao);
+        Validate.notNull(pieceConversionService);
         this.ingredientInfoDao = ingredientInfoDao;
+        this.pieceConversionService = pieceConversionService;
     }
 
     @Override
@@ -50,6 +55,14 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
         return Collections.unmodifiableSet(ingredientNames);
     }
 
-
-
+    @Override
+    public List<IngredientRow> getIngredientRows() {
+        LOGGER.debug("Getting ingredient rows.");
+        final List<IngredientInfo> ingredients = ingredientInfoDao.readAll();
+        final List<IngredientRow> rows = new ArrayList<>(ingredients.size());
+        ingredients.stream().forEach(ingredient -> {
+            rows.add(new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())));
+        });
+        return Collections.unmodifiableList(rows);
+    }
 }

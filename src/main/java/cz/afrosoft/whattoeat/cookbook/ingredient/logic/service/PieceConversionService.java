@@ -5,6 +5,8 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+
 /**
  *
  * @author afromanius
@@ -12,6 +14,8 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 public interface PieceConversionService {
 
     boolean hasPieceConversion(String ingredientName);
+
+    PieceConversionInfo getPieceConversionInfo(String ingredientName);
 
     int getPieces(String ingredientName, int grams);
 

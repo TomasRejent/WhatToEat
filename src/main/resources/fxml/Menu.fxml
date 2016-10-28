@@ -12,6 +12,7 @@
       <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <items>
             <Button mnemonicParsing="false" onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes" />
+            <Button mnemonicParsing="false" onAction="#showIngredientList" text="%cz.afrosoft.whattoeat.menu.ingredients" />
             <Button mnemonicParsing="false" onAction="#showFoodList" text="Food list" />
             <Button mnemonicParsing="false" onAction="#showGenerator" text="%cz.afrosoft.whattoeat.menu.diet.generator" />
          </items>

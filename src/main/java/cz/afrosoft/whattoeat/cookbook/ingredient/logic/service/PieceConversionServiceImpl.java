@@ -13,6 +13,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo.GarlicConv
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
+import org.apache.commons.lang3.Validate;
 
 /**
  *
@@ -53,6 +54,14 @@ public class PieceConversionServiceImpl implements PieceConversionService{
         final int pieces = getNumberOfPieces(grams, pieceConversionInfo.getGramsOfAveragePiece());
         return pieceConversionInfo.getText(pieces);
     }
+
+    @Override
+    public PieceConversionInfo getPieceConversionInfo(final String ingredientName) {
+        Validate.notNull(ingredientName);
+        return pieceConversionMap.get(ingredientName);
+    }
+
+
 
     private int getNumberOfPieces(int grams, int gramsOfAveragePiece){
         float fractalPieces = ((float)grams) / gramsOfAveragePiece;

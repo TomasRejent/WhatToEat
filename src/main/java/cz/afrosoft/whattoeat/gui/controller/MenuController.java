@@ -20,13 +20,17 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * FXML Controller class
- *
- * @author Alexandra
+ * Controller for menu bar. Switches displayed pages according to pressed button.
+ * @author Tomas Rejent
  */
 public class MenuController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
+
+    private static final String RESOURCE_PATH_RECIPES_PAGE = "/fxml/RecipeList.fxml";
+    private static final String RESOURCE_PATH_INGREDIENTS_PAGE = "/fxml/IngredientList.fxml";
+    private static final String RESOURCE_PATH_FOOD_LIST_PAGE = "/fxml/FoodList.fxml";
+    private static final String RESOURCE_PATH_GENERATOR_PAGE = "/fxml/DietGenerator.fxml";
 
     /**
      * Initializes the controller class.
@@ -38,34 +42,35 @@ public class MenuController implements Initializable {
     
     @FXML
     private void showRecipeList(ActionEvent actionEvent){
-        try {
-            Parent recipeListPane = FXMLLoader.load(getClass().getResource("/fxml/RecipeList.fxml"), I18n.getResourceBundle());
-            BorderPane rootPane = MainApp.getRootPane();
-            rootPane.setCenter(recipeListPane);
-        } catch (IOException ex) {
-            LOGGER.error("Cannot show recipes.", ex);
-        }
+        LOGGER.debug("Switching to Recipes page.");
+        showPage(RESOURCE_PATH_RECIPES_PAGE);
     }
     
     @FXML
+    private void showIngredientList(ActionEvent actionEvent){
+        LOGGER.debug("Switching to Ingredients page.");
+        showPage(RESOURCE_PATH_INGREDIENTS_PAGE);
+    }
+
+    @FXML
     private void showFoodList(ActionEvent actionEvent){
-        try {
-            Parent foodListPane = FXMLLoader.load(getClass().getResource("/fxml/FoodList.fxml"), I18n.getResourceBundle());
-            BorderPane rootPane = MainApp.getRootPane();
-            rootPane.setCenter(foodListPane);
-        } catch (IOException ex) {
-            LOGGER.error("Cannot show food list.", ex);
-        }
+        LOGGER.debug("Switching to Food list page.");
+        showPage(RESOURCE_PATH_FOOD_LIST_PAGE);
     }
     
     @FXML
     private void showGenerator(ActionEvent actionEvent){
+        LOGGER.debug("Switching to Generator page.");
+        showPage(RESOURCE_PATH_GENERATOR_PAGE);
+    }
+
+    private void showPage(final String resourcePath){
         try {
-            Parent dietGeneratorPane = FXMLLoader.load(getClass().getResource("/fxml/DietGenerator.fxml"), I18n.getResourceBundle());
-            BorderPane rootPane = MainApp.getRootPane();
-            rootPane.setCenter(dietGeneratorPane);
+            final Parent page = FXMLLoader.load(getClass().getResource(resourcePath), I18n.getResourceBundle());
+            final BorderPane rootPane = MainApp.getRootPane();
+            rootPane.setCenter(page);
         } catch (IOException ex) {
-            LOGGER.error("Cannot show generator.", ex);
+            LOGGER.error("Cannot show page from resource: " + resourcePath, ex);
         }
     }
 }
