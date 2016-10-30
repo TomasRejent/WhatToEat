@@ -7,7 +7,9 @@
 package cz.afrosoft.whattoeat.gui.dialog.util;
 
 import cz.afrosoft.whattoeat.gui.I18n;
+import java.util.Optional;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 /**
  *
@@ -17,6 +19,7 @@ public class DialogUtils {
 
     private static final String ERROR_DIALOG_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.error.title";
     private static final String INFO_DIALOG_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.info.title";
+    private static final String CONFIRM_DIALOG_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.confirm.title";
 
     private DialogUtils() {
         throw new IllegalStateException();
@@ -36,6 +39,19 @@ public class DialogUtils {
         infoDialog.setHeaderText(header);
         infoDialog.setContentText(message);
         infoDialog.showAndWait();
+    }
+
+    public static boolean showConfirmDialog(final String header, final String message){
+        final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.YES, ButtonType.NO);
+        confirmDialog.setTitle(I18n.getText(CONFIRM_DIALOG_TITLE_KEY));
+        confirmDialog.setResizable(true);
+        confirmDialog.setHeaderText(header);
+        Optional<ButtonType> response = confirmDialog.showAndWait();
+        if(ButtonType.YES.equals(response.orElse(null))){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

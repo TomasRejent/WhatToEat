@@ -29,6 +29,13 @@ public interface BaseDao<T extends PersistentEntity<K>, K extends Serializable> 
     T read(K key);
 
     /**
+     * Check if entity with specified key exist or not.
+     * @param key (NotNull) Key of entity.
+     * @return True if already exist. False otherwise.
+     */
+    boolean exists(K key);
+
+    /**
      * Update persisted entity.
      * @param entity (NotNull) Entity with updated values.
      */

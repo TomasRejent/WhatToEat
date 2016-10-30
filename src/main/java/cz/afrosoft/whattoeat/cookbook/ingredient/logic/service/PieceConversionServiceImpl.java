@@ -10,10 +10,13 @@ import com.google.common.collect.ImmutableSet;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo.GarlicConversionInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -21,9 +24,14 @@ import org.apache.commons.lang3.Validate;
  */
 public class PieceConversionServiceImpl implements PieceConversionService{
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(PieceConversionServiceImpl.class);
+
     private Map<String, PieceConversionInfo> pieceConversionMap;
+    private final BasicConversionInfoDao basicConversionInfoDao;
 
     public PieceConversionServiceImpl(final BasicConversionInfoDao basicConversionInfoDao) {
+        Validate.notNull(basicConversionInfoDao);
+        this.basicConversionInfoDao = basicConversionInfoDao;
         Collection<? extends PieceConversionInfo> pieceConversionInfoCollection = basicConversionInfoDao.readAll();
         Collection<PieceConversionInfo> specialConversions = getSpecialConversions();
 
@@ -61,7 +69,32 @@ public class PieceConversionServiceImpl implements PieceConversionService{
         return pieceConversionMap.get(ingredientName);
     }
 
+    @Override
+    public void saveOrUpdate(final PieceConversionInfo pieceConversionInfo) {
+        LOGGER.debug("Saving piece conversion info: {}.", pieceConversionInfo);
+        Validate.notNull(pieceConversionInfo, "Piece conversion info cannot be null.");
+        if(pieceConversionInfo instanceof BasicConversionInfo){
+            final BasicConversionInfo basicInfo = (BasicConversionInfo) pieceConversionInfo;
+            if(basicConversionInfoDao.exists(basicInfo.getIngredientName())){
+                basicConversionInfoDao.update(basicInfo);
+            }else{
+                basicConversionInfoDao.create(basicInfo);
+            }
+        }else{
+            LOGGER.warn("Type of piece conversion info is not recognized: {}.", pieceConversionInfo.getClass());
+        }
+    }
 
+    @Override
+    public void delete(final PieceConversionInfo pieceConversionInfo) {
+        LOGGER.debug("Deleting piece conversion info: {}.", pieceConversionInfo);
+        Validate.notNull(pieceConversionInfo);
+        if(pieceConversionInfo instanceof BasicConversionInfo){
+            basicConversionInfoDao.delete((BasicConversionInfo)pieceConversionInfo);
+        }else{
+            LOGGER.warn("Type of piece conversion info is not recognized: {}.", pieceConversionInfo.getClass());
+        }
+    }
 
     private int getNumberOfPieces(int grams, int gramsOfAveragePiece){
         float fractalPieces = ((float)grams) / gramsOfAveragePiece;

@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -90,6 +91,14 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
         throw new NotFoundException(String.format("Entity with key %s was not found in storage %s.", key, storageFile));
     }
 
+    @Override
+    public boolean exists(final K key) {
+        LOGGER.debug("Checking existence of entity with key: {}.", key);
+        Validate.notNull(key, "Entity key cannot be null.");
+        final List<T> entities = readAllInternal();
+        return entities.stream().anyMatch(entity -> entity.getKey().equals(key));
+    }
+
     /**
      * Updates entity in storage file specified when constructing this instance.
      * @param entity (NotNull) Entity to update. Entity must already exist in storage.
@@ -137,7 +146,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
     protected List<T> readAllInternal(){
         try(final BufferedReader bufferedReader = new BufferedReader(new FileReader(storageFile))){
             final T[] entityArray = gson.fromJson(bufferedReader, clazz);
-            return Arrays.asList(entityArray);
+            return new ArrayList<>(Arrays.asList(entityArray));
         }catch(IOException ex){
             throw new DataLoadException(String.format("Cannot read data from json file: %s.", storageFile), ex);
         }

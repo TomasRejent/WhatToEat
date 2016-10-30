@@ -7,9 +7,10 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import cz.afrosoft.whattoeat.gui.I18n;
-import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Represents one row from ingredient table.
@@ -61,4 +62,31 @@ public class IngredientRow {
         }
     }
 
+    public IngredientInfo getIngredientInfo() {
+        return ingredientInfo;
+    }
+
+    public PieceConversionInfo getPieceConversionInfo() {
+        return pieceConversionInfo;
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder().append(ingredientInfo.getKey()).build();
+    }
+
+    @Override
+    public boolean equals(final Object obj) {
+        if(obj == null || !(obj instanceof IngredientRow)){
+            return false;
+        }else{
+            final IngredientRow otherRow = (IngredientRow) obj;
+            return this.ingredientInfo.getKey().equals(otherRow.getIngredientInfo().getKey());
+        }
+    }
+
+    @Override
+    public String toString() {
+        return ToStringBuilder.reflectionToString(this);
+    }
 }

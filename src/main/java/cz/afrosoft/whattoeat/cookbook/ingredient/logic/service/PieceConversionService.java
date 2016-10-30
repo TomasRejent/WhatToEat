@@ -21,4 +21,7 @@ public interface PieceConversionService {
 
     String getPieceText(String ingredientName, int grams);
 
+    void saveOrUpdate(PieceConversionInfo pieceConversionInfo);
+
+    void delete(PieceConversionInfo pieceConversionInfo);
 }

@@ -22,9 +22,9 @@
          <children>
             <Separator prefWidth="200.0" />
             <Label text="%cz.afrosoft.whattoeat.ingredients.actions.title" />
-            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.add" />
-            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.edit" />
-            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.delete">
+            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#addIngredient" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.add" />
+            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#editIngredient" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.edit" />
+            <Button maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" mnemonicParsing="false" onAction="#deleteIngredient" prefHeight="30.0" prefWidth="30.0" text="%cz.afrosoft.whattoeat.ingredients.actions.delete">
                <padding>
                   <Insets top="1.0" />
                </padding></Button>

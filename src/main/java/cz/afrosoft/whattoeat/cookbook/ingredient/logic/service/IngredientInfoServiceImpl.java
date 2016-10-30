@@ -9,6 +9,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
@@ -64,5 +65,38 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
             rows.add(new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())));
         });
         return Collections.unmodifiableList(rows);
+    }
+
+    @Override
+    public Set<String> getAllIngredientKeywords() {
+        return ingredientInfoDao.getIngredientKeywords();
+    }
+
+    @Override
+    public void saveOrUpdate(final IngredientRow ingredientRow) {
+        LOGGER.debug("Saving ingredient row: {}.", ingredientRow);
+        Validate.notNull(ingredientRow);
+        final IngredientInfo ingredientInfo = ingredientRow.getIngredientInfo();
+        if(ingredientInfoDao.exists(ingredientInfo.getKey())){
+            ingredientInfoDao.update(ingredientInfo);
+        }else{
+            ingredientInfoDao.create(ingredientInfo);
+        }
+
+        final PieceConversionInfo pieceConversionInfo = ingredientRow.getPieceConversionInfo();
+        if(pieceConversionInfo != null){
+            pieceConversionService.saveOrUpdate(pieceConversionInfo);
+        }
+    }
+
+    @Override
+    public void delete(final IngredientRow ingredientRow) {
+        LOGGER.debug("Deleting ingretient row: {}.", ingredientRow);
+        Validate.notNull(ingredientRow);
+        ingredientInfoDao.delete(ingredientRow.getIngredientInfo());
+        final PieceConversionInfo pieceConversionInfo = ingredientRow.getPieceConversionInfo();
+        if(pieceConversionInfo != null){
+            pieceConversionService.delete(pieceConversionInfo);
+        }
     }
 }

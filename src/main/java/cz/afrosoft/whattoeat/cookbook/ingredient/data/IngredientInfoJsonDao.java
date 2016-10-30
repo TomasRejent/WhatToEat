@@ -9,7 +9,13 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 import cz.afrosoft.whattoeat.data.JsonDao;
 import cz.afrosoft.whattoeat.data.util.LocationUtils;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
-import java.io.File;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of persistence service of JSON type for entity {@link IngredientInfo}.
@@ -17,7 +23,22 @@ import java.io.File;
  */
 public class IngredientInfoJsonDao extends JsonDao<IngredientInfo, String> implements IngredientInfoDao{
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(RecipeJsonDao.class);
+
     public IngredientInfoJsonDao() {
         super(LocationUtils.getIngredientFile(), IngredientInfo[].class);
     }
+
+    @Override
+    public Set<String> getIngredientKeywords() {
+        LOGGER.debug("Getting all ingredient keywords.");
+        final List<IngredientInfo> ingredients = readAll();
+        final Set<String> keywordsSet = new HashSet<>();
+        ingredients.stream().forEach((recipe) -> {
+            keywordsSet.addAll(recipe.getKeywords());
+        });
+        LOGGER.debug("Found {} keywords.", keywordsSet.size());
+        return Collections.unmodifiableSet(keywordsSet);
+    }
+
 }
