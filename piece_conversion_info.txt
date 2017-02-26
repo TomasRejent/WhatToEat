@@ -1,1 +1,1 @@
-[{"ingredientName":"øepa","gramsOfAveragePiece":190},{"ingredientName":"cibule","gramsOfAveragePiece":120},{"ingredientName":"klobása","gramsOfAveragePiece":100}]
+[{"ingredientName":"øepa","gramsOfAveragePiece":190},{"ingredientName":"cibule","gramsOfAveragePiece":120},{"ingredientName":"klobása","gramsOfAveragePiece":100},{"ingredientName":"hladká mouka","gramsOfAveragePiece":1000},{"ingredientName":"droždí","gramsOfAveragePiece":42}]
