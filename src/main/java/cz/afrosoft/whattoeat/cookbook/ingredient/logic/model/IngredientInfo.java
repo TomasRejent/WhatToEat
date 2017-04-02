@@ -7,10 +7,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import cz.afrosoft.whattoeat.data.PersistentEntity;
 import java.io.Serializable;
-import java.util.Collections;
-import java.util.Objects;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 
 /**
  *
