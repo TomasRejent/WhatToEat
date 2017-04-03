@@ -8,7 +8,7 @@ package cz.afrosoft.whattoeat.diet.generator.logic.service;
 
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.Generator;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.RandomGenerator;

@@ -1,4 +1,4 @@
-package cz.afrosoft.whattoeat.logic.validator;
+package cz.afrosoft.whattoeat.core.logic.validator;
 
 
 import java.util.Map;

@@ -4,22 +4,21 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.data;
+package cz.afrosoft.whattoeat.core.data;
 
 import com.google.gson.Gson;
-import cz.afrosoft.whattoeat.data.exception.DataLoadException;
-import cz.afrosoft.whattoeat.data.exception.DataSaveException;
-import cz.afrosoft.whattoeat.data.exception.NotFoundException;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.Serializable;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import cz.afrosoft.whattoeat.core.data.exception.DataLoadException;
+import cz.afrosoft.whattoeat.core.data.exception.DataSaveException;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+
+import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,8 +31,9 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
 
     private static final Logger LOGGER = LoggerFactory.getLogger(JsonDao.class);
 
-    private final File storageFile;
+    private final ConfigService configService;
     private final Gson gson;
+    private final File storageFile;
     private final Class<T[]> clazz;
 
     /**
@@ -49,6 +49,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
         this.storageFile = storageFile;
         this.clazz = clazz;
         gson = new Gson();
+        configService = ServiceHolder.getConfigService();
     }
 
     /**
@@ -144,7 +145,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
     }
 
     protected List<T> readAllInternal(){
-        try(final BufferedReader bufferedReader = new BufferedReader(new FileReader(storageFile))){
+        try(final Reader bufferedReader = createReaderWithCorrectEncoding(storageFile)){
             final T[] entityArray = gson.fromJson(bufferedReader, clazz);
             return new ArrayList<>(Arrays.asList(entityArray));
         }catch(IOException ex){
@@ -154,11 +155,22 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
 
     protected void saveAllInternal(final List<T> entityList){
         Validate.notNull(entityList);
-        try(final FileWriter writter = new FileWriter(storageFile)){
+        try(final Writer writer = createWriterWithCorrectEncoding(storageFile)){
             final String serializedEntities = gson.toJson(entityList);
-            writter.write(serializedEntities);
+            writer.write(serializedEntities);
         }catch(IOException ex){
             throw new DataSaveException(String.format("Cannot save data to json file: %s.", storageFile), ex);
         }
+    }
+
+    private Reader createReaderWithCorrectEncoding(final File sourceFile) throws FileNotFoundException {
+        final FileInputStream fileInputStream = new FileInputStream(sourceFile);
+        final InputStreamReader inputStreamReader = new InputStreamReader(fileInputStream, configService.getDataFileEncoding());
+        return new BufferedReader(inputStreamReader);
+    }
+
+    private Writer createWriterWithCorrectEncoding(final File targetFile) throws FileNotFoundException {
+        final FileOutputStream fileOutputStream = new FileOutputStream(targetFile);
+        return new OutputStreamWriter(fileOutputStream, configService.getDataFileEncoding());
     }
 }

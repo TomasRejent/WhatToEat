@@ -6,9 +6,9 @@
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
 import cz.afrosoft.whattoeat.MainApp;
-import cz.afrosoft.whattoeat.ServiceHolder;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;

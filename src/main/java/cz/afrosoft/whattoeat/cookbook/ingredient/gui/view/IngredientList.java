@@ -6,10 +6,10 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
-import cz.afrosoft.whattoeat.ServiceHolder;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
-import cz.afrosoft.whattoeat.gui.I18n;
-import cz.afrosoft.whattoeat.gui.KeywordLabelFactory;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;

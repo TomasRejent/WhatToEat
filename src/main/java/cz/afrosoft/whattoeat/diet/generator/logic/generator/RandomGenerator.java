@@ -6,7 +6,7 @@
 
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;

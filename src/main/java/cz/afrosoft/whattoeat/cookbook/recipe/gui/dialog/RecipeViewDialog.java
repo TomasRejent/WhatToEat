@@ -6,14 +6,13 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import cz.afrosoft.whattoeat.ServiceHolder;
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.gui.KeywordLabelFactory;
+import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
 import java.util.ArrayList;
 import java.util.Collection;

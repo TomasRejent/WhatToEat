@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.gui;
+package cz.afrosoft.whattoeat.core.gui;
 
 import javafx.geometry.Insets;
 import javafx.scene.control.Label;

@@ -5,13 +5,13 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
-import cz.afrosoft.whattoeat.ServiceHolder;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.gui.I18n;
-import cz.afrosoft.whattoeat.gui.Labeled;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.Labeled;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.net.URL;

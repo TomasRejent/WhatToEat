@@ -6,7 +6,7 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo;
 
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 
 /**

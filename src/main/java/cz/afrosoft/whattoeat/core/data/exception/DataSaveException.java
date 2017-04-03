@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.data.exception;
+package cz.afrosoft.whattoeat.core.data.exception;
 
 /**
  *

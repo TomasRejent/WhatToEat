@@ -8,8 +8,8 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
-import cz.afrosoft.whattoeat.ServiceHolder;
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;

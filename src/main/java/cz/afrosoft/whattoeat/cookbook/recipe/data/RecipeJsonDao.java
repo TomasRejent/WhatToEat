@@ -6,8 +6,8 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.data;
 
-import cz.afrosoft.whattoeat.data.JsonDao;
-import cz.afrosoft.whattoeat.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.core.data.JsonDao;
+import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.util.Arrays;

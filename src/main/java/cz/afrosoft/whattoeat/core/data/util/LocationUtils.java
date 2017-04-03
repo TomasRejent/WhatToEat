@@ -3,16 +3,14 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.data.util;
+package cz.afrosoft.whattoeat.core.data.util;
 
-import cz.afrosoft.whattoeat.data.exception.DataLoadException;
+import cz.afrosoft.whattoeat.core.data.exception.DataLoadException;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -24,6 +22,7 @@ public final class LocationUtils {
     private static final String INGREDIENTS_FILE_NAME = "ingredients.txt";
     private static final String DIETS_FILE_NAME = "diets.txt";
     private static final String PIECE_CONVERSION_INFO_FILE_NAME = "piece_conversion_info.txt";
+    private static final String CONFIG_FILE_NAME = "config.properties";
     
     public static File getRecipeFile() throws DataLoadException{
         return getDataFileIfExists(RECIPE_FILE_NAME);
@@ -39,6 +38,10 @@ public final class LocationUtils {
 
     public static File getPieceConversionFile() throws DataLoadException{
         return getDataFile(PIECE_CONVERSION_INFO_FILE_NAME);
+    }
+
+    public static File getConfigFile() throws DataLoadException{
+        return getDataFileIfExists(CONFIG_FILE_NAME);
     }
     
     private static File getDataFileIfExists(String name) throws DataLoadException{

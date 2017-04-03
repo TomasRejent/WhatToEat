@@ -1,14 +1,14 @@
 [
   {
-    "name": "Špenátová polévka",
-    "preparation": "Nakrájíme cibuli na kostièky. Do hrnce kápneme trochu oleje a cibulku osmahneme. Poté pøidáme mouku a intenzivnì mícháme, vzniká tak jíška. Po chvíli zalejeme vodou a stále mícháme.\n\nŠpenát mùe bıt èerstvı listovı, mraenı nebo kombinace. Nakrájíme ho na støední prouky. Nakrájíme brambory na kostièky a pøidáme se špenátem do hrnce. Necháme chvíli povaøit. Poté ochutíme solí, pepøem, kmínem. Nakonec rozklepneme vajíèko a pøidáme èesnek.",
+    "name": "Å penÃ¡tovÃ¡ polÃ©vka",
+    "preparation": "NakrÃ¡jÃ­me cibuli na kostiÄky. Do hrnce kÃ¡pneme trochu oleje a cibulku osmahneme. PotÃ© pÅ™idÃ¡me mouku a intenzivnÄ› mÃ­chÃ¡me, vznikÃ¡ tak jÃ­Å¡ka. Po chvÃ­li zalejeme vodou a stÃ¡le mÃ­chÃ¡me.\n\nÅ penÃ¡t mÅ¯Å¾e bÃ½t ÄerstvÃ½ listovÃ½, mraÅ¾enÃ½ nebo kombinace. NakrÃ¡jÃ­me ho na stÅ™ednÃ­ prouÅ¾ky. NakrÃ¡jÃ­me brambory na kostiÄky a pÅ™idÃ¡me se Å¡penÃ¡tem do hrnce. NechÃ¡me chvÃ­li povaÅ™it. PotÃ© ochutÃ­me solÃ­, pepÅ™em, kmÃ­nem. Nakonec rozklepneme vajÃ­Äko a pÅ™idÃ¡me Äesnek.",
     "ingredients": [
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 0.4
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 5.0
       },
       {
@@ -16,7 +16,7 @@
         "quantity": 70.0
       },
       {
-        "name": "špenát",
+        "name": "Å¡penÃ¡t",
         "quantity": 77.0
       },
       {
@@ -24,19 +24,19 @@
         "quantity": 21.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 3.0
       },
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 0.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.0
       },
       {
@@ -55,17 +55,17 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ]
   },
   {
-    "name": "Míchaná vajíèka",
-    "preparation": "Oèistíme a nakrájíme cibuli. Na pánvi rozehøejem olej. Cibulku posmaíme do zlatova. Pøidáme vejce, sùl a pepø. Mícháme dokud není konzistence optimální.",
+    "name": "MÃ­chanÃ¡ vajÃ­Äka",
+    "preparation": "OÄistÃ­me a nakrÃ¡jÃ­me cibuli. Na pÃ¡nvi rozehÅ™ejem olej. Cibulku posmaÅ¾Ã­me do zlatova. PÅ™idÃ¡me vejce, sÅ¯l a pepÅ™. MÃ­chÃ¡me dokud nenÃ­ konzistence optimÃ¡lnÃ­.",
     "ingredients": [
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 2.0
       },
       {
@@ -73,11 +73,11 @@
         "quantity": 120.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
@@ -93,36 +93,36 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Øepovı salát",
-    "preparation": "Øepu dáme vaøit(nemusíme).Necháme vystydnout, nakrájíme/nastrouháme do mísy, prihodíme konzervu mrkev+hrášek, nakrájíme okurky a pøidáme je taky. Dochutíme solí, olivovım olejem a pepøem.",
+    "name": "Å˜epovÃ½ salÃ¡t",
+    "preparation": "Å˜epu dÃ¡me vaÅ™it(nemusÃ­me).NechÃ¡me vystydnout, nakrÃ¡jÃ­me/nastrouhÃ¡me do mÃ­sy, prihodÃ­me konzervu mrkev+hrÃ¡Å¡ek, nakrÃ¡jÃ­me okurky a pÅ™idÃ¡me je taky. DochutÃ­me solÃ­, olivovÃ½m olejem a pepÅ™em.",
     "ingredients": [
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 200.0
       },
       {
-        "name": "mrkev+hrášek konzerva",
+        "name": "mrkev+hrÃ¡Å¡ek konzerva",
         "quantity": 83.0
       },
       {
-        "name": "kyselá okurka",
+        "name": "kyselÃ¡ okurka",
         "quantity": 50.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 0.0
       }
     ],
@@ -133,38 +133,38 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©",
+      "vÃ¡Å¾eno"
     ]
   },
   {
-    "name": "Fazole s mrkví aka Pánev",
-    "preparation": "Oèistíme mrkev a nakrájíme na asi 3cm dlouhé hranolky. Rozehøejem olej na pánvi a dáme mrkev osmahnout. Nakrájíme klobásu na drobné kousky. Nakrájíme èesnek na jemno. Kdy je mrkev osmahnutá, pøidáme fazole s omáèkou, klobásu a èesnek. Trochu naøedíme vodou. Posypeme rozmarınem a opepøíme. Vše zamícháme a necháme chvíli povaøit.",
+    "name": "Fazole s mrkvÃ­ aka PÃ¡nev",
+    "preparation": "OÄistÃ­me mrkev a nakrÃ¡jÃ­me na asi 3cm dlouhÃ© hranolky. RozehÅ™ejem olej na pÃ¡nvi a dÃ¡me mrkev osmahnout. NakrÃ¡jÃ­me klobÃ¡su na drobnÃ© kousky. NakrÃ¡jÃ­me Äesnek na jemno. KdyÅ¾ je mrkev osmahnutÃ¡, pÅ™idÃ¡me fazole s omÃ¡Äkou, klobÃ¡su a Äesnek. Trochu naÅ™edÃ­me vodou. Posypeme rozmarÃ½nem a opepÅ™Ã­me. VÅ¡e zamÃ­chÃ¡me a nechÃ¡me chvÃ­li povaÅ™it.",
     "ingredients": [
       {
         "name": "mrkev",
         "quantity": 100.0
       },
       {
-        "name": "klobása",
+        "name": "klobÃ¡sa",
         "quantity": 100.0
       },
       {
-        "name": "fazole s rajèatovou omáèkou konzerva",
+        "name": "fazole s rajÄatovou omÃ¡Äkou konzerva",
         "quantity": 1.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 30.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "rozmarın",
+        "name": "rozmarÃ½n",
         "quantity": 0.1
       },
       {
@@ -179,13 +179,13 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "zeleninovÃ©"
     ]
   },
   {
-    "name": "Šouchané brambory",
-    "preparation": "Oloupeme brambory a dáme je vaøit. Mezi tím nakrájime slaninu na drobné kostièky a dáme smait na pánev. Nakrájíme cibuli na drobno a pøidáme smait ke slaninì. Brambory vaøíme dokud nejsou mìké. Cibulku smaíme do zlatova. Slejeme vodu z brambor, pøidáme obsah pánve a brambory rozmaèkáme. Dochutíme kmínem, solí a pøípadnì máslem pro zjemnìní.",
+    "name": "Å Å¥ouchanÃ© brambory",
+    "preparation": "Oloupeme brambory a dÃ¡me je vaÅ™it. Mezi tÃ­m nakrÃ¡jime slaninu na drobnÃ© kostiÄky a dÃ¡me smaÅ¾it na pÃ¡nev. NakrÃ¡jÃ­me cibuli na drobno a pÅ™idÃ¡me smaÅ¾it ke slaninÄ›. Brambory vaÅ™Ã­me dokud nejsou mÄ›kÃ©. Cibulku smaÅ¾Ã­me do zlatova. Slejeme vodu z brambor, pÅ™idÃ¡me obsah pÃ¡nve a brambory rozmaÄkÃ¡me. DochutÃ­me kmÃ­nem, solÃ­ a pÅ™Ã­padnÄ› mÃ¡slem pro zjemnÄ›nÃ­.",
     "ingredients": [
       {
         "name": "brambory",
@@ -200,15 +200,15 @@
         "quantity": 60.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 5.0
       },
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 1.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 25.0
       },
       {
@@ -223,23 +223,23 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ]
   },
   {
-    "name": "Vaøené brambory",
-    "preparation": "Oloupeme brambory a dáme vaøit dokud nezmìknou. Slejeme vodu posypeme kmínem a po servírování pøidáme kousek másla.",
+    "name": "VaÅ™enÃ© brambory",
+    "preparation": "Oloupeme brambory a dÃ¡me vaÅ™it dokud nezmÄ›knou. Slejeme vodu posypeme kmÃ­nem a po servÃ­rovÃ¡nÃ­ pÅ™idÃ¡me kousek mÃ¡sla.",
     "ingredients": [
       {
         "name": "brambory",
         "quantity": 200.0
       },
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 1.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 10.0
       }
     ],
@@ -250,27 +250,27 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ]
   },
   {
-    "name": "Hrášková polévka",
-    "preparation": "Mraenı nebo èerstvı hrášek dáme do vody, pøidáme sùl a pepø, vaøíme asi 20 minut a hrášek zmìkne. Vypneme plotınku, pridáme máslo a líci bazalkového pesta a ponornım mixérem rozmixujeme dohladka.",
+    "name": "HrÃ¡Å¡kovÃ¡ polÃ©vka",
+    "preparation": "MraÅ¾enÃ½ nebo ÄerstvÃ½ hrÃ¡Å¡ek dÃ¡me do vody, pÅ™idÃ¡me sÅ¯l a pepÅ™, vaÅ™Ã­me asi 20 minut aÅ¾ hrÃ¡Å¡ek zmÄ›kne. Vypneme plotÃ½nku, pridÃ¡me mÃ¡slo a lÅ¾Ã­ci bazalkovÃ©ho pesta a ponornÃ½m mixÃ©rem rozmixujeme dohladka.",
     "ingredients": [
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 140.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 0.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.0
       },
       {
@@ -290,14 +290,14 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ]
   },
   {
-    "name": "Boršèová polévka",
-    "preparation": "Na olivovém oleji osmaíme nakrajenou cibulku, pak pridame nakrájenou/nastrouhanou mrkev+ petrel, osmahneme, pak pridame nastrouhanej kedluben a celer, posmazime a nakonec pridame repu, rajèatovej protlak, bobkovı list, nové koøení, sul, pepø a zalijeme vodou-jenom aby zakryla zeleninu a povaøíme.Kdy je zelenina polomekka prihodime nakrajenou papriku na nudlièky a prolisované strouky èesneku.  ",
+    "name": "BorÅ¡ÄovÃ¡ polÃ©vka",
+    "preparation": "Na olivovÃ©m oleji osmaÅ¾Ã­me nakrajenou cibulku, pak pridame nakrÃ¡jenou/nastrouhanou mrkev+ petrÅ¾el, osmahneme, pak pridame nastrouhanej kedluben a celer, posmazime a nakonec pridame repu, rajÄatovej protlak, bobkovÃ½ list, novÃ© koÅ™enÃ­, sul, pepÅ™ a zalijeme vodou-jenom aby zakryla zeleninu a povaÅ™Ã­me.KdyÅ¾ je zelenina polomekka prihodime nakrajenou papriku na nudliÄky a prolisovanÃ© strouÅ¾ky Äesneku.  ",
     "ingredients": [
       {
         "name": "cibule",
@@ -308,7 +308,7 @@
         "quantity": 70.0
       },
       {
-        "name": "petrel",
+        "name": "petrÅ¾el",
         "quantity": 1.0
       },
       {
@@ -320,7 +320,7 @@
         "quantity": 1.0
       },
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 500.0
       },
       {
@@ -328,27 +328,27 @@
         "quantity": 1.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 60.0
       },
       {
-        "name": "bobkovı list",
+        "name": "bobkovÃ½ list",
         "quantity": 6.0
       },
       {
-        "name": "nové koøení",
+        "name": "novÃ© koÅ™enÃ­",
         "quantity": 6.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 100.0
       }
     ],
@@ -359,20 +359,20 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Jáhlová kaše s ovocem",
-    "preparation": "Jáhle si propláchneme v sítku, pøesypeme do hrnce a zalijeme mlékem a osladíme cukrem a posypeme skoøicí. Povaøíme za stálého míchání dokud smìs nezhoustne. Do talíøe si nakrájíme jablko a banán, zalijeme kaší a podáváme.",
+    "name": "JÃ¡hlovÃ¡ kaÅ¡e s ovocem",
+    "preparation": "JÃ¡hle si proplÃ¡chneme v sÃ­tku, pÅ™esypeme do hrnce a zalijeme mlÃ©kem a osladÃ­me cukrem a posypeme skoÅ™icÃ­. PovaÅ™Ã­me za stÃ¡lÃ©ho mÃ­chÃ¡nÃ­ dokud smÄ›s nezhoustne. Do talÃ­Å™e si nakrÃ¡jÃ­me jablko a banÃ¡n, zalijeme kaÅ¡Ã­ a podÃ¡vÃ¡me.",
     "ingredients": [
       {
-        "name": "jáhly",
+        "name": "jÃ¡hly",
         "quantity": 30.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 100.0
       },
       {
@@ -384,11 +384,11 @@
         "quantity": 1.0
       },
       {
-        "name": "banán",
+        "name": "banÃ¡n",
         "quantity": 1.0
       },
       {
-        "name": "skoøice",
+        "name": "skoÅ™ice",
         "quantity": 0.1
       }
     ],
@@ -399,16 +399,16 @@
     "taste": "SWEET",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Srdíèko s tatrankou",
-    "preparation": "Vezmem srdíèko a tatranku, rozbalíme a sníme.",
+    "name": "SrdÃ­Äko s tatrankou",
+    "preparation": "Vezmem srdÃ­Äko a tatranku, rozbalÃ­me a snÃ­me.",
     "ingredients": [
       {
-        "name": "srdíèko",
+        "name": "srdÃ­Äko",
         "quantity": 1.0
       },
       {
@@ -423,19 +423,19 @@
     "taste": "SWEET",
     "rating": 5,
     "keywords": [
-      "bezmasé"
+      "bezmasÃ©"
     ]
   },
   {
     "name": "Pohanka s ovocem",
-    "preparation": "Pohanku namoèíme( celé zrná na celou noc, vloèky na 5 min) do vody/mléka. Kdy se nasaje tak pøidáme cukr nebo med, nebo jiné sladidlo, skoøici, a ovoce/ zeleninu dle libovule",
+    "preparation": "Pohanku namoÄÃ­me( celÃ© zrnÃ¡ na celou noc, vloÄky na 5 min) do vody/mlÃ©ka. KdyÅ¾ se nasaje tak pÅ™idÃ¡me cukr nebo med, nebo jinÃ© sladidlo, skoÅ™ici, a ovoce/ zeleninu dle libovule",
     "ingredients": [
       {
         "name": "pohanka",
         "quantity": 30.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 100.0
       },
       {
@@ -443,15 +443,15 @@
         "quantity": 10.0
       },
       {
-        "name": "hruška",
+        "name": "hruÅ¡ka",
         "quantity": 1.0
       },
       {
-        "name": "banán",
+        "name": "banÃ¡n",
         "quantity": 1.0
       },
       {
-        "name": "skoøice",
+        "name": "skoÅ™ice",
         "quantity": 0.1
       },
       {
@@ -459,7 +459,7 @@
         "quantity": 10.0
       },
       {
-        "name": "oøechy",
+        "name": "oÅ™echy",
         "quantity": 15.0
       }
     ],
@@ -470,20 +470,20 @@
     "taste": "SWEET",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Jáhlová kaše s ovocem",
-    "preparation": "Namoèíme si chia semínka do vody/ mléka.Jáhle si propláchneme v sítku, pøesypeme do hrnce a zalijeme mlékem a osladíme cukrem a posypeme skoøicí. Povaøíme za stálého míchání dokud smìs nezhoustne. Do talíøe si nakrájíme banán, oèistíme a nakrájíme jahody, pøidáme chia semínka, zalijeme kaší a podáváme.",
+    "name": "JÃ¡hlovÃ¡ kaÅ¡e s ovocem",
+    "preparation": "NamoÄÃ­me si chia semÃ­nka do vody/ mlÃ©ka.JÃ¡hle si proplÃ¡chneme v sÃ­tku, pÅ™esypeme do hrnce a zalijeme mlÃ©kem a osladÃ­me cukrem a posypeme skoÅ™icÃ­. PovaÅ™Ã­me za stÃ¡lÃ©ho mÃ­chÃ¡nÃ­ dokud smÄ›s nezhoustne. Do talÃ­Å™e si nakrÃ¡jÃ­me banÃ¡n, oÄistÃ­me a nakrÃ¡jÃ­me jahody, pÅ™idÃ¡me chia semÃ­nka, zalijeme kaÅ¡Ã­ a podÃ¡vÃ¡me.",
     "ingredients": [
       {
-        "name": "jáhly",
+        "name": "jÃ¡hly",
         "quantity": 30.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 100.0
       },
       {
@@ -495,15 +495,15 @@
         "quantity": 100.0
       },
       {
-        "name": "banán",
+        "name": "banÃ¡n",
         "quantity": 1.0
       },
       {
-        "name": "chia semínka",
+        "name": "chia semÃ­nka",
         "quantity": 5.0
       },
       {
-        "name": "oøechy",
+        "name": "oÅ™echy",
         "quantity": 15.0
       }
     ],
@@ -514,13 +514,13 @@
     "taste": "SWEET",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
     "name": "mrkev s jablkem",
-    "preparation": "Jablko a mrkev umyjeme, ocistime, jablko zbavíme jádrovníku a nastruháme jablko na hrubém struhadle a mrkev na jemném struhadle.Objemove + - na stejno, pøidáme oøechy mleté, ochutíme medem a skoøicí. Zamícháme dohromady.",
+    "preparation": "Jablko a mrkev umyjeme, ocistime, jablko zbavÃ­me jÃ¡drovnÃ­ku a nastruhÃ¡me jablko na hrubÃ©m struhadle a mrkev na jemnÃ©m struhadle.Objemove + - na stejno, pÅ™idÃ¡me oÅ™echy mletÃ©, ochutÃ­me medem a skoÅ™icÃ­. ZamÃ­chÃ¡me dohromady.",
     "ingredients": [
       {
         "name": "jablko",
@@ -535,11 +535,11 @@
         "quantity": 10.0
       },
       {
-        "name": "skoøice",
+        "name": "skoÅ™ice",
         "quantity": 0.3
       },
       {
-        "name": "oøechy",
+        "name": "oÅ™echy",
         "quantity": 15.0
       }
     ],
@@ -550,16 +550,16 @@
     "taste": "SWEET",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Jogurt s oøechy",
-    "preparation": "Jogurt smícháme s mletımi oøechy, skoøicí a medem.",
+    "name": "Jogurt s oÅ™echy",
+    "preparation": "Jogurt smÃ­chÃ¡me s mletÃ½mi oÅ™echy, skoÅ™icÃ­ a medem.",
     "ingredients": [
       {
-        "name": "jogurt bílı",
+        "name": "jogurt bÃ­lÃ½",
         "quantity": 1.0
       },
       {
@@ -567,11 +567,11 @@
         "quantity": 10.0
       },
       {
-        "name": "skoøice",
+        "name": "skoÅ™ice",
         "quantity": 0.3
       },
       {
-        "name": "oøechy",
+        "name": "oÅ™echy",
         "quantity": 15.0
       }
     ],
@@ -582,16 +582,16 @@
     "taste": "SWEET",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Dìlové koule s oøechy",
-    "preparation": "banán nakrájíme, kiwi oèistíme a nakrájme posypeme mletımi oøechy, skoøicí a medem.",
+    "name": "DÄ›lovÃ© koule s oÅ™echy",
+    "preparation": "banÃ¡n nakrÃ¡jÃ­me, kiwi oÄistÃ­me a nakrÃ¡jme posypeme mletÃ½mi oÅ™echy, skoÅ™icÃ­ a medem.",
     "ingredients": [
       {
-        "name": "banán",
+        "name": "banÃ¡n",
         "quantity": 1.0
       },
       {
@@ -603,11 +603,11 @@
         "quantity": 10.0
       },
       {
-        "name": "skoøice",
+        "name": "skoÅ™ice",
         "quantity": 0.3
       },
       {
-        "name": "oøechy",
+        "name": "oÅ™echy",
         "quantity": 15.0
       }
     ],
@@ -618,28 +618,28 @@
     "taste": "SWEET",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
     "name": "Pohanka na slano",
-    "preparation": "Pohanku namoèíme (celé zrná na celı deò a celú noc, vloèky na asi 5 min) do vody, pridáme sul,sušenej èesnek, majoránku. ",
+    "preparation": "Pohanku namoÄÃ­me (celÃ© zrnÃ¡ na celÃ½ deÅˆ a celÃº noc, vloÄky na asi 5 min) do vody, pridÃ¡me sul,suÅ¡enej Äesnek, majorÃ¡nku. ",
     "ingredients": [
       {
         "name": "pohanka",
         "quantity": 50.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.3
       },
       {
-        "name": "sušenej èesnek",
+        "name": "suÅ¡enej Äesnek",
         "quantity": 0.3
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.3
       }
     ],
@@ -650,36 +650,36 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Chøestová polévka",
-    "preparation": " Bokem uvaøíme brambory.Chøet umyjeme, oèistíme od tvrdıch vnìjším obalu, dáme vaøit na 10 minut s bujonovou kostkou a solí, pepøem a muškátovım oøíškem. Vypneme plotınku, nalijeme smetanu, pridáme èást brambor a ponornım mixérem rozmixujeme dohladka.",
+    "name": "ChÅ™estovÃ¡ polÃ©vka",
+    "preparation": " Bokem uvaÅ™Ã­me brambory.ChÅ™et umyjeme, oÄistÃ­me od tvrdÃ½ch vnÄ›jÅ¡Ã­m obalu, dÃ¡me vaÅ™it na 10 minut s bujonovou kostkou a solÃ­, pepÅ™em a muÅ¡kÃ¡tovÃ½m oÅ™Ã­Å¡kem. Vypneme plotÃ½nku, nalijeme smetanu, pridÃ¡me ÄÃ¡st brambor a ponornÃ½m mixÃ©rem rozmixujeme dohladka.",
     "ingredients": [
       {
         "name": "brambory",
         "quantity": 400.0
       },
       {
-        "name": "chøest",
+        "name": "chÅ™est",
         "quantity": 400.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "muškátovı oøech",
+        "name": "muÅ¡kÃ¡tovÃ½ oÅ™ech",
         "quantity": 0.6
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 1.0
       }
     ],
@@ -690,13 +690,13 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Zeleninová polévka",
-    "preparation": "Cibuli nakrájíme nadrobno, Ocistíme si a nakrájíme mrkev, petrel, celer, cuketu. Cibuli osmaíme na oleji, pridáme mrkev, osmaím, pak pøidám petrel, taky osmaím a nakonecceler a pak zaliju vodou, pøidám sul, pepø a nechám vaøit. Kdy bude zelenina polomìkká tak pøidám cuketu na malé kousky a dochutím petrelkou nebo libeèkem.  ",
+    "name": "ZeleninovÃ¡ polÃ©vka",
+    "preparation": "Cibuli nakrÃ¡jÃ­me nadrobno, OcistÃ­me si a nakrÃ¡jÃ­me mrkev, petrÅ¾el, celer, cuketu. Cibuli osmaÅ¾Ã­me na oleji, pridÃ¡me mrkev, osmaÅ¾Ã­m, pak pÅ™idÃ¡m petrÅ¾el, taky osmaÅ¾Ã­m a nakonecceler a pak zaliju vodou, pÅ™idÃ¡m sul, pepÅ™ a nechÃ¡m vaÅ™it. KdyÅ¾ bude zelenina polomÄ›kkÃ¡ tak pÅ™idÃ¡m cuketu na malÃ© kousky a dochutÃ­m petrÅ¾elkou nebo libeÄkem.  ",
     "ingredients": [
       {
         "name": "cibule",
@@ -707,15 +707,15 @@
         "quantity": 140.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "petrel",
+        "name": "petrÅ¾el",
         "quantity": 1.0
       },
       {
@@ -723,11 +723,11 @@
         "quantity": 0.25
       },
       {
-        "name": "petrelka",
+        "name": "petrÅ¾elka",
         "quantity": 3.0
       },
       {
-        "name": "libeèek",
+        "name": "libeÄek",
         "quantity": 0.25
       }
     ],
@@ -738,20 +738,20 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Rajská polévka s rıí",
-    "preparation": "Cibuli nakrájíme nadrobno. Cibuli osmaíme na oleji, pridáme mouku, opraíme a pak zalijeme vodou, pøidám sul, cukr, protlak, rıi a høebíèky a nechám vaøit.Obèas promíchat.  ",
+    "name": "RajskÃ¡ polÃ©vka s rÃ½Å¾Ã­",
+    "preparation": "Cibuli nakrÃ¡jÃ­me nadrobno. Cibuli osmaÅ¾Ã­me na oleji, pridÃ¡me mouku, opraÅ¾Ã­me a pak zalijeme vodou, pÅ™idÃ¡m sul, cukr, protlak, rÃ½Å¾i a hÅ™ebÃ­Äky a nechÃ¡m vaÅ™it.ObÄas promÃ­chat.  ",
     "ingredients": [
       {
         "name": "cibule",
         "quantity": 120.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
@@ -759,19 +759,19 @@
         "quantity": 0.1
       },
       {
-        "name": "høebíèek",
+        "name": "hÅ™ebÃ­Äek",
         "quantity": 4.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 100.0
       },
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 60.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.25
       }
     ],
@@ -782,20 +782,20 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-      "name": "Rajská polévka s tìstovinou",
-      "preparation": "Poznámka: Ménì mouky, bylo to zbyteèné husté, protoe rıové hvìzdièky vysály èást vody.\n\nCibuli nakrájíme nadrobno. Cibuli osmaíme na oleji, pøidáme mouku, opraíme a pak zalijeme vodou, pøidáme sùl, cukr, protlak, tìstoviny a høebíèky a nechám vaøit.Obèas promíchat.",
+      "name": "RajskÃ¡ polÃ©vka s tÄ›stovinou",
+      "preparation": "PoznÃ¡mka: MÃ©nÄ› mouky, bylo to zbyteÄnÃ© hustÃ©, protoÅ¾e rÃ½Å¾ovÃ© hvÄ›zdiÄky vysÃ¡ly ÄÃ¡st vody.\n\nCibuli nakrÃ¡jÃ­me nadrobno. Cibuli osmaÅ¾Ã­me na oleji, pÅ™idÃ¡me mouku, opraÅ¾Ã­me a pak zalijeme vodou, pÅ™idÃ¡me sÅ¯l, cukr, protlak, tÄ›stoviny a hÅ™ebÃ­Äky a nechÃ¡m vaÅ™it.ObÄas promÃ­chat.",
       "ingredients": [
         {
           "name": "cibule",
           "quantity": 20.0
         },
         {
-          "name": "sùl",
+          "name": "sÅ¯l",
           "quantity": 0.0
         },
         {
@@ -803,19 +803,19 @@
           "quantity": 0.0
         },
         {
-          "name": "høebíèek",
+          "name": "hÅ™ebÃ­Äek",
           "quantity": 0.0
         },
         {
-          "name": "rajskı protlak",
+          "name": "rajskÃ½ protlak",
           "quantity": 36.75
         },
         {
-          "name": "tìstoviny",
+          "name": "tÄ›stoviny",
           "quantity": 21.5
         },
         {
-          "name": "pepø",
+          "name": "pepÅ™",
           "quantity": 0.0
         },
         {
@@ -823,7 +823,7 @@
           "quantity": 350.0
         },
         {
-          "name": "bezlepková mouka",
+          "name": "bezlepkovÃ¡ mouka",
           "quantity": 8.75
         }
       ],
@@ -834,21 +834,21 @@
       "taste": "SALTY",
       "rating": 7,
       "keywords": [
-        "bezlepkové",
-        "bezmasé",
-        "váeno"
+        "bezlepkovÃ©",
+        "bezmasÃ©",
+        "vÃ¡Å¾eno"
       ]
     },
   {
-    "name": "Tìstoviny",
-    "preparation": "Hrnec si naplníme vodou cca 2 litre privedeme k varu. Kdy voda vaøí tak ji osolíme, prilijeme olej a pridáme testoviny. Vaøíme tak dlouho jak je uvedeno na obalu testovin. ",
+    "name": "TÄ›stoviny",
+    "preparation": "Hrnec si naplnÃ­me vodou cca 2 litre privedeme k varu. KdyÅ¾ voda vaÅ™Ã­ tak ji osolÃ­me, prilijeme olej a pridÃ¡me testoviny. VaÅ™Ã­me tak dlouho jak je uvedeno na obalu testovin. ",
     "ingredients": [
       {
-        "name": "tìstoviny",
+        "name": "tÄ›stoviny",
         "quantity": 150.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
@@ -863,20 +863,20 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Rıe",
-    "preparation": "Rıi si pøesypeme do sítka a propláchneme pod tekoucí vodou. Pøehodíme do hrnce a zalijeme vodou, osolíme, pøivedeme k varu. Pak stlumíme oheò a necháme a rıe natáhne všechnu vodu do sebe. Rıe je hotová kdy je na skus mìkká.",
+    "name": "RÃ½Å¾e",
+    "preparation": "RÃ½Å¾i si pÅ™esypeme do sÃ­tka a proplÃ¡chneme pod tekoucÃ­ vodou. PÅ™ehodÃ­me do hrnce a zalijeme vodou, osolÃ­me, pÅ™ivedeme k varu. Pak stlumÃ­me oheÅˆ a nechÃ¡me aÅ¥ rÃ½Å¾e natÃ¡hne vÅ¡echnu vodu do sebe. RÃ½Å¾e je hotovÃ¡ kdyÅ¾ je na skus mÄ›kkÃ¡.",
     "ingredients": [
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 66.5
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
@@ -891,17 +891,17 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ]
   },
   {
-    "name": "Knedlíky",
-    "preparation": "Do hrnce si nalejeme naspod 100 ml vody, a dáme do nìj paøáèek. Pøivedeme k varu, pak vloíme knedlíky do paøáèku a 2 minuty necháme nahøát. Zjistíme to tak e na dotek jsou mìkké a teplé.",
+    "name": "KnedlÃ­ky",
+    "preparation": "Do hrnce si nalejeme naspod 100 ml vody, a dÃ¡me do nÄ›j paÅ™Ã¡Äek. PÅ™ivedeme k varu, pak vloÅ¾Ã­me knedlÃ­ky do paÅ™Ã¡Äku a 2 minuty nechÃ¡me nahÅ™Ã¡t. ZjistÃ­me to tak Å¾e na dotek jsou mÄ›kkÃ© a teplÃ©.",
     "ingredients": [
       {
-        "name": "knedlíky",
+        "name": "knedlÃ­ky",
         "quantity": 150.0
       }
     ],
@@ -912,13 +912,13 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Bramborové hranolky",
-    "preparation": "Brambory si oèistíme, nakrájíme na hranolky a upeèeme( osolíme a peèeme asi 40 min) nebo usmaíme (15 min pak vytáhneme z oleje a pak osolíme).",
+    "name": "BramborovÃ© hranolky",
+    "preparation": "Brambory si oÄistÃ­me, nakrÃ¡jÃ­me na hranolky a upeÄeme( osolÃ­me a peÄeme asi 40 min) nebo usmaÅ¾Ã­me (15 min pak vytÃ¡hneme z oleje a pak osolÃ­me).",
     "ingredients": [
       {
         "name": "brambory",
@@ -929,7 +929,7 @@
         "quantity": 50.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       }
     ],
@@ -940,13 +940,13 @@
     "taste": "SALTY",
     "rating": 8,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Celerové hranolky",
-    "preparation": "Celer si oèistíme, nakrájíme na tenké hranolky osmaíme 15 min a pak osolíme anebo osolíme a následnì upeèeme cca 30 min.",
+    "name": "CelerovÃ© hranolky",
+    "preparation": "Celer si oÄistÃ­me, nakrÃ¡jÃ­me na tenkÃ© hranolky osmaÅ¾Ã­me 15 min a pak osolÃ­me anebo osolÃ­me a nÃ¡slednÄ› upeÄeme cca 30 min.",
     "ingredients": [
       {
         "name": "celer",
@@ -957,7 +957,7 @@
         "quantity": 50.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       }
     ],
@@ -968,13 +968,13 @@
     "taste": "SALTY",
     "rating": 8,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Bramboráky",
-    "preparation": "Brambory si oèistíme, nastrouháme na struhadle napùl nahrubo napùl na jemno. Pøihodíme vajíèko, mouku, prolisovanı èesnek, majoránku, zamícháme. Na pánvi vytvoøíme tenkou placku a smaíme.",
+    "name": "BramborÃ¡ky",
+    "preparation": "Brambory si oÄistÃ­me, nastrouhÃ¡me na struhadle napÅ¯l nahrubo napÅ¯l na jemno. PÅ™ihodÃ­me vajÃ­Äko, mouku, prolisovanÃ½ Äesnek, majorÃ¡nku, zamÃ­chÃ¡me. Na pÃ¡nvi vytvoÅ™Ã­me tenkou placku a smaÅ¾Ã­me.",
     "ingredients": [
       {
         "name": "brambory",
@@ -985,23 +985,23 @@
         "quantity": 50.0
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 200.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 2.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.5
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 30.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       }
     ],
@@ -1014,28 +1014,28 @@
     "taste": "SALTY",
     "rating": 8,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Palaèinky s houbami",
-    "preparation": "Cibuli nakrájíme nadrobno. Cibuli osmaíme na másle,houby opeèeme, osolíme,opepøíme a podusíme. Udìláme tìsto na palaèinky,bez cukru, upeèeme je, naplníme houbami.",
+    "name": "PalaÄinky s houbami",
+    "preparation": "Cibuli nakrÃ¡jÃ­me nadrobno. Cibuli osmaÅ¾Ã­me na mÃ¡sle,houby opeÄeme, osolÃ­me,opepÅ™Ã­me a podusÃ­me. UdÄ›lÃ¡me tÄ›sto na palaÄinky,bez cukru, upeÄeme je, naplnÃ­me houbami.",
     "ingredients": [
       {
         "name": "cibule",
         "quantity": 120.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 300.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 500.0
       },
       {
@@ -1043,7 +1043,7 @@
         "quantity": 500.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.25
       }
     ],
@@ -1055,32 +1055,32 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ]
   },
   {
-    "name": "Bramborová kaše",
-    "preparation": "Brambory oèistíme,osolíme, pokmínujeme, uvaøíme domìka,rozšoucháme, pøidáme máslo, pøevaøené mlíko a zmixujeme dhromady. ",
+    "name": "BramborovÃ¡ kaÅ¡e",
+    "preparation": "Brambory oÄistÃ­me,osolÃ­me, pokmÃ­nujeme, uvaÅ™Ã­me domÄ›ka,rozÅ¡Å¥ouchÃ¡me, pÅ™idÃ¡me mÃ¡slo, pÅ™evaÅ™enÃ© mlÃ­ko a zmixujeme dhromady. ",
     "ingredients": [
       {
         "name": "brambory",
         "quantity": 220.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 0.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 18.75
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 6.0
       }
     ],
@@ -1091,29 +1091,29 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ]
   },
   {
-    "name": "Guláš",
-    "preparation": "Cibuli nakrájíme nadrobno. Cibuli osmaíme na sádle,/oleji do sklovata, prihodíme nakrajenené maso, osmaíme,osolíme a opepøíme, podlijeme priame papriku a rajèata, dochutíme kmínem, paprikou, koøením na guláš, majoránkou, solí, pepøem a dáme dusit.Kdy je maso polomìkké pøidáme brambory a zahustíme bramborovım škrobem, dochutíme èesnekem.",
+    "name": "GulÃ¡Å¡",
+    "preparation": "Cibuli nakrÃ¡jÃ­me nadrobno. Cibuli osmaÅ¾Ã­me na sÃ¡dle,/oleji do sklovata, prihodÃ­me nakrajenenÃ© maso, osmaÅ¾Ã­me,osolÃ­me a opepÅ™Ã­me, podlijeme priame papriku a rajÄata, dochutÃ­me kmÃ­nem, paprikou, koÅ™enÃ­m na gulÃ¡Å¡, majorÃ¡nkou, solÃ­, pepÅ™em a dÃ¡me dusit.KdyÅ¾ je maso polomÄ›kkÃ© pÅ™idÃ¡me brambory a zahustÃ­me bramborovÃ½m Å¡krobem, dochutÃ­me Äesnekem.",
     "ingredients": [
       {
         "name": "cibule",
         "quantity": 120.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 300.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 500.0
       },
       {
@@ -1121,7 +1121,7 @@
         "quantity": 500.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.25
       }
     ],
@@ -1133,12 +1133,12 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ]
   },
   {
-    "name": "Rajèatovı salát",
-    "preparation": "Rajèata nakrájet na plátky, cibuli na koleèka nebo mìsíèky.  Nálev asi dvì lièky cukru pùl lièky soli trošku octa zamíchat ve sklenièce a dolít vodou. Trochu opepøit,  nejdøív ochutnat  a pak nalít do rajèat.",
+    "name": "RajÄatovÃ½ salÃ¡t",
+    "preparation": "RajÄata nakrÃ¡jet na plÃ¡tky, cibuli na koleÄka nebo mÄ›sÃ­Äky.  NÃ¡lev asi dvÄ› lÅ¾iÄky cukru pÅ¯l lÅ¾iÄky soli troÅ¡ku octa zamÃ­chat ve skleniÄce a dolÃ­t vodou. Trochu opepÅ™it,  nejdÅ™Ã­v ochutnat  a pak nalÃ­t do rajÄat.",
     "ingredients": [
       {
         "name": "ocet",
@@ -1153,7 +1153,7 @@
         "quantity": 60.0
       },
       {
-        "name": "rajèe",
+        "name": "rajÄe",
         "quantity": 80.0
       },
       {
@@ -1161,11 +1161,11 @@
         "quantity": 12.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.3
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       }
     ],
@@ -1176,17 +1176,17 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "salát",
-      "bezlepkové",
-      "bezmasé"
+      "salÃ¡t",
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Okurkovı salát",
-    "preparation": "Okurky nastrouháme na hrubém struhadle. Nálev asi dvì lièky cukru pùl lièky soli trošku octa zamíchat ve sklenièce a dolít vodou. Mùeš jemnì popepøit.",
+    "name": "OkurkovÃ½ salÃ¡t",
+    "preparation": "Okurky nastrouhÃ¡me na hrubÃ©m struhadle. NÃ¡lev asi dvÄ› lÅ¾iÄky cukru pÅ¯l lÅ¾iÄky soli troÅ¡ku octa zamÃ­chat ve skleniÄce a dolÃ­t vodou. MÅ¯Å¾eÅ¡ jemnÄ› popepÅ™it.",
     "ingredients": [
       {
         "name": "ocet",
@@ -1201,7 +1201,7 @@
         "quantity": 12.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.3
       },
       {
@@ -1209,7 +1209,7 @@
         "quantity": 120.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.3
       }
     ],
@@ -1220,17 +1220,17 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "salát",
-      "bezlepkové",
-      "bezmasé"
+      "salÃ¡t",
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Mrkvovı salát",
-    "preparation": "Mrkev oèistit a nastrouhat na jemném struhadle, mùeme pøidat jablíèko oloupané a nastrouhané tøeba nahrubo.  Nálev asi dvì polévkové líce cukru naøedit vodou vymaèkat trochu citronu, mùeme pøilít i trochu sladkého sirupu a zase ochutnat aby to bylo dobré sladké + chu toho citronu.  Vody tolik aby byla mrkev ponoøená.",
+    "name": "MrkvovÃ½ salÃ¡t",
+    "preparation": "Mrkev oÄistit a nastrouhat na jemnÃ©m struhadle, mÅ¯Å¾eme pÅ™idat jablÃ­Äko oloupanÃ© a nastrouhanÃ© tÅ™eba nahrubo.  NÃ¡lev asi dvÄ› polÃ©vkovÃ© lÅ¾Ã­ce cukru naÅ™edit vodou vymaÄkat trochu citronu, mÅ¯Å¾eme pÅ™ilÃ­t i trochu sladkÃ©ho sirupu a zase ochutnat aby to bylo dobrÃ© sladkÃ© + chuÅ¥ toho citronu.  Vody tolik aby byla mrkev ponoÅ™enÃ¡.",
     "ingredients": [
       {
         "name": "sirup",
@@ -1253,7 +1253,7 @@
         "quantity": 12.0
       },
       {
-        "name": "citrón",
+        "name": "citrÃ³n",
         "quantity": 0.5
       }
     ],
@@ -1264,32 +1264,32 @@
     "taste": "SALTY",
     "rating": 8,
     "keywords": [
-      "salát",
-      "bezlepkové",
-      "bezmasé"
+      "salÃ¡t",
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Øepové šouchané brambory",
-    "preparation": "Uvaøíme si øepu ve slupce a slané vodì(hodnì posolit) a brambory nakrájené a oloupané ve slané vodì. Brambory rozšoucháme, øepu najemno nastrouháme do brambor a dochutíme máslem, pøíp solí.",
+    "name": "Å˜epovÃ© Å¡Å¥ouchanÃ© brambory",
+    "preparation": "UvaÅ™Ã­me si Å™epu ve slupce a slanÃ© vodÄ›(hodnÄ› posolit) a brambory nakrÃ¡jenÃ© a oloupanÃ© ve slanÃ© vodÄ›. Brambory rozÅ¡Å¥ouchÃ¡me, Å™epu najemno nastrouhÃ¡me do brambor a dochutÃ­me mÃ¡slem, pÅ™Ã­p solÃ­.",
     "ingredients": [
       {
         "name": "brambory",
         "quantity": 165.0
       },
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 60.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 15.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 2.0
       }
     ],
@@ -1300,8 +1300,8 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
@@ -1309,14 +1309,14 @@
   },
   {
     "name": "Ratatouille",
-    "preparation": "Cibuli osmahneme na olivovem oleji, protlak a bylinky  primícháme a chvíli vaøíme. Nakonec prolisujeme èesnek a dochutíme solí a pepøem. Všechnu zeleninu si nakrájíme na tenké plátky a ukládáme v poøadí lilek, rajèe, cuketa, paprika az do vypotøebování surovin. pøikryjeme peèícím papírem a peèeme do zmìknují.",
+    "preparation": "Cibuli osmahneme na olivovem oleji, protlak a bylinky  primÃ­chÃ¡me a chvÃ­li vaÅ™Ã­me. Nakonec prolisujeme Äesnek a dochutÃ­me solÃ­ a pepÅ™em. VÅ¡echnu zeleninu si nakrÃ¡jÃ­me na tenkÃ© plÃ¡tky a uklÃ¡dÃ¡me v poÅ™adÃ­ lilek, rajÄe, cuketa, paprika az do vypotÅ™ebovÃ¡nÃ­ surovin. pÅ™ikryjeme peÄÃ­cÃ­m papÃ­rem a peÄeme do zmÄ›knujÃ­.",
     "ingredients": [
       {
-        "name": "tymián",
+        "name": "tymiÃ¡n",
         "quantity": 7.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 30.0
       },
       {
@@ -1324,7 +1324,7 @@
         "quantity": 240.0
       },
       {
-        "name": "rajèe",
+        "name": "rajÄe",
         "quantity": 300.0
       },
       {
@@ -1332,11 +1332,11 @@
         "quantity": 300.0
       },
       {
-        "name": "rozmarın",
+        "name": "rozmarÃ½n",
         "quantity": 7.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 4.0
       },
       {
@@ -1344,19 +1344,19 @@
         "quantity": 100.0
       },
       {
-        "name": "paprika èervená",
+        "name": "paprika ÄervenÃ¡",
         "quantity": 300.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 250.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 70.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 4.0
       }
     ],
@@ -1368,20 +1368,20 @@
     "taste": "SALTY",
     "rating": 8,
     "keywords": [
-      "bezlepkové",
-      "zeleninové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "zeleninovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Pomazánka z èervené èoèky",
-    "preparation": "Èervenou èoèku na cedníku propláchnìte pod tekoucí vodou a nechte okapat. Na oleji orestujte cibuli. Po chvíli pøidejte mrkev a za obèasného míchání spoleènì pár minut restujte. Pøidejte utøenı èesnek, lehce osolte, mùete ochutit kari koøením. K cibulce a k mrkvi pøidejte okapanou èervenou èoèku. Smìs zalijte vroucí vodou a pøiklopte. Na velmi mírném plameni vaøte dvacet minut a obèas zamíchejte. Všechna voda by se mìla vyvaøit, èoèka by mìla bıt mìkká a získat kašovitou konzistenci i bez mixování. Dochute solí a nechte vychladnout, aby pomazánka zatuhla. Pak do ní ještì zamíchejte citronovou šávu a líci olivového oleje pro obohacení celého pokrmu.\nPomazánku lze namísto kari koøením dochutit napø. èerstvou bazalkou, petrelkou, èesnekem, a jinım koøením dle fantazie",
+    "name": "PomazÃ¡nka z ÄervenÃ© ÄoÄky",
+    "preparation": "ÄŒervenou ÄoÄku na cednÃ­ku proplÃ¡chnÄ›te pod tekoucÃ­ vodou a nechte okapat. Na oleji orestujte cibuli. Po chvÃ­li pÅ™idejte mrkev a za obÄasnÃ©ho mÃ­chÃ¡nÃ­ spoleÄnÄ› pÃ¡r minut restujte. PÅ™idejte utÅ™enÃ½ Äesnek, lehce osolte, mÅ¯Å¾ete ochutit kari koÅ™enÃ­m. K cibulce a k mrkvi pÅ™idejte okapanou Äervenou ÄoÄku. SmÄ›s zalijte vroucÃ­ vodou a pÅ™iklopte. Na velmi mÃ­rnÃ©m plameni vaÅ™te dvacet minut a obÄas zamÃ­chejte. VÅ¡echna voda by se mÄ›la vyvaÅ™it, ÄoÄka by mÄ›la bÃ½t mÄ›kkÃ¡ a zÃ­skat kaÅ¡ovitou konzistenci i bez mixovÃ¡nÃ­. DochuÅ¥te solÃ­ a nechte vychladnout, aby pomazÃ¡nka zatuhla. Pak do nÃ­ jeÅ¡tÄ› zamÃ­chejte citronovou Å¡Å¥Ã¡vu a lÅ¾Ã­ci olivovÃ©ho oleje pro obohacenÃ­ celÃ©ho pokrmu.\nPomazÃ¡nku lze namÃ­sto kari koÅ™enÃ­m dochutit napÅ™. Äerstvou bazalkou, petrÅ¾elkou, Äesnekem, a jinÃ½m koÅ™enÃ­m dle fantazie",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 200.0
       },
       {
@@ -1393,11 +1393,11 @@
         "quantity": 70.0
       },
       {
-        "name": "citrón",
+        "name": "citrÃ³n",
         "quantity": 1.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 20.0
       },
       {
@@ -1405,11 +1405,11 @@
         "quantity": 80.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 70.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 4.0
       },
       {
@@ -1424,18 +1424,18 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Èoèkové karbanátky",
-    "preparation": "Poznámka: pøíštì ménì èoèky a více pojiva(vajíèko, mouka, strouhanka).\n\nCibulku a èesnek nakrájíme nadrobno. Mrkev nastrouháme. Vše smícháme spolu s vejcem, strouhankou, vaøenou èoèkou a moukou. Dochutíme solí, pepøem a majoránkou.\nNecháme chvíli odstát. Tvoøíme placièky, které restujeme na olivovém oleji z obou stran na nepøilnavé pánvi dozlatova. Podáváme se zeleninovım salátem.",
+    "name": "ÄŒoÄkovÃ© karbanÃ¡tky",
+    "preparation": "PoznÃ¡mka: pÅ™Ã­Å¡tÄ› mÃ©nÄ› ÄoÄky a vÃ­ce pojiva(vajÃ­Äko, mouka, strouhanka).\n\nCibulku a Äesnek nakrÃ¡jÃ­me nadrobno. Mrkev nastrouhÃ¡me. VÅ¡e smÃ­chÃ¡me spolu s vejcem, strouhankou, vaÅ™enou ÄoÄkou a moukou. DochutÃ­me solÃ­, pepÅ™em a majorÃ¡nkou.\nNechÃ¡me chvÃ­li odstÃ¡t. TvoÅ™Ã­me placiÄky, kterÃ© restujeme na olivovÃ©m oleji z obou stran na nepÅ™ilnavÃ© pÃ¡nvi dozlatova. PodÃ¡vÃ¡me se zeleninovÃ½m salÃ¡tem.",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 55.0
       },
       {
@@ -1447,19 +1447,19 @@
         "quantity": 23.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 4.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 0.25
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.0
       },
       {
@@ -1467,15 +1467,15 @@
         "quantity": 0.0
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 16.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
-        "name": "kukuøièná strouhanka",
+        "name": "kukuÅ™iÄnÃ¡ strouhanka",
         "quantity": 10.5
       }
     ],
@@ -1487,20 +1487,20 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezmasé",
-      "bezlepkové",
-      "váeno"
+      "bezmasÃ©",
+      "bezlepkovÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Rajská polévka s èoèkou a bazalkou",
-    "preparation": "Propláchnutou èoèku vsypeme do hrnce s vroucí vodou. Zvolna vaøíme pøikrytou asi 25 minut, dokud nezmìkne. Slijeme vodu, èoèku propláchneme a necháme okapat.\n\nVe vìtším hrnci rozpálíme olej, pøidáme cibulku a smaíme asi 10 min. Pøidáme rajèata, rajèatovı protlak, bobkovı list a pepø a zalijeme vıvarem. Pøivedeme k varu a vaøíme pod poklièkou za obèasného míchání asi 25 minut. Hrnec odstavíme a necháme pár minut chladnout. Vyjmeme bobkovı list a zeleninu rozmixujeme. Zeleninovou smìs pak vrátíme do hrnce a vmícháme èoèku a nadrobno nasekanou bazalku.",
+    "name": "RajskÃ¡ polÃ©vka s ÄoÄkou a bazalkou",
+    "preparation": "ProplÃ¡chnutou ÄoÄku vsypeme do hrnce s vroucÃ­ vodou. Zvolna vaÅ™Ã­me pÅ™ikrytou asi 25 minut, dokud nezmÄ›kne. Slijeme vodu, ÄoÄku proplÃ¡chneme a nechÃ¡me okapat.\n\nVe vÄ›tÅ¡Ã­m hrnci rozpÃ¡lÃ­me olej, pÅ™idÃ¡me cibulku a smaÅ¾Ã­me asi 10 min. PÅ™idÃ¡me rajÄata, rajÄatovÃ½ protlak, bobkovÃ½ list a pepÅ™ a zalijeme vÃ½varem. PÅ™ivedeme k varu a vaÅ™Ã­me pod pokliÄkou za obÄasnÃ©ho mÃ­chÃ¡nÃ­ asi 25 minut. Hrnec odstavÃ­me a nechÃ¡me pÃ¡r minut chladnout. Vyjmeme bobkovÃ½ list a zeleninu rozmixujeme. Zeleninovou smÄ›s pak vrÃ¡tÃ­me do hrnce a vmÃ­chÃ¡me ÄoÄku a nadrobno nasekanou bazalku.",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 80.0
       },
       {
@@ -1508,11 +1508,11 @@
         "quantity": 240.0
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 1.0
       },
       {
-        "name": "rajèe",
+        "name": "rajÄe",
         "quantity": 400.0
       },
       {
@@ -1520,19 +1520,19 @@
         "quantity": 30.0
       },
       {
-        "name": "bobkovı list",
+        "name": "bobkovÃ½ list",
         "quantity": 1.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.3
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 50.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 30.0
       }
     ],
@@ -1543,20 +1543,20 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Øepovı salát s pórkem a restovanou mrkví",
-    "preparation": "Uvaøíme øepu ve vodì a oloupeme. Nakrájíme ji na kostièky. Oèistíme mrkev, nakrájíme na kostièky a orestujeme na pánvi. V míse smícháme øepu, mrkev, pøidáme hrášek. Nakrájíme pórek na drobno a kyselé okurky na kostièky a pøidáme je do mísy. Zalijeme trochou olivového oleje, dochutíme solí a papøem a vše poøádnì promícháme.",
+    "name": "Å˜epovÃ½ salÃ¡t s pÃ³rkem a restovanou mrkvÃ­",
+    "preparation": "UvaÅ™Ã­me Å™epu ve vodÄ› a oloupeme. NakrÃ¡jÃ­me ji na kostiÄky. OÄistÃ­me mrkev, nakrÃ¡jÃ­me na kostiÄky a orestujeme na pÃ¡nvi. V mÃ­se smÃ­chÃ¡me Å™epu, mrkev, pÅ™idÃ¡me hrÃ¡Å¡ek. NakrÃ¡jÃ­me pÃ³rek na drobno a kyselÃ© okurky na kostiÄky a pÅ™idÃ¡me je do mÃ­sy. Zalijeme trochou olivovÃ©ho oleje, dochutÃ­me solÃ­ a papÅ™em a vÅ¡e poÅ™Ã¡dnÄ› promÃ­chÃ¡me.",
     "ingredients": [
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 110.0
       },
       {
@@ -1564,27 +1564,27 @@
         "quantity": 40.0
       },
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 38.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.2
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 10.0
       },
       {
-        "name": "kyselá okurka",
+        "name": "kyselÃ¡ okurka",
         "quantity": 12.0
       },
       {
-        "name": "pórek",
+        "name": "pÃ³rek",
         "quantity": 10.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       }
     ],
@@ -1598,21 +1598,21 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "salát",
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "salÃ¡t",
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Plnìná paprika",
-    "preparation": "Vykrojíme papriky shora a vydlabeme vnitøek, papriky omyjem. Masovou náplò vytvoøíme z mletého masa a syrové rıe. Pøidáme polovinu z mnoství cibule nakrájené na drobno. Pøidáme vajíèko (staèí 1 na 4 porce). Smìs osolíme, opepøíme a promícháme. Poté naplníme smìsí papriky.  Základ omáèky se pøipraví z druhé poloviny mnoství nadrobno nakrájené cibule kterou osmahneme v hrnci. Kdy je cibulka èásteènì osmaená pøidáme mouku a ještì chvíli smaíme. Poté pøidáme protlak a zøedíme vodou a poøádnì rozmícháme, aby se netvoøily hrudky. Omáèku dochutíme solí, cukrem a pøípadné troškou octa. Do omáèky vloíme papriky a necháme vaøit.",
+    "name": "PlnÄ›nÃ¡ paprika",
+    "preparation": "VykrojÃ­me papriky shora a vydlabeme vnitÅ™ek, papriky omyjem. Masovou nÃ¡plÅˆ vytvoÅ™Ã­me z mletÃ©ho masa a syrovÃ© rÃ½Å¾e. PÅ™idÃ¡me polovinu z mnoÅ¾stvÃ­ cibule nakrÃ¡jenÃ© na drobno. PÅ™idÃ¡me vajÃ­Äko (staÄÃ­ 1 na 4 porce). SmÄ›s osolÃ­me, opepÅ™Ã­me a promÃ­chÃ¡me. PotÃ© naplnÃ­me smÄ›sÃ­ papriky.  ZÃ¡klad omÃ¡Äky se pÅ™ipravÃ­ z druhÃ© poloviny mnoÅ¾stvÃ­ nadrobno nakrÃ¡jenÃ© cibule kterou osmahneme v hrnci. KdyÅ¾ je cibulka ÄÃ¡steÄnÄ› osmaÅ¾enÃ¡ pÅ™idÃ¡me mouku a jeÅ¡tÄ› chvÃ­li smaÅ¾Ã­me. PotÃ© pÅ™idÃ¡me protlak a zÅ™edÃ­me vodou a poÅ™Ã¡dnÄ› rozmÃ­chÃ¡me, aby se netvoÅ™ily hrudky. OmÃ¡Äku dochutÃ­me solÃ­, cukrem a pÅ™Ã­padnÃ© troÅ¡kou octa. Do omÃ¡Äky vloÅ¾Ã­me papriky a nechÃ¡me vaÅ™it.",
     "ingredients": [
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 12.0
       },
       {
@@ -1632,7 +1632,7 @@
         "quantity": 52.0
       },
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 25.0
       },
       {
@@ -1640,23 +1640,23 @@
         "quantity": 12.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 0.25
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.2
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 37.0
       },
       {
-        "name": "mleté maso hovìzí a vepøové",
+        "name": "mletÃ© maso hovÄ›zÃ­ a vepÅ™ovÃ©",
         "quantity": 75.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.2
       }
     ],
@@ -1668,17 +1668,17 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
-      "Knedlíky",
-      "Rıe",
-      "Vaøené brambory"
+      "KnedlÃ­ky",
+      "RÃ½Å¾e",
+      "VaÅ™enÃ© brambory"
     ]
   },
   {
-    "name": "Celerová pomazánka",
-    "preparation": "Nakrájíme cibuli na drobno. Oèistíme a nastrouháme celer na malé nudlièky. Oèistíme èesnek a nakrájíme na drobno. Nasekáme petelku na drobno. Vše smícháme v misce. Pøidáme tavenı sır a zøedíme mlékem. Mícháme a postupnì dochucujeme solí a pepøem.",
+    "name": "CelerovÃ¡ pomazÃ¡nka",
+    "preparation": "NakrÃ¡jÃ­me cibuli na drobno. OÄistÃ­me a nastrouhÃ¡me celer na malÃ© nudliÄky. OÄistÃ­me Äesnek a nakrÃ¡jÃ­me na drobno. NasekÃ¡me petÅ¾elku na drobno. VÅ¡e smÃ­chÃ¡me v misce. PÅ™idÃ¡me tavenÃ½ sÃ½r a zÅ™edÃ­me mlÃ©kem. MÃ­chÃ¡me a postupnÄ› dochucujeme solÃ­ a pepÅ™em.",
     "ingredients": [
       {
         "name": "cibule",
@@ -1689,7 +1689,7 @@
         "quantity": 16.5
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 2.0
       },
       {
@@ -1697,23 +1697,23 @@
         "quantity": 31.25
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 6.25
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "tavenı sır",
+        "name": "tavenÃ½ sÃ½r",
         "quantity": 4.375
       },
       {
-        "name": "petrelka",
+        "name": "petrÅ¾elka",
         "quantity": 0.5
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       }
     ],
@@ -1726,20 +1726,20 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "pomazánka",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "pomazÃ¡nka",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Peèivo",
-    "preparation": "Pouijeme libovolnı druh peèiva. Rohlíky, chléb, bulky.",
+    "name": "PeÄivo",
+    "preparation": "PouÅ¾ijeme libovolnÃ½ druh peÄiva. RohlÃ­ky, chlÃ©b, bulky.",
     "ingredients": [
       {
-        "name": "peèivo",
+        "name": "peÄivo",
         "quantity": 100.0
       }
     ],
@@ -1757,15 +1757,15 @@
     ]
   },
   {
-    "name": "Grilovanı hermelín",
-    "preparation": "Pokud máme èerstvé koøení tak si ho nakrájíme na drobno, pokud ne pouijeme kupované. Nasypeme do misky a zalijeme trochou olivového oleje. Vytvoøíme ètverec z alobalu a prostøedek potøeme vytvoøenou bylinkovou smìsí. Do prostøed alobalu poloíme hermelín. Ten pomaeme zbytkem bylinkové smìsi. Alobal kolem hermelínu zamotáme a dáme péct do rozehøáté trouby asi na 10 minut. ",
+    "name": "GrilovanÃ½ hermelÃ­n",
+    "preparation": "Pokud mÃ¡me ÄerstvÃ© koÅ™enÃ­ tak si ho nakrÃ¡jÃ­me na drobno, pokud ne pouÅ¾ijeme kupovanÃ©. Nasypeme do misky a zalijeme trochou olivovÃ©ho oleje. VytvoÅ™Ã­me Ätverec z alobalu a prostÅ™edek potÅ™eme vytvoÅ™enou bylinkovou smÄ›sÃ­. Do prostÅ™ed alobalu poloÅ¾Ã­me hermelÃ­n. Ten pomaÅ¾eme zbytkem bylinkovÃ© smÄ›si. Alobal kolem hermelÃ­nu zamotÃ¡me a dÃ¡me pÃ©ct do rozehÅ™Ã¡tÃ© trouby asi na 10 minut. ",
     "ingredients": [
       {
         "name": "bazalka",
         "quantity": 1.0
       },
       {
-        "name": "rozmarın",
+        "name": "rozmarÃ½n",
         "quantity": 1.0
       },
       {
@@ -1773,11 +1773,11 @@
         "quantity": 1.0
       },
       {
-        "name": "hermelín",
+        "name": "hermelÃ­n",
         "quantity": 150.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 10.0
       }
     ],
@@ -1789,24 +1789,24 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "sır"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "sÃ½r"
     ],
     "sideDishes": [
-      "Øepové šouchané brambory",
-      "Peèivo",
-      "Bramborové hranolky",
-      "Šouchané brambory",
-      "Vaøené brambory"
+      "Å˜epovÃ© Å¡Å¥ouchanÃ© brambory",
+      "PeÄivo",
+      "BramborovÃ© hranolky",
+      "Å Å¥ouchanÃ© brambory",
+      "VaÅ™enÃ© brambory"
     ]
   },
   {
-    "name": "Vepøovı plátek",
-    "preparation": "Vepøovı plátek mírnì naklepeme a z obou stran osolíme, opepøíme. Mùeme vylepšit pomocí libovolnıch bylinek nebo koøení, napø. tymiánem nebo grilovacím koøením. Na pánvi rozpálíme olej a plátek osmahneme z kadé strany cca 10 minut.",
+    "name": "VepÅ™ovÃ½ plÃ¡tek",
+    "preparation": "VepÅ™ovÃ½ plÃ¡tek mÃ­rnÄ› naklepeme a z obou stran osolÃ­me, opepÅ™Ã­me. MÅ¯Å¾eme vylepÅ¡it pomocÃ­ libovolnÃ½ch bylinek nebo koÅ™enÃ­, napÅ™. tymiÃ¡nem nebo grilovacÃ­m koÅ™enÃ­m. Na pÃ¡nvi rozpÃ¡lÃ­me olej a plÃ¡tek osmahneme z kaÅ¾dÃ© strany cca 10 minut.",
     "ingredients": [
       {
-        "name": "tymián",
+        "name": "tymiÃ¡n",
         "quantity": 1.0
       },
       {
@@ -1814,15 +1814,15 @@
         "quantity": 5.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.1
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       },
       {
-        "name": "vepøová krkovice",
+        "name": "vepÅ™ovÃ¡ krkovice",
         "quantity": 150.0
       }
     ],
@@ -1837,22 +1837,22 @@
       "maso"
     ],
     "sideDishes": [
-      "Øepové šouchané brambory",
-      "Peèivo",
-      "Bramborové hranolky",
-      "Bramborová kaše",
-      "Šouchané brambory",
-      "Celerové hranolky",
-      "Øepovı salát s pórkem a restovanou mrkví",
-      "Vaøené brambory"
+      "Å˜epovÃ© Å¡Å¥ouchanÃ© brambory",
+      "PeÄivo",
+      "BramborovÃ© hranolky",
+      "BramborovÃ¡ kaÅ¡e",
+      "Å Å¥ouchanÃ© brambory",
+      "CelerovÃ© hranolky",
+      "Å˜epovÃ½ salÃ¡t s pÃ³rkem a restovanou mrkvÃ­",
+      "VaÅ™enÃ© brambory"
     ]
   },
   {
-    "name": "Èoèka s dıní a rıí",
-    "preparation": "Uvaøíme rıi zvláš jak jsme zvyklí. V jiném hrnciosmaíme olej s cibulkou ochutíme zázvorem, chilli, zázvorem, paprikou a zamícháme pøidáme dıni zbavenou jader a nakrájenou a èoèku, znovu zamícháme. Zalijeme  vodou a bude všechno ponoøené, pøivedeme k varu. Kdy vøe, prolisujeme èesnek, ochutíme octem. Podáváme s rıí ozdobené opeèenımi oøechy a kvašenou zeleninou.",
+    "name": "ÄŒoÄka s dÃ½nÃ­ a rÃ½Å¾Ã­",
+    "preparation": "UvaÅ™Ã­me rÃ½Å¾i zvlÃ¡Å¡Å¥ jak jsme zvyklÃ­. V jinÃ©m hrnciosmaÅ¾Ã­me olej s cibulkou ochutÃ­me zÃ¡zvorem, chilli, zÃ¡zvorem, paprikou a zamÃ­chÃ¡me pÅ™idÃ¡me dÃ½ni zbavenou jader a nakrÃ¡jenou a ÄoÄku, znovu zamÃ­chÃ¡me. Zalijeme  vodou aÅ¾ bude vÅ¡echno ponoÅ™enÃ©, pÅ™ivedeme k varu. KdyÅ¾ vÅ™e, prolisujeme Äesnek, ochutÃ­me octem. PodÃ¡vÃ¡me s rÃ½Å¾Ã­ ozdobenÃ© opeÄenÃ½mi oÅ™echy a kvaÅ¡enou zeleninou.",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 50.0
       },
       {
@@ -1860,7 +1860,7 @@
         "quantity": 1.0
       },
       {
-        "name": "dınì",
+        "name": "dÃ½nÄ›",
         "quantity": 300.0
       },
       {
@@ -1868,7 +1868,7 @@
         "quantity": 40.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 4.0
       },
       {
@@ -1876,11 +1876,11 @@
         "quantity": 15.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       },
       {
-        "name": "zázvor",
+        "name": "zÃ¡zvor",
         "quantity": 2.0
       }
     ],
@@ -1891,17 +1891,17 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
-      "Rıe"
+      "RÃ½Å¾e"
     ]
   },
   {
-    "name": "tìstoviny s rajèatovo-zeleninovou omáèkou",
-    "preparation": "Cibuli si osmahneme na oleji, pøihodíma nakrájenou mrkev a petrel na menší kousky.Kdy mrek pustí barvu, zalejeme vodou a protlakem, dochutíme solí, pepøem, bylinkami které máme k dispozici. Tìsnì pøed dovaøením prolisujeme èesnek. Jako pøílohu si uvaíme behem omáèky tìstoviny podle návoduna obalu.",
+    "name": "tÄ›stoviny s rajÄatovo-zeleninovou omÃ¡Äkou",
+    "preparation": "Cibuli si osmahneme na oleji, pÅ™ihodÃ­ma nakrÃ¡jenou mrkev a petrÅ¾el na menÅ¡Ã­ kousky.KdyÅ¾ mrek pustÃ­ barvu, zalejeme vodou a protlakem, dochutÃ­me solÃ­, pepÅ™em, bylinkami kterÃ© mÃ¡me k dispozici. TÄ›snÄ› pÅ™ed dovaÅ™enÃ­m prolisujeme Äesnek. Jako pÅ™Ã­lohu si uvaÅ¥Ã­me behem omÃ¡Äky tÄ›stoviny podle nÃ¡voduna obalu.",
     "ingredients": [
       {
         "name": "voda",
@@ -1916,11 +1916,11 @@
         "quantity": 30.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 5.0
       },
       {
-        "name": "tìstoviny",
+        "name": "tÄ›stoviny",
         "quantity": 150.0
       },
       {
@@ -1932,19 +1932,19 @@
         "quantity": 5.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 1.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 40.0
       },
       {
-        "name": "petrel",
+        "name": "petrÅ¾el",
         "quantity": 20.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       }
     ],
@@ -1956,35 +1956,35 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "zeleninové",
-      "bezmasé"
+      "zeleninovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
-      "Tìstoviny"
+      "TÄ›stoviny"
     ]
   },
   {
-    "name": "Brokolice s èesnekem",
-    "preparation": "Uvaøíme vodu, osolíme a vloíme brokolici rozdìlanou na ruièky, vaøíme 5 minut. Na pánvi si osmahneme prolisovanej èesnek, kdy chytá barvu(ale nesmí bıt moc tmavej- to u je hoøkej) pøimícháme scezenou brokolicia spolu chvíli osmaíme. Posypeme strouhanım sırem.",
+    "name": "Brokolice s Äesnekem",
+    "preparation": "UvaÅ™Ã­me vodu, osolÃ­me a vloÅ¾Ã­me brokolici rozdÄ›lanou na ruÅ¾iÄky, vaÅ™Ã­me 5 minut. Na pÃ¡nvi si osmahneme prolisovanej Äesnek, kdyÅ¾ chytÃ¡ barvu(ale nesmÃ­ bÃ½t moc tmavej- to uÅ¾ je hoÅ™kej) pÅ™imÃ­chÃ¡me scezenou brokolicia spolu chvÃ­li osmaÅ¾Ã­me. Posypeme strouhanÃ½m sÃ½rem.",
     "ingredients": [
       {
         "name": "brokolice",
         "quantity": 200.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 35.0
       },
       {
-        "name": "sır Eidam",
+        "name": "sÃ½r Eidam",
         "quantity": 80.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 40.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 3.0
       }
     ],
@@ -1996,20 +1996,20 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Dıòové rizoto",
-    "preparation": "Vydlabanou neoloupanou dıni Hokaido nakrájíme na menší kostky, cibuli nadrobno. Na másle osmahneme cibuli, poté pøidáme dıni a osmaíme ze všech stran. Pøisypeme (nepropláchlou) rıi, krátce zamícháme, aby se zrníèka obalila máslem. Za stálého míchání necháme èást vína odpaøit a pøidáme asi 1 dl horkého vıvaru. Ten vdy necháme vyvaøit a pøidáváme po decilitrech, dokud nám nedojde (dokud není rıe al dente). To by mìlo trvat pøiblinì 25 minut. Nakonec vmícháme do rizota nadrobno nasekanou èerstvou petrelku a asi ? líce másla, dochutíme solí a pepøem a podáváme posypané nastrouhanım parmazánem.",
+    "name": "DÃ½ÅˆovÃ© rizoto",
+    "preparation": "Vydlabanou neoloupanou dÃ½ni Hokaido nakrÃ¡jÃ­me na menÅ¡Ã­ kostky, cibuli nadrobno. Na mÃ¡sle osmahneme cibuli, potÃ© pÅ™idÃ¡me dÃ½ni a osmaÅ¾Ã­me ze vÅ¡ech stran. PÅ™isypeme (neproplÃ¡chlou) rÃ½Å¾i, krÃ¡tce zamÃ­chÃ¡me, aby se zrnÃ­Äka obalila mÃ¡slem. Za stÃ¡lÃ©ho mÃ­chÃ¡nÃ­ nechÃ¡me ÄÃ¡st vÃ­na odpaÅ™it a pÅ™idÃ¡me asi 1 dl horkÃ©ho vÃ½varu. Ten vÅ¾dy nechÃ¡me vyvaÅ™it a pÅ™idÃ¡vÃ¡me po decilitrech, dokud nÃ¡m nedojde (dokud nenÃ­ rÃ½Å¾e al dente). To by mÄ›lo trvat pÅ™ibliÅ¾nÄ› 25 minut. Nakonec vmÃ­chÃ¡me do rizota nadrobno nasekanou Äerstvou petrÅ¾elku a asi ? lÅ¾Ã­ce mÃ¡sla, dochutÃ­me solÃ­ a pepÅ™em a podÃ¡vÃ¡me posypanÃ© nastrouhanÃ½m parmazÃ¡nem.",
     "ingredients": [
       {
-        "name": "dınì",
+        "name": "dÃ½nÄ›",
         "quantity": 300.0
       },
       {
@@ -2017,27 +2017,27 @@
         "quantity": 60.0
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 1.0
       },
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 100.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 40.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.5
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 4.0
       },
       {
-        "name": "petrelka",
+        "name": "petrÅ¾elka",
         "quantity": 8.0
       }
     ],
@@ -2049,20 +2049,20 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Špagety aglio olio",
-    "preparation": "Nakrájíme slaninu a èesnek na drobno a orestujeme na pánvi. Špagety dáme vaøit do mírnì osolené vody. Po uvaøení zcedíme, dáme do misky a pøidáme orestovanı èesnek se slaninou. Zalejeme trochou olivového oleje a promícháme. N vrch nastrouháme parmazán (nebo jinı sır).",
+    "name": "Å pagety aglio olio",
+    "preparation": "NakrÃ¡jÃ­me slaninu a Äesnek na drobno a orestujeme na pÃ¡nvi. Å pagety dÃ¡me vaÅ™it do mÃ­rnÄ› osolenÃ© vody. Po uvaÅ™enÃ­ zcedÃ­me, dÃ¡me do misky a pÅ™idÃ¡me orestovanÃ½ Äesnek se slaninou. Zalejeme trochou olivovÃ©ho oleje a promÃ­chÃ¡me. N vrch nastrouhÃ¡me parmazÃ¡n (nebo jinÃ½ sÃ½r).",
     "ingredients": [
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 8.0
       },
       {
@@ -2070,19 +2070,19 @@
         "quantity": 30.0
       },
       {
-        "name": "parmazán",
+        "name": "parmazÃ¡n",
         "quantity": 10.0
       },
       {
-        "name": "špagety",
+        "name": "Å¡pagety",
         "quantity": 100.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 10.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       }
     ],
@@ -2094,18 +2094,18 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "tìstoviny"
+      "tÄ›stoviny"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Boloòská omáèka s èervenou èoèkou",
-    "preparation": "Zeleninu oèistìte, oloupejte a nakrájejte na drobné kostièky, èesnek nasekejte nahrubo. V kastrolu rozehøejte olej, vhoïte do nìj mrkev a celer, osolte vìtší špetkou soli a asi 3 minuty zprudka opékejte a míchejte, a se zelenina zaène lehce zabarvovat dozlatova. Pøidejte cibuli a èesnek a ještì asi minutu míchejte.\nOrestovanou zeleninu zalijte rajèatovou passatou, dolijte 600 ml vroucí vody, osolte zbytkem soli a pøiveïte k varu. Èoèku propláchnìte na cedníku a pøidejte ji do základu omáèky. Zvolna vaøte 5 minut odkryté, poté pøiklopte poklicí a nechte ještì 10 minut dojít a zhoustnout.\nPokud je to tøeba, dochute omáèku solí a pepøem, pøípadnì i trochou cukru, pokud byla rajèatová passata pøíliš kyselá. Podávejte s tìstovinami, lehce zasypané strouhanım sırem – pochopitelnì nejlépe parmazánem",
+    "name": "BoloÅˆskÃ¡ omÃ¡Äka s Äervenou ÄoÄkou",
+    "preparation": "Zeleninu oÄistÄ›te, oloupejte a nakrÃ¡jejte na drobnÃ© kostiÄky, Äesnek nasekejte nahrubo. V kastrolu rozehÅ™ejte olej, vhoÄte do nÄ›j mrkev a celer, osolte vÄ›tÅ¡Ã­ Å¡petkou soli a asi 3 minuty zprudka opÃ©kejte a mÃ­chejte, aÅ¾ se zelenina zaÄne lehce zabarvovat dozlatova. PÅ™idejte cibuli a Äesnek a jeÅ¡tÄ› asi minutu mÃ­chejte.\nOrestovanou zeleninu zalijte rajÄatovou passatou, dolijte 600 ml vroucÃ­ vody, osolte zbytkem soli a pÅ™iveÄte k varu. ÄŒoÄku proplÃ¡chnÄ›te na cednÃ­ku a pÅ™idejte ji do zÃ¡kladu omÃ¡Äky. Zvolna vaÅ™te 5 minut odkrytÃ©, potÃ© pÅ™iklopte poklicÃ­ a nechte jeÅ¡tÄ› 10 minut dojÃ­t a zhoustnout.\nPokud je to tÅ™eba, dochuÅ¥te omÃ¡Äku solÃ­ a pepÅ™em, pÅ™Ã­padnÄ› i trochou cukru, pokud byla rajÄatovÃ¡ passata pÅ™Ã­liÅ¡ kyselÃ¡. PodÃ¡vejte s tÄ›stovinami, lehce zasypanÃ© strouhanÃ½m sÃ½rem â€“ pochopitelnÄ› nejlÃ©pe parmazÃ¡nem",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 50.0
       },
       {
@@ -2117,19 +2117,19 @@
         "quantity": 15.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 6.0
       },
       {
-        "name": "olivovı olej",
+        "name": "olivovÃ½ olej",
         "quantity": 9.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 100.0
       },
       {
-        "name": "petrel",
+        "name": "petrÅ¾el",
         "quantity": 9.0
       }
     ],
@@ -2141,19 +2141,19 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
-      "Tìstoviny"
+      "TÄ›stoviny"
     ]
   },
   {
-    "name": "Èervená èoèka",
-    "preparation": "Èervenou èoèku pøiveïte k varu, pøidejte bobkovı list, høebíèek, majoránku, šalotku a strouky èesneku a vaøte do mìkka pøi mírné teplotì bez zakrytí 10 – 15 minut. Vmíchejte moøskou sùl, sójovou omáèku a èerstvì namletı pepø a nechejte ještì chvíli vaøit.\n\nÈervenou èoèku servírujte s bramborem a ovèím sırem nebo vmíchejte 100 ml smetany a servírujte s èernımi olivami a celozrnnım peèivem jako pøedkrm.",
+    "name": "ÄŒervenÃ¡ ÄoÄka",
+    "preparation": "ÄŒervenou ÄoÄku pÅ™iveÄte k varu, pÅ™idejte bobkovÃ½ list, hÅ™ebÃ­Äek, majorÃ¡nku, Å¡alotku a strouÅ¾ky Äesneku a vaÅ™te do mÄ›kka pÅ™i mÃ­rnÃ© teplotÄ› bez zakrytÃ­ 10 â€“ 15 minut. VmÃ­chejte moÅ™skou sÅ¯l, sÃ³jovou omÃ¡Äku a ÄerstvÄ› namletÃ½ pepÅ™ a nechejte jeÅ¡tÄ› chvÃ­li vaÅ™it.\n\nÄŒervenou ÄoÄku servÃ­rujte s bramborem a ovÄÃ­m sÃ½rem nebo vmÃ­chejte 100 ml smetany a servÃ­rujte s ÄernÃ½mi olivami a celozrnnÃ½m peÄivem jako pÅ™edkrm.",
     "ingredients": [
       {
-        "name": "èoèka èervená",
+        "name": "ÄoÄka ÄervenÃ¡",
         "quantity": 100.0
       },
       {
@@ -2165,27 +2165,27 @@
         "quantity": 25.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 10.0
       },
       {
-        "name": "bobkovı list",
+        "name": "bobkovÃ½ list",
         "quantity": 1.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 3.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 4.0
       },
       {
-        "name": "høebíèek",
+        "name": "hÅ™ebÃ­Äek",
         "quantity": 1.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 4.0
       }
     ],
@@ -2203,19 +2203,19 @@
     ]
   },
   {
-    "name": "Zapeèené tìstoviny s kuøecím masem a èervenou øepou",
-    "preparation": "Nejprve si dáme ve vodì vaøit neoloupanou øepu v celku, kterou udìláme do zmìknutí. Zatímco se nám vaøí øepa, zpracujeme si tìstoviny a kuøecí maso. Tìstoviny uvaøíme obvyklım zpùsobem v øádnì osolené vodì. Kuøecí prsa nakrájíme na nudlièky, osolíme, opepøíme a zprudka osmaíme na oleji v pánvi. Uvaøenou a dostateènì vychladlou bulvu èervené øepy oloupeme a nakrájíme na zhruba 1 cm velké kostièky. Nyní si vezmeme zapékací mísu, decentnì ji vymaeme olejem a vsypeme do ní smìs tìstovin, kuøecích nudlièek a øepy. Tuto smìs zalijeme vejci rozkvedlanımi s pepøem a solí a posypeme nastrouhanım sırem. V troubì zapékáme na 180 °C po dobu 20 a 30 minut.",
+    "name": "ZapeÄenÃ© tÄ›stoviny s kuÅ™ecÃ­m masem a Äervenou Å™epou",
+    "preparation": "Nejprve si dÃ¡me ve vodÄ› vaÅ™it neoloupanou Å™epu v celku, kterou udÄ›lÃ¡me do zmÄ›knutÃ­. ZatÃ­mco se nÃ¡m vaÅ™Ã­ Å™epa, zpracujeme si tÄ›stoviny a kuÅ™ecÃ­ maso. TÄ›stoviny uvaÅ™Ã­me obvyklÃ½m zpÅ¯sobem v Å™Ã¡dnÄ› osolenÃ© vodÄ›. KuÅ™ecÃ­ prsa nakrÃ¡jÃ­me na nudliÄky, osolÃ­me, opepÅ™Ã­me a zprudka osmaÅ¾Ã­me na oleji v pÃ¡nvi. UvaÅ™enou a dostateÄnÄ› vychladlou bulvu ÄervenÃ© Å™epy oloupeme a nakrÃ¡jÃ­me na zhruba 1 cm velkÃ© kostiÄky. NynÃ­ si vezmeme zapÃ©kacÃ­ mÃ­su, decentnÄ› ji vymaÅ¾eme olejem a vsypeme do nÃ­ smÄ›s tÄ›stovin, kuÅ™ecÃ­ch nudliÄek a Å™epy. Tuto smÄ›s zalijeme vejci rozkvedlanÃ½mi s pepÅ™em a solÃ­ a posypeme nastrouhanÃ½m sÃ½rem. V troubÄ› zapÃ©kÃ¡me na 180 Â°C po dobu 20 aÅ¾ 30 minut.",
     "ingredients": [
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 125.0
       },
       {
-        "name": "tìstoviny",
+        "name": "tÄ›stoviny",
         "quantity": 200.0
       },
       {
-        "name": "sır Eidam",
+        "name": "sÃ½r Eidam",
         "quantity": 50.0
       },
       {
@@ -2223,19 +2223,19 @@
         "quantity": 20.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 1.5
       },
       {
-        "name": "kuøecí prso",
+        "name": "kuÅ™ecÃ­ prso",
         "quantity": 125.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 3.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 3.0
       }
     ],
@@ -2246,15 +2246,15 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "zeleninové"
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Halušky",
-    "preparation": "Dostatek vody dáme vaøit. Kdy voda vøe osolíme ji.Ingredience smícháme do ladkého tìsta a pøes sítko na halušky zavaøíme dovroucí vody. Opatrne promícháme abyse odlepili od dna.Vaøíme do mìkka. Pak scedíme a podáváme.",
+    "name": "HaluÅ¡ky",
+    "preparation": "Dostatek vody dÃ¡me vaÅ™it. KdyÅ¾ voda vÅ™e osolÃ­me ji.Ingredience smÃ­chÃ¡me do ladkÃ©ho tÄ›sta a pÅ™es sÃ­tko na haluÅ¡ky zavaÅ™Ã­me dovroucÃ­ vody. Opatrne promÃ­chÃ¡me abyse odlepili od dna.VaÅ™Ã­me do mÄ›kka. Pak scedÃ­me a podÃ¡vÃ¡me.",
     "ingredients": [
       {
         "name": "voda",
@@ -2265,7 +2265,7 @@
         "quantity": 150.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.3
       }
     ],
@@ -2283,11 +2283,11 @@
     ]
   },
   {
-    "name": "Kuøecí perkelt na smetanì",
-    "preparation": "Cibuli orestujeme na oleji, a zesklovatí.pøidáme sul, papriku a maso. podlejeme vodou, aby zakryla maso ze 3/4 maso.Pridáme bobkovı list, nové koøení, vegetu, dusíme na malém ohni 40 min. Zatím udìláme pøílohu. \nSmotanu smícháme s troškou vody a moukou pøimícháme k masu. Pøivedeme k varu a vypneme.",
+    "name": "KuÅ™ecÃ­ perkelt na smetanÄ›",
+    "preparation": "Cibuli orestujeme na oleji, aÅ¾ zesklovatÃ­.pÅ™idÃ¡me sul, papriku a maso. podlejeme vodou, aby zakryla maso ze 3/4 maso.PridÃ¡me bobkovÃ½ list, novÃ© koÅ™enÃ­, vegetu, dusÃ­me na malÃ©m ohni 40 min. ZatÃ­m udÄ›lÃ¡me pÅ™Ã­lohu. \nSmotanu smÃ­chÃ¡me s troÅ¡kou vody a moukou pÅ™imÃ­chÃ¡me k masu. PÅ™ivedeme k varu a vypneme.",
     "ingredients": [
       {
-        "name": "kuøecí stehno",
+        "name": "kuÅ™ecÃ­ stehno",
         "quantity": 250.0
       },
       {
@@ -2299,7 +2299,7 @@
         "quantity": 6.0
       },
       {
-        "name": "nové koøení",
+        "name": "novÃ© koÅ™enÃ­",
         "quantity": 4.0
       },
       {
@@ -2307,7 +2307,7 @@
         "quantity": 40.0
       },
       {
-        "name": "bobkovı list",
+        "name": "bobkovÃ½ list",
         "quantity": 0.5
       },
       {
@@ -2315,7 +2315,7 @@
         "quantity": 5.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.3
       }
     ],
@@ -2329,24 +2329,24 @@
 
     ],
     "sideDishes": [
-      "Tìstoviny",
-      "Halušky"
+      "TÄ›stoviny",
+      "HaluÅ¡ky"
     ]
   },
   {
-    "name": "Rizito s kuøecím masem a bylinkovım dresingem",
-    "preparation": "Rizoto\nNakrájíme cibuli na drobné kostièky a v hrnci osmahneme na másle. Pokud máme hrášek mraenı, osmahneme si ho bokem na pánvi. K cibuli pøidáme nakrájené kuøecí maso a orestujeme v hrnci. Poté pøidáme zeleninovou smìs a hrášek do hrnce. Pøidáme rıi, vodu a dochutíme bujonovou kostkou, podravkou, pepøem. Obèas promícháme a ke konci zjemníme smetanou.\n\nDresing\nDo misky dáme jogurt. Nasekáme èerstvé bilinky na drobno - èesnek, bazalka, oregáno a rozmarın. Pouijeme smetanu tak aby byl dresing pøimìøenì øídkı, smetana navíc dresing zjemní. Dochutíme pepøem a podravkou.",
+    "name": "Rizito s kuÅ™ecÃ­m masem a bylinkovÃ½m dresingem",
+    "preparation": "Rizoto\nNakrÃ¡jÃ­me cibuli na drobnÃ© kostiÄky a v hrnci osmahneme na mÃ¡sle. Pokud mÃ¡me hrÃ¡Å¡ek mraÅ¾enÃ½, osmahneme si ho bokem na pÃ¡nvi. K cibuli pÅ™idÃ¡me nakrÃ¡jenÃ© kuÅ™ecÃ­ maso a orestujeme v hrnci. PotÃ© pÅ™idÃ¡me zeleninovou smÄ›s a hrÃ¡Å¡ek do hrnce. PÅ™idÃ¡me rÃ½Å¾i, vodu a dochutÃ­me bujonovou kostkou, podravkou, pepÅ™em. ObÄas promÃ­chÃ¡me a ke konci zjemnÃ­me smetanou.\n\nDresing\nDo misky dÃ¡me jogurt. NasekÃ¡me ÄerstvÃ© bilinky na drobno - Äesnek, bazalka, oregÃ¡no a rozmarÃ½n. PouÅ¾ijeme smetanu tak aby byl dresing pÅ™imÄ›Å™enÄ› Å™Ã­dkÃ½, smetana navÃ­c dresing zjemnÃ­. DochutÃ­me pepÅ™em a podravkou.",
     "ingredients": [
       {
         "name": "cibule",
         "quantity": 8.5
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 3.0
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 1.0
       },
       {
@@ -2358,15 +2358,15 @@
         "quantity": 2.5
       },
       {
-        "name": "kuøecí prso",
+        "name": "kuÅ™ecÃ­ prso",
         "quantity": 35.0
       },
       {
-        "name": "zeleninová smìs",
+        "name": "zeleninovÃ¡ smÄ›s",
         "quantity": 26.0
       },
       {
-        "name": "jogurt bílı",
+        "name": "jogurt bÃ­lÃ½",
         "quantity": 75.0
       },
       {
@@ -2374,15 +2374,15 @@
         "quantity": 115.0
       },
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 32.0
       },
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 7.0
       },
       {
-        "name": "rozmarın",
+        "name": "rozmarÃ½n",
         "quantity": 0.5
       },
       {
@@ -2394,11 +2394,11 @@
         "quantity": 0.5
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.5
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 5.0
       }
     ],
@@ -2410,22 +2410,22 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Rıové nudle",
-    "preparation": "Vloíme nudle do vroucí vody. Necháme vaøit ne zmìknou.",
+    "name": "RÃ½Å¾ovÃ© nudle",
+    "preparation": "VloÅ¾Ã­me nudle do vroucÃ­ vody. NechÃ¡me vaÅ™it neÅ¾ zmÄ›knou.",
     "ingredients": [
       {
         "name": "voda",
         "quantity": 1000.0
       },
       {
-        "name": "rıové nudle",
+        "name": "rÃ½Å¾ovÃ© nudle",
         "quantity": 100.0
       }
     ],
@@ -2436,18 +2436,18 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Èína",
-    "preparation": "Nakrájíme cibuli na mìsíèky a osmahneme na oleji do zlatova. Stáhneme oheò a pøisypeme sladkou a pálivou sypanou papriku. Mícháme aby paprika nezhoøkla. Maso nakrájené na nudlièky pøidáme k cibuli a promícháme. Necháme chvíli podusit, zatím nepodléváme. Nakrájíme pórek na koleèka a papriku na nudlièky. Podlejeme vodou a pøidáme nakrájenou zeleninu, hrášek, kukuøici. Zahustíme solamylem. Dochutíme podravkou, koøením na èínu, majoránkou. Nechámepovaøit dokud maso nezmìkne. Nakonec pøidáme èesnek.",
+    "name": "ÄŒÃ­na",
+    "preparation": "NakrÃ¡jÃ­me cibuli na mÄ›sÃ­Äky a osmahneme na oleji do zlatova. StÃ¡hneme oheÅˆ a pÅ™isypeme sladkou a pÃ¡livou sypanou papriku. MÃ­chÃ¡me aby paprika nezhoÅ™kla. Maso nakrÃ¡jenÃ© na nudliÄky pÅ™idÃ¡me k cibuli a promÃ­chÃ¡me. NechÃ¡me chvÃ­li podusit, zatÃ­m nepodlÃ©vÃ¡me. NakrÃ¡jÃ­me pÃ³rek na koleÄka a papriku na nudliÄky. Podlejeme vodou a pÅ™idÃ¡me nakrÃ¡jenou zeleninu, hrÃ¡Å¡ek, kukuÅ™ici. ZahustÃ­me solamylem. DochutÃ­me podravkou, koÅ™enÃ­m na ÄÃ­nu, majorÃ¡nkou. NechÃ¡mepovaÅ™it dokud maso nezmÄ›kne. Nakonec pÅ™idÃ¡me Äesnek.",
     "ingredients": [
       {
-        "name": "vepøová plec",
+        "name": "vepÅ™ovÃ¡ plec",
         "quantity": 150.0
       },
       {
@@ -2459,7 +2459,7 @@
         "quantity": 60.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 2.0
       },
       {
@@ -2471,15 +2471,15 @@
         "quantity": 6.0
       },
       {
-        "name": "kukuøice",
+        "name": "kukuÅ™ice",
         "quantity": 25.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.5
       },
       {
-        "name": "sypaná sladká paprika",
+        "name": "sypanÃ¡ sladkÃ¡ paprika",
         "quantity": 1.0
       },
       {
@@ -2487,11 +2487,11 @@
         "quantity": 187.5
       },
       {
-        "name": "sypaná pálivá paprika",
+        "name": "sypanÃ¡ pÃ¡livÃ¡ paprika",
         "quantity": 0.5
       },
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 25.0
       },
       {
@@ -2499,11 +2499,11 @@
         "quantity": 1.0
       },
       {
-        "name": "koøení na èínu",
+        "name": "koÅ™enÃ­ na ÄÃ­nu",
         "quantity": 0.5
       },
       {
-        "name": "pórek",
+        "name": "pÃ³rek",
         "quantity": 37.5
       }
     ],
@@ -2515,16 +2515,16 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
-      "Rıové nudle",
-      "Rıe"
+      "RÃ½Å¾ovÃ© nudle",
+      "RÃ½Å¾e"
     ]
   },
   {
-    "name": "Brambory na loupaèku",
-    "preparation": "Uvaøíme brambory ve slupce, oloupeme. Nakrájíme cibuli na drobno a smícháme s tvarohem v mistièce, pøidáme paitku a osolíme.  Brambory konzumujeme se máslem, solí a tvarohem.",
+    "name": "Brambory na loupaÄku",
+    "preparation": "UvaÅ™Ã­me brambory ve slupce, oloupeme. NakrÃ¡jÃ­me cibuli na drobno a smÃ­chÃ¡me s tvarohem v mistiÄce, pÅ™idÃ¡me paÅ¾itku a osolÃ­me.  Brambory konzumujeme se mÃ¡slem, solÃ­ a tvarohem.",
     "ingredients": [
       {
         "name": "brambory",
@@ -2539,15 +2539,15 @@
         "quantity": 62.5
       },
       {
-        "name": "paitka",
+        "name": "paÅ¾itka",
         "quantity": 10.0
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 20.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.5
       }
     ],
@@ -2558,19 +2558,19 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Bezlepkové tvarohové ovocné knedlíky ",
-    "preparation": "Pøipravíme si tìsto- všechny ingredience (kromì jahod) zmícháme na tuší tìsto.  Dáme si vaøit  vodu do vìtšího hrnce. Kadou jahodu zvláš obalíme tìstem a uhnìteme knedlík. Kdy voda vaøí vhodíme knedlíky a  vaøíme cca 10 minut, vytáhneme. \n\nPodle chuti dochutíme cukrem, máslem, strouhankou, Grankem....   ",
+    "name": "BezlepkovÃ© tvarohovÃ© ovocnÃ© knedlÃ­ky ",
+    "preparation": "PÅ™ipravÃ­me si tÄ›sto- vÅ¡echny ingredience (kromÄ› jahod) zmÃ­chÃ¡me na tuÅ¾Å¡Ã­ tÄ›sto.  DÃ¡me si vaÅ™it  vodu do vÄ›tÅ¡Ã­ho hrnce. KaÅ¾dou jahodu zvlÃ¡Å¡Å¥ obalÃ­me tÄ›stem a uhnÄ›teme knedlÃ­k. KdyÅ¾ voda vaÅ™Ã­ vhodÃ­me knedlÃ­ky a  vaÅ™Ã­me cca 10 minut, vytÃ¡hneme. \n\nPodle chuti dochutÃ­me cukrem, mÃ¡slem, strouhankou, Grankem....   ",
     "ingredients": [
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 225.0
       },
       {
@@ -2578,15 +2578,15 @@
         "quantity": 100.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 0.5
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 20.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 20.0
       },
       {
@@ -2594,7 +2594,7 @@
         "quantity": 150.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.02
       }
     ],
@@ -2606,16 +2606,16 @@
     "taste": "SWEET",
     "rating": 9,
     "keywords": [
-      "bezlepkové",
-      "bezmasé"
+      "bezlepkovÃ©",
+      "bezmasÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Pórková pomazánka s mrkví",
-    "preparation": "Oèistíme mrkev a nastrouháme na jemno. Oèistíme pórek a nakrájíme na drobno. Smícháme mrkev, pórek a tvaroh v misce. Zjemníme trochou másla a naøedíme trochou mléka. Dochutíme solí, popøípadì koøením dle vlastní chuti.",
+    "name": "PÃ³rkovÃ¡ pomazÃ¡nka s mrkvÃ­",
+    "preparation": "OÄistÃ­me mrkev a nastrouhÃ¡me na jemno. OÄistÃ­me pÃ³rek a nakrÃ¡jÃ­me na drobno. SmÃ­chÃ¡me mrkev, pÃ³rek a tvaroh v misce. ZjemnÃ­me trochou mÃ¡sla a naÅ™edÃ­me trochou mlÃ©ka. DochutÃ­me solÃ­, popÅ™Ã­padÄ› koÅ™enÃ­m dle vlastnÃ­ chuti.",
     "ingredients": [
       {
         "name": "mrkev",
@@ -2626,19 +2626,19 @@
         "quantity": 35.7
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 2.8
       },
       {
-        "name": "máslo",
+        "name": "mÃ¡slo",
         "quantity": 3.28
       },
       {
-        "name": "pórek",
+        "name": "pÃ³rek",
         "quantity": 10.7
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       }
     ],
@@ -2651,21 +2651,21 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "pomazánka",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "pomazÃ¡nka",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
-      "Peèivo"
+      "PeÄivo"
     ]
   },
   {
-    "name": "Sekaná peèenì",
-    "preparation": "Oèistíme cibuli a nakrájíme na drobno. V míse promícháme mleté maso s nakrájenou cibulí. Pøidáme vajíèko, bezlepkovou mouku a kukuøiènou strouhanku aby sekaná drela pohromadì. Dále pøidáme sùl a koøení (napøíklad majoránku, oregáno a rozmarın). Smìs dùkladnì promícháme a dáme péct do trouby.",
+    "name": "SekanÃ¡ peÄenÄ›",
+    "preparation": "OÄistÃ­me cibuli a nakrÃ¡jÃ­me na drobno. V mÃ­se promÃ­chÃ¡me mletÃ© maso s nakrÃ¡jenou cibulÃ­. PÅ™idÃ¡me vajÃ­Äko, bezlepkovou mouku a kukuÅ™iÄnou strouhanku aby sekanÃ¡ drÅ¾ela pohromadÄ›. DÃ¡le pÅ™idÃ¡me sÅ¯l a koÅ™enÃ­ (napÅ™Ã­klad majorÃ¡nku, oregÃ¡no a rozmarÃ½n). SmÄ›s dÅ¯kladnÄ› promÃ­chÃ¡me a dÃ¡me pÃ©ct do trouby.",
     "ingredients": [
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 7.2
       },
       {
@@ -2673,7 +2673,7 @@
         "quantity": 17.0
       },
       {
-        "name": "rozmarın",
+        "name": "rozmarÃ½n",
         "quantity": 0.1
       },
       {
@@ -2681,23 +2681,23 @@
         "quantity": 0.1
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 0.2
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.1
       },
       {
-        "name": "kukuøièná strouhanka",
+        "name": "kukuÅ™iÄnÃ¡ strouhanka",
         "quantity": 5.0
       },
       {
-        "name": "mleté maso hovìzí a vepøové",
+        "name": "mletÃ© maso hovÄ›zÃ­ a vepÅ™ovÃ©",
         "quantity": 100.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       }
     ],
@@ -2709,22 +2709,22 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové",
-      "váeno"
+      "bezlepkovÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
-      "Øepové šouchané brambory",
-      "Bramborová kaše",
-      "Šouchané brambory",
-      "Vaøené brambory"
+      "Å˜epovÃ© Å¡Å¥ouchanÃ© brambory",
+      "BramborovÃ¡ kaÅ¡e",
+      "Å Å¥ouchanÃ© brambory",
+      "VaÅ™enÃ© brambory"
     ]
   },
   {
-    "name": "Dıòová polévka na indickı zpùsob",
-    "preparation": "Oèistíme cibuli a nakrájíme na drobno. Cibulku necháme posmait v hrnci a poté zalejeme vodou. Dıni rozkrojíme a vydlabeme. Schránku omyjeme a nakrájíme na kostièky. Oèistíme mrkev a petrel, nakrájíme na kostièky. Oèistíme zázvor a nastrouháme. Dıni, mrkev, petrel a zázvor pøidáme do hrnce a necháme povaøit. Oèistíme brambory a nakrájíme na kostièky, dáme vaøit bokem v druhém hrnci. Poté co je dınì mìká, pouijeme ruèní mixér na rozmixování mrkve a dınì, tak aby z polévky vzinkl krém. Dochutíme bujonovou kostkou, kari, kmínem, citronovou trávou a solí. Poté co jsou brambory i krém uvaøené, brambory zcedíme a pøidáme do kàemu.",
+    "name": "DÃ½ÅˆovÃ¡ polÃ©vka na indickÃ½ zpÅ¯sob",
+    "preparation": "OÄistÃ­me cibuli a nakrÃ¡jÃ­me na drobno. Cibulku nechÃ¡me posmaÅ¾it v hrnci a potÃ© zalejeme vodou. DÃ½ni rozkrojÃ­me a vydlabeme. SchrÃ¡nku omyjeme a nakrÃ¡jÃ­me na kostiÄky. OÄistÃ­me mrkev a petrÅ¾el, nakrÃ¡jÃ­me na kostiÄky. OÄistÃ­me zÃ¡zvor a nastrouhÃ¡me. DÃ½ni, mrkev, petrÅ¾el a zÃ¡zvor pÅ™idÃ¡me do hrnce a nechÃ¡me povaÅ™it. OÄistÃ­me brambory a nakrÃ¡jÃ­me na kostiÄky, dÃ¡me vaÅ™it bokem v druhÃ©m hrnci. PotÃ© co je dÃ½nÄ› mÄ›kÃ¡, pouÅ¾ijeme ruÄnÃ­ mixÃ©r na rozmixovÃ¡nÃ­ mrkve a dÃ½nÄ›, tak aby z polÃ©vky vzinkl krÃ©m. DochutÃ­me bujonovou kostkou, kari, kmÃ­nem, citronovou trÃ¡vou a solÃ­. PotÃ© co jsou brambory i krÃ©m uvaÅ™enÃ©, brambory zcedÃ­me a pÅ™idÃ¡me do kÅ•emu.",
     "ingredients": [
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 0.1
       },
       {
@@ -2740,19 +2740,19 @@
         "quantity": 14.3
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 0.2
       },
       {
-        "name": "dınì hokaido",
+        "name": "dÃ½nÄ› hokaido",
         "quantity": 76.0
       },
       {
-        "name": "petrel",
+        "name": "petrÅ¾el",
         "quantity": 5.0
       },
       {
-        "name": "zázvor",
+        "name": "zÃ¡zvor",
         "quantity": 2.3
       },
       {
@@ -2760,7 +2760,7 @@
         "quantity": 0.1
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.1
       }
     ],
@@ -2771,20 +2771,20 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "váeno"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Øepová polívka",
-    "preparation": "Nejdøíve dáme vaøit samostatnì èervenou øepu nakrájenou na kostièky, protoe ta potøebuje èas, aby dobøe zmìkla. Mìli bychom ji dopøát klidnì i tu hodinku. Jakmile bude øepa uvaøená do mìkka, mùeme si pøichystat zeleninovı základ.\n\nNa sluneènicovém oleji osmahneme do zlatova cibulku, pøidáme k ní mrkev a brambory nakrájené na kostièky a vše chvilku za stálého míchání restujeme. Takovıto zeleninovı základ dodá polévce bohatší chu a nemusíme pøidávat ádnı masovı vıvar, protoe jak známo, tuk je nositel chuti.\n\nK zeleninì pøidáme uvaøenou èervenou øepu i s vodou, ve které jsme ji vaøili. Dolijeme èistou vodu, aby byla zelenina pìknì ponoøená. Hned také osolíme a opepøíme a pøidáme èesnek. Vše spolu povaøíme cca 30 min, aby zelenina rovnomìrnì zmìkla a chutì se prolnuly. Jakmile bude zelenina mìkká, pøidáme bazalku a tymián a nakonec vše rozmixujeme tyèovım mixérem do hladkého krému.\nOzdobíme bazalkou.",
+    "name": "Å˜epovÃ¡ polÃ­vka",
+    "preparation": "NejdÅ™Ã­ve dÃ¡me vaÅ™it samostatnÄ› Äervenou Å™epu nakrÃ¡jenou na kostiÄky, protoÅ¾e ta potÅ™ebuje Äas, aby dobÅ™e zmÄ›kla. MÄ›li bychom ji dopÅ™Ã¡t klidnÄ› i tu hodinku. Jakmile bude Å™epa uvaÅ™enÃ¡ do mÄ›kka, mÅ¯Å¾eme si pÅ™ichystat zeleninovÃ½ zÃ¡klad.\n\nNa sluneÄnicovÃ©m oleji osmahneme do zlatova cibulku, pÅ™idÃ¡me k nÃ­ mrkev a brambory nakrÃ¡jenÃ© na kostiÄky a vÅ¡e chvilku za stÃ¡lÃ©ho mÃ­chÃ¡nÃ­ restujeme. TakovÃ½to zeleninovÃ½ zÃ¡klad dodÃ¡ polÃ©vce bohatÅ¡Ã­ chuÅ¥ a nemusÃ­me pÅ™idÃ¡vat Å¾Ã¡dnÃ½ masovÃ½ vÃ½var, protoÅ¾e jak znÃ¡mo, tuk je nositel chuti.\n\nK zeleninÄ› pÅ™idÃ¡me uvaÅ™enou Äervenou Å™epu i s vodou, ve kterÃ© jsme ji vaÅ™ili. Dolijeme Äistou vodu, aby byla zelenina pÄ›knÄ› ponoÅ™enÃ¡. Hned takÃ© osolÃ­me a opepÅ™Ã­me a pÅ™idÃ¡me Äesnek. VÅ¡e spolu povaÅ™Ã­me cca 30 min, aby zelenina rovnomÄ›rnÄ› zmÄ›kla a chutÄ› se prolnuly. Jakmile bude zelenina mÄ›kkÃ¡, pÅ™idÃ¡me bazalku a tymiÃ¡n a nakonec vÅ¡e rozmixujeme tyÄovÃ½m mixÃ©rem do hladkÃ©ho krÃ©mu.\nOzdobÃ­me bazalkou.",
     "ingredients": [
       {
-        "name": "øepa",
+        "name": "Å™epa",
         "quantity": 550.0
       },
       {
@@ -2796,7 +2796,7 @@
         "quantity": 150.0
       },
       {
-        "name": "tymián",
+        "name": "tymiÃ¡n",
         "quantity": 0.5
       },
       {
@@ -2804,7 +2804,7 @@
         "quantity": 120.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 6.0
       },
       {
@@ -2812,7 +2812,7 @@
         "quantity": 0.5
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 0.3
       }
     ],
@@ -2823,24 +2823,24 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové",
-      "bezmasé",
-      "zeleninové"
+      "bezlepkovÃ©",
+      "bezmasÃ©",
+      "zeleninovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Mexickı guláš",
-    "preparation": "Maso omyjeme osušíme a nakrájíme na kostky, cibuli nakrájéme najemno. V hrnci ohøejeme olej , opraíe cibuli, volíme maso a orestujeme ze vsech stran, zaprášime moukou, porestujeme. Pøidáme papriku , sul, kmín, prolisovanej èesnek, promícháme a pak pøilijeme vıvar, pøidáme majoránku, rajskı protlak, keèup, zamícháme a podusíme a zmìkne. Kdy je mìkké  pøidáme sterilovanej hrášek. Podáváme posypané se sırem.",
+    "name": "MexickÃ½ gulÃ¡Å¡",
+    "preparation": "Maso omyjeme osuÅ¡Ã­me a nakrÃ¡jÃ­me na kostky, cibuli nakrÃ¡jÃ©me najemno. V hrnci ohÅ™ejeme olej , opraÅ¾Ã­e cibuli, volÅ¾Ã­me maso a orestujeme ze vsech stran, zaprÃ¡Å¡ime moukou, porestujeme. PÅ™idÃ¡me papriku , sul, kmÃ­n, prolisovanej Äesnek, promÃ­chÃ¡me a pak pÅ™ilijeme vÃ½var, pÅ™idÃ¡me majorÃ¡nku, rajskÃ½ protlak, keÄup, zamÃ­chÃ¡me a podusÃ­me aÅ¾ zmÄ›kne. KdyÅ¾ je mÄ›kkÃ©  pÅ™idÃ¡me sterilovanej hrÃ¡Å¡ek. PodÃ¡vÃ¡me posypanÃ© se sÃ½rem.",
     "ingredients": [
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 0.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 3.0
       },
       {
@@ -2848,11 +2848,11 @@
         "quantity": 43.3
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 0.25
       },
       {
-        "name": "sır Eidam",
+        "name": "sÃ½r Eidam",
         "quantity": 0.0
       },
       {
@@ -2860,35 +2860,35 @@
         "quantity": 0.0
       },
       {
-        "name": "keèup",
+        "name": "keÄup",
         "quantity": 0.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 0.0
       },
       {
-        "name": "rajskı protlak",
+        "name": "rajskÃ½ protlak",
         "quantity": 7.6
       },
       {
-        "name": "sypaná sladká paprika",
+        "name": "sypanÃ¡ sladkÃ¡ paprika",
         "quantity": 0.0
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 4.33
       },
       {
-        "name": "vepøová plec",
+        "name": "vepÅ™ovÃ¡ plec",
         "quantity": 166.0
       },
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 54.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 0.0
       },
       {
@@ -2904,22 +2904,22 @@
     "rating": 5,
     "keywords": [
       "maso",
-      "váeno"
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
-      "Rıe"
+      "RÃ½Å¾e"
     ]
   },
   {
-    "name": "Langoše",
-    "preparation": "V misce smícháme mouku s mlékem. Pøidáme cukr a drodí a vše poøádnì promícháme. Potom necháme nakynout. Ne tìsto nakyne, oèistíme èesnek a protlaèíme ho. Smícháme s trochou oleje. Podle chuti mùeme dodat rùzné bylinky, napøíklad rozmarın. Dále si zvláš nastrouháme sır nahrubo. Kdy tìsto vykyne, rozpálíme pánev s olejem, tvarujeme jednotlivé langoše z tìsta a smaíme. Po dosmaení potøeme èesnekem, posypeme sırem a na vrch ozdobíme trochou keèupu.",
+    "name": "LangoÅ¡e",
+    "preparation": "V misce smÃ­chÃ¡me mouku s mlÃ©kem. PÅ™idÃ¡me cukr a droÅ¾dÃ­ a vÅ¡e poÅ™Ã¡dnÄ› promÃ­chÃ¡me. Potom nechÃ¡me nakynout. NeÅ¾ tÄ›sto nakyne, oÄistÃ­me Äesnek a protlaÄÃ­me ho. SmÃ­chÃ¡me s trochou oleje. Podle chuti mÅ¯Å¾eme dodat rÅ¯znÃ© bylinky, napÅ™Ã­klad rozmarÃ½n. DÃ¡le si zvlÃ¡Å¡Å¥ nastrouhÃ¡me sÃ½r nahrubo. KdyÅ¾ tÄ›sto vykyne, rozpÃ¡lÃ­me pÃ¡nev s olejem, tvarujeme jednotlivÃ© langoÅ¡e z tÄ›sta a smaÅ¾Ã­me. Po dosmaÅ¾enÃ­ potÅ™eme Äesnekem, posypeme sÃ½rem a na vrch ozdobÃ­me trochou keÄupu.",
     "ingredients": [
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 4.0
       },
       {
-        "name": "sır Eidam",
+        "name": "sÃ½r Eidam",
         "quantity": 50.0
       },
       {
@@ -2927,7 +2927,7 @@
         "quantity": 100.0
       },
       {
-        "name": "drodí",
+        "name": "droÅ¾dÃ­",
         "quantity": 12.0
       },
       {
@@ -2935,19 +2935,19 @@
         "quantity": 1.0
       },
       {
-        "name": "keèup",
+        "name": "keÄup",
         "quantity": 20.0
       },
       {
-        "name": "hladká mouka",
+        "name": "hladkÃ¡ mouka",
         "quantity": 143.0
       },
       {
-        "name": "mléko",
+        "name": "mlÃ©ko",
         "quantity": 114.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       }
     ],
@@ -2959,32 +2959,32 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezmasé",
-      "smaené",
-      "váeno"
+      "bezmasÃ©",
+      "smaÅ¾enÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Kolovarské zelí",
-    "preparation": "Rıi okoøeníme vegetou a dáme ji vaøit. Maso nakrájíme na kostièky, okoøeníme sladkou paprikou a dáme dusit. Uvaøíme zelí. Klobásu nakrájíme na pùlkoleèka a osmahneme. Pøipravíme si zapékací mísu a poté co jsou pøedchozí kroky dokonèeny, zaèneme vrstvit. Prokládáme rıi, maso, zelí a klobásu. Takto mùŸeme udìlat nìkolik vrstev, aby se chutì dobøe propojily. Nakonec zalijeme smetanou a dáme zapéct do trouby.",
+    "name": "KoloÅ¾varskÃ© zelÃ­",
+    "preparation": "RÃ½Å¾i okoÅ™enÃ­me vegetou a dÃ¡me ji vaÅ™it. Maso nakrÃ¡jÃ­me na kostiÄky, okoÅ™enÃ­me sladkou paprikou a dÃ¡me dusit. UvaÅ™Ã­me zelÃ­. KlobÃ¡su nakrÃ¡jÃ­me na pÅ¯lkoleÄka a osmahneme. PÅ™ipravÃ­me si zapÃ©kacÃ­ mÃ­su a potÃ© co jsou pÅ™edchozÃ­ kroky dokonÄeny, zaÄneme vrstvit. ProklÃ¡dÃ¡me rÃ½Å¾i, maso, zelÃ­ a klobÃ¡su. Takto mÅ¯Åºeme udÄ›lat nÄ›kolik vrstev, aby se chutÄ› dobÅ™e propojily. Nakonec zalijeme smetanou a dÃ¡me zapÃ©ct do trouby.",
     "ingredients": [
       {
         "name": "vegeta",
         "quantity": 2.0
       },
       {
-        "name": "rıe",
+        "name": "rÃ½Å¾e",
         "quantity": 290.0
       },
       {
-        "name": "vepøové",
+        "name": "vepÅ™ovÃ©",
         "quantity": 95.0
       },
       {
-        "name": "klobása",
+        "name": "klobÃ¡sa",
         "quantity": 42.0
       },
       {
@@ -2992,11 +2992,11 @@
         "quantity": 25.0
       },
       {
-        "name": "kyselé zelí",
+        "name": "kyselÃ© zelÃ­",
         "quantity": 75.0
       },
       {
-        "name": "sypaná sladká paprika",
+        "name": "sypanÃ¡ sladkÃ¡ paprika",
         "quantity": 5.0
       }
     ],
@@ -3008,19 +3008,19 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezlepkové",
-      "váeno"
+      "bezlepkovÃ©",
+      "vÃ¡Å¾eno"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Èoèka na kyselo",
-    "preparation": "Pøebereme èoèku, aby jsme vybrali kamínky. Èoèku dáme namoèit alespoò hodinu pøed vaøením. Potom slejeme vodu. Zalijeme znova a dáme vaøit. Bokem udìláme jíšku (olej, mouka, trošku vody). Potom pøimícháme k èoèce. Ke konci osolíme, pøidáme cca 2 líce octa a cukr. Posmaíme nadrobno nakrájenou cibulku na oleji. Cibulku pak servírujeme na èoèku. K èoèce mùeme osmahnout klobásu, udìlat vajíèko na tvrdo, pøípadnì volské oko, nebo libovolnou kombinaci. K èoèce servírujeme také kyselé okurky.",
+    "name": "ÄŒoÄka na kyselo",
+    "preparation": "PÅ™ebereme ÄoÄku, aby jsme vybrali kamÃ­nky. ÄŒoÄku dÃ¡me namoÄit alespoÅˆ hodinu pÅ™ed vaÅ™enÃ­m. Potom slejeme vodu. Zalijeme znova a dÃ¡me vaÅ™it. Bokem udÄ›lÃ¡me jÃ­Å¡ku (olej, mouka, troÅ¡ku vody). Potom pÅ™imÃ­chÃ¡me k ÄoÄce. Ke konci osolÃ­me, pÅ™idÃ¡me cca 2 lÅ¾Ã­ce octa a cukr. PosmaÅ¾Ã­me nadrobno nakrÃ¡jenou cibulku na oleji. Cibulku pak servÃ­rujeme na ÄoÄku. K ÄoÄce mÅ¯Å¾eme osmahnout klobÃ¡su, udÄ›lat vajÃ­Äko na tvrdo, pÅ™Ã­padnÄ› volskÃ© oko, nebo libovolnou kombinaci. K ÄoÄce servÃ­rujeme takÃ© kyselÃ© okurky.",
     "ingredients": [
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 1.0
       },
       {
@@ -3032,7 +3032,7 @@
         "quantity": 50.0
       },
       {
-        "name": "èoèka",
+        "name": "ÄoÄka",
         "quantity": 1.0
       },
       {
@@ -3044,19 +3044,19 @@
         "quantity": 1.0
       },
       {
-        "name": "klobása",
+        "name": "klobÃ¡sa",
         "quantity": 1.0
       },
       {
-        "name": "vajíèko",
+        "name": "vajÃ­Äko",
         "quantity": 1.0
       },
       {
-        "name": "kyselá okurka",
+        "name": "kyselÃ¡ okurka",
         "quantity": 1.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       }
     ],
@@ -3068,18 +3068,18 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkovÃ©"
     ],
     "sideDishes": [
 
     ]
   },
   {
-    "name": "Bramborová polévka",
-    "preparation": "Houby si pøedvaøíme zvláš v hrneèku, staæí nechat projít varem na pár minut. Ne se houby pøedvaøí, nakrájíme cibuli na drobno, posmaíme na oleji do zlatova. Pøidáme k ní mouku a udìláme jíšku. Poté zalijeme vodou, pøidáme brambory nakrájené na kostky, mrkev a hrášek. Zcedíme houby a spoleènì s bujonovou kostkou pøidáme do hrnce. Nakonec pøidáme pórek s èesnekem a dochutíme koøením.",
+    "name": "BramborovÃ¡ polÃ©vka",
+    "preparation": "Houby si pÅ™edvaÅ™Ã­me zvlÃ¡Å¡Å¥ v hrneÄku, staÄ‡Ã­ nechat projÃ­t varem na pÃ¡r minut. NeÅ¾ se houby pÅ™edvaÅ™Ã­, nakrÃ¡jÃ­me cibuli na drobno, posmaÅ¾Ã­me na oleji do zlatova. PÅ™idÃ¡me k nÃ­ mouku a udÄ›lÃ¡me jÃ­Å¡ku. PotÃ© zalijeme vodou, pÅ™idÃ¡me brambory nakrÃ¡jenÃ© na kostky, mrkev a hrÃ¡Å¡ek. ZcedÃ­me houby a spoleÄnÄ› s bujonovou kostkou pÅ™idÃ¡me do hrnce. Nakonec pÅ™idÃ¡me pÃ³rek s Äesnekem a dochutÃ­me koÅ™enÃ­m.",
     "ingredients": [
       {
-        "name": "kmín",
+        "name": "kmÃ­n",
         "quantity": 1.0
       },
       {
@@ -3087,11 +3087,11 @@
         "quantity": 1.0
       },
       {
-        "name": "èesnek",
+        "name": "Äesnek",
         "quantity": 1.0
       },
       {
-        "name": "bujonová kostka",
+        "name": "bujonovÃ¡ kostka",
         "quantity": 1.0
       },
       {
@@ -3099,11 +3099,11 @@
         "quantity": 1.0
       },
       {
-        "name": "majoránka",
+        "name": "majorÃ¡nka",
         "quantity": 1.0
       },
       {
-        "name": "bezlepková mouka",
+        "name": "bezlepkovÃ¡ mouka",
         "quantity": 1.0
       },
       {
@@ -3115,7 +3115,7 @@
         "quantity": 1.0
       },
       {
-        "name": "hrášek",
+        "name": "hrÃ¡Å¡ek",
         "quantity": 1.0
       },
       {
@@ -3123,15 +3123,15 @@
         "quantity": 1.0
       },
       {
-        "name": "pepø",
+        "name": "pepÅ™",
         "quantity": 1.0
       },
       {
-        "name": "sùl",
+        "name": "sÅ¯l",
         "quantity": 1.0
       },
       {
-        "name": "pórek",
+        "name": "pÃ³rek",
         "quantity": 1.0
       }
     ],
@@ -3142,7 +3142,7 @@
     "taste": "SALTY",
     "rating": 6,
     "keywords": [
-      "bezmasé"
+      "bezmasÃ©"
     ],
     "sideDishes": [
 

@@ -6,7 +6,7 @@
 
 package cz.afrosoft.whattoeat.diet.gui.dialog;
 
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import java.util.Collection;

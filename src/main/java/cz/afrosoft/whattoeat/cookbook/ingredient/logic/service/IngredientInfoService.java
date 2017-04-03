@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import cz.afrosoft.whattoeat.data.exception.NotFoundException;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;

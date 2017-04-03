@@ -6,7 +6,7 @@
 
 package cz.afrosoft.whattoeat.diet.logic.model;
 
-import cz.afrosoft.whattoeat.data.PersistentEntity;
+import cz.afrosoft.whattoeat.core.data.PersistentEntity;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;

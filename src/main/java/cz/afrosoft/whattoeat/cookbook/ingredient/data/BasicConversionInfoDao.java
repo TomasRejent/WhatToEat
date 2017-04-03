@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
-import cz.afrosoft.whattoeat.data.BaseDao;
+import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
 
 /**

@@ -4,9 +4,9 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.gui.dialog.util;
+package cz.afrosoft.whattoeat.core.gui.dialog.util;
 
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;

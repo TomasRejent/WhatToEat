@@ -7,8 +7,8 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import cz.afrosoft.whattoeat.data.exception.NotFoundException;
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;

@@ -1,15 +1,9 @@
 package cz.afrosoft.whattoeat;
 
-import com.google.common.collect.ImmutableList;
-import cz.afrosoft.whattoeat.gui.I18n;
-import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import java.util.Date;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import javafx.application.Application;
 import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;

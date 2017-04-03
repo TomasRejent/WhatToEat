@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.gui.controller;
+package cz.afrosoft.whattoeat.core.gui.controller;
 
 import cz.afrosoft.whattoeat.MainApp;
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;

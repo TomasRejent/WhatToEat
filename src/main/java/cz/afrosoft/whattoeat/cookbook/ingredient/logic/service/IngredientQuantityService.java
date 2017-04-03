@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import cz.afrosoft.whattoeat.data.exception.NotFoundException;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
@@ -24,7 +24,7 @@ public interface IngredientQuantityService {
      * for both 1 and 2 servings, so recipe contains quantity 0.5 per serving and this method ceil it to 1 in both cases.</li>
      * </ul>
      *
-     * Use {@link #getQuantity(cz.afrosoft.whattoeat.logic.model.Ingredient, cz.afrosoft.whattoeat.logic.model.IngredientInfo) } if you have reference to matching {@link IngredientInfo}.
+     * Use {@link #getQuantity(cz.afrosoft.whattoeat.core.logic.model.Ingredient, cz.afrosoft.whattoeat.core.logic.model.IngredientInfo) } if you have reference to matching {@link IngredientInfo}.
      *
      * @param ingredient (Required) Ingredient from which quantity is obtained.
      * @param numberOfServings (Required) Number of servings for which ingredient quantity is computed. Must be greater or equal to zero.
@@ -41,7 +41,7 @@ public interface IngredientQuantityService {
      * for both 1 and 2 servings, so recipe contains quantity 0.5 per serving and this method ceil it to 1 in both cases.</li>
      * </ul>
      *
-     * Use {@link #getQuantity(cz.afrosoft.whattoeat.logic.model.Ingredient) } if you do not have reference to {@link IngredientInfo}.
+     * Use {@link #getQuantity(cz.afrosoft.whattoeat.core.logic.model.Ingredient) } if you do not have reference to {@link IngredientInfo}.
      *
      * @param ingredient (Required) Ingredient from which quantity is obtained.
      * @param ingredientInfo (Required) Ingredient info matching to ingredient by name. It is used to determine ingredient type.

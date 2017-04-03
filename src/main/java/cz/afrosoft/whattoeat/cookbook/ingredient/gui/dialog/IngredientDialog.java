@@ -6,16 +6,16 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
-import cz.afrosoft.whattoeat.ServiceHolder;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
-import cz.afrosoft.whattoeat.gui.I18n;
-import cz.afrosoft.whattoeat.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.gui.controller.suggestion.FullWordSuggestionProvider;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
+import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;

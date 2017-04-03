@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.diet.data;
 
-import cz.afrosoft.whattoeat.data.BaseDao;
+import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 
 /**

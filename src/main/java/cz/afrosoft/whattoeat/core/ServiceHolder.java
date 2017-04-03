@@ -1,4 +1,4 @@
-package cz.afrosoft.whattoeat;
+package cz.afrosoft.whattoeat.core;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoJsonDao;
@@ -10,6 +10,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeServiceImpl;
+import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
+import cz.afrosoft.whattoeat.core.logic.service.ConfigServiceImpl;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.data.DietJsonDao;
 import cz.afrosoft.whattoeat.diet.logic.service.DietService;
@@ -28,6 +30,9 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorServic
  * @author Tomas Rejent
  */
 public final class ServiceHolder {
+
+    /* Core services */
+    private static final ConfigService CONFIG_SERVICE = ConfigServiceImpl.getInstance();
 
     /* DAO Services.*/
     private static final RecipeDao RECIPE_DAO = new RecipeJsonDao();
@@ -72,5 +77,9 @@ public final class ServiceHolder {
 
     public static GeneratorService getGeneratorService() {
         return GENERATOR_SERVICE;
+    }
+
+    public static ConfigService getConfigService(){
+        return CONFIG_SERVICE;
     }
 }

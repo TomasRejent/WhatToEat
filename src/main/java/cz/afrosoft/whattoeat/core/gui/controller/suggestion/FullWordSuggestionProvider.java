@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.gui.controller.suggestion;
+package cz.afrosoft.whattoeat.core.gui.controller.suggestion;
 
-import static cz.afrosoft.whattoeat.data.util.ParameterCheckUtils.checkNotNull;
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
 import java.util.Collection;
 import java.util.Comparator;

@@ -1,4 +1,12 @@
-FEATURES:
+----- QUESTIONS --------------------------------------------------------------------------------------------------------
+
+
+----- ARCHITECTURE -----------------------------------------------------------------------------------------------------
+- Create ER diagram and validate each attribute
+- Add UUID to every entity and migrate existing data
+
+Done:
+----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.
     - Styling dialog
@@ -15,11 +23,8 @@ FEATURES:
     - styling so preparation has more space and whole dialog space is used even
     when some categories are closed
 - Ingredient view
-X - Ingredients with PIECE type should support fraction values and round them up in view.
-X - Add service for computing recipe price.
-X - Add UI for food list generator.
+
 - Create mechanism for Generator with custom settings
-X - Create view for generated food lists
 - Diet view
     - Create mechanism for manual editing of generated food lists
     X - Update DayDiet to contain numer of servings which will be used for shopping list generation
@@ -28,15 +33,26 @@ X - Create view for generated food lists
     - Add export for shopping list
     - Show recipe on double cilck
 
-X - Show diet view on double click
-- Add ability to delete diet
-X - Display error dialog when recipe cannot be displayed because of invalid ingredient info
-- Translate new cz messages to en
-- Add config file for setting application settings.
-- Add file coding settings.
-X - Add possibility to open recipe by double click in recipe view table.
 
-BUGS:
-X - Ingredient keywords overlaps in recipe detail dialog.
+- Add ability to delete diet
+- Translate new cz messages to en
+- Add language to config file and use it program
+
+
+Done:
+X - Add possibility to open recipe by double click in recipe view table.
+X - Display error dialog when recipe cannot be displayed because of invalid ingredient info
+X - Show diet view on double click
+X - Ingredients with PIECE type should support fraction values and round them up in view.
+X - Add service for computing recipe price.
+X - Add UI for food list generator.
+X - Create view for generated food lists
+X - Add config file for setting application settings.
+X - Add file coding settings.
+
+----- BUGS -------------------------------------------------------------------------------------------------------------
 - Check if all file operations closes their streams.
 - Fix random generator to work even if no recipes are available for some type.
+
+Done:
+X - Ingredient keywords overlaps in recipe detail dialog.

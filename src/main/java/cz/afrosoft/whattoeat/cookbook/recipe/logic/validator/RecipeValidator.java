@@ -6,9 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.validator;
 
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.logic.validator.EntityValidator;
+import cz.afrosoft.whattoeat.core.logic.validator.EntityValidator;
 import java.util.HashMap;
 import java.util.Map;
 import org.apache.commons.lang3.StringUtils;

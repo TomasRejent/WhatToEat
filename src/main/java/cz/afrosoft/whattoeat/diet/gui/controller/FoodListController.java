@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import cz.afrosoft.whattoeat.ServiceHolder;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import java.net.URL;

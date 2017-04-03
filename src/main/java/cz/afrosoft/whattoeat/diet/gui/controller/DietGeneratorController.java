@@ -5,26 +5,19 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import cz.afrosoft.whattoeat.ServiceHolder;
-import cz.afrosoft.whattoeat.gui.I18n;
-import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.Generator;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorService;
 import java.net.URL;
-import java.util.Collection;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;

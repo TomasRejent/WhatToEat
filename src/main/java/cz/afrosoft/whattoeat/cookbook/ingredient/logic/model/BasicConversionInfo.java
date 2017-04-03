@@ -6,9 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
-import cz.afrosoft.whattoeat.data.PersistentEntity;
-import cz.afrosoft.whattoeat.data.util.ParameterCheckUtils;
-import cz.afrosoft.whattoeat.gui.I18n;
+import cz.afrosoft.whattoeat.core.data.PersistentEntity;
+import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

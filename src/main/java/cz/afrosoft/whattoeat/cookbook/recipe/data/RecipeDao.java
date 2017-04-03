@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.data;
 
-import cz.afrosoft.whattoeat.data.BaseDao;
+import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.util.List;

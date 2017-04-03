@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
-import cz.afrosoft.whattoeat.data.PersistentEntity;
+import cz.afrosoft.whattoeat.core.data.PersistentEntity;
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumSet;

@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
-import cz.afrosoft.whattoeat.gui.Labeled;
+import cz.afrosoft.whattoeat.core.gui.Labeled;
 
 /**
  *
