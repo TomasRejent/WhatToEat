@@ -787,58 +787,58 @@
     ]
   },
   {
-      "name": "Rajská polévka s těstovinou",
-      "preparation": "Poznámka: Méně mouky, bylo to zbytečné husté, protože rýžové hvězdičky vysály část vody.\n\nCibuli nakrájíme nadrobno. Cibuli osmažíme na oleji, přidáme mouku, opražíme a pak zalijeme vodou, přidáme sůl, cukr, protlak, těstoviny a hřebíčky a nechám vařit.Občas promíchat.",
-      "ingredients": [
-        {
-          "name": "cibule",
-          "quantity": 20.0
-        },
-        {
-          "name": "sůl",
-          "quantity": 0.0
-        },
-        {
-          "name": "cukr",
-          "quantity": 0.0
-        },
-        {
-          "name": "hřebíček",
-          "quantity": 0.0
-        },
-        {
-          "name": "rajský protlak",
-          "quantity": 36.75
-        },
-        {
-          "name": "těstoviny",
-          "quantity": 21.5
-        },
-        {
-          "name": "pepř",
-          "quantity": 0.0
-        },
-        {
-          "name": "voda",
-          "quantity": 350.0
-        },
-        {
-          "name": "bezlepková mouka",
-          "quantity": 8.75
-        }
-      ],
-      "preparationTime": "SHORT",
-      "recipeTypes": [
-        "SOUP"
-      ],
-      "taste": "SALTY",
-      "rating": 7,
-      "keywords": [
-        "bezlepkové",
-        "bezmasé",
-        "váženo"
-      ]
-    },
+    "name": "Rajská polévka s těstovinou",
+    "preparation": "Poznámka: Méně mouky, bylo to zbytečné husté, protože rýžové hvězdičky vysály část vody.\n\nCibuli nakrájíme nadrobno. Cibuli osmažíme na oleji, přidáme mouku, opražíme a pak zalijeme vodou, přidáme sůl, cukr, protlak, těstoviny a hřebíčky a nechám vařit.Občas promíchat.",
+    "ingredients": [
+      {
+        "name": "cibule",
+        "quantity": 20.0
+      },
+      {
+        "name": "sůl",
+        "quantity": 0.0
+      },
+      {
+        "name": "cukr",
+        "quantity": 0.0
+      },
+      {
+        "name": "hřebíček",
+        "quantity": 0.0
+      },
+      {
+        "name": "rajský protlak",
+        "quantity": 36.75
+      },
+      {
+        "name": "těstoviny",
+        "quantity": 21.5
+      },
+      {
+        "name": "pepř",
+        "quantity": 0.0
+      },
+      {
+        "name": "voda",
+        "quantity": 350.0
+      },
+      {
+        "name": "bezlepková mouka",
+        "quantity": 8.75
+      }
+    ],
+    "preparationTime": "SHORT",
+    "recipeTypes": [
+      "SOUP"
+    ],
+    "taste": "SALTY",
+    "rating": 7,
+    "keywords": [
+      "bezlepkové",
+      "bezmasé",
+      "váženo"
+    ]
+  },
   {
     "name": "Těstoviny",
     "preparation": "Hrnec si naplníme vodou cca 2 litre privedeme k varu. Když voda vaří tak ji osolíme, prilijeme olej a pridáme testoviny. Vaříme tak dlouho jak je uvedeno na obalu testovin. ",
@@ -3143,6 +3143,62 @@
     "rating": 6,
     "keywords": [
       "bezmasé"
+    ],
+    "sideDishes": [
+
+    ]
+  },
+  {
+    "name": "Zapečené brambory",
+    "preparation": "Brambory dáme vařit ve slupce. Nakrájíme cibuli na kostičky a dáme osmažit na pánvi společně se slaninou, poté přidáme vejce, posolíme a umícháme. Nakrájíme uzenou krkovici na kostičky a smícháme s usmaženými vejci. Můžeme vylepšit například sekanou petrželkou, nebo jinou bylinkou. Vychladlé brambory oloupeme a nakrájíme na kulaté plátky necelý 1cm silné. Do vymaštěného pekáče naklademe na dno brambory a posolíme, pokmínujeme a popepříme. Poté přidáme část míchaných vajíček a děláme další vrstvu brambor. Takto vrstvíme, nanhoře musí být ve výsledku brambory. Vložíme do trouby a zapečeme asi na 30 minut. Před koncem pečení zalijeme 2 rozmíchanými a posolenými vajíčky a cca 5 minut dopečeme.",
+    "ingredients": [
+      {
+        "name": "kmín",
+        "quantity": 0.0
+      },
+      {
+        "name": "brambory",
+        "quantity": 186.0
+      },
+      {
+        "name": "cibule",
+        "quantity": 36.0
+      },
+      {
+        "name": "olej",
+        "quantity": 0.0
+      },
+      {
+        "name": "slanina",
+        "quantity": 16.0
+      },
+      {
+        "name": "vajíčko",
+        "quantity": 2.0
+      },
+      {
+        "name": "pepř",
+        "quantity": 0.0
+      },
+      {
+        "name": "uzená krkovice",
+        "quantity": 50.0
+      },
+      {
+        "name": "sůl",
+        "quantity": 0.0
+      }
+    ],
+    "preparationTime": "LONG",
+    "recipeTypes": [
+      "LUNCH",
+      "DINNER"
+    ],
+    "taste": "SALTY",
+    "rating": 6,
+    "keywords": [
+      "bezlepkové",
+      "váženo"
     ],
     "sideDishes": [
 
