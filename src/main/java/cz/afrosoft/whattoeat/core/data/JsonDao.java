@@ -7,6 +7,7 @@
 package cz.afrosoft.whattoeat.core.data;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.core.data.exception.DataLoadException;
 import cz.afrosoft.whattoeat.core.data.exception.DataSaveException;
@@ -46,10 +47,21 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
         Validate.notNull(storageFile, "JSon storage file cannot be null.");
         Validate.notNull(clazz, "Clazz must be specified for proper type casting.");
 
+        configService = ServiceHolder.getConfigService();
         this.storageFile = storageFile;
         this.clazz = clazz;
-        gson = new Gson();
-        configService = ServiceHolder.getConfigService();
+        this.gson = createGson();
+    }
+
+    /**
+     * @return (NotNull) Creates gson instance based on config.
+     */
+    private Gson createGson(){
+        final GsonBuilder gsonBuilder = new GsonBuilder();
+        if(configService.getPrettyJson()){
+            gsonBuilder.setPrettyPrinting();
+        }
+        return gsonBuilder.create();
     }
 
     /**
