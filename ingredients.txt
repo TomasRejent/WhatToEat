@@ -1454,5 +1454,67 @@
       "mléčný výrobek",
       "sýr"
     ]
+  },
+  {
+    "name": "mouka",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": []
+  },
+  {
+    "name": "Caciotta Fleury",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.359,
+    "keywords": [
+      "sýr"
+    ]
+  },
+  {
+    "name": "Pecorino pistacchio",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.759,
+    "keywords": [
+      "sýr"
+    ]
+  },
+  {
+    "name": "Giuncata medvědí česnek",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.239,
+    "keywords": [
+      "sýr"
+    ]
+  },
+  {
+    "name": "Giuncata con la rucola",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.239,
+    "keywords": [
+      "sýr"
+    ]
+  },
+  {
+    "name": "mozzarella fresca",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.246,
+    "keywords": [
+      "sýr"
+    ]
+  },
+  {
+    "name": "Prosciutto cotto",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.429,
+    "keywords": [
+      "šunka"
+    ]
+  },
+  {
+    "name": "Salame Finocchiona",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.599,
+    "keywords": [
+      "salám"
+    ]
   }
 ]
