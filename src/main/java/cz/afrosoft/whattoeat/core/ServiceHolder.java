@@ -12,6 +12,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeServiceImpl;
 import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
 import cz.afrosoft.whattoeat.core.logic.service.ConfigServiceImpl;
+import cz.afrosoft.whattoeat.core.logic.service.UUIDService;
+import cz.afrosoft.whattoeat.core.logic.service.UuidServiceImpl;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.data.DietJsonDao;
 import cz.afrosoft.whattoeat.diet.logic.service.DietService;
@@ -33,6 +35,7 @@ public final class ServiceHolder {
 
     /* Core services */
     private static final ConfigService CONFIG_SERVICE = ConfigServiceImpl.getInstance();
+    private static final UUIDService UUID_SERVICE = new UuidServiceImpl();
 
     /* DAO Services.*/
     private static final RecipeDao RECIPE_DAO = new RecipeJsonDao();
@@ -81,5 +84,14 @@ public final class ServiceHolder {
 
     public static ConfigService getConfigService(){
         return CONFIG_SERVICE;
+    }
+
+    public static UUIDService getUUIDService(){
+        return UUID_SERVICE;
+    }
+
+
+    public static RecipeDao getRecipeDao() {
+        return RECIPE_DAO;
     }
 }

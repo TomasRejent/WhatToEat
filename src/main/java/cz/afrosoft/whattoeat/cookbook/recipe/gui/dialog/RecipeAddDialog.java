@@ -6,19 +6,15 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
 import java.util.HashSet;
 import java.util.Map;
@@ -171,7 +167,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         recipe.setRating(Double.valueOf(ratingField.getRating()).intValue());
         recipe.setKeywords(keywordSet);
         recipe.setPreparation(preparationField.getText());
-        recipe.setIngredients(ingredientList.stream().map((ingredientCouple) -> ingredientCouple.getIngredient()).collect(Collectors.toSet()));
+        recipe.setIngredients(ingredientList.stream().map((ingredientCouple) -> ingredientCouple.getRecipeIngredient()).collect(Collectors.toSet()));
         recipe.setSideDishes(new HashSet<>(sideDishList));
 
         RecipeValidator validator = new RecipeValidator();
@@ -265,7 +261,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, new FullWordSuggestionProvider(ingredientInfoService.getIngredientNames()));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String ingredientName = completionEvent.getCompletion();
-            final IngredientInfo ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
+            final Ingredient ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
             ingredientUnitLabel.setText(I18n.getText(ingredientInfo.getIngredientUnit().getLabelKey()));
             ingredientQuantityField.requestFocus();
         }));
@@ -290,8 +286,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
                     final String ingredientName = ingredientNameField.getText();
                     final String quantity = ingredientQuantityField.getText();
 
-                    final Ingredient ingredient = new Ingredient(ingredientName, Float.parseFloat(quantity));
-                    final IngredientInfo ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
+                    final RecipeIngredient ingredient = new RecipeIngredient(ingredientName, Float.parseFloat(quantity));
+                    final Ingredient ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
                     final IngredientCouple ingredientCouple = new IngredientCouple(ingredient, ingredientInfo);
 
                     if(!ingredientList.contains(ingredientCouple)){
@@ -313,13 +309,13 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         ingredientView.getColumns().addAll(nameColumn, quantityColumn, keywordsColumn);
         ingredientView.setItems(ingredientList);
 
-        nameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue().getIngredient().getName()));
+        nameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue().getRecipeIngredient().getIngredientKey()));
         quantityColumn.setCellValueFactory((param) -> {
             final IngredientCouple ingredientCouple = param.getValue();
-            final String quantity = ingredientCouple.getIngredient().getQuantity() + " " + I18n.getText(ingredientCouple.getIngredientInfo().getIngredientUnit().getLabelKey());
+            final String quantity = ingredientCouple.getRecipeIngredient().getQuantity() + " " + I18n.getText(ingredientCouple.getIngredient().getIngredientUnit().getLabelKey());
             return new ReadOnlyObjectWrapper<>(quantity);
         });
-        keywordsColumn.setCellValueFactory((TableColumn.CellDataFeatures<IngredientCouple, String> param) -> getValueFromSet(param.getValue().getIngredientInfo().getKeywords()));
+        keywordsColumn.setCellValueFactory((TableColumn.CellDataFeatures<IngredientCouple, String> param) -> getValueFromSet(param.getValue().getIngredient().getKeywords()));
     }
 
     private ObservableValue<String> getValueFromSet(Set<String> stringSet){

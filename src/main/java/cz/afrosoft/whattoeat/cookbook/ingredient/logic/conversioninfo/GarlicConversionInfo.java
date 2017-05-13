@@ -16,7 +16,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo
 public final class GarlicConversionInfo implements PieceConversionInfo {
 
     private static final String[] EXCLUDED_FIELDS = new String[]{"gramsOfAveragePiece"};
-    private static final String INGREDIENT_NAME = I18n.getText("cz.afrosoft.whattoeat.ingredient.piece.conversion.garlic.name");
+    private static final String INGREDIENT_NAME = "Garlic"; //I18n.getText("cz.afrosoft.whattoeat.ingredient.piece.conversion.garlic.name");
     private static final int GRAMS_OF_AVERAGE_GARLIC_BULB = 65;
     private static final int GRAMS_OF_AVERAGE_GARLIC_CLOVE = 4;
 
@@ -30,7 +30,7 @@ public final class GarlicConversionInfo implements PieceConversionInfo {
     }
 
     @Override
-    public String getIngredientName() {
+    public String getIngredientKey() {
         return INGREDIENT_NAME;
     }
 
@@ -73,7 +73,7 @@ public final class GarlicConversionInfo implements PieceConversionInfo {
 
         if(obj instanceof PieceConversionInfo){
             PieceConversionInfo conversionInfo = (PieceConversionInfo) obj;
-            return INGREDIENT_NAME.equals(conversionInfo.getIngredientName());
+            return INGREDIENT_NAME.equals(conversionInfo.getIngredientKey());
         }else{
             return false;
         }

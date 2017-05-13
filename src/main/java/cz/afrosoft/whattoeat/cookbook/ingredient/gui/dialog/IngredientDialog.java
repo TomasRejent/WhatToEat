@@ -6,12 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.*;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
@@ -37,7 +34,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * Dialog for adding and editing of {@link IngredientInfo}.
+ * Dialog for adding and editing of {@link Ingredient}.
  * @author Tomas Rejent
  */
 public class IngredientDialog extends Dialog<IngredientRow>{
@@ -71,8 +68,10 @@ public class IngredientDialog extends Dialog<IngredientRow>{
 
     private final IngredientInfoService ingredientInfoService = ServiceHolder.getIngredientInfoService();
 
+    private IngredientRow editRow;
+
     public IngredientDialog() {
-        LOGGER.debug("Creating Ingredient add/edit dialog.");
+        LOGGER.debug("Creating RecipeIngredient add/edit dialog.");
         this.setResizable(true);
         this.initModality(Modality.APPLICATION_MODAL);
         this.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
@@ -84,19 +83,17 @@ public class IngredientDialog extends Dialog<IngredientRow>{
 
     public IngredientRow showForCreate(){
         clearDialog();
-        nameField.setEditable(true);
         final Optional<IngredientRow> dialogResult = this.showAndWait();
         return dialogResult.orElse(null);
     }
 
     public IngredientRow showForEdit(final IngredientRow editRow){
         Validate.notNull(editRow);
-        final IngredientInfo ingredientInfo = editRow.getIngredientInfo();
-        Validate.notNull(ingredientInfo);
-
         clearDialog();
+        this.editRow = editRow;
+        final Ingredient ingredientInfo = editRow.getIngredientInfo();
+        Validate.notNull(ingredientInfo);
         nameField.setText(ingredientInfo.getName());
-        nameField.setEditable(false);
         unitField.getSelectionModel().select(ingredientInfo.getIngredientUnit());
         priceField.setText(String.valueOf(ingredientInfo.getPrice()));
         for(String keyword : ingredientInfo.getKeywords()){
@@ -123,6 +120,7 @@ public class IngredientDialog extends Dialog<IngredientRow>{
     }
 
     private void clearDialog(){
+        this.editRow = null;
         nameField.setText(StringUtils.EMPTY);
         unitField.getSelectionModel().clearSelection();
         priceField.setText(StringUtils.EMPTY);
@@ -132,15 +130,22 @@ public class IngredientDialog extends Dialog<IngredientRow>{
     }
 
     private IngredientRow fillFromDialog(){
-        final IngredientInfo ingredientInfo = new IngredientInfo();
+        final Ingredient ingredientInfo = getOrCreateIngredientInfo();
         ingredientInfo.setName(nameField.getText());
         ingredientInfo.setIngredientUnit(unitField.getValue());
         ingredientInfo.setPrice(Float.valueOf(priceField.getText()));
         ingredientInfo.setKeywords(keywordSet);
 
         final PieceConversionInfo pieceConversionInfo = getPieceConversionInfo(ingredientInfo.getName());
-        final IngredientRow ingredientRow = new IngredientRow(ingredientInfo, pieceConversionInfo);
-        return ingredientRow;
+        return new IngredientRow(ingredientInfo, pieceConversionInfo);
+    }
+
+    private Ingredient getOrCreateIngredientInfo(){
+        if(this.editRow == null){
+            return new Ingredient();
+        }else{
+            return this.editRow.getIngredientInfo();
+        }
     }
 
     private PieceConversionInfo getPieceConversionInfo(final String ingredientName){

@@ -13,30 +13,31 @@ import java.util.Objects;
  *
  * @author Alexandra
  */
-public final class Ingredient implements Serializable, PersistentEntity<String> {
-    
-    private String name;
+public final class RecipeIngredient implements Serializable, PersistentEntity<String> {
+
+
+    private String ingredientKey;
     private float quantity;
 
-    public Ingredient() {
+    public RecipeIngredient() {
     }
 
-    public Ingredient(String name, float quantity) {
-        this.name = name;
+    public RecipeIngredient(String ingredientKey, float quantity) {
+        this.ingredientKey = ingredientKey;
         this.quantity = quantity;
     }
 
     @Override
     public String getKey() {
-        return name;
+        return ingredientKey;
     }
 
-    public String getName() {
-        return name;
+    public String getIngredientKey() {
+        return ingredientKey;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setIngredientKey(String ingredientKey) {
+        this.ingredientKey = ingredientKey;
     }
 
     public float getQuantity() {
@@ -49,8 +50,8 @@ public final class Ingredient implements Serializable, PersistentEntity<String> 
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder(Ingredient.class.getSimpleName());
-        sb.append("{name=").append(name);
+        StringBuilder sb = new StringBuilder(RecipeIngredient.class.getSimpleName());
+        sb.append("{ingredientKey=").append(ingredientKey);
         sb.append(", quantity=").append(quantity);
         sb.append("}");
         return sb.toString();
@@ -59,7 +60,7 @@ public final class Ingredient implements Serializable, PersistentEntity<String> 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 89 * hash + Objects.hashCode(this.name);
+        hash = 89 * hash + Objects.hashCode(this.ingredientKey);
         return hash;
     }
 
@@ -74,8 +75,8 @@ public final class Ingredient implements Serializable, PersistentEntity<String> 
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Ingredient other = (Ingredient) obj;
-        if (!Objects.equals(this.name, other.name)) {
+        final RecipeIngredient other = (RecipeIngredient) obj;
+        if (!Objects.equals(this.ingredientKey, other.ingredientKey)) {
             return false;
         }
         return true;

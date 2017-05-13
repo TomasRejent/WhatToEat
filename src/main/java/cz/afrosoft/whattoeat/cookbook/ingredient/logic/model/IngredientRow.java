@@ -21,7 +21,7 @@ public class IngredientRow {
     private static final String NO_CONVERSION = "-";
     private static final String KEYWORD_SEPARATOR = ",";
 
-    private final IngredientInfo ingredientInfo;
+    private final Ingredient ingredientInfo;
     private final PieceConversionInfo pieceConversionInfo;
 
     /**
@@ -29,7 +29,7 @@ public class IngredientRow {
      * @param ingredientInfo (NotNull)
      * @param pieceConversionInfo (NullAble) Piece conversion info if exist for specified ingredient info.
      */
-    public IngredientRow(final IngredientInfo ingredientInfo, final PieceConversionInfo pieceConversionInfo) {
+    public IngredientRow(final Ingredient ingredientInfo, final PieceConversionInfo pieceConversionInfo) {
         Validate.notNull(ingredientInfo);
         this.ingredientInfo = ingredientInfo;
         this.pieceConversionInfo = pieceConversionInfo;
@@ -62,7 +62,7 @@ public class IngredientRow {
         }
     }
 
-    public IngredientInfo getIngredientInfo() {
+    public Ingredient getIngredientInfo() {
         return ingredientInfo;
     }
 

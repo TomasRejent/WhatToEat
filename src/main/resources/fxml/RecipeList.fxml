@@ -32,7 +32,7 @@
       </VBox>
       <TableView fx:id="recipeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
         <columns>
-          <TableColumn fx:id="nameColumn" editable="false" minWidth="50.0" prefWidth="200.0" text="%cz.afrosoft.whattoeat.recipes.table.header.name" />
+          <TableColumn fx:id="nameColumn" editable="false" minWidth="50.0" prefWidth="200.0" text="%cz.afrosoft.whattoeat.recipes.table.header.ingredientKey" />
           <TableColumn fx:id="recipeTypeColumn" editable="false" maxWidth="150.0" minWidth="50.0" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType" />
             <TableColumn fx:id="tasteColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.taste" />
             <TableColumn fx:id="preparationTimeColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime" />

@@ -6,14 +6,14 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
 import cz.afrosoft.whattoeat.core.data.BaseDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import java.util.Set;
 
 /**
- * Interface for {@link IngredientInfo} entity DAO to provide IngredientInfo specific data services.
+ * Interface for {@link Ingredient} entity DAO to provide Ingredient specific data services.
  * @author Tomas Rejent
  */
-public interface IngredientInfoDao extends BaseDao<IngredientInfo, String>{
+public interface IngredientInfoDao extends BaseDao<Ingredient, String>{
 
     /**
      * @return (NotNull) (ReadOnly) Set of all ingredient keywords.

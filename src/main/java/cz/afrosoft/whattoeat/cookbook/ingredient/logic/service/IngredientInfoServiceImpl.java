@@ -7,14 +7,12 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+
+import java.util.*;
+
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -31,7 +29,7 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     private final PieceConversionService pieceConversionService;
 
     public IngredientInfoServiceImpl(final IngredientInfoDao ingredientInfoDao, final PieceConversionService pieceConversionService) {
-        LOGGER.debug("Creating Ingredient Info service.");
+        LOGGER.debug("Creating RecipeIngredient Info service.");
         Validate.notNull(ingredientInfoDao);
         Validate.notNull(pieceConversionService);
         this.ingredientInfoDao = ingredientInfoDao;
@@ -39,18 +37,34 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     }
 
     @Override
-    public IngredientInfo getIngredientInfoByName(final String name) {
-        LOGGER.debug("Getting IngredientInfo with name: {}.", name);
-        Validate.notNull(name, "IngredientInfo name cannot be null.");
-        return ingredientInfoDao.read(name);
+    public List<Ingredient> getAllIngredients() {
+        return ingredientInfoDao.readAll();
+    }
+
+    @Override
+    public Ingredient getIngredientByKey(final String key) {
+        return ingredientInfoDao.read(key);
+    }
+
+    @Override
+    public Ingredient getIngredientInfoByName(final String name) {
+        LOGGER.debug("Getting Ingredient with name: {}.", name);
+        Validate.notNull(name, "Ingredient name cannot be null.");
+        List<Ingredient> ingredients = ingredientInfoDao.readAll();
+        for(Ingredient ingredient : ingredients){
+            if(Objects.equals(ingredient.getName(), name)){
+                return ingredient;
+            }
+        }
+        throw new IllegalStateException("Ingredient with name " + name + " was not found.");
     }
 
     @Override
     public Set<String> getIngredientNames() {
         LOGGER.debug("Getting names of all defined ingredients.");
-        final List<IngredientInfo> ingredients = ingredientInfoDao.readAll();
+        final List<Ingredient> ingredients = ingredientInfoDao.readAll();
         final Set<String> ingredientNames = new HashSet<>(ingredients.size());
-        for(IngredientInfo ingredient : ingredients){
+        for(Ingredient ingredient : ingredients){
             ingredientNames.add(ingredient.getName());
         }
         return Collections.unmodifiableSet(ingredientNames);
@@ -59,7 +73,7 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     @Override
     public List<IngredientRow> getIngredientRows() {
         LOGGER.debug("Getting ingredient rows.");
-        final List<IngredientInfo> ingredients = ingredientInfoDao.readAll();
+        final List<Ingredient> ingredients = ingredientInfoDao.readAll();
         final List<IngredientRow> rows = new ArrayList<>(ingredients.size());
         ingredients.stream().forEach(ingredient -> {
             rows.add(new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())));
@@ -76,7 +90,7 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     public void saveOrUpdate(final IngredientRow ingredientRow) {
         LOGGER.debug("Saving ingredient row: {}.", ingredientRow);
         Validate.notNull(ingredientRow);
-        final IngredientInfo ingredientInfo = ingredientRow.getIngredientInfo();
+        final Ingredient ingredientInfo = ingredientRow.getIngredientInfo();
         if(ingredientInfoDao.exists(ingredientInfo.getKey())){
             ingredientInfoDao.update(ingredientInfo);
         }else{

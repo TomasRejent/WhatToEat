@@ -11,7 +11,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
  */
 public interface PieceConversionInfo{
 
-    String getIngredientName();
+    String getIngredientKey();
 
     int getGramsOfAveragePiece();
 

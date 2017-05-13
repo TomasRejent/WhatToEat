@@ -8,7 +8,7 @@ package cz.afrosoft.whattoeat.diet.gui.dialog;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import java.util.Collection;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -39,7 +39,7 @@ public class ShoppingListDialog extends Dialog<Void>{
         setupLayout();
     }
 
-    public void showShoppingList(final Collection<Ingredient> ingredients){
+    public void showShoppingList(final Collection<RecipeIngredient> ingredients){
         ingredientList.setIngredients(ingredients);
         this.show();
     }

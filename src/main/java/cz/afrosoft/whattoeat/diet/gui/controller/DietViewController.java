@@ -6,6 +6,7 @@
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
 import cz.afrosoft.whattoeat.MainApp;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
@@ -13,7 +14,6 @@ import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import java.io.IOException;
@@ -201,21 +201,21 @@ public class DietViewController implements Initializable {
                 tablePosition -> getCellData(tablePosition)
         ).collect(Collectors.toList());
 
-        final Map<String, Ingredient> ingredientSumMap = new HashMap<>();
+        final Map<String, RecipeIngredient> ingredientSumMap = new HashMap<>();
         for(Meal meal : mealList){
             if(meal == null){
                 continue;
             }
 
             final Recipe recipe = recipeService.getRecipeByName(meal.getRecipeName());
-            Set<Ingredient> ingredients = recipe.getIngredients();
-            for(Ingredient recipeIngredient : ingredients){
-                final String ingredientName = recipeIngredient.getName();
-                final Ingredient shopingIngredient;
+            Set<RecipeIngredient> ingredients = recipe.getIngredients();
+            for(RecipeIngredient recipeIngredient : ingredients){
+                final String ingredientName = recipeIngredient.getIngredientKey();
+                final RecipeIngredient shopingIngredient;
                 if(ingredientSumMap.containsKey(ingredientName)){
                     shopingIngredient = ingredientSumMap.get(ingredientName);
                 }else{
-                    shopingIngredient = new Ingredient(ingredientName, 0);
+                    shopingIngredient = new RecipeIngredient(ingredientName, 0);
                     ingredientSumMap.put(ingredientName, shopingIngredient);
                 }
 

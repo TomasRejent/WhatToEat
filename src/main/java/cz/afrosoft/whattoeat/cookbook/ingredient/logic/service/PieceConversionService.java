@@ -5,13 +5,18 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+
+import java.util.List;
 
 /**
  *
  * @author afromanius
  */
 public interface PieceConversionService {
+
+    List<BasicConversionInfo> getAll();
 
     boolean hasPieceConversion(String ingredientName);
 

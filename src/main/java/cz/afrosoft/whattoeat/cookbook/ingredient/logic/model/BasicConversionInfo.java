@@ -22,28 +22,28 @@ public class BasicConversionInfo implements PieceConversionInfo, PersistentEntit
 
     private static final String[] EXCLUDED_FIELDS = new String[]{"gramsOfAveragePiece"};
 
-    private String ingredientName;
+    private String ingredientKey;
     private int gramsOfAveragePiece;
 
     public BasicConversionInfo() {
     }
 
-    public BasicConversionInfo(final String ingredientName, final int gramsOfAveragePiece) {
-        Validate.notNull(ingredientName);
+    public BasicConversionInfo(final String ingredientKey, final int gramsOfAveragePiece) {
+        Validate.notNull(ingredientKey);
         validateGramsOfAveragePiece(gramsOfAveragePiece);
 
-        this.ingredientName = ingredientName;
+        this.ingredientKey = ingredientKey;
         this.gramsOfAveragePiece = gramsOfAveragePiece;
     }
 
     @Override
     public String getKey() {
-        return ingredientName;
+        return ingredientKey;
     }
 
     @Override
-    public String getIngredientName() {
-        return ingredientName;
+    public String getIngredientKey() {
+        return ingredientKey;
     }
 
     @Override
@@ -60,9 +60,9 @@ public class BasicConversionInfo implements PieceConversionInfo, PersistentEntit
 
     
 
-    public void setIngredientName(String ingredientName) {
-        ParameterCheckUtils.checkNotNull(ingredientName, "Ingredient name cannot be null.");
-        this.ingredientName = ingredientName;
+    public void setIngredientKey(String ingredientKey) {
+        ParameterCheckUtils.checkNotNull(ingredientKey, "RecipeIngredient name cannot be null.");
+        this.ingredientKey = ingredientKey;
     }
 
     public void setGramsOfAveragePiece(int gramsOfAveragePiece) {

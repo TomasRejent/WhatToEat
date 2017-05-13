@@ -10,8 +10,8 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import org.apache.commons.lang3.Validate;
 
@@ -29,23 +29,23 @@ public class IngredientQuantityServiceImpl implements IngredientQuantityService{
     }
 
     @Override
-    public float getQuantity(final Ingredient ingredient, final int numberOfServings) {
-        checkNotNull(ingredient, "Ingredient cannot be null.");
+    public float getQuantity(final RecipeIngredient ingredient, final int numberOfServings) {
+        checkNotNull(ingredient, "RecipeIngredient cannot be null.");
         checkServings(numberOfServings);
 
-        final IngredientInfo ingredientInfo = ingredientInfoDao.read(ingredient.getName());
+        final Ingredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
         checkNotNull(ingredientInfo, "Cannot find matching ingredient info for ingredient: " + ingredient, NotFoundException.class);
 
         return getQuantity(ingredient, ingredientInfo, numberOfServings);
     }
 
     @Override
-    public float getQuantity(final Ingredient ingredient, final IngredientInfo ingredientInfo, final int numberOfServings) {
-        checkNotNull(ingredient, "Ingredient cannot be null.");
-        checkNotNull(ingredientInfo, "IngredientInfo cannot be null for ingredient: " + ingredient);
+    public float getQuantity(final RecipeIngredient ingredient, final Ingredient ingredientInfo, final int numberOfServings) {
+        checkNotNull(ingredient, "RecipeIngredient cannot be null.");
+        checkNotNull(ingredientInfo, "Ingredient cannot be null for ingredient: " + ingredient);
         checkServings(numberOfServings);
-        if(ingredient.getName() == null || !ingredient.getName().equals(ingredientInfo.getName())){
-            throw new IllegalArgumentException("Ingredient name is not matching with ingredient info name.");
+        if(ingredient.getIngredientKey() == null || !ingredient.getIngredientKey().equals(ingredientInfo.getKey())){
+            throw new IllegalArgumentException("RecipeIngredient name is not matching with ingredient info name.");
         }
 
         float quantityForServings = ingredient.getQuantity() * numberOfServings;

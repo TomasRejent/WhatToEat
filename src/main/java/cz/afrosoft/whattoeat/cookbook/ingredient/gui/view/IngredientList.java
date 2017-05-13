@@ -6,13 +6,13 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionService;
 import java.util.Collection;
 import java.util.Collections;
@@ -55,12 +55,12 @@ public final class IngredientList extends ListView<IngredientView>{
         this.refresh();
     }
 
-    public void setIngredients(Collection<Ingredient> ingredients){
+    public void setIngredients(Collection<RecipeIngredient> ingredients){
         ingredientList.clear();
-        for(Ingredient ingredient : ingredients){
-            IngredientInfo ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredient.getName());
+        for(RecipeIngredient ingredient : ingredients){
+            Ingredient ingredientInfo = ingredientInfoService.getIngredientByKey(ingredient.getIngredientKey());
             if(ingredientInfo == null){
-                LOGGER.warn("Ingredient {} has no ingredient info.", ingredient);
+                LOGGER.warn("RecipeIngredient {} has no ingredient info.", ingredient);
                 continue;
             }
 

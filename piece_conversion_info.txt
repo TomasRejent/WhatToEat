@@ -1,1 +1,26 @@
-[{"ingredientName":"řepa","gramsOfAveragePiece":190},{"ingredientName":"cibule","gramsOfAveragePiece":120},{"ingredientName":"klobása","gramsOfAveragePiece":100},{"ingredientName":"hladká mouka","gramsOfAveragePiece":1000},{"ingredientName":"droždí","gramsOfAveragePiece":42},{"ingredientName":"česnek","gramsOfAveragePiece":4}]
+[
+  {
+    "ingredientKey": "60c81299-137e-4fca-866b-a180325c3ab8",
+    "gramsOfAveragePiece": 190
+  },
+  {
+    "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
+    "gramsOfAveragePiece": 120
+  },
+  {
+    "ingredientKey": "fa300fa3-e9a0-48b2-8cd7-84ba9c74d528",
+    "gramsOfAveragePiece": 100
+  },
+  {
+    "ingredientKey": "cd809d46-94bc-44a6-ab15-8d6ad783a1d8",
+    "gramsOfAveragePiece": 1000
+  },
+  {
+    "ingredientKey": "512b20d9-809d-48cd-8045-9d32b02682ce",
+    "gramsOfAveragePiece": 42
+  },
+  {
+    "ingredientKey": "4cfee394-7b9f-46ba-afba-c45c50061a56",
+    "gramsOfAveragePiece": 4
+  }
+]

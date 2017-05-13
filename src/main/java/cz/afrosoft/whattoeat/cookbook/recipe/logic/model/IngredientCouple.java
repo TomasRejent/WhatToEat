@@ -8,7 +8,8 @@ package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
 import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+
 import java.util.Objects;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -18,23 +19,23 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class IngredientCouple {
 
+    private final RecipeIngredient recipeIngredient;
     private final Ingredient ingredient;
-    private final IngredientInfo ingredientInfo;
 
-    public IngredientCouple(Ingredient ingredient, IngredientInfo ingredientInfo) {
-        checkNotNull(ingredient, "Ingredient cannot be null.");
-        checkNotNull(ingredientInfo, "Ingredient info cannot be null.");
+    public IngredientCouple(RecipeIngredient recipeIngredient, Ingredient ingredient) {
+        checkNotNull(recipeIngredient, "RecipeIngredient cannot be null.");
+        checkNotNull(ingredient, "RecipeIngredient info cannot be null.");
 
+        this.recipeIngredient = recipeIngredient;
         this.ingredient = ingredient;
-        this.ingredientInfo = ingredientInfo;
+    }
+
+    public RecipeIngredient getRecipeIngredient() {
+        return recipeIngredient;
     }
 
     public Ingredient getIngredient() {
         return ingredient;
-    }
-
-    public IngredientInfo getIngredientInfo() {
-        return ingredientInfo;
     }
 
     @Override
@@ -60,7 +61,7 @@ public class IngredientCouple {
             return false;
         }
         final IngredientCouple other = (IngredientCouple) obj;
-        if (!Objects.equals(this.ingredient, other.ingredient)) {
+        if (!Objects.equals(this.recipeIngredient, other.recipeIngredient)) {
             return false;
         }
         return true;

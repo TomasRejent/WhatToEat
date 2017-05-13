@@ -66,7 +66,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
 
     /**
      * Creates entity in storage file specified when constructing this instance.
-     * @param entity (NotNull) Entity which should be persisted.
+     * @param entity (NotNull) UUIDEntity which should be persisted.
      * @return (NotNull) Persisted entity with filled key.
      * @throws DataLoadException When read fails for storage file.
      * @throws DataSaveException When entity already exist or if write to storage file fails.
@@ -87,7 +87,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
     /**
      * Reads entity from storage file specified when constructing this instance.
      * @param key (NotNull) Key of entity which should be loaded.
-     * @return (NotNull) Entity with specified key.
+     * @return (NotNull) UUIDEntity with specified key.
      * @throws DataLoadException If storage file cannot be read.
      * @throws NotFoundException  If entity with given key does not exist.
      */
@@ -101,20 +101,20 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
                 return entity;
             }
         }
-        throw new NotFoundException(String.format("Entity with key %s was not found in storage %s.", key, storageFile));
+        throw new NotFoundException(String.format("UUIDEntity with key %s was not found in storage %s.", key, storageFile));
     }
 
     @Override
     public boolean exists(final K key) {
         LOGGER.debug("Checking existence of entity with key: {}.", key);
-        Validate.notNull(key, "Entity key cannot be null.");
+        Validate.notNull(key, "UUIDEntity key cannot be null.");
         final List<T> entities = readAllInternal();
         return entities.stream().anyMatch(entity -> entity.getKey().equals(key));
     }
 
     /**
      * Updates entity in storage file specified when constructing this instance.
-     * @param entity (NotNull) Entity to update. Entity must already exist in storage.
+     * @param entity (NotNull) UUIDEntity to update. UUIDEntity must already exist in storage.
      * @throws DataLoadException If storage file cannot be read.
      * @throws DataSaveException If entity cannot be updated in storage.
      */
@@ -133,7 +133,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
 
     /**
      * Delete entity from storage file specified when constructing this instance.
-     * @param entity (NotNull) Entity to delete. If it does not exist nothing happens.
+     * @param entity (NotNull) UUIDEntity to delete. If it does not exist nothing happens.
      * @throws DataLoadException If storage file cannot be read.
      * @throws DataSaveException If entity cannot be deleted from storage.
      */

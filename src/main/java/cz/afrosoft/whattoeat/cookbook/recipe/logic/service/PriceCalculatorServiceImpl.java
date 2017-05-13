@@ -9,8 +9,8 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantit
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 
 /**
@@ -39,8 +39,8 @@ public class PriceCalculatorServiceImpl implements PriceCalculatorService {
         }
 
         float totalPrice = 0;
-        for(Ingredient ingredient : recipe.getIngredients()){
-            final IngredientInfo ingredientInfo = ingredientInfoDao.read(ingredient.getName());
+        for(RecipeIngredient ingredient : recipe.getIngredients()){
+            final Ingredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
             final float quantity = ingredientQuantityService.getQuantity(ingredient, ingredientInfo, servings);
 
             totalPrice += quantity * ingredientInfo.getPrice();

@@ -7,7 +7,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<GridPane minHeight="200.0" minWidth="200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller.IngredientListController">
+<GridPane minHeight="200.0" minWidth="200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.cookbook.recipeIngredient.gui.controller.IngredientListController">
   <columnConstraints>
     <ColumnConstraints fillWidth="false" hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
     <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -32,7 +32,7 @@
       </VBox>
       <TableView fx:id="ingredientTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
          <columns>
-            <TableColumn fx:id="nameColumn" minWidth="200.0" prefWidth="-1.0" text="%cz.afrosoft.whattoeat.ingredients.table.header.name" />
+            <TableColumn fx:id="nameColumn" minWidth="200.0" prefWidth="-1.0" text="%cz.afrosoft.whattoeat.ingredients.table.header.ingredientKey" />
             <TableColumn fx:id="unitColumn" maxWidth="130.0" minWidth="120.0" prefWidth="75.0" text="%cz.afrosoft.whattoeat.ingredients.table.header.unit" />
             <TableColumn fx:id="conversionColumn" maxWidth="150.0" minWidth="100.0" prefWidth="75.0" text="%cz.afrosoft.whattoeat.ingredients.table.header.conversion" />
             <TableColumn fx:id="priceColumn" maxWidth="150.0" minWidth="100.0" prefWidth="200.0" text="%cz.afrosoft.whattoeat.ingredients.table.header.price" />

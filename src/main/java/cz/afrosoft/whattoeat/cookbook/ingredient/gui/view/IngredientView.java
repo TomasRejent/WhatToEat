@@ -8,10 +8,10 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientInfo;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import java.util.Set;
 import org.apache.commons.lang3.StringUtils;
@@ -23,21 +23,21 @@ import org.apache.commons.lang3.Validate;
  */
 final class IngredientView implements Comparable<IngredientView>{
 
-        private final Ingredient ingredient;
-        private final IngredientInfo ingredientInfo;
+        private final RecipeIngredient ingredient;
+        private final Ingredient ingredientInfo;
 
         private int servings = 1;
 
-        public IngredientView(Ingredient ingredient, IngredientInfo ingredientInfo) {
-            checkNotNull(ingredient, "Ingredient cannot be null.");
-            checkNotNull(ingredientInfo, "Ingredient info cannot be null.");
+        public IngredientView(RecipeIngredient ingredient, Ingredient ingredientInfo) {
+            checkNotNull(ingredient, "RecipeIngredient cannot be null.");
+            checkNotNull(ingredientInfo, "RecipeIngredient info cannot be null.");
 
             this.ingredient = ingredient;
             this.ingredientInfo = ingredientInfo;
         }
 
         public String getName(){
-            return ingredient.getName();
+            return ingredientInfo.getName();
         }
 
         public float getQuantity(){

@@ -4,3 +4,5 @@ nbactions-release-profile.xml
 target
 log.txt
 diets.txt
+.idea
+/WhatToEat.iml

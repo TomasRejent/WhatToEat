@@ -13,6 +13,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo.GarlicConv
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -37,12 +38,17 @@ public class PieceConversionServiceImpl implements PieceConversionService{
 
         this.pieceConversionMap = new HashMap<>(pieceConversionInfoCollection.size() + specialConversions.size());
         for(PieceConversionInfo pieceConversionInfo : pieceConversionInfoCollection){
-            this.pieceConversionMap.put(pieceConversionInfo.getIngredientName(), pieceConversionInfo);
+            this.pieceConversionMap.put(pieceConversionInfo.getIngredientKey(), pieceConversionInfo);
         }
 
         for(PieceConversionInfo pieceConversionInfo : specialConversions){
-            this.pieceConversionMap.put(pieceConversionInfo.getIngredientName(), pieceConversionInfo);
+            this.pieceConversionMap.put(pieceConversionInfo.getIngredientKey(), pieceConversionInfo);
         }
+    }
+
+    @Override
+    public List<BasicConversionInfo> getAll() {
+        return basicConversionInfoDao.readAll();
     }
 
     @Override
@@ -75,7 +81,7 @@ public class PieceConversionServiceImpl implements PieceConversionService{
         Validate.notNull(pieceConversionInfo, "Piece conversion info cannot be null.");
         if(pieceConversionInfo instanceof BasicConversionInfo){
             final BasicConversionInfo basicInfo = (BasicConversionInfo) pieceConversionInfo;
-            if(basicConversionInfoDao.exists(basicInfo.getIngredientName())){
+            if(basicConversionInfoDao.exists(basicInfo.getIngredientKey())){
                 basicConversionInfoDao.update(basicInfo);
             }else{
                 basicConversionInfoDao.create(basicInfo);

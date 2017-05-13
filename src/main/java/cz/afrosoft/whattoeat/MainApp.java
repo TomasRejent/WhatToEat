@@ -2,7 +2,6 @@ package cz.afrosoft.whattoeat;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import javafx.application.Application;
-import static javafx.application.Application.launch;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
@@ -52,5 +51,4 @@ public class MainApp extends Application {
     public static void main(String[] args) {
         launch(args);
     }
-
 }

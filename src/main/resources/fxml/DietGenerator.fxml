@@ -19,7 +19,7 @@
    <children>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
          <children>
-            <Label fx:id="nameLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.name" />
+            <Label fx:id="nameLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.ingredientKey" />
             <TextField fx:id="nameField" />
             <Label fx:id="fromLabel" text="%cz.afrosoft.whattoeat.diet.generator.input.from" />
             <DatePicker fx:id="fromField" />

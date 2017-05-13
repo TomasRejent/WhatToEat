@@ -6,6 +6,8 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
 import cz.afrosoft.whattoeat.core.data.PersistentEntity;
+import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
+
 import java.io.Serializable;
 import java.util.Collections;
 import java.util.EnumSet;
@@ -16,11 +18,11 @@ import java.util.Set;
  *
  * @author Alexandra
  */
-public final class Recipe implements Serializable, PersistentEntity<String>{
+public final class Recipe extends UUIDEntity implements Serializable, PersistentEntity<String>{
     
     private String name;
     private String preparation;
-    private Set<Ingredient> ingredients;
+    private Set<RecipeIngredient> ingredients;
     
     private PreparationTime preparationTime;
     private Set<RecipeType> recipeTypes;
@@ -29,11 +31,6 @@ public final class Recipe implements Serializable, PersistentEntity<String>{
     
     private Set<String> keywords;
     private Set<String> sideDishes;
-
-    @Override
-    public String getKey() {
-        return name;
-    }
 
     public String getName() {
         return name;
@@ -51,11 +48,11 @@ public final class Recipe implements Serializable, PersistentEntity<String>{
         this.preparation = preparation;
     }
 
-    public Set<Ingredient> getIngredients() {
+    public Set<RecipeIngredient> getIngredients() {
         return Optional.ofNullable(ingredients).orElse(Collections.emptySet());
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(Set<RecipeIngredient> ingredients) {
         this.ingredients = ingredients;
     }
 

@@ -24,7 +24,7 @@
          </children></VBox>
       <TableView fx:id="dietTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
         <columns>
-          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="295.0" text="%cz.afrosoft.whattoeat.dietlist.table.name" />
+          <TableColumn fx:id="nameColumn" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="295.0" text="%cz.afrosoft.whattoeat.dietlist.table.ingredientKey" />
           <TableColumn fx:id="fromColumn" maxWidth="150.0" minWidth="0.0" prefWidth="150.0" text="%cz.afrosoft.whattoeat.dietlist.table.from" />
             <TableColumn fx:id="toColumn" maxWidth="150.0" minWidth="50.0" prefWidth="150.0" text="%cz.afrosoft.whattoeat.dietlist.table.to" />
         </columns>
