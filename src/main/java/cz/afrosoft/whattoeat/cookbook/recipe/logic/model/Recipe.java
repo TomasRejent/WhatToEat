@@ -6,6 +6,7 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
 import cz.afrosoft.whattoeat.core.data.PersistentEntity;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
 
 import java.io.Serializable;
@@ -18,8 +19,8 @@ import java.util.Set;
  *
  * @author Alexandra
  */
-public final class Recipe extends UUIDEntity implements Serializable, PersistentEntity<String>{
-    
+public final class Recipe extends UUIDEntity implements Serializable, PersistentEntity<String>, Comparable<Recipe>{
+
     private String name;
     private String preparation;
     private Set<RecipeIngredient> ingredients;
@@ -106,6 +107,15 @@ public final class Recipe extends UUIDEntity implements Serializable, Persistent
 
     public void setSideDishes(Set<String> sideDishes) {
         this.sideDishes = sideDishes;
+    }
+
+    @Override
+    public int compareTo(final Recipe thatRecipe) {
+        if(thatRecipe == null){
+            return 1;
+        }
+
+        return I18n.compareStringsIgnoreCase(name, thatRecipe.getName());
     }
 
     @Override

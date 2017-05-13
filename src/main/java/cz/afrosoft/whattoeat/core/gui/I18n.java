@@ -5,6 +5,9 @@
  */
 package cz.afrosoft.whattoeat.core.gui;
 
+import org.apache.commons.lang3.Validate;
+
+import java.text.Collator;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -18,12 +21,14 @@ public final class I18n {
     private static final String EMPTY_VALUE_KEY = "cz.afrosoft.whattoeat.value.empty";
 
     private static ResourceBundle resourceBundle;
+    private static Collator collator;
 
     private I18n(){}
 
     public static void init(String language){
         Locale locale = new Locale(language);
         I18n.resourceBundle = ResourceBundle.getBundle(TEXTS_BUNDLE_NAME, locale);
+        I18n.collator = Collator.getInstance(locale);
     }
 
     /**
@@ -47,4 +52,15 @@ public final class I18n {
         return resourceBundle;
     }
 
+    /**
+     * Compares two Strings ignoring case using locale specific collator.
+     * @param source (NotNull) First String to compare.
+     * @param target (NotNull) Second String to compare.
+     * @return Returns an integer less than, equal to or greater than zero depending on whether the source String is less than, equal to or greater than the target String.
+     */
+    public static int compareStringsIgnoreCase(final String source, final String target){
+        Validate.notNull(source);
+        Validate.notNull(target);
+        return collator.compare(source.toLowerCase(), target.toLowerCase());
+    }
 }

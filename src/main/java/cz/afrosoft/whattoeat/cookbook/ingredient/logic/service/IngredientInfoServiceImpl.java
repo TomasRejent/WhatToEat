@@ -12,6 +12,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -74,11 +75,12 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
     public List<IngredientRow> getIngredientRows() {
         LOGGER.debug("Getting ingredient rows.");
         final List<Ingredient> ingredients = ingredientInfoDao.readAll();
-        final List<IngredientRow> rows = new ArrayList<>(ingredients.size());
-        ingredients.stream().forEach(ingredient -> {
-            rows.add(new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())));
-        });
-        return Collections.unmodifiableList(rows);
+        return Collections.unmodifiableList(
+                ingredients.stream()
+                        .map(ingredient -> new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())))
+                        .sorted()
+                        .collect(Collectors.toList())
+        );
     }
 
     @Override

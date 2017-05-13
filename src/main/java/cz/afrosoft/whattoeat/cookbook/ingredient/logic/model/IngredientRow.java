@@ -12,11 +12,13 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
+import java.util.Objects;
+
 /**
  * Represents one row from ingredient table.
  * @author Tomas Rejent
  */
-public class IngredientRow {
+public class IngredientRow implements Comparable<IngredientRow>{
 
     private static final String NO_CONVERSION = "-";
     private static final String KEYWORD_SEPARATOR = ",";
@@ -68,6 +70,24 @@ public class IngredientRow {
 
     public PieceConversionInfo getPieceConversionInfo() {
         return pieceConversionInfo;
+    }
+
+    @Override
+    public int compareTo(final IngredientRow thatIngredientRow) {
+        if (thatIngredientRow == null){
+            return 1;
+        }
+        final Ingredient thisIngredient = ingredientInfo;
+        final Ingredient thatIngredient = thatIngredientRow.getIngredientInfo();
+        if(thisIngredient == thatIngredient){
+            return 0;
+        }else if(thisIngredient == null){
+            return -1;
+        }else if (thatIngredient == null){
+            return 1;
+        }else{
+            return I18n.compareStringsIgnoreCase(thisIngredient.getName(), thatIngredient.getName());
+        }
     }
 
     @Override

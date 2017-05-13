@@ -19,6 +19,8 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
+import java.util.stream.Collectors;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -79,7 +81,7 @@ public class RecipeListController implements Initializable {
         initColumnsValueFactories();
         setUpTableEvents();
 
-        fillRecipeTable(recipeService.getAllRecipes());
+        fillRecipeTable(recipeService.getAllRecipes().stream().sorted().collect(Collectors.toList()));
     }
 
 
