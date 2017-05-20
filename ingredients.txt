@@ -120,7 +120,7 @@
   {
     "name": "solamyl",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0782,
     "keywords": [
       "zahušťovadlo"
     ],
@@ -840,7 +840,7 @@
   {
     "name": "petržel",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0299,
     "keywords": [
       "zelenina"
     ],
@@ -952,7 +952,7 @@
   {
     "name": "sůl",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0079,
     "keywords": [
       "koření"
     ],
@@ -970,7 +970,7 @@
   {
     "name": "rozmarýn",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.883,
     "keywords": [
       "koření"
     ],
@@ -997,7 +997,7 @@
   {
     "name": "med",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.188,
     "keywords": [
       "koření"
     ],
@@ -1060,7 +1060,7 @@
   {
     "name": "libeček",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 1.8625,
     "keywords": [
       "koření"
     ],
@@ -1160,7 +1160,7 @@
   {
     "name": "kari",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.5966,
     "keywords": [
       "ochucovadlo"
     ],
@@ -1432,7 +1432,7 @@
   {
     "name": "kiwi",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.059,
     "keywords": [
       "ovoce"
     ],
@@ -1725,5 +1725,28 @@
       "pečivo"
     ],
     "uuid": "48b3bc9d-4102-4007-8aee-4a15d79c4933"
+  },
+  {
+    "name": "uzené tofu",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.155,
+    "keywords": [],
+    "uuid": "79c72a71-d0f1-4bfb-b4f5-50557ae14f07"
+  },
+  {
+    "name": "čínské zelí",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0269,
+    "keywords": [
+      "zelenina"
+    ],
+    "uuid": "ac36b5c7-d6da-43af-9cf5-0bac9799df43"
+  },
+  {
+    "name": "bambusové výhonky",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.131,
+    "keywords": [],
+    "uuid": "aa0987fd-40b3-413a-b760-c6d4c8ad8bf4"
   }
 ]

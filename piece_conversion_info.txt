@@ -22,5 +22,37 @@
   {
     "ingredientKey": "4cfee394-7b9f-46ba-afba-c45c50061a56",
     "gramsOfAveragePiece": 4
+  },
+  {
+    "ingredientKey": "uzené tofu",
+    "gramsOfAveragePiece": 180
+  },
+  {
+    "ingredientKey": "solamyl",
+    "gramsOfAveragePiece": 500
+  },
+  {
+    "ingredientKey": "kiwi",
+    "gramsOfAveragePiece": 100
+  },
+  {
+    "ingredientKey": "čínské zelí",
+    "gramsOfAveragePiece": 1480
+  },
+  {
+    "ingredientKey": "sůl",
+    "gramsOfAveragePiece": 1000
+  },
+  {
+    "ingredientKey": "libeček",
+    "gramsOfAveragePiece": 8
+  },
+  {
+    "ingredientKey": "rozmarýn",
+    "gramsOfAveragePiece": 18
+  },
+  {
+    "ingredientKey": "kari",
+    "gramsOfAveragePiece": 30
   }
 ]

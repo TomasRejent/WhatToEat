@@ -237,7 +237,7 @@
     "ingredients": [
       {
         "ingredientKey": "8d8deea8-4f0c-46d4-bcfb-5d1da5733243",
-        "quantity": 200.0
+        "quantity": 301.0
       },
       {
         "ingredientKey": "136985cb-26c6-4838-825d-b7529579eadb",
@@ -255,7 +255,9 @@
     "taste": "SALTY",
     "rating": 4,
     "keywords": [
-      "bezlepkové"
+      "bezlepkové",
+      "bezmasé",
+      "váženo"
     ],
     "uuid": "d83d3894-661d-4aac-a05e-a9553479665e"
   },
