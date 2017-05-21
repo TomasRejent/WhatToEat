@@ -14,22 +14,27 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo
 import java.util.*;
 import java.util.stream.Collectors;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+
 /**
- * Implementation of {@link IngredientInfoService}.
+ * Implementation of {@link IngredientService}.
  * @author Tomas Rejent
  */
-public class IngredientInfoServiceImpl implements IngredientInfoService{
+public class IngredientServiceImpl implements IngredientService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IngredientInfoServiceImpl.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(IngredientServiceImpl.class);
 
     private final IngredientInfoDao ingredientInfoDao;
     private final PieceConversionService pieceConversionService;
 
-    public IngredientInfoServiceImpl(final IngredientInfoDao ingredientInfoDao, final PieceConversionService pieceConversionService) {
+    public IngredientServiceImpl(final IngredientInfoDao ingredientInfoDao, final PieceConversionService pieceConversionService) {
         LOGGER.debug("Creating RecipeIngredient Info service.");
         Validate.notNull(ingredientInfoDao);
         Validate.notNull(pieceConversionService);
@@ -114,5 +119,14 @@ public class IngredientInfoServiceImpl implements IngredientInfoService{
         if(pieceConversionInfo != null){
             pieceConversionService.delete(pieceConversionInfo);
         }
+    }
+
+    @Override
+    public List<IngredientCouple> convertToCouple(Collection<RecipeIngredient> ingredients) {
+        checkNotNull(ingredients, "Cannot convert null list to IngredientCouples.");
+
+        return ingredients.stream().map(
+                (recipeIngredient) -> new IngredientCouple(recipeIngredient, getIngredientByKey(recipeIngredient.getKey()))
+        ).sorted().collect(Collectors.toList());
     }
 }

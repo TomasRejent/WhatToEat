@@ -8,7 +8,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 
@@ -40,12 +40,12 @@ public final class IngredientList extends ListView<IngredientView>{
 
     private final ObservableList<IngredientView> ingredientList = FXCollections.observableList(new LinkedList<IngredientView>());
 
-    private final IngredientInfoService ingredientInfoService;
+    private final IngredientService ingredientService;
 
     public IngredientList() {
         setItems(ingredientList);
         setCellFactory((ListView<IngredientView> param) -> new IngredientViewCell(pieceConversionService));
-        this.ingredientInfoService = ServiceHolder.getIngredientInfoService();
+        this.ingredientService = ServiceHolder.getIngredientInfoService();
     }
 
     public void setServings(int servings){
@@ -58,7 +58,7 @@ public final class IngredientList extends ListView<IngredientView>{
     public void setIngredients(Collection<RecipeIngredient> ingredients){
         ingredientList.clear();
         for(RecipeIngredient ingredient : ingredients){
-            Ingredient ingredientInfo = ingredientInfoService.getIngredientByKey(ingredient.getIngredientKey());
+            Ingredient ingredientInfo = ingredientService.getIngredientByKey(ingredient.getIngredientKey());
             if(ingredientInfo == null){
                 LOGGER.warn("RecipeIngredient {} has no ingredient info.", ingredient);
                 continue;

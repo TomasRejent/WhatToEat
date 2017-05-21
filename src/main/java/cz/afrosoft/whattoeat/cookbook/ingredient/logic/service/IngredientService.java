@@ -5,10 +5,15 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -16,7 +21,7 @@ import java.util.Set;
  * Service which handles work with {@link Ingredient} and related entities on business layer.
  * @author Tomas Rejent
  */
-public interface IngredientInfoService {
+public interface IngredientService {
 
     /**
      * Gets all ingredients.
@@ -61,5 +66,13 @@ public interface IngredientInfoService {
      * @param ingredientRow (NotNull) RecipeIngredient row to delete.
      */
     void delete(IngredientRow ingredientRow);
+
+    /**
+     * Converts collection of {@link RecipeIngredient} to {@link IngredientCouple}.
+     * @param ingredients (Required) Recipe ingredients to which Ingredient details will be added.
+     * @return (NotNull) List of ingredient couples.
+     * @throws IllegalArgumentException When argument is null.
+     */
+    List<IngredientCouple> convertToCouple(Collection<RecipeIngredient> ingredients);
 
 }

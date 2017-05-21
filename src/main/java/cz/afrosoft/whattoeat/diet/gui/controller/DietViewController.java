@@ -195,10 +195,17 @@ public class DietViewController implements Initializable {
     @FXML
     public void showShoppingList(){
         ObservableList<TablePosition> selectedCells = dietViewTable.getSelectionModel().getSelectedCells();
-        List<Meal> mealList = (List<Meal>) selectedCells.stream().filter(
+        List<Meal> mealList = selectedCells.stream().filter(
                 tablePosition -> !dayColumn.equals(tablePosition.getTableColumn())
         ).map(
-                tablePosition -> getCellData(tablePosition)
+                tablePosition -> {
+                    Object cellData = getCellData(tablePosition);
+                    if(cellData instanceof Meal){
+                        return (Meal) cellData;
+                    }else{
+                        throw new IllegalStateException();
+                    }
+                }
         ).collect(Collectors.toList());
 
         final Map<String, RecipeIngredient> ingredientSumMap = new HashMap<>();

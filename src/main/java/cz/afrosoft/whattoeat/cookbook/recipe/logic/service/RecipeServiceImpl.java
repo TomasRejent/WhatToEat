@@ -12,6 +12,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.util.List;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -57,6 +59,20 @@ public class RecipeServiceImpl implements RecipeService{
         LOGGER.debug("Adding new recipe: {}", recipe);
         Validate.notNull(recipe, "Cannot add null recipe.");
         recipeDao.create(recipe);
+    }
+
+    @Override
+    public void updateRecipe(Recipe recipe) {
+        LOGGER.debug("Updating recipe: {}", recipe);
+        ParameterCheckUtils.checkNotNull(recipe, "Cannot update null recipe.");
+        recipeDao.update(recipe);
+    }
+
+    @Override
+    public void deleteRecipe(Recipe recipe) {
+        LOGGER.debug("Deleting recipe: {}", recipe);
+        ParameterCheckUtils.checkNotNull(recipe, "Cannot delete null recipe.");
+        recipeDao.delete(recipe);
     }
 
     @Override

@@ -5,10 +5,10 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import java.net.URL;
@@ -50,7 +50,7 @@ public class IngredientListController implements Initializable {
     private final ObservableList<IngredientRow> tableRowsList = FXCollections.observableArrayList();
     private final IngredientDialog ingredientDialog = new IngredientDialog();
 
-    private final IngredientInfoService ingredientInfoService = ServiceHolder.getIngredientInfoService();
+    private final IngredientService ingredientService = ServiceHolder.getIngredientInfoService();
 
     /**
      * Initializes the controller class.
@@ -73,7 +73,7 @@ public class IngredientListController implements Initializable {
     private void fillTable(){
         LOGGER.debug("Filling ingredient table with ingredients.");
         tableRowsList.clear();
-        tableRowsList.addAll(ingredientInfoService.getIngredientRows());
+        tableRowsList.addAll(ingredientService.getIngredientRows());
         ingredientTable.setItems(tableRowsList);
     }
 
@@ -82,7 +82,7 @@ public class IngredientListController implements Initializable {
         LOGGER.debug("Add ingredient action called.");
         final IngredientRow ingredientRow = ingredientDialog.showForCreate();
         if(ingredientRow != null){
-            ingredientInfoService.saveOrUpdate(ingredientRow);
+            ingredientService.saveOrUpdate(ingredientRow);
             fillTable();
         }
     }
@@ -98,7 +98,7 @@ public class IngredientListController implements Initializable {
 
         final IngredientRow ingredientRow = ingredientDialog.showForEdit(selectedItem);
         if(ingredientRow != null){
-            ingredientInfoService.saveOrUpdate(ingredientRow);
+            ingredientService.saveOrUpdate(ingredientRow);
             fillTable();
         }
     }
@@ -113,7 +113,7 @@ public class IngredientListController implements Initializable {
         }
 
         if(DialogUtils.showConfirmDialog(I18n.getText(DELETE_CONFIRM_TITLE_KEY), I18n.getText(DELETE_CONFIRM_MESSAGE_KEY))){
-            ingredientInfoService.delete(selectedItem);
+            ingredientService.delete(selectedItem);
             fillTable();
         }
     }

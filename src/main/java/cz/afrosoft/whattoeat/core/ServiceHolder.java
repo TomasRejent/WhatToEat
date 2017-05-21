@@ -4,8 +4,8 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoJsonDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoJsonDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoServiceImpl;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.*;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
@@ -20,10 +20,6 @@ import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.service.DietServiceImpl;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorServiceImpl;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityServiceImpl;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionServiceImpl;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorServiceImpl;
 
@@ -48,7 +44,7 @@ public final class ServiceHolder {
     private static final PieceConversionService PIECE_CONVERSION_INFO = new PieceConversionServiceImpl(BASIC_CONVERSION_INFO_DAO);
     private static final IngredientQuantityService INGREDIENT_QUANTITY_SERVICE = new IngredientQuantityServiceImpl(INGREDIENT_INFO_DAO);
     private static final PriceCalculatorService PRICE_CALCULATOR_SERVICE = new PriceCalculatorServiceImpl(INGREDIENT_INFO_DAO, INGREDIENT_QUANTITY_SERVICE);
-    private static final IngredientInfoService INGREDIENT_INFO_SERVICE = new IngredientInfoServiceImpl(INGREDIENT_INFO_DAO, PIECE_CONVERSION_INFO);
+    private static final IngredientService INGREDIENT_INFO_SERVICE = new IngredientServiceImpl(INGREDIENT_INFO_DAO, PIECE_CONVERSION_INFO);
 
     /* Diet business layer services. */
     private static final DietService DIET_SERVICE = new DietServiceImpl(DIET_DAO);
@@ -58,7 +54,7 @@ public final class ServiceHolder {
         return RECIPE_SERVICE;
     }
 
-    public static IngredientInfoService getIngredientInfoService(){
+    public static IngredientService getIngredientInfoService(){
         return INGREDIENT_INFO_SERVICE;
     }
 

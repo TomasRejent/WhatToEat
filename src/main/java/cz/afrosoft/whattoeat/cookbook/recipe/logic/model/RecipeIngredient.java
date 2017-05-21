@@ -15,7 +15,6 @@ import java.util.Objects;
  */
 public final class RecipeIngredient implements Serializable, PersistentEntity<String> {
 
-
     private String ingredientKey;
     private float quantity;
 

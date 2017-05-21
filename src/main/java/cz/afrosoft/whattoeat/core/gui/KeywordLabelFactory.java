@@ -6,8 +6,14 @@
 
 package cz.afrosoft.whattoeat.core.gui;
 
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.event.EventType;
 import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.Border;
@@ -16,6 +22,10 @@ import javafx.scene.layout.BorderStrokeStyle;
 import javafx.scene.layout.BorderWidths;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.paint.Paint;
+import javafx.scene.text.Font;
+
+import java.awt.event.MouseEvent;
+import java.util.function.Function;
 
 /**
  *
@@ -28,11 +38,24 @@ public final class KeywordLabelFactory {
     private static final Background KEYWORD_BACKGROUND = createKeywordBackground();
     private static final Insets KEYWORD_PADDING = new Insets(2,5,2,5);   
 
-    public static final Label createKeywordLabel(final String keyword){
+    public static Label createKeywordLabel(final String keyword){
         final Label keywordLabel = new Label(keyword);
         keywordLabel.setPadding(KEYWORD_PADDING);
         keywordLabel.setBorder(KEYWORD_BORDER);
         keywordLabel.setBackground(KEYWORD_BACKGROUND);
+        return keywordLabel;
+    }
+
+    public static Label createRemovableKeywordLabel(String keyword, Function<String, Void> removeFunction){
+        final Label keywordLabel = createKeywordLabel(keyword);
+
+        final Button removeButton = new Button("X");
+        removeButton.setBackground(Background.EMPTY);
+        removeButton.setFont(Font.font(10));
+        removeButton.setOnAction(event -> removeFunction.apply(keywordLabel.getText()));
+        keywordLabel.setGraphic(removeButton);
+        keywordLabel.setContentDisplay(ContentDisplay.RIGHT);
+
         return keywordLabel;
     }
 

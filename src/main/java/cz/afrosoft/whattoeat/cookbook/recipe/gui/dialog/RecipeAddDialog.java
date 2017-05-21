@@ -7,10 +7,12 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
@@ -18,13 +20,12 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
 import java.util.HashSet;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
-import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
+import javafx.collections.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ButtonType;
@@ -34,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -47,7 +49,7 @@ import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * Dialog for adding recipes.
+ * Dialog for adding and editing recipes.
  * @author Tomas Rejent
  */
 public class RecipeAddDialog extends Dialog<Recipe>{
@@ -103,7 +105,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private final Label keywordLabel = new Label();
     private final TextField keywordField = new TextField();
     private final FlowPane keywordsView = new FlowPane(Orientation.HORIZONTAL);
-    private final Set<String> keywordSet = new HashSet<>();
+    private final ObservableSet<String> keywordSet = FXCollections.observableSet();
 
     private final Label ingredientLabel = new Label();
     private final Label ingredientNameLabel = new Label();
@@ -128,13 +130,15 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private final ObservableList<String> sideDishList = FXCollections.observableArrayList();
 
     private final RecipeService recipeService;
-    private final IngredientInfoService ingredientInfoService;
+    private final IngredientService ingredientService;
+
+    private Recipe editedRecipe;
 
     public RecipeAddDialog() {
         super();
 
         this.recipeService = ServiceHolder.getRecipeService();
-        this.ingredientInfoService = ServiceHolder.getIngredientInfoService();
+        this.ingredientService = ServiceHolder.getIngredientInfoService();
 
         this.setResizable(true);
         this.initModality(Modality.APPLICATION_MODAL);
@@ -145,6 +149,29 @@ public class RecipeAddDialog extends Dialog<Recipe>{
 
         setupLayout();
         setupResultConverter();
+    }
+
+    public Optional<Recipe> editRecipe(Recipe recipe){
+        ParameterCheckUtils.checkNotNull(recipe, "Cannot edit null recipe.");
+
+        editedRecipe = recipe;
+        fillFieldsFromRecipe(recipe);
+        return showAndWait();
+    }
+
+    private void fillFieldsFromRecipe(Recipe recipe){
+        nameField.setText(recipe.getName());
+        FillUtils.checkItems(typeField, recipe.getRecipeTypes());
+        tasteField.setValue(recipe.getTaste());
+        timeField.setValue(recipe.getPreparationTime());
+        ratingField.setRating(recipe.getRating());
+        keywordSet.clear();
+        keywordSet.addAll(recipe.getKeywords());
+        preparationField.setText(recipe.getPreparation());
+        ingredientList.clear();
+        ingredientList.addAll(ingredientService.convertToCouple(recipe.getIngredients()));
+        sideDishList.clear();
+        sideDishList.addAll(recipe.getSideDishes());
     }
 
     private void setupResultConverter(){
@@ -158,7 +185,12 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     }
 
     private Recipe createRecipe(){
-        final Recipe recipe = new Recipe();
+        final Recipe recipe;
+        if(editedRecipe == null){
+            recipe = new Recipe();
+        }else{
+            recipe = editedRecipe;
+        }
 
         recipe.setName(nameField.getText());
         recipe.setRecipeTypes(new HashSet<>(typeField.getCheckModel().getCheckedItems()));
@@ -167,7 +199,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         recipe.setRating(Double.valueOf(ratingField.getRating()).intValue());
         recipe.setKeywords(keywordSet);
         recipe.setPreparation(preparationField.getText());
-        recipe.setIngredients(ingredientList.stream().map((ingredientCouple) -> ingredientCouple.getRecipeIngredient()).collect(Collectors.toSet()));
+        recipe.setIngredients(ingredientList.stream().map(IngredientCouple::getRecipeIngredient).collect(Collectors.toSet()));
         recipe.setSideDishes(new HashSet<>(sideDishList));
 
         RecipeValidator validator = new RecipeValidator();
@@ -244,6 +276,17 @@ public class RecipeAddDialog extends Dialog<Recipe>{
                     break;
                 }
         });
+
+        //setup listener for observable keyword set
+        keywordSet.addListener((SetChangeListener<String>) change -> {
+            keywordsView.getChildren().clear();
+            for(String keyword : keywordSet) {
+                final Label keywordLabel = KeywordLabelFactory.createRemovableKeywordLabel(keyword,
+                        labelText -> {keywordSet.remove(labelText);return null;}
+                );
+                keywordsView.getChildren().add(keywordLabel);
+            }
+        });
     }
 
     private void addKeyword(final String keyword) {
@@ -253,15 +296,13 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         }
 
         keywordSet.add(keyword);
-        final Label keywordLabel = KeywordLabelFactory.createKeywordLabel(keyword);
-        keywordsView.getChildren().add(keywordLabel);
     }
 
     private void setupIngredientSuggestion(){
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, new FullWordSuggestionProvider(ingredientInfoService.getIngredientNames()));
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, new FullWordSuggestionProvider(ingredientService.getIngredientNames()));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String ingredientName = completionEvent.getCompletion();
-            final Ingredient ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
+            final Ingredient ingredientInfo = ingredientService.getIngredientInfoByName(ingredientName);
             ingredientUnitLabel.setText(I18n.getText(ingredientInfo.getIngredientUnit().getLabelKey()));
             ingredientQuantityField.requestFocus();
         }));
@@ -286,9 +327,9 @@ public class RecipeAddDialog extends Dialog<Recipe>{
                     final String ingredientName = ingredientNameField.getText();
                     final String quantity = ingredientQuantityField.getText();
 
-                    final RecipeIngredient ingredient = new RecipeIngredient(ingredientName, Float.parseFloat(quantity));
-                    final Ingredient ingredientInfo = ingredientInfoService.getIngredientInfoByName(ingredientName);
-                    final IngredientCouple ingredientCouple = new IngredientCouple(ingredient, ingredientInfo);
+                    final Ingredient ingredient = ingredientService.getIngredientInfoByName(ingredientName);
+                    final RecipeIngredient recipeIngredient = new RecipeIngredient(ingredient.getKey(), Float.parseFloat(quantity));
+                    final IngredientCouple ingredientCouple = new IngredientCouple(recipeIngredient, ingredient);
 
                     if(!ingredientList.contains(ingredientCouple)){
                         ingredientList.add(ingredientCouple);
@@ -309,13 +350,27 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         ingredientView.getColumns().addAll(nameColumn, quantityColumn, keywordsColumn);
         ingredientView.setItems(ingredientList);
 
-        nameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue().getRecipeIngredient().getIngredientKey()));
+        nameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue().getIngredient().getName()));
         quantityColumn.setCellValueFactory((param) -> {
             final IngredientCouple ingredientCouple = param.getValue();
             final String quantity = ingredientCouple.getRecipeIngredient().getQuantity() + " " + I18n.getText(ingredientCouple.getIngredient().getIngredientUnit().getLabelKey());
             return new ReadOnlyObjectWrapper<>(quantity);
         });
         keywordsColumn.setCellValueFactory((TableColumn.CellDataFeatures<IngredientCouple, String> param) -> getValueFromSet(param.getValue().getIngredient().getKeywords()));
+
+        //event for deleting ingredient row
+        setupTableRowDeleteEvent(ingredientView, ingredientList);
+    }
+
+    private <T> void setupTableRowDeleteEvent(TableView<T> table, ObservableList<T> itemList){
+        table.setOnKeyReleased(event -> {
+            if(KeyCode.DELETE.equals(event.getCode())){
+                T selectedItem = table.getSelectionModel().getSelectedItem();
+                if(selectedItem != null){
+                    itemList.remove(selectedItem);
+                }
+            }
+        });
     }
 
     private ObservableValue<String> getValueFromSet(Set<String> stringSet){
@@ -369,6 +424,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
 
         sideDishNameColumn.setCellValueFactory((param) -> new ReadOnlyObjectWrapper<>( param.getValue()));
         sideDishNameColumn.setMinWidth(300);
+
+        setupTableRowDeleteEvent(sideDishView, sideDishList);
     }
 
 }

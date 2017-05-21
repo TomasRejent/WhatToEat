@@ -43,8 +43,22 @@ public interface RecipeService {
     void addRecipe(Recipe recipe);
 
     /**
+     * Saves specified recipe to persistent storage. It must already exist in storage.
+     * @param recipe (Required) Recipe to update.
+     */
+    void updateRecipe(Recipe recipe);
+
+    /**
+     * Deletes specified recipe from storage.
+     * @param recipe (Required) recipe to delete.
+     */
+    void deleteRecipe(Recipe recipe);
+
+    /**
      * @return (NotNull)(ReadOnly) Set of keywords from all recipes.
      */
     Set<String> getAllRecipeKeywords();
+
+
 
 }

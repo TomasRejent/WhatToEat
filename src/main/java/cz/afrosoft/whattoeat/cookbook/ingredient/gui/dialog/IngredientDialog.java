@@ -7,9 +7,9 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.*;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientInfoService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
@@ -66,7 +66,7 @@ public class IngredientDialog extends Dialog<IngredientRow>{
     private final FlowPane keywordsView = new FlowPane(Orientation.HORIZONTAL);
     private final Set<String> keywordSet = new HashSet<>();
 
-    private final IngredientInfoService ingredientInfoService = ServiceHolder.getIngredientInfoService();
+    private final IngredientService ingredientService = ServiceHolder.getIngredientInfoService();
 
     private IngredientRow editRow;
 
@@ -197,7 +197,7 @@ public class IngredientDialog extends Dialog<IngredientRow>{
     }
 
     private void setupKeywordSuggestion(){
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(keywordField, new FullWordSuggestionProvider(ingredientInfoService.getAllIngredientKeywords()));
+        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(keywordField, new FullWordSuggestionProvider(ingredientService.getAllIngredientKeywords()));
 
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String keyword = completionEvent.getCompletion();

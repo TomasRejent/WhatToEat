@@ -11,13 +11,15 @@ import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotN
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 
 import java.util.Objects;
+
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  *
  * @author Tomas Rejent
  */
-public class IngredientCouple {
+public class IngredientCouple implements Comparable<IngredientCouple>{
 
     private final RecipeIngredient recipeIngredient;
     private final Ingredient ingredient;
@@ -36,6 +38,24 @@ public class IngredientCouple {
 
     public Ingredient getIngredient() {
         return ingredient;
+    }
+
+    @Override
+    public int compareTo(IngredientCouple thatIngredientCouple) {
+        if (thatIngredientCouple == null){
+            return 1;
+        }
+        final Ingredient thisIngredient = ingredient;
+        final Ingredient thatIngredient = thatIngredientCouple.getIngredient();
+        if(thisIngredient == thatIngredient){
+            return 0;
+        }else if(thisIngredient == null){
+            return -1;
+        }else if (thatIngredient == null){
+            return 1;
+        }else{
+            return I18n.compareStringsIgnoreCase(thisIngredient.getName(), thatIngredient.getName());
+        }
     }
 
     @Override

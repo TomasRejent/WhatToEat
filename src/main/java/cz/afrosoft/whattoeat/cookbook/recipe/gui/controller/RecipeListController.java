@@ -5,22 +5,15 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.Labeled;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
-import java.net.URL;
-import java.util.Collection;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.Set;
-import java.util.stream.Collectors;
-
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.Labeled;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -35,6 +28,13 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
+import java.util.Collection;
+import java.util.Optional;
+import java.util.ResourceBundle;
+import java.util.Set;
+import java.util.stream.Collectors;
+
 /**
  * FXML Controller class
  *
@@ -44,6 +44,8 @@ public class RecipeListController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeListController.class);
     private static final String KEYWORD_SEPARATOR = ",";
+    private static final String DELETE_CONFIRM_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.delete.recipe.title";
+    private static final String DELETE_CONFIRM_MESSAGE_KEY = "cz.afrosoft.whattoeat.dialog.delete.recipe.messages";
 
     @FXML
     private TableView<Recipe> recipeTable;
@@ -80,15 +82,15 @@ public class RecipeListController implements Initializable {
         LOGGER.info("Controller init");
         initColumnsValueFactories();
         setUpTableEvents();
+        recipeTable.setItems(tableRowsList);
 
-        fillRecipeTable(recipeService.getAllRecipes().stream().sorted().collect(Collectors.toList()));
+        refreshRecipeList();
     }
 
 
     private void fillRecipeTable(Collection<Recipe> recipes){
+        tableRowsList.clear();
         tableRowsList.addAll(recipes);
-        recipeTable.setItems(tableRowsList);
-
     }
 
     private void initColumnsValueFactories(){
@@ -140,10 +142,17 @@ public class RecipeListController implements Initializable {
         });
     }
 
+    private Recipe getSelectedRecipe(){
+        return recipeTable.getSelectionModel().getSelectedItem();
+    }
+
+    private void refreshRecipeList(){
+        fillRecipeTable(recipeService.getAllRecipes().stream().sorted().collect(Collectors.toList()));
+    }
 
     @FXML
     private void showRecipe(ActionEvent actionEvent){
-        Recipe selectedItem = recipeTable.getSelectionModel().getSelectedItem();
+        Recipe selectedItem = getSelectedRecipe();
         showRecipe(selectedItem);
     }
 
@@ -154,7 +163,37 @@ public class RecipeListController implements Initializable {
         LOGGER.debug("Returned recipe: {}", newRecipe);
         if(newRecipe.isPresent()){
             recipeService.addRecipe(newRecipe.get());
-            tableRowsList.add(0, newRecipe.get());
+            refreshRecipeList();
+        }
+    }
+
+    @FXML
+    private void editRecipe(ActionEvent actionEvent){
+        Recipe selectedRecipe = getSelectedRecipe();
+        if(selectedRecipe == null){
+            LOGGER.warn("No recipe is selected.");
+            return;
+        }
+        RecipeAddDialog recipeAddDialog = new RecipeAddDialog();
+        Optional<Recipe> editRecipe = recipeAddDialog.editRecipe(selectedRecipe);
+        if(editRecipe.isPresent()){
+            recipeService.updateRecipe(editRecipe.get());
+            refreshRecipeList();
+        }
+    }
+
+    @FXML
+    private void deleteRecipe(ActionEvent actionEvent){
+        LOGGER.debug("Delete recipe action called.");
+        Recipe selectedRecipe = getSelectedRecipe();
+        if(selectedRecipe == null){
+            LOGGER.warn("No recipe is selected.");
+            return;
+        }
+
+        if(DialogUtils.showConfirmDialog(I18n.getText(DELETE_CONFIRM_TITLE_KEY), I18n.getText(DELETE_CONFIRM_MESSAGE_KEY))){
+            recipeService.deleteRecipe(selectedRecipe);
+            refreshRecipeList();
         }
     }
     
