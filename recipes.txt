@@ -192,32 +192,32 @@
     "preparation": "Oloupeme brambory a dáme je vařit. Mezi tím nakrájime slaninu na drobné kostičky a dáme smažit na pánev. Nakrájíme cibuli na drobno a přidáme smažit ke slanině. Brambory vaříme dokud nejsou měké. Cibulku smažíme do zlatova. Slejeme vodu z brambor, přidáme obsah pánve a brambory rozmačkáme. Dochutíme kmínem, solí a případně máslem pro zjemnění.",
     "ingredients": [
       {
-        "ingredientKey": "8d8deea8-4f0c-46d4-bcfb-5d1da5733243",
-        "quantity": 150.0
-      },
-      {
         "ingredientKey": "f6895302-180e-4c11-9d70-284110a6d9a8",
-        "quantity": 50.0
+        "quantity": 30.0
       },
       {
         "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
-        "quantity": 60.0
-      },
-      {
-        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
-        "quantity": 5.0
-      },
-      {
-        "ingredientKey": "136985cb-26c6-4838-825d-b7529579eadb",
-        "quantity": 1.0
+        "quantity": 44.0
       },
       {
         "ingredientKey": "4e4c63e9-8e55-4b59-991e-12c5109593a5",
-        "quantity": 25.0
+        "quantity": 13.0
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "136985cb-26c6-4838-825d-b7529579eadb",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "8d8deea8-4f0c-46d4-bcfb-5d1da5733243",
+        "quantity": 254.0
       },
       {
         "ingredientKey": "9f88ebb1-4cac-48ed-9dc8-a1c2cf886731",
-        "quantity": 5.0
+        "quantity": 0.0
       }
     ],
     "preparationTime": "MEDIUM",
@@ -227,8 +227,10 @@
     "taste": "SALTY",
     "rating": 7,
     "keywords": [
-      "bezlepkové"
+      "bezlepkové",
+      "váženo"
     ],
+    "sideDishes": [],
     "uuid": "a968128a-58c1-4898-b3e7-a371970ff38f"
   },
   {
