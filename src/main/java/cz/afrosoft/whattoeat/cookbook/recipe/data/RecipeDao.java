@@ -18,6 +18,13 @@ import java.util.Set;
 public interface RecipeDao extends BaseDao<Recipe, String>{
 
     /**
+     * Gets recipe by its name.
+     * @param name (Required) Name of recipe.
+     * @return (NotNull)
+     */
+    Recipe getRecipeByName(String name);
+
+    /**
      * Get recipes which type matches at least one of specified {@link RecipeType}.
      * @param types (NotNull) Types by which recipes are filtered.
      * @return (NotNull)(ReadOnly) List of matching recipes or empty list if none was found.

@@ -3439,5 +3439,57 @@
       "Vařené brambory"
     ],
     "uuid": "6375642c-09a3-41dd-bfa0-7ccd17b7a9d0"
+  },
+  {
+    "name": "Dušené fazolové lusky s celozrnými těstovinami",
+    "preparation": "Anglickou slaninu nakrájíme na kostičky a zlehka osmahneme. Přidáme mražené fazolové lusky, které posypeme majoránkou a dusíme 10 minut. Oloupaný česnek rozetřem se solí a společně se sojovou omáčkou vmýcháme k fazolovým luskům a podusíme dalších 5 minut. Ve vroucí osolené vodě uvaříme těstoviny. Sýr nastrouháme na hrubo. Uvařené těstoviny podáváme s fazolovými lusky, posypané sýrem a pokapané kečupem.",
+    "ingredients": [
+      {
+        "ingredientKey": "4cfee394-7b9f-46ba-afba-c45c50061a56",
+        "quantity": 3.0
+      },
+      {
+        "ingredientKey": "f6895302-180e-4c11-9d70-284110a6d9a8",
+        "quantity": 25.0
+      },
+      {
+        "ingredientKey": "7ac40cd3-9a62-42b1-a87a-9559a3bd7ca4",
+        "quantity": 100.0
+      },
+      {
+        "ingredientKey": "59f52022-50cd-4899-baf0-f5789fc1ffaa",
+        "quantity": 25.0
+      },
+      {
+        "ingredientKey": "503a2f1c-19a1-4723-92b8-dda823124a05",
+        "quantity": 62.5
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "e257ba14-e14d-48cb-acfc-5a528de2ee62",
+        "quantity": 24.0
+      },
+      {
+        "ingredientKey": "4385053e-2218-4155-b8c0-2a574c49f739",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "19bcf82c-650a-4d91-9c0a-4eb8e7667bf0",
+        "quantity": 0.0
+      }
+    ],
+    "preparationTime": "MEDIUM",
+    "recipeTypes": [
+      "LUNCH",
+      "DINNER"
+    ],
+    "taste": "SALTY",
+    "rating": 5,
+    "keywords": [],
+    "sideDishes": [],
+    "uuid": "0c7294cc-26f1-48bc-b869-59cf3850c495"
   }
 ]

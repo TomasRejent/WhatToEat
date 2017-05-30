@@ -51,13 +51,13 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
         final Diet diet = createDietSkeleton(parameters);
         List<DayDiet> dayDiets = createDayDietSkeleton(parameters);
 
-        generateIfNeeded(parameters.getBreakfast(), dayDiets, recipes, RecipeType.BREAKFAST, (callbackParams) -> {callbackParams.dayDiet.setBreakfast(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getMorningSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setMorningSnack(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getSoup(), dayDiets, recipes, RecipeType.SOUP, (callbackParams) -> {callbackParams.dayDiet.setSoup(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getLunch(), dayDiets, recipes, RecipeType.LUNCH, (callbackParams) -> {callbackParams.dayDiet.setLunch(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getSideDish(), dayDiets, recipes, RecipeType.SIDE_DISH, (callbackParams) -> {callbackParams.dayDiet.setSideDish(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getAfternoonSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setAfternoonSnack(new Meal(callbackParams.recipeName)); return null;});
-        generateIfNeeded(parameters.getDinner(), dayDiets, recipes, RecipeType.DINNER, (callbackParams) -> {callbackParams.dayDiet.setDinner(new Meal(callbackParams.recipeName)); return null;});
+        generateIfNeeded(parameters.getBreakfast(), dayDiets, recipes, RecipeType.BREAKFAST, (callbackParams) -> {callbackParams.dayDiet.setBreakfast(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getMorningSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setMorningSnack(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getSoup(), dayDiets, recipes, RecipeType.SOUP, (callbackParams) -> {callbackParams.dayDiet.setSoup(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getLunch(), dayDiets, recipes, RecipeType.LUNCH, (callbackParams) -> {callbackParams.dayDiet.setLunch(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getSideDish(), dayDiets, recipes, RecipeType.SIDE_DISH, (callbackParams) -> {callbackParams.dayDiet.setSideDish(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getAfternoonSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setAfternoonSnack(new Meal(callbackParams.recipeKey)); return null;});
+        generateIfNeeded(parameters.getDinner(), dayDiets, recipes, RecipeType.DINNER, (callbackParams) -> {callbackParams.dayDiet.setDinner(new Meal(callbackParams.recipeKey)); return null;});
 
         diet.setDays(dayDiets);
         return diet;
@@ -71,8 +71,8 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
         if(isTrue(enabled)){
             List<Recipe> filteredRecipes = new ArrayList<>(filterRecipesByType(recipes, type));
             dayDiets.stream().forEach((dayDiet) -> {
-                final String recipeName = getRandomRecipe(filteredRecipes);
-                callback.call(new CallbackParams(recipeName, dayDiet));
+                final String recipeKey = getRandomRecipe(filteredRecipes);
+                callback.call(new CallbackParams(recipeKey, dayDiet));
             });
         }
     }
@@ -80,21 +80,21 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
     private String getRandomRecipe(List<Recipe> recipes){
         final int recipeIndex = random.nextInt(recipes.size());
         Recipe choosenRecipe = recipes.get(recipeIndex);
-        return choosenRecipe.getName();
+        return choosenRecipe.getKey();
     }
 
     private static class CallbackParams{
 
-        private final String recipeName;
+        private final String recipeKey;
         private final DayDiet dayDiet;
 
-        public CallbackParams(String recipeName, DayDiet dayDiet) {
-            this.recipeName = recipeName;
+        public CallbackParams(String recipeKey, DayDiet dayDiet) {
+            this.recipeKey = recipeKey;
             this.dayDiet = dayDiet;
         }
 
-        public String getRecipeName() {
-            return recipeName;
+        public String getRecipeKey() {
+            return recipeKey;
         }
 
         public DayDiet getDayDiet() {

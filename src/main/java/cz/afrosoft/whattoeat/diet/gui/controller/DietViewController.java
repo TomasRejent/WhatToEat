@@ -12,6 +12,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
+import cz.afrosoft.whattoeat.diet.gui.dto.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
@@ -61,19 +62,19 @@ public class DietViewController implements Initializable {
     @FXML
     private TableColumn<DayDiet, String> dayColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> breakfastColumn;
+    private TableColumn<DayDiet, MealView> breakfastColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> morningSnackColumn;
+    private TableColumn<DayDiet, MealView> morningSnackColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> soupColumn;
+    private TableColumn<DayDiet, MealView> soupColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> lunchColumn;
+    private TableColumn<DayDiet, MealView> lunchColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> sideDishColumn;
+    private TableColumn<DayDiet, MealView> sideDishColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> afternoonSnackColumn;
+    private TableColumn<DayDiet, MealView> afternoonSnackColumn;
     @FXML
-    private TableColumn<DayDiet, Meal> dinnerColumn;
+    private TableColumn<DayDiet, MealView> dinnerColumn;
     
     private ObservableList<DayDiet> dayDietList = FXCollections.observableArrayList();
     
@@ -184,8 +185,8 @@ public class DietViewController implements Initializable {
         if(dayColumn.equals(selectedColumn)){
             return;
         }
-        Meal cellData = (Meal) selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
-        Recipe recipe = recipeService.getRecipeByName(cellData.getRecipeName());
+        MealView cellData = (MealView) selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
+        Recipe recipe = recipeService.getRecipeByKey(cellData.getMeal().getRecipeKey());
         if(recipe == null){
             return;
         }
@@ -195,13 +196,13 @@ public class DietViewController implements Initializable {
     @FXML
     public void showShoppingList(){
         ObservableList<TablePosition> selectedCells = dietViewTable.getSelectionModel().getSelectedCells();
-        List<Meal> mealList = selectedCells.stream().filter(
+        List<MealView> mealList = selectedCells.stream().filter(
                 tablePosition -> !dayColumn.equals(tablePosition.getTableColumn())
         ).map(
                 tablePosition -> {
                     Object cellData = getCellData(tablePosition);
                     if(cellData instanceof Meal){
-                        return (Meal) cellData;
+                        return (MealView) cellData;
                     }else{
                         throw new IllegalStateException();
                     }
@@ -209,24 +210,24 @@ public class DietViewController implements Initializable {
         ).collect(Collectors.toList());
 
         final Map<String, RecipeIngredient> ingredientSumMap = new HashMap<>();
-        for(Meal meal : mealList){
-            if(meal == null){
+        for(MealView mealView : mealList){
+            if(mealView == null){
                 continue;
             }
 
-            final Recipe recipe = recipeService.getRecipeByName(meal.getRecipeName());
+            final Recipe recipe = recipeService.getRecipeByName(mealView.getRecipeName());
             Set<RecipeIngredient> ingredients = recipe.getIngredients();
             for(RecipeIngredient recipeIngredient : ingredients){
                 final String ingredientName = recipeIngredient.getIngredientKey();
-                final RecipeIngredient shopingIngredient;
+                final RecipeIngredient shoppingIngredient;
                 if(ingredientSumMap.containsKey(ingredientName)){
-                    shopingIngredient = ingredientSumMap.get(ingredientName);
+                    shoppingIngredient = ingredientSumMap.get(ingredientName);
                 }else{
-                    shopingIngredient = new RecipeIngredient(ingredientName, 0);
-                    ingredientSumMap.put(ingredientName, shopingIngredient);
+                    shoppingIngredient = new RecipeIngredient(ingredientName, 0);
+                    ingredientSumMap.put(ingredientName, shoppingIngredient);
                 }
 
-                shopingIngredient.setQuantity(shopingIngredient.getQuantity() + recipeIngredient.getQuantity()*meal.getServings());
+                shoppingIngredient.setQuantity(shoppingIngredient.getQuantity() + recipeIngredient.getQuantity()*mealView.getMeal().getServings());
             }
         }
 

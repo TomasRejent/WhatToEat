@@ -35,6 +35,13 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
+    public Recipe getRecipeByKey(String key) {
+        LOGGER.debug("Getting recipe by key: {}", key);
+        Validate.notBlank(key);
+        return recipeDao.read(key);
+    }
+
+    @Override
     public Recipe getRecipeByName(final String name) {
         LOGGER.debug("Getting recipe by name: {}.", name);
         Validate.notNull(name, "Recipe name cannot be null.");

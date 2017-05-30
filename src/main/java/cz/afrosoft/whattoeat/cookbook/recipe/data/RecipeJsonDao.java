@@ -34,6 +34,15 @@ public class RecipeJsonDao extends JsonDao<Recipe, String> implements RecipeDao{
     }
 
     @Override
+    public Recipe getRecipeByName(final String name) {
+        Validate.notBlank(name);
+        List<Recipe> allRecipes = readAll();
+        List<Recipe> filteredRecipes = allRecipes.stream().filter((recipe -> name.equals(recipe.getName()))).collect(Collectors.toList());
+        //TODO add check for list size
+        return filteredRecipes.get(0);
+    }
+
+    @Override
     public List<Recipe> getRecipeByType(final RecipeType... types) {
         LOGGER.debug("Filtering recipes by recipe type: {}", (Object[]) types);
         Validate.notNull(types, "At leas one recipe type must be specified.");

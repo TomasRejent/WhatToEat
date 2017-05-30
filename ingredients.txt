@@ -1748,5 +1748,33 @@
     "price": 0.131,
     "keywords": [],
     "uuid": "aa0987fd-40b3-413a-b760-c6d4c8ad8bf4"
+  },
+  {
+    "name": "celozrné těstoviny",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [
+      "těstovina"
+    ],
+    "uuid": "503a2f1c-19a1-4723-92b8-dda823124a05"
+  },
+  {
+    "name": "tvrdý sýr",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [
+      "mléčný výrobek",
+      "sýr"
+    ],
+    "uuid": "59f52022-50cd-4899-baf0-f5789fc1ffaa"
+  },
+  {
+    "name": "sojová omáčka",
+    "ingredientUnit": "VOLUME",
+    "price": 0.0,
+    "keywords": [
+      "ochucovadlo"
+    ],
+    "uuid": "e257ba14-e14d-48cb-acfc-5a528de2ee62"
   }
 ]

@@ -13,37 +13,32 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Alexandra
  */
 public class Meal implements Serializable{
-     
-    private String recipeName; 
+
+    private String recipeKey;
     private int servings;
 
     public Meal(){
         this.servings = 1;
     }
-    
-    public Meal(String recipeName){
-        this.recipeName = recipeName;
+
+    public Meal(String recipeKey){
+        this.recipeKey = recipeKey;
         this.servings = 1;
-    }
-    
-    public String getRecipeName() {
-        return recipeName;
     }
 
     public int getServings() {
         return servings;
     }
 
-    public void setRecipeName(String recipeName) {
-        this.recipeName = recipeName;
-    }
-
     public void setServings(int servings) {
         this.servings = servings;
     }
 
-    @Override
-    public String toString() {
-        return recipeName;        
-    }   
+    public String getRecipeKey() {
+        return recipeKey;
+    }
+
+    public void setRecipeKey(String recipeKey) {
+        this.recipeKey = recipeKey;
+    }
 }
