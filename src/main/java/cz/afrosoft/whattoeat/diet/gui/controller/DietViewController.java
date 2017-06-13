@@ -12,7 +12,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
-import cz.afrosoft.whattoeat.diet.gui.dto.MealView;
+import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
@@ -27,6 +27,8 @@ import java.util.Map;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import cz.afrosoft.whattoeat.diet.logic.service.MealService;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -82,9 +84,11 @@ public class DietViewController implements Initializable {
     private ShoppingListDialog shoppingListDialog;
 
     private final RecipeService recipeService;
+    private final MealService mealService;
 
     public DietViewController() {
         this.recipeService = ServiceHolder.getRecipeService();
+        this.mealService = ServiceHolder.getMealService();
     }
   
     public static void showDiet(final Diet diet){
@@ -186,7 +190,7 @@ public class DietViewController implements Initializable {
             return;
         }
         MealView cellData = (MealView) selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
-        Recipe recipe = recipeService.getRecipeByKey(cellData.getMeal().getRecipeKey());
+        Recipe recipe = recipeService.getRecipeByKey(cellData.getRecipeKey());
         if(recipe == null){
             return;
         }
@@ -201,7 +205,7 @@ public class DietViewController implements Initializable {
         ).map(
                 tablePosition -> {
                     Object cellData = getCellData(tablePosition);
-                    if(cellData instanceof Meal){
+                    if(cellData instanceof MealView){
                         return (MealView) cellData;
                     }else{
                         throw new IllegalStateException();
@@ -215,19 +219,19 @@ public class DietViewController implements Initializable {
                 continue;
             }
 
-            final Recipe recipe = recipeService.getRecipeByName(mealView.getRecipeName());
+            final Recipe recipe = recipeService.getRecipeByKey(mealView.getRecipeKey());
             Set<RecipeIngredient> ingredients = recipe.getIngredients();
             for(RecipeIngredient recipeIngredient : ingredients){
                 final String ingredientName = recipeIngredient.getIngredientKey();
-                final RecipeIngredient shoppingIngredient;
+                final RecipeIngredient shopingIngredient;
                 if(ingredientSumMap.containsKey(ingredientName)){
-                    shoppingIngredient = ingredientSumMap.get(ingredientName);
+                    shopingIngredient = ingredientSumMap.get(ingredientName);
                 }else{
-                    shoppingIngredient = new RecipeIngredient(ingredientName, 0);
-                    ingredientSumMap.put(ingredientName, shoppingIngredient);
+                    shopingIngredient = new RecipeIngredient(ingredientName, 0);
+                    ingredientSumMap.put(ingredientName, shopingIngredient);
                 }
 
-                shoppingIngredient.setQuantity(shoppingIngredient.getQuantity() + recipeIngredient.getQuantity()*mealView.getMeal().getServings());
+                shopingIngredient.setQuantity(shopingIngredient.getQuantity() + recipeIngredient.getQuantity()*mealView.getServings());
             }
         }
 
@@ -246,13 +250,21 @@ public class DietViewController implements Initializable {
             final ReadOnlyObjectWrapper<String> cell = new ReadOnlyObjectWrapper<>(dayString);
             return cell;
         });
-        breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getBreakfast()));
-        morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getMorningSnack()));
-        soupColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSoup()));
-        lunchColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getLunch()));
-        sideDishColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getSideDish()));
-        afternoonSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getAfternoonSnack()));
-        dinnerColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, Meal> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getDinner()));
+        breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getBreakfast()));
+        morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getMorningSnack()));
+        soupColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getSoup()));
+        lunchColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getLunch()));
+        sideDishColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getSideDish()));
+        afternoonSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getAfternoonSnack()));
+        dinnerColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getDinner()));
+    }
+
+    private ReadOnlyObjectWrapper<MealView> createObservableValue(Meal meal){
+        if (meal == null){
+            return null;
+        }else {
+            return new ReadOnlyObjectWrapper<>(mealService.getMealView(meal));
+        }
     }
     
 }

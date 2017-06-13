@@ -7,38 +7,47 @@ package cz.afrosoft.whattoeat.diet.logic.model;
 
 import java.io.Serializable;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 /**
  *
  * @author Alexandra
  */
 public class Meal implements Serializable{
-
+     
     private String recipeKey;
     private int servings;
 
     public Meal(){
         this.servings = 1;
     }
-
+    
     public Meal(String recipeKey){
         this.recipeKey = recipeKey;
         this.servings = 1;
+    }
+    
+    public String getRecipeKey() {
+        return recipeKey;
     }
 
     public int getServings() {
         return servings;
     }
 
+    public void setRecipeKey(String recipeKey) {
+        this.recipeKey = recipeKey;
+    }
+
     public void setServings(int servings) {
         this.servings = servings;
     }
 
-    public String getRecipeKey() {
-        return recipeKey;
-    }
-
-    public void setRecipeKey(String recipeKey) {
-        this.recipeKey = recipeKey;
-    }
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("recipeKey", recipeKey)
+                .append("servings", servings)
+                .build();
+    }   
 }

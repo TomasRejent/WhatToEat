@@ -35,10 +35,10 @@ public class RecipeServiceImpl implements RecipeService{
     }
 
     @Override
-    public Recipe getRecipeByKey(String key) {
-        LOGGER.debug("Getting recipe by key: {}", key);
-        Validate.notBlank(key);
-        return recipeDao.read(key);
+    public Recipe getRecipeByKey(String recipeKey) {
+        LOGGER.debug("Getting recipe by key: {}.", recipeKey);
+        Validate.notNull(recipeKey);
+        return recipeDao.read(recipeKey);
     }
 
     @Override

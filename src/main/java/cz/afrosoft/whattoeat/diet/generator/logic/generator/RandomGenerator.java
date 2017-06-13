@@ -17,6 +17,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
+import java.util.function.BiConsumer;
+import java.util.function.BooleanSupplier;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 import javafx.util.Callback;
 
 /**
@@ -51,56 +56,80 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
         final Diet diet = createDietSkeleton(parameters);
         List<DayDiet> dayDiets = createDayDietSkeleton(parameters);
 
-        generateIfNeeded(parameters.getBreakfast(), dayDiets, recipes, RecipeType.BREAKFAST, (callbackParams) -> {callbackParams.dayDiet.setBreakfast(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getMorningSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setMorningSnack(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getSoup(), dayDiets, recipes, RecipeType.SOUP, (callbackParams) -> {callbackParams.dayDiet.setSoup(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getLunch(), dayDiets, recipes, RecipeType.LUNCH, (callbackParams) -> {callbackParams.dayDiet.setLunch(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getSideDish(), dayDiets, recipes, RecipeType.SIDE_DISH, (callbackParams) -> {callbackParams.dayDiet.setSideDish(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getAfternoonSnack(), dayDiets, recipes, RecipeType.SNACK, (callbackParams) -> {callbackParams.dayDiet.setAfternoonSnack(new Meal(callbackParams.recipeKey)); return null;});
-        generateIfNeeded(parameters.getDinner(), dayDiets, recipes, RecipeType.DINNER, (callbackParams) -> {callbackParams.dayDiet.setDinner(new Meal(callbackParams.recipeKey)); return null;});
+        GenerationData generationData = new GenerationData(dayDiets, recipes, parameters);
+        generateIfNeeded(generationData, MealGenerationType.BREAKFAST);
+        generateIfNeeded(generationData, MealGenerationType.MORNING_SNACK);
+        generateIfNeeded(generationData, MealGenerationType.SOUP);
+        generateIfNeeded(generationData, MealGenerationType.LUNCH);
+        generateIfNeeded(generationData, MealGenerationType.SIDE_DISH);
+        generateIfNeeded(generationData, MealGenerationType.AFTERNOON_SNACK);
+        generateIfNeeded(generationData, MealGenerationType.DINNER);
 
         diet.setDays(dayDiets);
         return diet;
     }
 
-    private boolean isTrue(Boolean value){
-        return value != null && value;
-    }
-
-    private void generateIfNeeded(Boolean enabled, List<DayDiet> dayDiets, Collection<Recipe> recipes, RecipeType type, Callback<CallbackParams, Void> callback){
-        if(isTrue(enabled)){
-            List<Recipe> filteredRecipes = new ArrayList<>(filterRecipesByType(recipes, type));
-            dayDiets.stream().forEach((dayDiet) -> {
-                final String recipeKey = getRandomRecipe(filteredRecipes);
-                callback.call(new CallbackParams(recipeKey, dayDiet));
-            });
+    private void generateIfNeeded(GenerationData generationData, MealGenerationType type){
+        if(type.enablingMethod.apply(generationData.getParameters())){
+            List<Recipe> filteredRecipes = new ArrayList<>(filterRecipesByType(generationData.getRecipes(), type.recipeType));
+            generationData.getDayDiets().forEach((dayDiet) -> type.resultSetter.accept(dayDiet, getRandomMeal(filteredRecipes)));
         }
     }
 
-    private String getRandomRecipe(List<Recipe> recipes){
+    private Meal getRandomMeal(List<Recipe> recipes){
+        return recipeToMeal(getRandomRecipe(recipes));
+    }
+
+    private Recipe getRandomRecipe(List<Recipe> recipes){
         final int recipeIndex = random.nextInt(recipes.size());
-        Recipe choosenRecipe = recipes.get(recipeIndex);
-        return choosenRecipe.getKey();
+        return recipes.get(recipeIndex);
     }
 
-    private static class CallbackParams{
-
-        private final String recipeKey;
-        private final DayDiet dayDiet;
-
-        public CallbackParams(String recipeKey, DayDiet dayDiet) {
-            this.recipeKey = recipeKey;
-            this.dayDiet = dayDiet;
-        }
-
-        public String getRecipeKey() {
-            return recipeKey;
-        }
-
-        public DayDiet getDayDiet() {
-            return dayDiet;
-        }
-
+    private Meal recipeToMeal(Recipe recipe){
+        return new Meal(recipe.getKey());
     }
 
+    private class GenerationData{
+        final List<DayDiet> dayDiets;
+        final Collection<Recipe> recipes;
+        final GeneratorParameters parameters;
+
+        public GenerationData(List<DayDiet> dayDiets, Collection<Recipe> recipes, GeneratorParameters parameters) {
+            this.dayDiets = dayDiets;
+            this.recipes = recipes;
+            this.parameters = parameters;
+        }
+
+        public List<DayDiet> getDayDiets() {
+            return dayDiets;
+        }
+
+        public Collection<Recipe> getRecipes() {
+            return recipes;
+        }
+
+        public GeneratorParameters getParameters() {
+            return parameters;
+        }
+    }
+
+    private enum MealGenerationType{
+        BREAKFAST(RecipeType.BREAKFAST, GeneratorParameters::getBreakfast, DayDiet::setBreakfast),
+        MORNING_SNACK(RecipeType.SNACK, GeneratorParameters::getMorningSnack, DayDiet::setMorningSnack),
+        SOUP(RecipeType.SOUP, GeneratorParameters::getSoup, DayDiet::setSoup),
+        LUNCH(RecipeType.LUNCH, GeneratorParameters::getLunch, DayDiet::setLunch),
+        SIDE_DISH(RecipeType.SIDE_DISH, GeneratorParameters::getSideDish, DayDiet::setSideDish),
+        AFTERNOON_SNACK(RecipeType.SNACK, GeneratorParameters::getAfternoonSnack, DayDiet::setAfternoonSnack),
+        DINNER(RecipeType.DINNER, GeneratorParameters::getDinner, DayDiet::setDinner);
+
+        private final RecipeType recipeType;
+        private final BiConsumer<DayDiet, Meal> resultSetter;
+        private final Function<GeneratorParameters, Boolean> enablingMethod;
+
+        MealGenerationType(RecipeType recipeType, Function<GeneratorParameters, Boolean> enablingMethod, BiConsumer<DayDiet, Meal> resultSetter) {
+            this.recipeType = recipeType;
+            this.resultSetter = resultSetter;
+            this.enablingMethod = enablingMethod;
+        }
+    }
 }

@@ -22,6 +22,8 @@ import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorServiceImpl;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorServiceImpl;
+import cz.afrosoft.whattoeat.diet.logic.service.MealService;
+import cz.afrosoft.whattoeat.diet.logic.service.MealServiceImpl;
 
 /**
  * Class which manages creation of services and provides static access to them.
@@ -49,6 +51,7 @@ public final class ServiceHolder {
     /* Diet business layer services. */
     private static final DietService DIET_SERVICE = new DietServiceImpl(DIET_DAO);
     private static final GeneratorService GENERATOR_SERVICE = new GeneratorServiceImpl(RECIPE_DAO, DIET_DAO);
+    private static final MealService MEAL_SERVICE = new MealServiceImpl(RECIPE_SERVICE);
 
     public static RecipeService getRecipeService(){
         return RECIPE_SERVICE;
@@ -73,6 +76,8 @@ public final class ServiceHolder {
     public static DietService getDietService() {
         return DIET_SERVICE;
     }
+
+    public static MealService getMealService(){return MEAL_SERVICE;}
 
     public static GeneratorService getGeneratorService() {
         return GENERATOR_SERVICE;

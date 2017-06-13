@@ -19,6 +19,14 @@ public interface RecipeService {
     Recipe getRecipeByKey(String key);
 
     /**
+     * Gets recipe by key.
+     * @param recipeKey (NotNull) Key of recipe.
+     * @return (NotNull) Recipe with specified key.
+     * @throws NotFoundException If recipe with given key does not exist.
+     */
+    Recipe getRecipeByKey(String recipeKey);
+
+    /**
      * Gets recipe by name.
      * @param name (NotNull) Name of recipe.
      * @return (NotNull) Recipe with specified name.
