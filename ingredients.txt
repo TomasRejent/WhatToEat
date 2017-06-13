@@ -23,13 +23,15 @@
   {
     "name": "olej",
     "ingredientUnit": "VOLUME",
-    "price": 0.0,
+    "price": 0.04,
+    "keywords": [],
     "uuid": "9f88ebb1-4cac-48ed-9dc8-a1c2cf886731"
   },
   {
     "name": "olivový olej",
     "ingredientUnit": "VOLUME",
-    "price": 0.0,
+    "price": 0.13,
+    "keywords": [],
     "uuid": "96b79bf6-38eb-4af1-a0f0-0d9fe16061fa"
   },
   {
@@ -327,7 +329,7 @@
   {
     "name": "krůtí prso",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.159,
     "keywords": [
       "maso",
       "drůbeží"
@@ -399,7 +401,7 @@
   {
     "name": "jogurt bílý",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0526,
     "keywords": [
       "mléčný výrobek"
     ],
@@ -669,7 +671,7 @@
   {
     "name": "kedluben",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.027,
     "keywords": [
       "zelenina"
     ],
@@ -732,7 +734,7 @@
   {
     "name": "hrášek",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0845,
     "keywords": [
       "zelenina"
     ],
@@ -822,7 +824,7 @@
   {
     "name": "dýně",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.035,
     "keywords": [
       "zelenina"
     ],
@@ -879,7 +881,7 @@
   {
     "name": "fazole s rajčatovou omáčkou konzerva",
     "ingredientUnit": "PIECE",
-    "price": 0.0,
+    "price": 13.0,
     "keywords": [
       "zelenina",
       "konzerva"
@@ -979,7 +981,7 @@
   {
     "name": "pesto",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.425,
     "keywords": [
       "koření"
     ],
@@ -1115,7 +1117,7 @@
   {
     "name": "ocet",
     "ingredientUnit": "VOLUME",
-    "price": 0.0,
+    "price": 0.008,
     "keywords": [
       "ochucovadlo"
     ],
@@ -1124,7 +1126,7 @@
   {
     "name": "sirup",
     "ingredientUnit": "VOLUME",
-    "price": 0.0,
+    "price": 0.05,
     "keywords": [
       "ochucovadlo"
     ],
@@ -1232,7 +1234,8 @@
   {
     "name": "mandle",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.3,
+    "keywords": [],
     "uuid": "bcf77e72-e3f9-4cb8-a41b-23da5f5cd78b"
   },
   {
@@ -1286,9 +1289,12 @@
     "uuid": "0dfcea71-5c38-4592-90a0-a85fcd10af76"
   },
   {
-    "name": "fazolky",
+    "name": "fazolové lusky",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.0575,
+    "keywords": [
+      "zelenina"
+    ],
     "uuid": "7ac40cd3-9a62-42b1-a87a-9559a3bd7ca4"
   },
   {
@@ -1423,7 +1429,7 @@
   {
     "name": "jahody",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.1,
     "keywords": [
       "ovoce"
     ],
@@ -1538,7 +1544,7 @@
   {
     "name": "droždí",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.119,
     "keywords": [],
     "uuid": "512b20d9-809d-48cd-8045-9d32b02682ce"
   },

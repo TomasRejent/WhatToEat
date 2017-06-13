@@ -54,5 +54,9 @@
   {
     "ingredientKey": "kari",
     "gramsOfAveragePiece": 30
+  },
+  {
+    "ingredientKey": "fazole s rajčatovou omáčkou konzerva",
+    "gramsOfAveragePiece": 13
   }
 ]
