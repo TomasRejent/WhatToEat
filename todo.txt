@@ -3,10 +3,10 @@
 
 ----- ARCHITECTURE -----------------------------------------------------------------------------------------------------
 - Create ER diagram and validate each attribute
-- Use recipe UUIDs in diets
 
 Done:
 X - Add UUID to every entity and migrate existing data
+X - Use recipe UUIDs in diets
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.
@@ -53,7 +53,7 @@ X - Add file coding settings.
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Check if all file operations closes their streams.
-- Fix random generator to work even if no recipes are available for some type.
 
 Done:
 X - Ingredient keywords overlaps in recipe detail dialog.
+X - Fix random generator to work even if no recipes are available for some type.

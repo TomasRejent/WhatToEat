@@ -72,7 +72,9 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
     private void generateIfNeeded(GenerationData generationData, MealGenerationType type){
         if(type.enablingMethod.apply(generationData.getParameters())){
             List<Recipe> filteredRecipes = new ArrayList<>(filterRecipesByType(generationData.getRecipes(), type.recipeType));
-            generationData.getDayDiets().forEach((dayDiet) -> type.resultSetter.accept(dayDiet, getRandomMeal(filteredRecipes)));
+            if(!filteredRecipes.isEmpty()){
+                generationData.getDayDiets().forEach((dayDiet) -> type.resultSetter.accept(dayDiet, getRandomMeal(filteredRecipes)));
+            }
         }
     }
 
