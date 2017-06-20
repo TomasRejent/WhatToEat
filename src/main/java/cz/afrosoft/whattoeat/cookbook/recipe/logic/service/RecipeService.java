@@ -16,8 +16,6 @@ import java.util.Set;
  */
 public interface RecipeService {
 
-    Recipe getRecipeByKey(String key);
-
     /**
      * Gets recipe by key.
      * @param recipeKey (NotNull) Key of recipe.
