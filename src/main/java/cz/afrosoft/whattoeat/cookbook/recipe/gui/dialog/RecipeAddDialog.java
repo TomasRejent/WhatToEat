@@ -316,7 +316,6 @@ public class RecipeAddDialog extends Dialog<Recipe>{
                     break;
                 }
         });
-
     }
 
     private void setupIngredientEvents(){

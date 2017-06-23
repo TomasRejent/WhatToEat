@@ -12,6 +12,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
 import org.apache.commons.lang3.Validate;
@@ -45,7 +46,7 @@ public class RecipeServiceImpl implements RecipeService{
     public Recipe getRecipeByName(final String name) {
         LOGGER.debug("Getting recipe by name: {}.", name);
         Validate.notNull(name, "Recipe name cannot be null.");
-        return recipeDao.read(name);
+        return recipeDao.getRecipeByName(name);
     }
 
     @Override
@@ -86,5 +87,11 @@ public class RecipeServiceImpl implements RecipeService{
     public Set<String> getAllRecipeKeywords() {
         LOGGER.debug("Geting all keywords from recipes.");
         return recipeDao.getRecipeKeywords();
+    }
+
+    @Override
+    public Set<String> getAllRecipeNames() {
+        LOGGER.debug("Geting all names of recipes.");
+        return recipeDao.readAll().stream().map(Recipe::getName).collect(Collectors.toSet());
     }
 }

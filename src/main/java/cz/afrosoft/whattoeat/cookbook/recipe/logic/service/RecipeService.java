@@ -67,6 +67,9 @@ public interface RecipeService {
      */
     Set<String> getAllRecipeKeywords();
 
-
+    /**
+     * @return (NotNull)(ReadOnly) Set containing names of all recipes.
+     */
+    Set<String> getAllRecipeNames();
 
 }

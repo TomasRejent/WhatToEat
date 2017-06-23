@@ -11,6 +11,7 @@ import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
+import cz.afrosoft.whattoeat.diet.gui.dialog.MealDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
@@ -20,12 +21,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import java.io.IOException;
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.ResourceBundle;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import cz.afrosoft.whattoeat.diet.logic.service.MealService;
@@ -34,6 +30,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -81,6 +78,7 @@ public class DietViewController implements Initializable {
     private ObservableList<DayDiet> dayDietList = FXCollections.observableArrayList();
     
     private RecipeViewDialog recipeViewDialog;
+    private MealDialog mealDialog;
     private ShoppingListDialog shoppingListDialog;
 
     private final RecipeService recipeService;
@@ -114,6 +112,7 @@ public class DietViewController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         recipeViewDialog = new RecipeViewDialog();
+        mealDialog = new MealDialog();
         shoppingListDialog = new ShoppingListDialog();
         
         initColumnsValueFactories();
@@ -179,24 +178,26 @@ public class DietViewController implements Initializable {
     
     @FXML
     public void showRecipe(){
-        ObservableList<TablePosition> selectedCells = dietViewTable.getSelectionModel().getSelectedCells();
-        if(selectedCells.isEmpty()){
-            return;
+        Optional<MealView> selectedMeal = getFirstSelectedMeal();
+        if(selectedMeal.isPresent()){
+            Recipe recipe = recipeService.getRecipeByKey(selectedMeal.get().getRecipeKey());
+            if(recipe == null){
+                return;
+            }
+            recipeViewDialog.showRecipe(recipe);
         }
-        
-        TablePosition<DayDiet, ?> selectedPosition = selectedCells.get(0);
-        TableColumn<DayDiet, ?> selectedColumn = selectedPosition.getTableColumn();
-        if(dayColumn.equals(selectedColumn)){
-            return;
-        }
-        MealView cellData = (MealView) selectedPosition.getTableColumn().getCellData(selectedPosition.getRow());
-        Recipe recipe = recipeService.getRecipeByKey(cellData.getRecipeKey());
-        if(recipe == null){
-            return;
-        }
-        recipeViewDialog.showRecipe(recipe);
     }
-    
+
+    @FXML
+    public void editMeal(){
+        Optional<MealView> selectedMeal = getFirstSelectedMeal();
+        if(!selectedMeal.isPresent()){
+            return;
+        }
+
+        mealDialog.showMealDialog(selectedMeal.get());
+    }
+
     @FXML
     public void showShoppingList(){
         ObservableList<TablePosition> selectedCells = dietViewTable.getSelectionModel().getSelectedCells();
@@ -223,32 +224,26 @@ public class DietViewController implements Initializable {
             Set<RecipeIngredient> ingredients = recipe.getIngredients();
             for(RecipeIngredient recipeIngredient : ingredients){
                 final String ingredientName = recipeIngredient.getIngredientKey();
-                final RecipeIngredient shopingIngredient;
+                final RecipeIngredient shoppingIngredient;
                 if(ingredientSumMap.containsKey(ingredientName)){
-                    shopingIngredient = ingredientSumMap.get(ingredientName);
+                    shoppingIngredient = ingredientSumMap.get(ingredientName);
                 }else{
-                    shopingIngredient = new RecipeIngredient(ingredientName, 0);
-                    ingredientSumMap.put(ingredientName, shopingIngredient);
+                    shoppingIngredient = new RecipeIngredient(ingredientName, 0);
+                    ingredientSumMap.put(ingredientName, shoppingIngredient);
                 }
 
-                shopingIngredient.setQuantity(shopingIngredient.getQuantity() + recipeIngredient.getQuantity()*mealView.getServings());
+                shoppingIngredient.setQuantity(shoppingIngredient.getQuantity() + recipeIngredient.getQuantity()*mealView.getServings());
             }
         }
 
         shoppingListDialog.showShoppingList(ingredientSumMap.values());
     }
     
-    private <T> T getCellData(TablePosition<DayDiet, T> tablePosition){
-        T cellData = tablePosition.getTableColumn().getCellData(tablePosition.getRow());
-        return cellData;
-    }
-    
     private void initColumnsValueFactories() {
         dayColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, String> param) -> {
             final LocalDate day = param.getValue().getDay();
             final String dayString = day == null ? StringUtils.EMPTY : day.toString();
-            final ReadOnlyObjectWrapper<String> cell = new ReadOnlyObjectWrapper<>(dayString);
-            return cell;
+            return new ReadOnlyObjectWrapper<>(dayString);
         });
         breakfastColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getBreakfast()));
         morningSnackColumn.setCellValueFactory((TableColumn.CellDataFeatures<DayDiet, MealView> param) -> createObservableValue(param.getValue().getMorningSnack()));
@@ -265,6 +260,22 @@ public class DietViewController implements Initializable {
         }else {
             return new ReadOnlyObjectWrapper<>(mealService.getMealView(meal));
         }
+    }
+
+    private Optional<MealView> getFirstSelectedMeal(){
+        FilteredList<TablePosition> mealSelection = dietViewTable.getSelectionModel().getSelectedCells().filtered(
+                tablePosition -> !dayColumn.equals(tablePosition.getTableColumn())
+        );
+        if(mealSelection.isEmpty()){
+            return Optional.empty();
+        }else{
+            MealView selectedMeal = getCellData((TablePosition<DayDiet, MealView>) mealSelection.get(0));
+            return Optional.ofNullable(selectedMeal);
+        }
+    }
+
+    private <T> T getCellData(TablePosition<DayDiet, T> tablePosition){
+        return tablePosition.getTableColumn().getCellData(tablePosition.getRow());
     }
     
 }
