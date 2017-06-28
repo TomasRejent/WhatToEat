@@ -31,6 +31,18 @@ public class MealView {
         return meal.getServings();
     }
 
+    public void setRecipeKey(String recipeKey){
+        meal.setRecipeKey(recipeKey);
+    }
+
+    public void setServings(int servings){
+        meal.setServings(servings);
+    }
+
+    public Meal getMeal() {
+        return meal;
+    }
+
     @Override
     public String toString() {
         return recipeName;

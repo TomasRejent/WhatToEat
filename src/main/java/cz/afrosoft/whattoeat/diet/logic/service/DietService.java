@@ -6,6 +6,8 @@
 package cz.afrosoft.whattoeat.diet.logic.service;
 
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.logic.model.Meal;
+
 import java.util.List;
 
 /**
@@ -18,5 +20,7 @@ public interface DietService {
      * @return (NotNull)(ReadOnly) List of all diets.
      */
     List<Diet> getAllDiets();
+
+    void updateMeal(Meal meal);
 
 }

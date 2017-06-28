@@ -24,6 +24,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
+import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.service.MealService;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -83,10 +84,12 @@ public class DietViewController implements Initializable {
 
     private final RecipeService recipeService;
     private final MealService mealService;
+    private final DietService dietService;
 
     public DietViewController() {
         this.recipeService = ServiceHolder.getRecipeService();
         this.mealService = ServiceHolder.getMealService();
+        this.dietService = ServiceHolder.getDietService();
     }
   
     public static void showDiet(final Diet diet){
@@ -195,7 +198,9 @@ public class DietViewController implements Initializable {
             return;
         }
 
-        mealDialog.showMealDialog(selectedMeal.get());
+        Optional<MealView> mealView = mealDialog.showMealDialog(selectedMeal.get());
+        mealView.ifPresent((mealView1 -> dietService.updateMeal(mealView1.getMeal())));
+        dietViewTable.refresh();
     }
 
     @FXML

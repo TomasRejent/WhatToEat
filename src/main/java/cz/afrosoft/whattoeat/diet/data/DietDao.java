@@ -7,11 +7,14 @@ package cz.afrosoft.whattoeat.diet.data;
 
 import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.logic.model.Meal;
 
 /**
  * Interface for {@link Diet} entity DAO to provide Diet specific data services.
  * @author Tomas Rejent
  */
 public interface DietDao extends BaseDao<Diet, String>{
+
+    void updateMeal(Meal meal);
 
 }

@@ -6,6 +6,8 @@
 package cz.afrosoft.whattoeat.diet.logic.model;
 
 import java.io.Serializable;
+
+import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
@@ -13,7 +15,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
  *
  * @author Alexandra
  */
-public class Meal implements Serializable{
+public class Meal extends UUIDEntity implements Serializable{
      
     private String recipeKey;
     private int servings;
@@ -49,5 +51,15 @@ public class Meal implements Serializable{
                 .append("recipeKey", recipeKey)
                 .append("servings", servings)
                 .build();
-    }   
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        return super.equals(o);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

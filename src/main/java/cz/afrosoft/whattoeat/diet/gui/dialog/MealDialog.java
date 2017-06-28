@@ -44,6 +44,8 @@ public class MealDialog extends Dialog<MealView>{
 
     private final RecipeService recipeService = ServiceHolder.getRecipeService();
 
+    private MealView editedMeal;
+
     public MealDialog() {
         this.setTitle(I18n.getText(I18N_TITLE));
         this.setResizable(true);
@@ -61,6 +63,7 @@ public class MealDialog extends Dialog<MealView>{
         if(meal != null){
             recipeField.setText(meal.getRecipeName());
             servingsField.setText(String.valueOf(meal.getServings()));
+            editedMeal = meal;
         }
 
         return showAndWait();
@@ -121,9 +124,9 @@ public class MealDialog extends Dialog<MealView>{
             return null;
         }
 
-        Meal meal = new Meal();
-        meal.setRecipeKey(recipe.getKey());
-        meal.setServings(Integer.parseInt(servingsString));
-        return new MealView(meal, recipeName);
+        editedMeal.setRecipeName(recipeName);
+        editedMeal.setRecipeKey(recipe.getKey());
+        editedMeal.setServings(Integer.parseInt(servingsString));
+        return editedMeal;
     }
 }

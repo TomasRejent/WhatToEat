@@ -9,6 +9,8 @@ package cz.afrosoft.whattoeat.diet.logic.service;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import java.util.List;
+
+import cz.afrosoft.whattoeat.diet.logic.model.Meal;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,5 +35,11 @@ public class DietServiceImpl implements DietService{
     public List<Diet> getAllDiets() {
         LOGGER.debug("Getting all diets.");
         return dietDao.readAll();
+    }
+
+    @Override
+    public void updateMeal(Meal meal) {
+        Validate.notNull(meal);
+        dietDao.updateMeal(meal);
     }
 }
