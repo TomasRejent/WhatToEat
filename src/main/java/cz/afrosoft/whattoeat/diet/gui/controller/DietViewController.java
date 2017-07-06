@@ -5,25 +5,19 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import cz.afrosoft.whattoeat.MainApp;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.ServiceHolder;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.gui.dialog.MealDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import java.io.IOException;
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.*;
-import java.util.stream.Collectors;
-
 import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.service.MealService;
 import javafx.application.Platform;
@@ -47,6 +41,12 @@ import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.io.IOException;
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * FXML Controller class
@@ -103,7 +103,7 @@ public class DietViewController implements Initializable {
             return;
         }
 
-        BorderPane rootPane = MainApp.getRootPane();
+        BorderPane rootPane = Main.getRootPane();
         rootPane.setCenter(dietViewPane);
         final DietViewController dietViewController = fxmlLoader.getController();
         dietViewController.viewDiet(diet);

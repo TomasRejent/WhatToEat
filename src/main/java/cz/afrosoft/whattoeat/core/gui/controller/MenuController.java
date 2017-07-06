@@ -5,11 +5,8 @@
  */
 package cz.afrosoft.whattoeat.core.gui.controller;
 
-import cz.afrosoft.whattoeat.MainApp;
+import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,11 +15,17 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controller for menu bar. Switches displayed pages according to pressed button.
  * @author Tomas Rejent
  */
+@Component
 public class MenuController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);
@@ -67,7 +70,7 @@ public class MenuController implements Initializable {
     private void showPage(final String resourcePath){
         try {
             final Parent page = FXMLLoader.load(getClass().getResource(resourcePath), I18n.getResourceBundle());
-            final BorderPane rootPane = MainApp.getRootPane();
+            final BorderPane rootPane = Main.getRootPane();
             rootPane.setCenter(page);
         } catch (IOException ex) {
             LOGGER.error("Cannot show page from resource: " + resourcePath, ex);
