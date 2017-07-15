@@ -1,12 +1,11 @@
 package cz.afrosoft.whattoeat.diet.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
-import cz.afrosoft.whattoeat.diet.logic.model.Meal;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.geometry.Insets;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -114,7 +113,7 @@ public class MealDialog extends Dialog<MealView>{
             return null;
         }
 
-        Recipe recipe = recipeService.getRecipeByName(recipeName);
+        RecipeOld recipe = recipeService.getRecipeByName(recipeName);
         if(recipe == null){
             return null;
         }

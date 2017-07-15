@@ -6,18 +6,13 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.PieceConversionService;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedList;
-import java.util.Set;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -27,6 +22,11 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedList;
+import java.util.Set;
 
 /**
  *
@@ -55,10 +55,10 @@ public final class IngredientList extends ListView<IngredientView>{
         this.refresh();
     }
 
-    public void setIngredients(Collection<RecipeIngredient> ingredients){
+    public void setIngredients(Collection<OldRecipeIngredient> ingredients) {
         ingredientList.clear();
-        for(RecipeIngredient ingredient : ingredients){
-            Ingredient ingredientInfo = ingredientService.getIngredientByKey(ingredient.getIngredientKey());
+        for (OldRecipeIngredient ingredient : ingredients) {
+            OldIngredient ingredientInfo = ingredientService.getIngredientByKey(ingredient.getIngredientKey());
             if(ingredientInfo == null){
                 LOGGER.warn("RecipeIngredient {} has no ingredient info.", ingredient);
                 continue;

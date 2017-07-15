@@ -7,21 +7,19 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
-
-import java.util.*;
-import java.util.stream.Collectors;
-
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  * Implementation of {@link IngredientService}.
@@ -43,21 +41,21 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public List<Ingredient> getAllIngredients() {
+    public List<OldIngredient> getAllIngredients() {
         return ingredientInfoDao.readAll();
     }
 
     @Override
-    public Ingredient getIngredientByKey(final String key) {
+    public OldIngredient getIngredientByKey(final String key) {
         return ingredientInfoDao.read(key);
     }
 
     @Override
-    public Ingredient getIngredientInfoByName(final String name) {
+    public OldIngredient getIngredientInfoByName(final String name) {
         LOGGER.debug("Getting Ingredient with name: {}.", name);
         Validate.notNull(name, "Ingredient name cannot be null.");
-        List<Ingredient> ingredients = ingredientInfoDao.readAll();
-        for(Ingredient ingredient : ingredients){
+        List<OldIngredient> ingredients = ingredientInfoDao.readAll();
+        for (OldIngredient ingredient : ingredients) {
             if(Objects.equals(ingredient.getName(), name)){
                 return ingredient;
             }
@@ -68,9 +66,9 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public Set<String> getIngredientNames() {
         LOGGER.debug("Getting names of all defined ingredients.");
-        final List<Ingredient> ingredients = ingredientInfoDao.readAll();
+        final List<OldIngredient> ingredients = ingredientInfoDao.readAll();
         final Set<String> ingredientNames = new HashSet<>(ingredients.size());
-        for(Ingredient ingredient : ingredients){
+        for (OldIngredient ingredient : ingredients) {
             ingredientNames.add(ingredient.getName());
         }
         return Collections.unmodifiableSet(ingredientNames);
@@ -79,7 +77,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public List<IngredientRow> getIngredientRows() {
         LOGGER.debug("Getting ingredient rows.");
-        final List<Ingredient> ingredients = ingredientInfoDao.readAll();
+        final List<OldIngredient> ingredients = ingredientInfoDao.readAll();
         return Collections.unmodifiableList(
                 ingredients.stream()
                         .map(ingredient -> new IngredientRow(ingredient, pieceConversionService.getPieceConversionInfo(ingredient.getName())))
@@ -97,7 +95,7 @@ public class IngredientServiceImpl implements IngredientService {
     public void saveOrUpdate(final IngredientRow ingredientRow) {
         LOGGER.debug("Saving ingredient row: {}.", ingredientRow);
         Validate.notNull(ingredientRow);
-        final Ingredient ingredientInfo = ingredientRow.getIngredientInfo();
+        final OldIngredient ingredientInfo = ingredientRow.getIngredientInfo();
         if(ingredientInfoDao.exists(ingredientInfo.getKey())){
             ingredientInfoDao.update(ingredientInfo);
         }else{
@@ -122,7 +120,7 @@ public class IngredientServiceImpl implements IngredientService {
     }
 
     @Override
-    public List<IngredientCouple> convertToCouple(Collection<RecipeIngredient> ingredients) {
+    public List<IngredientCouple> convertToCouple(Collection<OldRecipeIngredient> ingredients) {
         checkNotNull(ingredients, "Cannot convert null list to IngredientCouples.");
 
         return ingredients.stream().map(

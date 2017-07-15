@@ -1,4 +1,4 @@
-package cz.afrosoft.whattoeat.core.logic.service;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.util.UUID;
 

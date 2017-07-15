@@ -5,13 +5,13 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -31,7 +31,7 @@ public class PriceCalculatorServiceImpl implements PriceCalculatorService {
     }
     
     @Override
-    public float calculatePrice (final Recipe recipe, final int servings){
+    public float calculatePrice(final RecipeOld recipe, final int servings) {
         checkParameters(recipe, servings);
         
         if (servings == 0){
@@ -39,17 +39,17 @@ public class PriceCalculatorServiceImpl implements PriceCalculatorService {
         }
 
         float totalPrice = 0;
-        for(RecipeIngredient ingredient : recipe.getIngredients()){
-            final Ingredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
+        for (OldRecipeIngredient ingredient : recipe.getIngredients()) {
+            final OldIngredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
             final float quantity = ingredientQuantityService.getQuantity(ingredient, ingredientInfo, servings);
 
             totalPrice += quantity * ingredientInfo.getPrice();
         }
 
         return totalPrice;
-    }   
-    
-    private void checkParameters (final Recipe recipe, final int servings){
+    }
+
+    private void checkParameters(final RecipeOld recipe, final int servings) {
         if (recipe == null){
             throw new IllegalArgumentException("Recipe can not be null");
         }

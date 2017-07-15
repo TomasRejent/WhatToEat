@@ -6,13 +6,14 @@
 
 package cz.afrosoft.whattoeat.diet.gui.dialog;
 
-import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import java.util.Collection;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.Modality;
+
+import java.util.Collection;
 
 /**
  *
@@ -21,11 +22,9 @@ import javafx.stage.Modality;
 public class ShoppingListDialog extends Dialog<Void>{
 
     private static final String TITLE_KEY = "cz.afrosoft.whattoeat.dietview.dialog.shoppping.title";
-
-    private final IngredientList ingredientList = new IngredientList();
-
     private static final double WIDTH = 800;
     private static final double HEIGHT = 800;
+    private final IngredientList ingredientList = new IngredientList();
 
     public ShoppingListDialog() {
         super();
@@ -39,7 +38,7 @@ public class ShoppingListDialog extends Dialog<Void>{
         setupLayout();
     }
 
-    public void showShoppingList(final Collection<RecipeIngredient> ingredients){
+    public void showShoppingList(final Collection<OldRecipeIngredient> ingredients) {
         ingredientList.setIngredients(ingredients);
         this.show();
     }

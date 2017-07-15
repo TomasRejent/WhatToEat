@@ -1,27 +1,24 @@
-package cz.afrosoft.whattoeat.core;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoJsonDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoJsonDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.*;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorServiceImpl;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeServiceImpl;
 import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
 import cz.afrosoft.whattoeat.core.logic.service.ConfigServiceImpl;
-import cz.afrosoft.whattoeat.core.logic.service.UUIDService;
-import cz.afrosoft.whattoeat.core.logic.service.UuidServiceImpl;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.data.DietJsonDao;
-import cz.afrosoft.whattoeat.diet.logic.service.DietService;
-import cz.afrosoft.whattoeat.diet.logic.service.DietServiceImpl;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.generator.logic.service.GeneratorServiceImpl;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorServiceImpl;
+import cz.afrosoft.whattoeat.diet.logic.service.DietService;
+import cz.afrosoft.whattoeat.diet.logic.service.DietServiceImpl;
 import cz.afrosoft.whattoeat.diet.logic.service.MealService;
 import cz.afrosoft.whattoeat.diet.logic.service.MealServiceImpl;
 

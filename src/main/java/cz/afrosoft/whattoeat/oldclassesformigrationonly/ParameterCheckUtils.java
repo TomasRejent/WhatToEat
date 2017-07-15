@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.core.data.util;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;

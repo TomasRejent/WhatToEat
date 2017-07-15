@@ -5,8 +5,8 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
-import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
 
 /**
  * Interface for {@link BasicConversionInfo} entity DAO to provide BasicConversionInfo specific data services.

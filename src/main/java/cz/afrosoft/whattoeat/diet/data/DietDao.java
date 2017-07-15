@@ -5,9 +5,9 @@
  */
 package cz.afrosoft.whattoeat.diet.data;
 
-import cz.afrosoft.whattoeat.core.data.BaseDao;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
 
 /**
  * Interface for {@link Diet} entity DAO to provide Diet specific data services.

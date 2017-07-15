@@ -6,35 +6,23 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.*;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
@@ -48,11 +36,17 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 /**
  * Dialog for adding and editing recipes.
  * @author Tomas Rejent
  */
-public class RecipeAddDialog extends Dialog<Recipe>{
+public class RecipeAddDialog extends Dialog<RecipeOld> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeAddDialog.class);
 
@@ -132,7 +126,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
     private final RecipeService recipeService;
     private final IngredientService ingredientService;
 
-    private Recipe editedRecipe;
+    private RecipeOld editedRecipe;
 
     public RecipeAddDialog() {
         super();
@@ -151,7 +145,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         setupResultConverter();
     }
 
-    public Optional<Recipe> editRecipe(Recipe recipe){
+    public Optional<RecipeOld> editRecipe(RecipeOld recipe) {
         ParameterCheckUtils.checkNotNull(recipe, "Cannot edit null recipe.");
 
         editedRecipe = recipe;
@@ -159,7 +153,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         return showAndWait();
     }
 
-    private void fillFieldsFromRecipe(Recipe recipe){
+    private void fillFieldsFromRecipe(RecipeOld recipe) {
         nameField.setText(recipe.getName());
         FillUtils.checkItems(typeField, recipe.getRecipeTypes());
         tasteField.setValue(recipe.getTaste());
@@ -184,10 +178,10 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         });
     }
 
-    private Recipe createRecipe(){
-        final Recipe recipe;
+    private RecipeOld createRecipe() {
+        final RecipeOld recipe;
         if(editedRecipe == null){
-            recipe = new Recipe();
+            recipe = new RecipeOld();
         }else{
             recipe = editedRecipe;
         }
@@ -302,7 +296,7 @@ public class RecipeAddDialog extends Dialog<Recipe>{
         AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(ingredientNameField, new FullWordSuggestionProvider(ingredientService.getIngredientNames()));
         autoCompletion.setOnAutoCompleted((completionEvent -> {
             final String ingredientName = completionEvent.getCompletion();
-            final Ingredient ingredientInfo = ingredientService.getIngredientInfoByName(ingredientName);
+            final OldIngredient ingredientInfo = ingredientService.getIngredientInfoByName(ingredientName);
             ingredientUnitLabel.setText(I18n.getText(ingredientInfo.getIngredientUnit().getLabelKey()));
             ingredientQuantityField.requestFocus();
         }));
@@ -326,8 +320,8 @@ public class RecipeAddDialog extends Dialog<Recipe>{
                     final String ingredientName = ingredientNameField.getText();
                     final String quantity = ingredientQuantityField.getText();
 
-                    final Ingredient ingredient = ingredientService.getIngredientInfoByName(ingredientName);
-                    final RecipeIngredient recipeIngredient = new RecipeIngredient(ingredient.getKey(), Float.parseFloat(quantity));
+                    final OldIngredient ingredient = ingredientService.getIngredientInfoByName(ingredientName);
+                    final OldRecipeIngredient recipeIngredient = new OldRecipeIngredient(ingredient.getKey(), Float.parseFloat(quantity));
                     final IngredientCouple ingredientCouple = new IngredientCouple(recipeIngredient, ingredient);
 
                     if(!ingredientList.contains(ingredientCouple)){

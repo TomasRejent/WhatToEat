@@ -6,23 +6,21 @@
 
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Random;
 import java.util.function.BiConsumer;
-import java.util.function.BooleanSupplier;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
-import javafx.util.Callback;
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -46,7 +44,7 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
     }
 
     @Override
-    public Diet generate(Collection<Recipe> recipes, GeneratorParameters parameters) {
+    public Diet generate(Collection<RecipeOld> recipes, GeneratorParameters parameters) {
         checkNotNull(recipes, "Recipe collection cannot be null.");
         checkNotNull(parameters, "Generator parameters cannot be null.");
         if(recipes.isEmpty()){
@@ -71,48 +69,24 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
 
     private void generateIfNeeded(GenerationData generationData, MealGenerationType type){
         if(type.enablingMethod.apply(generationData.getParameters())){
-            List<Recipe> filteredRecipes = new ArrayList<>(filterRecipesByType(generationData.getRecipes(), type.recipeType));
+            List<RecipeOld> filteredRecipes = new ArrayList<>(filterRecipesByType(generationData.getRecipes(), type.recipeType));
             if(!filteredRecipes.isEmpty()){
                 generationData.getDayDiets().forEach((dayDiet) -> type.resultSetter.accept(dayDiet, getRandomMeal(filteredRecipes)));
             }
         }
     }
 
-    private Meal getRandomMeal(List<Recipe> recipes){
+    private Meal getRandomMeal(List<RecipeOld> recipes) {
         return recipeToMeal(getRandomRecipe(recipes));
     }
 
-    private Recipe getRandomRecipe(List<Recipe> recipes){
+    private RecipeOld getRandomRecipe(List<RecipeOld> recipes) {
         final int recipeIndex = random.nextInt(recipes.size());
         return recipes.get(recipeIndex);
     }
 
-    private Meal recipeToMeal(Recipe recipe){
+    private Meal recipeToMeal(RecipeOld recipe) {
         return new Meal(recipe.getKey());
-    }
-
-    private class GenerationData{
-        final List<DayDiet> dayDiets;
-        final Collection<Recipe> recipes;
-        final GeneratorParameters parameters;
-
-        public GenerationData(List<DayDiet> dayDiets, Collection<Recipe> recipes, GeneratorParameters parameters) {
-            this.dayDiets = dayDiets;
-            this.recipes = recipes;
-            this.parameters = parameters;
-        }
-
-        public List<DayDiet> getDayDiets() {
-            return dayDiets;
-        }
-
-        public Collection<Recipe> getRecipes() {
-            return recipes;
-        }
-
-        public GeneratorParameters getParameters() {
-            return parameters;
-        }
     }
 
     private enum MealGenerationType{
@@ -132,6 +106,30 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
             this.recipeType = recipeType;
             this.resultSetter = resultSetter;
             this.enablingMethod = enablingMethod;
+        }
+    }
+
+    private class GenerationData {
+        final List<DayDiet> dayDiets;
+        final Collection<RecipeOld> recipes;
+        final GeneratorParameters parameters;
+
+        public GenerationData(List<DayDiet> dayDiets, Collection<RecipeOld> recipes, GeneratorParameters parameters) {
+            this.dayDiets = dayDiets;
+            this.recipes = recipes;
+            this.parameters = parameters;
+        }
+
+        public List<DayDiet> getDayDiets() {
+            return dayDiets;
+        }
+
+        public Collection<RecipeOld> getRecipes() {
+            return recipes;
+        }
+
+        public GeneratorParameters getParameters() {
+            return parameters;
         }
     }
 }

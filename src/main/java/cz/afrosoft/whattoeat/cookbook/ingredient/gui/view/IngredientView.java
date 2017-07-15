@@ -8,14 +8,16 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import java.util.Set;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+
+import java.util.Set;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -23,12 +25,12 @@ import org.apache.commons.lang3.Validate;
  */
 final class IngredientView implements Comparable<IngredientView>{
 
-        private final RecipeIngredient ingredient;
-        private final Ingredient ingredientInfo;
+    private final OldRecipeIngredient ingredient;
+    private final OldIngredient ingredientInfo;
 
         private int servings = 1;
 
-        public IngredientView(RecipeIngredient ingredient, Ingredient ingredientInfo) {
+    public IngredientView(OldRecipeIngredient ingredient, OldIngredient ingredientInfo) {
             checkNotNull(ingredient, "RecipeIngredient cannot be null.");
             checkNotNull(ingredientInfo, "RecipeIngredient info cannot be null.");
 

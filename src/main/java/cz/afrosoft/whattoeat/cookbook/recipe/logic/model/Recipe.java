@@ -1,125 +1,82 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
-import cz.afrosoft.whattoeat.core.data.PersistentEntity;
-import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
+import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
+import cz.afrosoft.whattoeat.core.logic.model.KeywordEntity;
 
-import java.io.Serializable;
-import java.util.Collections;
-import java.util.EnumSet;
-import java.util.Optional;
+import java.time.Duration;
 import java.util.Set;
 
 /**
+ * Represents recipe and defines all its properties. Recipe must belong to at least
+ * one cookbook and has at least one ingredient. Recipe can be tagged by multiple keywords.
  *
- * @author Alexandra
+ * @author Tomas Rejent
  */
-public final class Recipe extends UUIDEntity implements Serializable, PersistentEntity<String>, Comparable<Recipe>{
-
-    private String name;
-    private String preparation;
-    private Set<RecipeIngredient> ingredients;
-    
-    private PreparationTime preparationTime;
-    private Set<RecipeType> recipeTypes;
-    private Taste taste;
-    private int rating;
-    
-    private Set<String> keywords;
-    private Set<String> sideDishes;
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getPreparation() {
-        return preparation;
-    }
-
-    public void setPreparation(String preparation) {
-        this.preparation = preparation;
-    }
-
-    public Set<RecipeIngredient> getIngredients() {
-        return Optional.ofNullable(ingredients).orElse(Collections.emptySet());
-    }
-
-    public void setIngredients(Set<RecipeIngredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public PreparationTime getPreparationTime() {
-        return preparationTime;
-    }
-
-    public void setPreparationTime(PreparationTime preparationTime) {
-        this.preparationTime = preparationTime;
-    }
-
-    public Set<RecipeType> getRecipeTypes() {
-        return Optional.ofNullable(recipeTypes).orElse(EnumSet.noneOf(RecipeType.class));
-    }
-
-    public void setRecipeTypes(Set<RecipeType> recipeTypes) {
-        this.recipeTypes = recipeTypes;
-    }
-
-    public Taste getTaste() {
-        return taste;
-    }
-
-    public void setTaste(Taste taste) {
-        this.taste = taste;
-    }
-
-    public int getRating() {
-        return rating;
-    }
-
-    public void setRating(int rating) {
-        this.rating = rating;
-    }
+public interface Recipe extends IdEntity, KeywordEntity {
 
     /**
-     *
-     * @return (NotNull) Set of keywords of recipe or empty set.
+     * @return (NotNull) Gets name of recipe. This is not unique identifier.
      */
-    public Set<String> getKeywords() {
-        return Optional.ofNullable(keywords).orElse(Collections.emptySet());
-    }
+    String getName();
 
-    public void setKeywords(Set<String> keywords) {
-        this.keywords = keywords;
-    }
+    /**
+     * @return (NotNull) Gets description on how to prepare recipe ingredients
+     * and cook meal from it.
+     */
+    String getPreparation();
 
-    public Set<String> getSideDishes() {
-        return Optional.ofNullable(sideDishes).orElse(Collections.emptySet());
-    }
+    /**
+     * @return Gets rating of recipe. Rating tells how meal from recipe is tasty for you. It ranges from 1 to 10 where 10 is best.
+     * Rating is set per application. It is not user specific.
+     */
+    int getRating();
 
-    public void setSideDishes(Set<String> sideDishes) {
-        this.sideDishes = sideDishes;
-    }
+    /**
+     * @return (NotNull) Gets all types of recipe to which recipe belongs.
+     * Recipe must have at least one type.
+     */
+    Set<RecipeType> getRecipeType();
 
-    @Override
-    public int compareTo(final Recipe thatRecipe) {
-        if(thatRecipe == null){
-            return 1;
-        }
+    /**
+     * @return (NotNull) Gets taste of recipe. Determines if recipe is sweet or salty for example.
+     */
+    Taste getTaste();
 
-        return I18n.compareStringsIgnoreCase(name, thatRecipe.getName());
-    }
+    /**
+     * @return (NotNull) Gets amount of time needed to prepare all ingredients for cooking,
+     * Ingredient preparation is for example slicing of onions.
+     * <p>
+     * This value together with {@link this#getCookingTime()} determines total preparation time.
+     * These durations are separated because of food list generator which can consider
+     * ingredient preparation as non parallelizable operation and cooking time as parallelizable.
+     */
+    Duration getIngredientPreparationTime();
 
-    @Override
-    public String toString() {
-        return "Recipe{" + "name=" + name + ", preparation=" + preparation + ", ingredients=" + ingredients + ", preparationTime=" + preparationTime + ", recipeType=" + recipeTypes + ", taste=" + taste + ", rating=" + rating + ", keywords=" + keywords + ", sideDishes=" + sideDishes + '}';
-    }
+    /**
+     * @return (NutNull) Gets amount of time needed to cook meal from already prepared ingredients.
+     *
+     * This value together with {@link this#getIngredientPreparationTime()} determines total preparation time.
+     * These durations are separated because of food list generator which can consider
+     * ingredient preparation as non parallelizable operation and cooking time as parallelizable.
+     */
+    Duration getCookingTime();
+
+    /**
+     * @return (NotNull) Gets total preparation time. This is more user readable value which is
+     * determined from sum of {@link this#getIngredientPreparationTime()} and {@link this#getCookingTime()}
+     * by fuzzyfication.
+     */
+    PreparationTime getTotalPreparationTime();
+
+    /**
+     * @return (NotNull) Gets all suitable side dishes for this recipe. Only recipes containing type {@link RecipeType#MAIN_DISH}
+     * can have side dishes. Others types returns empty set.
+     */
+    Set<Recipe> getSideDishes();
+
+    /**
+     * @return (NotNull) Gets ingredients and their quantities needed to prepare meal from recipe.
+     * Recipe must have at least one ingredient.
+     */
+    Set<RecipeIngredient> getIngredients();
 }

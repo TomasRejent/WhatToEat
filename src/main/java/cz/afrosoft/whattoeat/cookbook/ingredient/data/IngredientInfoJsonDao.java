@@ -6,33 +6,34 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.core.data.JsonDao;
-import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
+import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.JsonDao;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
- * Implementation of persistence service of JSON type for entity {@link Ingredient}.
+ * Implementation of persistence service of JSON type for entity {@link OldIngredient}.
  * @author Tomas Rejent
  */
-public class IngredientInfoJsonDao extends JsonDao<Ingredient, String> implements IngredientInfoDao{
+public class IngredientInfoJsonDao extends JsonDao<OldIngredient, String> implements IngredientInfoDao {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeJsonDao.class);
 
     public IngredientInfoJsonDao() {
-        super(LocationUtils.getIngredientFile(), Ingredient[].class);
+        super(LocationUtils.getIngredientFile(), OldIngredient[].class);
     }
 
     @Override
     public Set<String> getIngredientKeywords() {
         LOGGER.debug("Getting all ingredient keywords.");
-        final List<Ingredient> ingredients = readAll();
+        final List<OldIngredient> ingredients = readAll();
         final Set<String> keywordsSet = new HashSet<>();
         ingredients.stream().forEach((recipe) -> {
             keywordsSet.addAll(recipe.getKeywords());

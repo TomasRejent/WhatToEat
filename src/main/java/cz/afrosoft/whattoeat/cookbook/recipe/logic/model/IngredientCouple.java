@@ -6,14 +6,13 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Objects;
 
-import cz.afrosoft.whattoeat.core.gui.I18n;
-import org.apache.commons.lang3.builder.ToStringBuilder;
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -21,10 +20,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  */
 public class IngredientCouple implements Comparable<IngredientCouple>{
 
-    private final RecipeIngredient recipeIngredient;
-    private final Ingredient ingredient;
+    private final OldRecipeIngredient recipeIngredient;
+    private final OldIngredient ingredient;
 
-    public IngredientCouple(RecipeIngredient recipeIngredient, Ingredient ingredient) {
+    public IngredientCouple(OldRecipeIngredient recipeIngredient, OldIngredient ingredient) {
         checkNotNull(recipeIngredient, "RecipeIngredient cannot be null.");
         checkNotNull(ingredient, "RecipeIngredient info cannot be null.");
 
@@ -32,11 +31,11 @@ public class IngredientCouple implements Comparable<IngredientCouple>{
         this.ingredient = ingredient;
     }
 
-    public RecipeIngredient getRecipeIngredient() {
+    public OldRecipeIngredient getRecipeIngredient() {
         return recipeIngredient;
     }
 
-    public Ingredient getIngredient() {
+    public OldIngredient getIngredient() {
         return ingredient;
     }
 
@@ -45,8 +44,8 @@ public class IngredientCouple implements Comparable<IngredientCouple>{
         if (thatIngredientCouple == null){
             return 1;
         }
-        final Ingredient thisIngredient = ingredient;
-        final Ingredient thatIngredient = thatIngredientCouple.getIngredient();
+        final OldIngredient thisIngredient = ingredient;
+        final OldIngredient thatIngredient = thatIngredientCouple.getIngredient();
         if(thisIngredient == thatIngredient){
             return 0;
         }else if(thisIngredient == null){

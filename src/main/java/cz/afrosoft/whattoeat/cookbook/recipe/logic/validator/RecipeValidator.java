@@ -6,18 +6,19 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.validator;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.core.logic.validator.EntityValidator;
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.HashMap;
 import java.util.Map;
-import org.apache.commons.lang3.StringUtils;
 
 /**
  *
  * @author Tomas Rejent
  */
-public class RecipeValidator implements EntityValidator<Recipe>{
+public class RecipeValidator implements EntityValidator<RecipeOld> {
 
     private static final String NULL_ENTITY_KEY = "cz.afrosoft.whattoeat.recipes.error.null";
     private static final String EMPTY_NAME_KEY = "cz.afrosoft.whattoeat.recipes.error.name.required";
@@ -28,16 +29,16 @@ public class RecipeValidator implements EntityValidator<Recipe>{
     private static final String EMPTY_INGREDIENTS_KEY = "cz.afrosoft.whattoeat.recipes.error.ingeients";
 
     @Override
-    public boolean isValid(final Recipe recipe) {
+    public boolean isValid(final RecipeOld recipe) {
         return validateInternal(recipe).isEmpty();
     }
 
     @Override
-    public Map<String, String> validate(final Recipe recipe) {
+    public Map<String, String> validate(final RecipeOld recipe) {
         return validateInternal(recipe);
     }
 
-    private Map<String, String> validateInternal(final Recipe recipe){
+    private Map<String, String> validateInternal(final RecipeOld recipe) {
         final Map<String, String> errors = new HashMap<>();
 
         if(recipe == null){

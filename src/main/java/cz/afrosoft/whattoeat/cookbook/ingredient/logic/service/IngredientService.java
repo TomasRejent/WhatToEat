@@ -5,20 +5,19 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
 /**
- * Service which handles work with {@link Ingredient} and related entities on business layer.
+ * Service which handles work with {@link OldIngredient} and related entities on business layer.
  * @author Tomas Rejent
  */
 public interface IngredientService {
@@ -27,17 +26,17 @@ public interface IngredientService {
      * Gets all ingredients.
      * @return (NotNull)
      */
-    List<Ingredient> getAllIngredients();
+    List<OldIngredient> getAllIngredients();
 
-    Ingredient getIngredientByKey(String key);
+    OldIngredient getIngredientByKey(String key);
 
     /**
-     * Gets {@link Ingredient} by its name.
+     * Gets {@link OldIngredient} by its name.
      * @param name (NotNull) Name of Ingredient.
      * @return (NotNull) Ingredient with specified name.
      * @throws NotFoundException If Ingredient with given name does not exist.
      */
-    Ingredient getIngredientInfoByName(String name);
+    OldIngredient getIngredientInfoByName(String name);
 
     /**
      * @return (NotNull)(ReadOnly) Set of names from all defined IngredientInfos.
@@ -56,23 +55,23 @@ public interface IngredientService {
     Set<String> getAllIngredientKeywords();
 
     /**
-     * Save or update {@link Ingredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
+     * Save or update {@link OldIngredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
      * @param ingredientRow (NotNull) RecipeIngredient row to save.
      */
     void saveOrUpdate(IngredientRow ingredientRow);
 
     /**
-     * Deletes {@link Ingredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
+     * Deletes {@link OldIngredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
      * @param ingredientRow (NotNull) RecipeIngredient row to delete.
      */
     void delete(IngredientRow ingredientRow);
 
     /**
-     * Converts collection of {@link RecipeIngredient} to {@link IngredientCouple}.
+     * Converts collection of {@link OldRecipeIngredient} to {@link IngredientCouple}.
      * @param ingredients (Required) Recipe ingredients to which Ingredient details will be added.
      * @return (NotNull) List of ingredient couples.
      * @throws IllegalArgumentException When argument is null.
      */
-    List<IngredientCouple> convertToCouple(Collection<RecipeIngredient> ingredients);
+    List<IngredientCouple> convertToCouple(Collection<OldRecipeIngredient> ingredients);
 
 }

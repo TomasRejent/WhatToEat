@@ -7,10 +7,9 @@ package cz.afrosoft.whattoeat.diet.gui.controller;
 
 import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.gui.dialog.MealDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
@@ -20,6 +19,7 @@ import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.service.MealService;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.application.Platform;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -56,7 +56,9 @@ import java.util.stream.Collectors;
 public class DietViewController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DietViewController.class);
-    
+    private final RecipeService recipeService;
+    private final MealService mealService;
+    private final DietService dietService;
     @FXML
     private TableView<DayDiet> dietViewTable;
     @FXML
@@ -75,16 +77,10 @@ public class DietViewController implements Initializable {
     private TableColumn<DayDiet, MealView> afternoonSnackColumn;
     @FXML
     private TableColumn<DayDiet, MealView> dinnerColumn;
-    
     private ObservableList<DayDiet> dayDietList = FXCollections.observableArrayList();
-    
     private RecipeViewDialog recipeViewDialog;
     private MealDialog mealDialog;
     private ShoppingListDialog shoppingListDialog;
-
-    private final RecipeService recipeService;
-    private final MealService mealService;
-    private final DietService dietService;
 
     public DietViewController() {
         this.recipeService = ServiceHolder.getRecipeService();
@@ -183,7 +179,7 @@ public class DietViewController implements Initializable {
     public void showRecipe(){
         Optional<MealView> selectedMeal = getFirstSelectedMeal();
         if(selectedMeal.isPresent()){
-            Recipe recipe = recipeService.getRecipeByKey(selectedMeal.get().getRecipeKey());
+            RecipeOld recipe = recipeService.getRecipeByKey(selectedMeal.get().getRecipeKey());
             if(recipe == null){
                 return;
             }
@@ -219,21 +215,21 @@ public class DietViewController implements Initializable {
                 }
         ).collect(Collectors.toList());
 
-        final Map<String, RecipeIngredient> ingredientSumMap = new HashMap<>();
+        final Map<String, OldRecipeIngredient> ingredientSumMap = new HashMap<>();
         for(MealView mealView : mealList){
             if(mealView == null){
                 continue;
             }
 
-            final Recipe recipe = recipeService.getRecipeByKey(mealView.getRecipeKey());
-            Set<RecipeIngredient> ingredients = recipe.getIngredients();
-            for(RecipeIngredient recipeIngredient : ingredients){
+            final RecipeOld recipe = recipeService.getRecipeByKey(mealView.getRecipeKey());
+            Set<OldRecipeIngredient> ingredients = recipe.getIngredients();
+            for (OldRecipeIngredient recipeIngredient : ingredients) {
                 final String ingredientName = recipeIngredient.getIngredientKey();
-                final RecipeIngredient shoppingIngredient;
+                final OldRecipeIngredient shoppingIngredient;
                 if(ingredientSumMap.containsKey(ingredientName)){
                     shoppingIngredient = ingredientSumMap.get(ingredientName);
                 }else{
-                    shoppingIngredient = new RecipeIngredient(ingredientName, 0);
+                    shoppingIngredient = new OldRecipeIngredient(ingredientName, 0);
                     ingredientSumMap.put(ingredientName, shoppingIngredient);
                 }
 

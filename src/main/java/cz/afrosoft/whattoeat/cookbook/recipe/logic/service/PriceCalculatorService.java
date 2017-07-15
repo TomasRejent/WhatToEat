@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 
 /**
  *
@@ -13,6 +13,6 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
  */
 public interface PriceCalculatorService {
 
-    float calculatePrice(Recipe recipe, int servings);
+    float calculatePrice(RecipeOld recipe, int servings);
     
 }

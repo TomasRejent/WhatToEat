@@ -7,13 +7,13 @@ package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Labeled;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -46,27 +46,22 @@ public class RecipeListController implements Initializable {
     private static final String KEYWORD_SEPARATOR = ",";
     private static final String DELETE_CONFIRM_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.delete.recipe.title";
     private static final String DELETE_CONFIRM_MESSAGE_KEY = "cz.afrosoft.whattoeat.dialog.delete.recipe.messages";
-
-    @FXML
-    private TableView<Recipe> recipeTable;
-    @FXML
-    private TableColumn<Recipe, String> nameColumn;
-    @FXML
-    private TableColumn<Recipe, String> recipeTypeColumn;
-    @FXML
-    private TableColumn<Recipe, String> tasteColumn;
-    @FXML
-    private TableColumn<Recipe, String> preparationTimeColumn;
-    @FXML
-    private TableColumn<Recipe, String> ratingColumn;
-    @FXML
-    private TableColumn<Recipe, String> keywordsColumn;
-
-
-    private final ObservableList<Recipe> tableRowsList = FXCollections.observableArrayList();
-
-
+    private final ObservableList<RecipeOld> tableRowsList = FXCollections.observableArrayList();
     private final RecipeService recipeService;
+    @FXML
+    private TableView<RecipeOld> recipeTable;
+    @FXML
+    private TableColumn<RecipeOld, String> nameColumn;
+    @FXML
+    private TableColumn<RecipeOld, String> recipeTypeColumn;
+    @FXML
+    private TableColumn<RecipeOld, String> tasteColumn;
+    @FXML
+    private TableColumn<RecipeOld, String> preparationTimeColumn;
+    @FXML
+    private TableColumn<RecipeOld, String> ratingColumn;
+    @FXML
+    private TableColumn<RecipeOld, String> keywordsColumn;
 
     public RecipeListController() {
         this.recipeService = ServiceHolder.getRecipeService();
@@ -88,18 +83,18 @@ public class RecipeListController implements Initializable {
     }
 
 
-    private void fillRecipeTable(Collection<Recipe> recipes){
+    private void fillRecipeTable(Collection<RecipeOld> recipes) {
         tableRowsList.clear();
         tableRowsList.addAll(recipes);
     }
 
     private void initColumnsValueFactories(){
-        nameColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> new ReadOnlyObjectWrapper<>( param.getValue().getName()));
-        recipeTypeColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getValueFromRecipeTypeSet(param.getValue().getRecipeTypes()));
-        tasteColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getLabel(param.getValue().getTaste()));
-        preparationTimeColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getLabel(param.getValue().getPreparationTime()));
-        ratingColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> new ReadOnlyObjectWrapper<>(String.valueOf(param.getValue().getRating())));
-        keywordsColumn.setCellValueFactory((TableColumn.CellDataFeatures<Recipe, String> param) -> getValueFromSet(param.getValue().getKeywords()));
+        nameColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> new ReadOnlyObjectWrapper<>(param.getValue().getName()));
+        recipeTypeColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> getValueFromRecipeTypeSet(param.getValue().getRecipeTypes()));
+        tasteColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> getLabel(param.getValue().getTaste()));
+        preparationTimeColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> getLabel(param.getValue().getPreparationTime()));
+        ratingColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> new ReadOnlyObjectWrapper<>(String.valueOf(param.getValue().getRating())));
+        keywordsColumn.setCellValueFactory((TableColumn.CellDataFeatures<RecipeOld, String> param) -> getValueFromSet(param.getValue().getKeywords()));
     }
 
     private ObservableValue<String> getLabel(Labeled labeledObject){
@@ -116,7 +111,7 @@ public class RecipeListController implements Initializable {
         return new ReadOnlyObjectWrapper<>(StringUtils.join(recipeTypeSet.stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), KEYWORD_SEPARATOR));
     }
 
-    private final void showRecipe( final Recipe recipe){
+    private final void showRecipe(final RecipeOld recipe) {
         try{
             RecipeViewDialog dialog = new RecipeViewDialog();
             dialog.showRecipe(recipe);
@@ -130,10 +125,10 @@ public class RecipeListController implements Initializable {
 
     private final void setUpTableEvents(){
         recipeTable.setRowFactory((tableView) -> {
-            TableRow<Recipe> row = new TableRow<>();
+            TableRow<RecipeOld> row = new TableRow<>();
             row.setOnMouseClicked(event ->{
                 if(event.getClickCount() == 2 && (! row.isEmpty()) ){
-                    Recipe recipe = row.getItem();
+                    RecipeOld recipe = row.getItem();
                     showRecipe(recipe);
                 }
             });
@@ -142,7 +137,7 @@ public class RecipeListController implements Initializable {
         });
     }
 
-    private Recipe getSelectedRecipe(){
+    private RecipeOld getSelectedRecipe() {
         return recipeTable.getSelectionModel().getSelectedItem();
     }
 
@@ -152,14 +147,14 @@ public class RecipeListController implements Initializable {
 
     @FXML
     private void showRecipe(ActionEvent actionEvent){
-        Recipe selectedItem = getSelectedRecipe();
+        RecipeOld selectedItem = getSelectedRecipe();
         showRecipe(selectedItem);
     }
 
     @FXML
     private void addRecipe(ActionEvent actionEvent){
         RecipeAddDialog recipeAddDialog = new RecipeAddDialog();
-        Optional<Recipe> newRecipe = recipeAddDialog.showAndWait();
+        Optional<RecipeOld> newRecipe = recipeAddDialog.showAndWait();
         LOGGER.debug("Returned recipe: {}", newRecipe);
         if(newRecipe.isPresent()){
             recipeService.addRecipe(newRecipe.get());
@@ -169,13 +164,13 @@ public class RecipeListController implements Initializable {
 
     @FXML
     private void editRecipe(ActionEvent actionEvent){
-        Recipe selectedRecipe = getSelectedRecipe();
+        RecipeOld selectedRecipe = getSelectedRecipe();
         if(selectedRecipe == null){
             LOGGER.warn("No recipe is selected.");
             return;
         }
         RecipeAddDialog recipeAddDialog = new RecipeAddDialog();
-        Optional<Recipe> editRecipe = recipeAddDialog.editRecipe(selectedRecipe);
+        Optional<RecipeOld> editRecipe = recipeAddDialog.editRecipe(selectedRecipe);
         if(editRecipe.isPresent()){
             recipeService.updateRecipe(editRecipe.get());
             refreshRecipeList();
@@ -185,7 +180,7 @@ public class RecipeListController implements Initializable {
     @FXML
     private void deleteRecipe(ActionEvent actionEvent){
         LOGGER.debug("Delete recipe action called.");
-        Recipe selectedRecipe = getSelectedRecipe();
+        RecipeOld selectedRecipe = getSelectedRecipe();
         if(selectedRecipe == null){
             LOGGER.warn("No recipe is selected.");
             return;

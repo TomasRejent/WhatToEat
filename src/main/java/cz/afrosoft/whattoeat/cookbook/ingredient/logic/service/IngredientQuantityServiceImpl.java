@@ -7,13 +7,13 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import org.apache.commons.lang3.Validate;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -29,18 +29,18 @@ public class IngredientQuantityServiceImpl implements IngredientQuantityService{
     }
 
     @Override
-    public float getQuantity(final RecipeIngredient ingredient, final int numberOfServings) {
+    public float getQuantity(final OldRecipeIngredient ingredient, final int numberOfServings) {
         checkNotNull(ingredient, "RecipeIngredient cannot be null.");
         checkServings(numberOfServings);
 
-        final Ingredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
+        final OldIngredient ingredientInfo = ingredientInfoDao.read(ingredient.getIngredientKey());
         checkNotNull(ingredientInfo, "Cannot find matching ingredient info for ingredient: " + ingredient, NotFoundException.class);
 
         return getQuantity(ingredient, ingredientInfo, numberOfServings);
     }
 
     @Override
-    public float getQuantity(final RecipeIngredient ingredient, final Ingredient ingredientInfo, final int numberOfServings) {
+    public float getQuantity(final OldRecipeIngredient ingredient, final OldIngredient ingredientInfo, final int numberOfServings) {
         checkNotNull(ingredient, "RecipeIngredient cannot be null.");
         checkNotNull(ingredientInfo, "Ingredient cannot be null for ingredient: " + ingredient);
         checkServings(numberOfServings);

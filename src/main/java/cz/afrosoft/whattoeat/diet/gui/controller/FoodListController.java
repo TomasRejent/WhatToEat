@@ -5,12 +5,9 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.diet.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import java.net.URL;
-import java.util.Collection;
-import java.util.ResourceBundle;
+import cz.afrosoft.whattoeat.diet.logic.service.DietService;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +19,10 @@ import javafx.scene.control.TableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.net.URL;
+import java.util.Collection;
+import java.util.ResourceBundle;
+
 /**
  * FXML Controller class
  *
@@ -30,22 +31,16 @@ import org.slf4j.LoggerFactory;
 public class FoodListController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FoodListController.class);
-
+    private final DietService dietService;
     @FXML
     private TableView<Diet> dietTable;
-
     @FXML
     private TableColumn<Diet, String> nameColumn;
-
     @FXML
     private TableColumn<Diet, String> fromColumn;
-
     @FXML
     private TableColumn<Diet, String> toColumn;
-
     private ObservableList<Diet> dietList = FXCollections.observableArrayList();
-
-    private final DietService dietService;
 
     public FoodListController() {
         this.dietService = ServiceHolder.getDietService();

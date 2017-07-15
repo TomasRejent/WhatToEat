@@ -6,13 +6,14 @@
 
 package cz.afrosoft.whattoeat.diet.logic.model;
 
-import cz.afrosoft.whattoeat.core.data.PersistentEntity;
-import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.List;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PersistentEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.List;
 
 /**
  *

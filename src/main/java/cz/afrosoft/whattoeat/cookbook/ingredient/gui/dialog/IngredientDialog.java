@@ -8,14 +8,10 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.*;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.geometry.Orientation;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -33,8 +29,12 @@ import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.HashSet;
+import java.util.Optional;
+import java.util.Set;
+
 /**
- * Dialog for adding and editing of {@link Ingredient}.
+ * Dialog for adding and editing of {@link OldIngredient}.
  * @author Tomas Rejent
  */
 public class IngredientDialog extends Dialog<IngredientRow>{
@@ -91,7 +91,7 @@ public class IngredientDialog extends Dialog<IngredientRow>{
         Validate.notNull(editRow);
         clearDialog();
         this.editRow = editRow;
-        final Ingredient ingredientInfo = editRow.getIngredientInfo();
+        final OldIngredient ingredientInfo = editRow.getIngredientInfo();
         Validate.notNull(ingredientInfo);
         nameField.setText(ingredientInfo.getName());
         unitField.getSelectionModel().select(ingredientInfo.getIngredientUnit());
@@ -130,7 +130,7 @@ public class IngredientDialog extends Dialog<IngredientRow>{
     }
 
     private IngredientRow fillFromDialog(){
-        final Ingredient ingredientInfo = getOrCreateIngredientInfo();
+        final OldIngredient ingredientInfo = getOrCreateIngredientInfo();
         ingredientInfo.setName(nameField.getText());
         ingredientInfo.setIngredientUnit(unitField.getValue());
         ingredientInfo.setPrice(Float.valueOf(priceField.getText()));
@@ -140,9 +140,9 @@ public class IngredientDialog extends Dialog<IngredientRow>{
         return new IngredientRow(ingredientInfo, pieceConversionInfo);
     }
 
-    private Ingredient getOrCreateIngredientInfo(){
+    private OldIngredient getOrCreateIngredientInfo() {
         if(this.editRow == null){
-            return new Ingredient();
+            return new OldIngredient();
         }else{
             return this.editRow.getIngredientInfo();
         }

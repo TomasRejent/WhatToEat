@@ -5,14 +5,12 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import java.net.URL;
-import java.util.ResourceBundle;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +20,9 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import java.net.URL;
+import java.util.ResourceBundle;
 
 /**
  * Controller for List of ingredients view.
@@ -33,7 +34,9 @@ public class IngredientListController implements Initializable {
 
     private static final String DELETE_CONFIRM_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.delete.ingredient.title";
     private static final String DELETE_CONFIRM_MESSAGE_KEY = "cz.afrosoft.whattoeat.dialog.delete.ingredient.messages";
-
+    private final ObservableList<IngredientRow> tableRowsList = FXCollections.observableArrayList();
+    private final IngredientDialog ingredientDialog = new IngredientDialog();
+    private final IngredientService ingredientService = ServiceHolder.getIngredientInfoService();
     @FXML
     private TableView<IngredientRow> ingredientTable;
     @FXML
@@ -46,11 +49,6 @@ public class IngredientListController implements Initializable {
     private TableColumn<IngredientRow, String> priceColumn;
     @FXML
     private TableColumn<IngredientRow, String> keywordColumn;
-
-    private final ObservableList<IngredientRow> tableRowsList = FXCollections.observableArrayList();
-    private final IngredientDialog ingredientDialog = new IngredientDialog();
-
-    private final IngredientService ingredientService = ServiceHolder.getIngredientInfoService();
 
     /**
      * Initializes the controller class.

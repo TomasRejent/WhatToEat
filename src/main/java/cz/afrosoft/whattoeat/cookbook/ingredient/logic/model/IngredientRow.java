@@ -12,8 +12,6 @@ import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
-import java.util.Objects;
-
 /**
  * Represents one row from ingredient table.
  * @author Tomas Rejent
@@ -23,7 +21,7 @@ public class IngredientRow implements Comparable<IngredientRow>{
     private static final String NO_CONVERSION = "-";
     private static final String KEYWORD_SEPARATOR = ",";
 
-    private final Ingredient ingredientInfo;
+    private final OldIngredient ingredientInfo;
     private final PieceConversionInfo pieceConversionInfo;
 
     /**
@@ -31,7 +29,7 @@ public class IngredientRow implements Comparable<IngredientRow>{
      * @param ingredientInfo (NotNull)
      * @param pieceConversionInfo (NullAble) Piece conversion info if exist for specified ingredient info.
      */
-    public IngredientRow(final Ingredient ingredientInfo, final PieceConversionInfo pieceConversionInfo) {
+    public IngredientRow(final OldIngredient ingredientInfo, final PieceConversionInfo pieceConversionInfo) {
         Validate.notNull(ingredientInfo);
         this.ingredientInfo = ingredientInfo;
         this.pieceConversionInfo = pieceConversionInfo;
@@ -64,7 +62,7 @@ public class IngredientRow implements Comparable<IngredientRow>{
         }
     }
 
-    public Ingredient getIngredientInfo() {
+    public OldIngredient getIngredientInfo() {
         return ingredientInfo;
     }
 
@@ -77,8 +75,8 @@ public class IngredientRow implements Comparable<IngredientRow>{
         if (thatIngredientRow == null){
             return 1;
         }
-        final Ingredient thisIngredient = ingredientInfo;
-        final Ingredient thatIngredient = thatIngredientRow.getIngredientInfo();
+        final OldIngredient thisIngredient = ingredientInfo;
+        final OldIngredient thatIngredient = thatIngredientRow.getIngredientInfo();
         if(thisIngredient == thatIngredient){
             return 0;
         }else if(thisIngredient == null){

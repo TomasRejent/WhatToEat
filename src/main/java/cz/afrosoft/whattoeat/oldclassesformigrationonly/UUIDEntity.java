@@ -1,7 +1,5 @@
-package cz.afrosoft.whattoeat.core.logic.model;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import cz.afrosoft.whattoeat.core.data.PersistentEntity;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 

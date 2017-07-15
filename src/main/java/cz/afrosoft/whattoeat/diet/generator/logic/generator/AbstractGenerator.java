@@ -6,18 +6,20 @@
 
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+
 import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -36,7 +38,7 @@ public abstract class AbstractGenerator implements Generator{
         return diet;
     }
 
-    protected Collection<Recipe> filterRecipesByType(final Collection<Recipe> recipes, final RecipeType type){
+    protected Collection<RecipeOld> filterRecipesByType(final Collection<RecipeOld> recipes, final RecipeType type) {
         checkNotNull(recipes, "Recipes cannot be null.");
         checkNotNull(type, "Recipe type cannot be null.");
 

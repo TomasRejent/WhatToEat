@@ -6,9 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
-import cz.afrosoft.whattoeat.core.data.PersistentEntity;
-import cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PersistentEntity;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -46,9 +46,19 @@ public class BasicConversionInfo implements PieceConversionInfo, PersistentEntit
         return ingredientKey;
     }
 
+    public void setIngredientKey(String ingredientKey) {
+        ParameterCheckUtils.checkNotNull(ingredientKey, "RecipeIngredient name cannot be null.");
+        this.ingredientKey = ingredientKey;
+    }
+
     @Override
     public int getGramsOfAveragePiece() {
         return gramsOfAveragePiece;
+    }
+
+    public void setGramsOfAveragePiece(int gramsOfAveragePiece) {
+        validateGramsOfAveragePiece(gramsOfAveragePiece);
+        this.gramsOfAveragePiece = gramsOfAveragePiece;
     }
 
     @Override
@@ -56,18 +66,6 @@ public class BasicConversionInfo implements PieceConversionInfo, PersistentEntit
         final StringBuilder sb = new StringBuilder();
         final String translatedPieceLabel = I18n.getText(IngredientUnit.PIECE.getLabelKey());
         return sb.append(pieces).append(translatedPieceLabel).toString();
-    }
-
-    
-
-    public void setIngredientKey(String ingredientKey) {
-        ParameterCheckUtils.checkNotNull(ingredientKey, "RecipeIngredient name cannot be null.");
-        this.ingredientKey = ingredientKey;
-    }
-
-    public void setGramsOfAveragePiece(int gramsOfAveragePiece) {
-        validateGramsOfAveragePiece(gramsOfAveragePiece);
-        this.gramsOfAveragePiece = gramsOfAveragePiece;
     }
 
     private void validateGramsOfAveragePiece(final int gramsOfAveragePiece){

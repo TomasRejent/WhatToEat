@@ -5,7 +5,7 @@ import org.controlsfx.control.IndexedCheckModel;
 
 import java.util.Collection;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  * Utils for filling specific GUI components.

@@ -6,35 +6,26 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import cz.afrosoft.whattoeat.core.ServiceHolder;
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
-import java.util.ArrayList;
-import java.util.Collection;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
-import javafx.scene.control.Separator;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.ColumnConstraints;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.scene.layout.Priority;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -92,8 +83,8 @@ public class RecipeViewDialog extends Dialog<Void>{
     private final IngredientList ingredientList = new IngredientList();
     
     private final PriceCalculatorService priceCalculatorService = ServiceHolder.getPriceCalculatorService();
- 
-    private Recipe recipe;
+
+    private RecipeOld recipe;
     
     public RecipeViewDialog() {
         super();
@@ -107,7 +98,7 @@ public class RecipeViewDialog extends Dialog<Void>{
     }
 
 
-    public void showRecipe(final Recipe recipe){
+    public void showRecipe(final RecipeOld recipe) {
         checkNotNull(recipe, "Recipe to show cannot be null.");
         
         this.recipe = recipe;

@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.diet.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
@@ -26,7 +26,7 @@ public class MealServiceImpl implements MealService{
     public MealView getMealView(Meal meal) {
         LOGGER.debug("Getting MealView for Meal: {}.", meal);
         Validate.notNull(meal);
-        Recipe recipe = recipeService.getRecipeByKey(meal.getRecipeKey());
+        RecipeOld recipe = recipeService.getRecipeByKey(meal.getRecipeKey());
         return new MealView(meal, recipe.getName());
     }
 }

@@ -1,73 +1,38 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
-import cz.afrosoft.whattoeat.core.data.PersistentEntity;
-import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
-
-import java.io.Serializable;
-import java.util.*;
+import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
+import cz.afrosoft.whattoeat.core.logic.model.KeywordEntity;
 
 /**
+ * Represents definition of ingredient. Contains all ingredient properties
+ * which are not dependent on recipe.
  *
- * @author Alexandra
+ * @author Tomas Rejent
  */
-public final class Ingredient extends UUIDEntity implements Serializable, PersistentEntity<String>{
-    
-    private String name;
-    private IngredientUnit ingredientUnit;
-    private float price;
-    private Set<String> keywords;
+public interface Ingredient extends IdEntity, KeywordEntity {
 
-    public String getName() {
-        return name;
-    }
+    /**
+     * @return (NotNull) Gets name of ingredient.
+     */
+    String getName();
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    /**
+     * @return (NotNull) Usually used unit for measuring this ingredient.
+     * Sometimes it make sense that ingredient has more units, for example
+     * milk can be measured by both {@link IngredientUnit#VOLUME} and
+     * {@link IngredientUnit#WEIGHT}. These cases are solved by {@link UnitConversion}.
+     */
+    IngredientUnit getIngredientUnit();
 
-    public IngredientUnit getIngredientUnit() {
-        return ingredientUnit;
-    }
+    /**
+     * @return Gets price for one unit of this ingredient. Currency is not considered.
+     * It is assumed currency corresponds to language of recipes.
+     */
+    float getPrice();
 
-    public void setIngredientUnit(IngredientUnit ingredientUnit) {
-        this.ingredientUnit = ingredientUnit;
-    }
-
-    public float getPrice() {
-        return price;
-    }
-
-    public void setPrice(float price) {
-        this.price = price;
-    }
-
-    public Set<String> getKeywords() {
-        return Optional.ofNullable(keywords).orElse(Collections.emptySet());
-    }
-
-    public void setKeywords(Set<String> keywords) {
-        this.keywords = keywords;
-    }
-
-    
-    
-    @Override
-    public int hashCode() {
-        return super.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
-    }
-
-    @Override
-    public String toString() {
-        return "Ingredient{" + "name=" + name + ", ingredientUnit=" + ingredientUnit + ", price=" + price + ", keywords=" + keywords + '}';
-    } 
+    /**
+     * @return (Nullable) Gets unit conversion defined for this ingredient. May be null
+     * if ingredient does not have any conversion defined.
+     */
+    UnitConversion getUnitConversion();
 }

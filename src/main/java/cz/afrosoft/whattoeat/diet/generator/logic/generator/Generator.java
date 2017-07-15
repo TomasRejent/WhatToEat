@@ -5,9 +5,10 @@
  */
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+
 import java.util.Collection;
 
 /**
@@ -20,6 +21,6 @@ public interface Generator {
 
     String getName();
 
-    Diet generate(Collection<Recipe> recipes, GeneratorParameters parameters);
+    Diet generate(Collection<RecipeOld> recipes, GeneratorParameters parameters);
 
 }

@@ -6,9 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
-import cz.afrosoft.whattoeat.core.data.JsonDao;
-import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
+import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.JsonDao;
 
 /**
  * Implementation of persistence service of JSON type for entity {@link BasicConversionInfo}.

@@ -5,11 +5,11 @@
  */
 package cz.afrosoft.whattoeat.diet.logic.model;
 
-import java.io.Serializable;
-
-import cz.afrosoft.whattoeat.core.logic.model.UUIDEntity;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.UUIDEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import java.io.Serializable;
 
 /**
  *
@@ -33,12 +33,12 @@ public class Meal extends UUIDEntity implements Serializable{
         return recipeKey;
     }
 
-    public int getServings() {
-        return servings;
-    }
-
     public void setRecipeKey(String recipeKey) {
         this.recipeKey = recipeKey;
+    }
+
+    public int getServings() {
+        return servings;
     }
 
     public void setServings(int servings) {

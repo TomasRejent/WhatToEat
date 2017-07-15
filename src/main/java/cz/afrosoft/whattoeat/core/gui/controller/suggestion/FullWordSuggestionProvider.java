@@ -5,11 +5,13 @@
  */
 package cz.afrosoft.whattoeat.core.gui.controller.suggestion;
 
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
 import impl.org.controlsfx.autocompletion.SuggestionProvider;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+
 import java.util.Collection;
 import java.util.Comparator;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  * Suggestion provider which match also when typed text is equal to suggestion option.

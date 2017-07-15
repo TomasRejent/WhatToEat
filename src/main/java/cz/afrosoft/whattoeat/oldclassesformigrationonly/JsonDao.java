@@ -4,25 +4,23 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.core.data;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.core.data.exception.DataLoadException;
 import cz.afrosoft.whattoeat.core.data.exception.DataSaveException;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * Implementation of basic DAO operations over JSON files as persistence medium.

@@ -6,11 +6,11 @@
 
 package cz.afrosoft.whattoeat.diet.data;
 
-import cz.afrosoft.whattoeat.core.data.JsonDao;
 import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.JsonDao;
 import org.apache.commons.lang3.Validate;
 
 import java.util.ArrayList;

@@ -6,19 +6,20 @@
 
 package cz.afrosoft.whattoeat.diet.generator.logic.service;
 
-import cz.afrosoft.whattoeat.diet.generator.logic.generator.Generator;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
-import static cz.afrosoft.whattoeat.core.data.util.ParameterCheckUtils.checkNotNull;
-
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
+import cz.afrosoft.whattoeat.diet.generator.logic.generator.Generator;
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.RandomGenerator;
-import cz.afrosoft.whattoeat.diet.logic.model.Diet;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.Set;
+
+import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  *
@@ -48,7 +49,7 @@ public class GeneratorServiceImpl implements GeneratorService{
         checkNotNull(generator, "Generator cannot be null.");
         checkNotNull(parameters, "Generator parameters cannot be null.");
 
-        final Collection<Recipe> recipes = recipeDao.readAll();
+        final Collection<RecipeOld> recipes = recipeDao.readAll();
         final Diet diet = generator.generate(recipes, parameters);
         dietDao.create(diet);
         return diet;

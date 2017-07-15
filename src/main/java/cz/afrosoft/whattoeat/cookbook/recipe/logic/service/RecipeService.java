@@ -5,13 +5,14 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+
 import java.util.Set;
 
 /**
- * Service which handles work with {@link Recipe} and related entities on business layer.
+ * Service which handles work with {@link RecipeOld} and related entities on business layer.
  * @author Tomas Rejent
  */
 public interface RecipeService {
@@ -22,7 +23,7 @@ public interface RecipeService {
      * @return (NotNull) Recipe with specified key.
      * @throws NotFoundException If recipe with given key does not exist.
      */
-    Recipe getRecipeByKey(String recipeKey);
+    RecipeOld getRecipeByKey(String recipeKey);
 
     /**
      * Gets recipe by name.
@@ -30,37 +31,37 @@ public interface RecipeService {
      * @return (NotNull) Recipe with specified name.
      * @throws NotFoundException If recipe with given name does not exist.
      */
-    Recipe getRecipeByName(String name);
+    RecipeOld getRecipeByName(String name);
 
     /**
      * Gets all recipes.
      * @return (NotNull)(ReadOnly) Set of recipes.
      */
-    Set<Recipe> getAllRecipes();
+    Set<RecipeOld> getAllRecipes();
 
     /**
      * Gets all recipes which contains type {@link RecipeType#SIDE_DISH}.
      * @return (NotNull)(ReadOnly)
      */
-    Set<Recipe> getAllSideDishes();
+    Set<RecipeOld> getAllSideDishes();
 
     /**
      * Add new Recipe.
      * @param recipe (NotNull) Recipe to add.
      */
-    void addRecipe(Recipe recipe);
+    void addRecipe(RecipeOld recipe);
 
     /**
      * Saves specified recipe to persistent storage. It must already exist in storage.
      * @param recipe (Required) Recipe to update.
      */
-    void updateRecipe(Recipe recipe);
+    void updateRecipe(RecipeOld recipe);
 
     /**
      * Deletes specified recipe from storage.
      * @param recipe (Required) recipe to delete.
      */
-    void deleteRecipe(Recipe recipe);
+    void deleteRecipe(RecipeOld recipe);
 
     /**
      * @return (NotNull)(ReadOnly) Set of keywords from all recipes.

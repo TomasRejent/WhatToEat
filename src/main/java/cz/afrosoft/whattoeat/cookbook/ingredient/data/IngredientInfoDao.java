@@ -5,15 +5,16 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
-import cz.afrosoft.whattoeat.core.data.BaseDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
+
 import java.util.Set;
 
 /**
- * Interface for {@link Ingredient} entity DAO to provide Ingredient specific data services.
+ * Interface for {@link OldIngredient} entity DAO to provide Ingredient specific data services.
  * @author Tomas Rejent
  */
-public interface IngredientInfoDao extends BaseDao<Ingredient, String>{
+public interface IngredientInfoDao extends BaseDao<OldIngredient, String> {
 
     /**
      * @return (NotNull) (ReadOnly) Set of all ingredient keywords.

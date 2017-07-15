@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.core.data;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.io.Serializable;
 
