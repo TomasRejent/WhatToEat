@@ -259,7 +259,6 @@ servings<y:LabelModel>
     </node>
     <node id="n11">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLNoteNode>
           <y:Geometry height="77.0" width="132.0" x="81.0" y="716.9000000000001"/>
@@ -278,7 +277,6 @@ ingredient preparation time<y:LabelModel>
       </data>
     </node>
     <node id="n12">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="115.0" width="107.0" x="1027.5" y="619.6187500000004"/>
@@ -303,7 +301,6 @@ grams per spoon<y:LabelModel>
       </data>
     </node>
     <node id="n13">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="57.0" width="166.0" x="767.09375" y="736.9000000000001"/>
@@ -325,7 +322,6 @@ grams per spoon<y:LabelModel>
     </node>
     <node id="n14">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLNoteNode>
           <y:Geometry height="28.0" width="100.0" x="767.09375" y="800.8187500000004"/>
@@ -342,7 +338,6 @@ grams per spoon<y:LabelModel>
       </data>
     </node>
     <node id="n15">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="72.0" width="123.0" x="529.5" y="721.9000000000001"/>
@@ -365,7 +360,6 @@ quantity<y:LabelModel>
     </node>
     <node id="n16">
       <data key="d4"/>
-      <data key="d5"/>
       <data key="d6">
         <y:UMLNoteNode>
           <y:Geometry height="28.0" width="100.0" x="529.5" y="800.8187500000004"/>
@@ -382,7 +376,6 @@ quantity<y:LabelModel>
       </data>
     </node>
     <node id="n17">
-      <data key="d5"/>
       <data key="d6">
         <y:GenericNode configuration="com.yworks.entityRelationship.big_entity">
           <y:Geometry height="72.0" width="115.0" x="81.0" y="638.5"/>
@@ -523,7 +516,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e11" source="n2" target="n17">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-80.0390625" sy="59.0" tx="0.0" ty="0.0"/>
@@ -542,7 +534,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e12" source="n12" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-53.51079196079468" sy="-41.42796376702677" tx="80.0250000000002" ty="20.190786232973664"/>
@@ -553,7 +544,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e13" source="n13" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="8.889698841715472" sy="-28.52155103360178" tx="50.98344884171547" ty="43.243999999999915"/>
@@ -572,7 +562,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e14" source="n13" target="n5">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-65.00306498004113" sy="-28.538942069842165" tx="-22.90931498004113" ty="43.2109375"/>
@@ -591,7 +580,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e15" source="n15" target="n4">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="0.0" ty="0.0"/>
@@ -602,7 +590,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e16" source="n5" target="n15">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="-60.90625" sy="43.2734375" tx="0.0" ty="0.0">
@@ -615,7 +602,6 @@ label key<y:LabelModel>
       </data>
     </edge>
     <edge id="e17" source="n2" target="n2">
-      <data key="d9"/>
       <data key="d10">
         <y:PolyLineEdge>
           <y:Path sx="0.0" sy="0.0" tx="68.94375000000025" ty="76.4639374999997">

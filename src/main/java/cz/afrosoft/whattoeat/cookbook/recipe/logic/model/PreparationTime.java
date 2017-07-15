@@ -1,15 +1,12 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
 import cz.afrosoft.whattoeat.core.gui.Labeled;
+import org.apache.commons.lang3.Validate;
 
 /**
+ * Express recipe preparation time in fuzzy manner.
  *
- * @author Alexandra
+ * @author Tomas Rejent
  */
 public enum PreparationTime implements Labeled {
     /**
@@ -29,13 +26,18 @@ public enum PreparationTime implements Labeled {
      */
     MEDIUM("cz.afrosoft.whattoeat.preparationTime.medium"),
     /**
-     * More than hour.
+     * Up to 2 hours.
      */
-    LONG("cz.afrosoft.whattoeat.preparationTime.long");
+    LONG("cz.afrosoft.whattoeat.preparationTime.long"),
+    /**
+     * More than two hours.
+     */
+    FOREVER("cz.afrosoft.whattoeat.preparationTime.forever");
 
     private final String labelKey;
 
-    private PreparationTime(String labelKey){
+    PreparationTime(final String labelKey) {
+        Validate.notBlank(labelKey);
         this.labelKey = labelKey;
     }
 
