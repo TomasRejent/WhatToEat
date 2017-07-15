@@ -10,7 +10,7 @@ import javax.persistence.Converter;
  *
  * @author Tomas Rejent
  */
-@Converter
+@Converter(autoApply = true)
 public class TasteConverter extends IdEnumConverter<Taste> {
 
     public TasteConverter() {
