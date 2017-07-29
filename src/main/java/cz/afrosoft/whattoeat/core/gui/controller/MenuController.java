@@ -3,10 +3,10 @@ package cz.afrosoft.whattoeat.core.gui.controller;
 import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.PAGE;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -73,7 +73,9 @@ public class MenuController implements Initializable {
             rootPane.setCenter(Main.loadPage(page));
         } catch (IOException ex) {
             LOGGER.error("Cannot show page: {}", page, ex);
-            rootPane.setCenter(new Label(I18n.getText("cz.afrosoft.whattoeat.menu.error", ex.getMessage())));
+            DialogUtils.showExceptionDialog(
+                    I18n.getText("cz.afrosoft.whattoeat.menu.error", page.name()),
+                    ex);
         }
     }
 }

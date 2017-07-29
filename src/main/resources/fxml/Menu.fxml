@@ -4,11 +4,11 @@
 <?import javafx.scene.layout.BorderPane?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1"
+        xmlns="http://javafx.com/javafx/8"
         fx:id="rootPane"
         stylesheets="@../styles/Menu.css"
         styleClass="root-pane"
-        fx:controller="cz.afrosoft.whattoeat.core.gui.controller.MenuController"
-        xmlns="http://javafx.com/javafx/8">
+        fx:controller="cz.afrosoft.whattoeat.core.gui.controller.MenuController">
     <top>
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
