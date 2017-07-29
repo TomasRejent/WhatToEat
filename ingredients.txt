@@ -410,7 +410,7 @@
   {
     "name": "hermelín",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.233,
     "keywords": [
       "mléčný výrobek"
     ],
@@ -936,7 +936,7 @@
   {
     "name": "nové koření",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.233,
     "keywords": [
       "koření"
     ],
@@ -945,7 +945,7 @@
   {
     "name": "kmín",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.2,
     "keywords": [
       "koření"
     ],
@@ -1008,7 +1008,7 @@
   {
     "name": "skořice",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 0.25,
     "keywords": [
       "koření"
     ],
@@ -1026,7 +1026,7 @@
   {
     "name": "majoránka",
     "ingredientUnit": "WEIGHT",
-    "price": 0.0,
+    "price": 1.3,
     "keywords": [
       "koření"
     ],
@@ -1782,5 +1782,93 @@
       "ochucovadlo"
     ],
     "uuid": "e257ba14-e14d-48cb-acfc-5a528de2ee62"
+  },
+  {
+    "name": "Taleggio",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.369,
+    "keywords": [
+      "sýr"
+    ],
+    "uuid": "b54b0c0d-549c-4045-9fa1-9197bf473f6d"
+  },
+  {
+    "name": "ementál",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.599,
+    "keywords": [
+      "sýr"
+    ],
+    "uuid": "9e0bc247-0c2c-4f30-811c-91baaa6fba0b"
+  },
+  {
+    "name": "sýr krolewski 45%",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.189,
+    "keywords": [
+      "sýr"
+    ],
+    "uuid": "722491a5-277a-43ea-9a5f-2a5f49f6c506"
+  },
+  {
+    "name": "lučina",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.21,
+    "keywords": [
+      "sýr"
+    ],
+    "uuid": "b7922392-50dc-45cf-8b7e-9fa5921474b5"
+  },
+  {
+    "name": "fenykl",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.652,
+    "keywords": [
+      "koření"
+    ],
+    "uuid": "c849d14c-bff3-43d7-9864-6ec607f8c11c"
+  },
+  {
+    "name": "muškátový květ",
+    "ingredientUnit": "WEIGHT",
+    "price": 2.0,
+    "keywords": [
+      "koření"
+    ],
+    "uuid": "ea9c152c-c4bd-4d84-a322-0f1627374265"
+  },
+  {
+    "name": "anýz",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.7826,
+    "keywords": [
+      "koření"
+    ],
+    "uuid": "5cb32b45-364e-4c38-a42d-0a5bbc05bda0"
+  },
+  {
+    "name": "jarní cibulka",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [
+      "zelenina"
+    ],
+    "uuid": "41d46b58-5c00-4a94-a1d6-0c21284bac19"
+  },
+  {
+    "name": "zakysaná smetana",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [
+      "mléčný výrobek"
+    ],
+    "uuid": "516ce641-6f57-403c-bd70-e283f6c0236b"
+  },
+  {
+    "name": "salsa dip",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [],
+    "uuid": "09a1f0ea-bc1d-4621-a703-4e4a755b6b1b"
   }
 ]

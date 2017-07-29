@@ -3491,5 +3491,182 @@
     "keywords": [],
     "sideDishes": [],
     "uuid": "0c7294cc-26f1-48bc-b869-59cf3850c495"
+  },
+  {
+    "name": "Mrkvovo celerové hranolky",
+    "preparation": "Očistíme celer a mrkev a nakrájíme na hranolky. Na plech si připravíme pečící papír a rovnoměrně rozprostřeme nakrájenou zeleninu. Dáme péct do trouby na 200 stupňů. Pečení je dokončené, když je zelenina mírně vysušená a smrsknutá na povrchu.",
+    "ingredients": [
+      {
+        "ingredientKey": "ea5ce55f-281a-45b8-a3c7-f5dcd76cc8b3",
+        "quantity": 98.0
+      },
+      {
+        "ingredientKey": "257cbe42-9939-4862-b0b6-2ae022edc242",
+        "quantity": 147.0
+      }
+    ],
+    "preparationTime": "MEDIUM",
+    "recipeTypes": [
+      "SIDE_DISH"
+    ],
+    "taste": "SALTY",
+    "rating": 7,
+    "keywords": [
+      "bezlepkové",
+      "váženo",
+      "bezmasé"
+    ],
+    "sideDishes": [],
+    "uuid": "97645da1-d8e8-4f2e-b314-cf0ab667c907"
+  },
+  {
+    "name": "Tortilla placka",
+    "preparation": "Množství jedné porce odpovídá těstu na jednu placku. Pro hladovější lidi doporučuji dvě placky na 1 porci.\n\nSmícháme hladkou mouku s vodou a olivovým olejem. Přidáme kypřící prášek do pečiva a trochu soli. Pro vymýchání těsta můžeme použít domácí pekárnu nebo to udělat ručně. Těsto necháme chvíli odpočinout. Potom ho rozdělíme podle požadovaného počtu placek a rozválíme na tenké placky. Na rozehřátou pánev dáme osmažit. Smažit je lepší prudčeji a po krátkou dobu, aby na povrchu byla placka opečená, ale uvnitř zůstala vláčná.",
+    "ingredients": [
+      {
+        "ingredientKey": "63779d48-12b7-4e61-865d-4aa5bece93c3",
+        "quantity": 75.0
+      },
+      {
+        "ingredientKey": "837606aa-cc81-4673-b5a5-656f5f0b570c",
+        "quantity": 3.0
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "96b79bf6-38eb-4af1-a0f0-0d9fe16061fa",
+        "quantity": 15.0
+      },
+      {
+        "ingredientKey": "cd7f4479-feb8-4676-870d-45d5f4e0f750",
+        "quantity": 20.0
+      }
+    ],
+    "preparationTime": "MEDIUM",
+    "recipeTypes": [
+      "SIDE_DISH"
+    ],
+    "taste": "SALTY",
+    "rating": 6,
+    "keywords": [
+      "váženo",
+      "bezmasé"
+    ],
+    "sideDishes": [],
+    "uuid": "87ef751f-915e-47fe-8602-986c8c1c22d2"
+  },
+  {
+    "name": "Směs do tortilly",
+    "preparation": "Uváděná gramáž je jako náplň do jedné placky.\n\nMaso:\nMaso omyjeme a nakrájíme na drobné kostičky, poté osolíme, opepříme, případně přidáme vlastní bylinky / koření podle chuti. Dáme osmahnout do hrnce a posypeme sladkou paprikou. Intenzivně mícháme, aby se paprika nepřipekla. Poté co se maso zatáhne zalijeme vodou a necháme vařit maso do měka.\n\nZeleninová směs:\nZeleninu očistíme a nakrájíme na kostičky. Vše smícháme dohromady v dostatečně velké misce.\n\nNáplň do tortilly:\nPřed podáváním tortilu pomažeme zakysanou smetanou a salsa dipem. Potom přidáme maso a nakonec zeleninu.\n",
+    "ingredients": [
+      {
+        "ingredientKey": "72481c1c-eb2c-4b70-9f5c-7f8eeddf6499",
+        "quantity": 110.0
+      },
+      {
+        "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
+        "quantity": 6.6
+      },
+      {
+        "ingredientKey": "1815cfe5-d80f-4e6c-9466-6b7810c20c8b",
+        "quantity": 15.3
+      },
+      {
+        "ingredientKey": "48ea016b-82c4-4524-bff0-ca4b5b3087c7",
+        "quantity": 21.0
+      },
+      {
+        "ingredientKey": "516ce641-6f57-403c-bd70-e283f6c0236b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "7a124f7d-2bb9-4817-acc7-59a818f7762a",
+        "quantity": 26.0
+      },
+      {
+        "ingredientKey": "09a1f0ea-bc1d-4621-a703-4e4a755b6b1b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "41d46b58-5c00-4a94-a1d6-0c21284bac19",
+        "quantity": 10.0
+      },
+      {
+        "ingredientKey": "9f5bf255-6615-4171-bbfd-2f2fea275897",
+        "quantity": 30.0
+      },
+      {
+        "ingredientKey": "4d57228a-698f-4c3a-9e41-7421cd6ab57d",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "f7429c1a-8313-4b9d-90d9-574416458e77",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "74854088-21ad-4f14-981c-83ea6310f874",
+        "quantity": 35.0
+      }
+    ],
+    "preparationTime": "LONG",
+    "recipeTypes": [
+      "LUNCH",
+      "DINNER"
+    ],
+    "taste": "SALTY",
+    "rating": 5,
+    "keywords": [
+      "bezlepkové",
+      "váženo"
+    ],
+    "sideDishes": [],
+    "uuid": "890eae11-aece-4f2a-bc3a-4cc7b567a416"
+  },
+  {
+    "name": "Křenová pomazánka",
+    "preparation": "Očistíme a nastrouháme křen. Nastrouháme jablko. Přidáme tvaroh a tavený sýr. Posolíma a zamícháme. Můžeme vylepšit např pažitkou nebo trochou petrželky.",
+    "ingredients": [
+      {
+        "ingredientKey": "dd868eb9-a65e-46b4-a2f7-b58f232837aa",
+        "quantity": 6.0
+      },
+      {
+        "ingredientKey": "bc5235f9-5462-4709-a0d5-95b91e33c327",
+        "quantity": 10.0
+      },
+      {
+        "ingredientKey": "c8991237-6067-4249-8309-987ae910551c",
+        "quantity": 22.4
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "c318b4d4-223e-4e2a-9579-109ae010ff39",
+        "quantity": 14.4
+      }
+    ],
+    "preparationTime": "SHORT",
+    "recipeTypes": [
+      "SNACK"
+    ],
+    "taste": "SALTY",
+    "rating": 5,
+    "keywords": [
+      "bezlepkové",
+      "pomazánka",
+      "ostré",
+      "váženo",
+      "bezmasé"
+    ],
+    "sideDishes": [],
+    "uuid": "1b2a8908-9766-4417-aa4e-b8104cd20279"
   }
 ]
