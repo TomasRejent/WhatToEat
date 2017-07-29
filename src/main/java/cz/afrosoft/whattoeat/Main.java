@@ -1,16 +1,20 @@
 package cz.afrosoft.whattoeat;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.PAGE;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
+
+import java.io.IOException;
 
 /**
  * Entry point of application. Extends {@link Application} to be able to use JavaFX. Also set up Spring for dependency injection
@@ -40,11 +44,32 @@ public class Main extends Application {
         launch(args);
     }
 
+    /**
+     * Loads component for page. Construct FXML Loader which creates controller from Spring context.
+     *
+     * @param page (NotNull) Page to load.
+     * @return (NotNull) GUI Component loaded by FXML Loader representing specified page.
+     * @throws IOException When fxml file specified in page cannot be loaded by FXML Loader.
+     */
+    public static <T> T loadPage(final PAGE page) throws IOException {
+        Validate.notNull(page);
+        Validate.notNull(applicationContext);
+
+        FXMLLoader fxmlLoader = new FXMLLoader(page.toUrlResource(), I18n.getResourceBundle());
+        fxmlLoader.setControllerFactory(applicationContext::getBean);
+        T pageComponent = fxmlLoader.load();
+        if (pageComponent == null) {
+            throw new IllegalStateException(String.format("GUI Component loaded for page %s is null.", page));
+        }
+        return pageComponent;
+    }
+
+
     public static BorderPane getRootPane(){
         if(rootPane == null){
             throw new IllegalStateException("Root pane is null.");
         }
-        
+
         return rootPane;
     }
 
@@ -58,9 +83,7 @@ public class Main extends Application {
         applicationContext = SpringApplication.run(Main.class);
 
         I18n.init("cz");
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/fxml/Menu.fxml"), I18n.getResourceBundle());
-        fxmlLoader.setControllerFactory(applicationContext::getBean);
-        rootPane = fxmlLoader.load();
+        rootPane = loadPage(PAGE.ROOT);
 
     }
 
