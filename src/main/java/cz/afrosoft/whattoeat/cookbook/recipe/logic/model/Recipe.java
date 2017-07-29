@@ -1,7 +1,8 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-import cz.afrosoft.whattoeat.core.logic.model.KeywordEntity;
+import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
 
 import java.time.Duration;
 import java.util.Set;
@@ -12,7 +13,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Recipe extends IdEntity, KeywordEntity {
+public interface Recipe extends IdEntity, KeywordableEntity {
 
     /**
      * @return (NotNull) Gets name of recipe. This is not unique identifier.
@@ -35,7 +36,7 @@ public interface Recipe extends IdEntity, KeywordEntity {
      * @return (NotNull) Gets all types of recipe to which recipe belongs.
      * Recipe must have at least one type.
      */
-    Set<RecipeType> getRecipeType();
+    Set<RecipeType> getRecipeTypes();
 
     /**
      * @return (NotNull) Gets taste of recipe. Determines if recipe is sweet or salty for example.
@@ -69,14 +70,14 @@ public interface Recipe extends IdEntity, KeywordEntity {
     PreparationTime getTotalPreparationTime();
 
     /**
-     * @return (NotNull) Gets all suitable side dishes for this recipe. Only recipes containing type {@link RecipeType#MAIN_DISH}
+     * @return (NotNull) Gets all suitable side dishes for this recipe. Only recipes containing type {@link OldRecipeType#MAIN_DISH}
      * can have side dishes. Others types returns empty set.
      */
-    Set<Recipe> getSideDishes();
+    Set<? extends Recipe> getSideDishes();
 
     /**
      * @return (NotNull) Gets ingredients and their quantities needed to prepare meal from recipe.
      * Recipe must have at least one ingredient.
      */
-    Set<RecipeIngredient> getIngredients();
+    Set<? extends RecipeIngredient> getIngredients();
 }

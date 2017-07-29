@@ -7,12 +7,12 @@
 package cz.afrosoft.whattoeat.diet.generator.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.diet.data.DietDao;
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.Generator;
 import cz.afrosoft.whattoeat.diet.generator.logic.generator.RandomGenerator;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import java.util.Collection;
 import java.util.Collections;

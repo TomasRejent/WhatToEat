@@ -8,9 +8,9 @@ package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
 import com.google.common.collect.ImmutableSet;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -51,7 +51,7 @@ public class RecipeServiceImpl implements RecipeService{
 
     @Override
     public Set<RecipeOld> getAllSideDishes() {
-        final List<RecipeOld> sideDishes = recipeDao.getRecipeByType(RecipeType.SIDE_DISH);
+        final List<RecipeOld> sideDishes = recipeDao.getRecipeByType(OldRecipeType.SIDE_DISH);
         return ImmutableSet.copyOf(sideDishes);
     }
 

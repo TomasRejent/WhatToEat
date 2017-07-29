@@ -5,8 +5,8 @@
  */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.BasicConversionInfo;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
 
 import java.util.List;
 

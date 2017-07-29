@@ -5,9 +5,9 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.data;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import java.util.List;
 import java.util.Set;
@@ -26,11 +26,11 @@ public interface RecipeDao extends BaseDao<RecipeOld, String> {
     RecipeOld getRecipeByName(String name);
 
     /**
-     * Get recipes which type matches at least one of specified {@link RecipeType}.
+     * Get recipes which type matches at least one of specified {@link OldRecipeType}.
      * @param types (NotNull) Types by which recipes are filtered.
      * @return (NotNull)(ReadOnly) List of matching recipes or empty list if none was found.
      */
-    List<RecipeOld> getRecipeByType(RecipeType... types);
+    List<RecipeOld> getRecipeByType(OldRecipeType... types);
     
     /**
      * Get set of keywords from all recipes.

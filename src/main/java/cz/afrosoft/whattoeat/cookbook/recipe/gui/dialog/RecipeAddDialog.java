@@ -8,14 +8,19 @@ package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -85,7 +90,7 @@ public class RecipeAddDialog extends Dialog<RecipeOld> {
     private final TextField nameField = new TextField();
 
     private final Label typeLabel = new Label();
-    private final CheckComboBox<RecipeType> typeField = new CheckComboBox<>();
+    private final CheckComboBox<OldRecipeType> typeField = new CheckComboBox<>();
 
     private final Label tasteLabel = new Label();
     private final PrefixSelectionChoiceBox<Taste> tasteField = new PrefixSelectionChoiceBox();
@@ -213,7 +218,7 @@ public class RecipeAddDialog extends Dialog<RecipeOld> {
         typeLabel.setText(I18n.getText(I18N_TYPE));
         tasteLabel.setText(I18n.getText(I18N_TASTE));
         timeLabel.setText(I18n.getText(I18N_TIME));
-        typeField.getItems().addAll(RecipeType.values());
+        typeField.getItems().addAll(OldRecipeType.values());
         tasteField.getItems().addAll(Taste.values());
         timeField.getItems().addAll(PreparationTime.values());
         setupTypeEvents();
@@ -371,11 +376,11 @@ public class RecipeAddDialog extends Dialog<RecipeOld> {
     }
 
     private void setupTypeEvents(){
-        typeField.getCheckModel().getCheckedItems().addListener((ListChangeListener.Change<? extends RecipeType> change) -> {
+        typeField.getCheckModel().getCheckedItems().addListener((ListChangeListener.Change<? extends OldRecipeType> change) -> {
             change.next();
-            final ObservableList<? extends RecipeType> types = change.getList();
+            final ObservableList<? extends OldRecipeType> types = change.getList();
 
-            if(types.contains(RecipeType.LUNCH) || types.contains(RecipeType.DINNER)){
+            if (types.contains(OldRecipeType.LUNCH) || types.contains(OldRecipeType.DINNER)) {
                 setSideDishesVisibility(true);
             }else{
                 setSideDishesVisibility(false);

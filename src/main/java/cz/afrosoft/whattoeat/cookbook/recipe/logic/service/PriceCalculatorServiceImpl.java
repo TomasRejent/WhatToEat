@@ -9,7 +9,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 

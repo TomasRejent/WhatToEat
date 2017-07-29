@@ -7,6 +7,7 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.HashCodeBuilder;

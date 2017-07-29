@@ -5,9 +5,9 @@
  */
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import java.util.Collection;
 

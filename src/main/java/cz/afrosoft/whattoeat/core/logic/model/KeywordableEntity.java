@@ -7,12 +7,12 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface KeywordEntity {
+public interface KeywordableEntity {
 
     /**
      * @return (NotNull) Gets all keywords attached to entity or empty set if entity does
      * not have any keyword.
      */
-    Set<Keyword> getKeywords();
+    Set<? extends Keyword> getKeywords();
 
 }

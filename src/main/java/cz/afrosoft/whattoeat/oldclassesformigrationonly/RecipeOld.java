@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PersistentEntity;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.UUIDEntity;
 
 import java.io.Serializable;
 import java.util.Collections;
@@ -25,7 +26,7 @@ public final class RecipeOld extends UUIDEntity implements Serializable, Persist
     private Set<OldRecipeIngredient> ingredients;
 
     private PreparationTime preparationTime;
-    private Set<RecipeType> recipeTypes;
+    private Set<OldRecipeType> recipeTypes;
     private Taste taste;
     private int rating;
 
@@ -64,11 +65,11 @@ public final class RecipeOld extends UUIDEntity implements Serializable, Persist
         this.preparationTime = preparationTime;
     }
 
-    public Set<RecipeType> getRecipeTypes() {
-        return Optional.ofNullable(recipeTypes).orElse(EnumSet.noneOf(RecipeType.class));
+    public Set<OldRecipeType> getRecipeTypes() {
+        return Optional.ofNullable(recipeTypes).orElse(EnumSet.noneOf(OldRecipeType.class));
     }
 
-    public void setRecipeTypes(Set<RecipeType> recipeTypes) {
+    public void setRecipeTypes(Set<OldRecipeType> recipeTypes) {
         this.recipeTypes = recipeTypes;
     }
 

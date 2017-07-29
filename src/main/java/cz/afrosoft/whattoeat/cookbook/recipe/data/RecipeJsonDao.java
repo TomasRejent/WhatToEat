@@ -6,10 +6,10 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.data;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.JsonDao;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -39,10 +39,10 @@ public class RecipeJsonDao extends JsonDao<RecipeOld, String> implements RecipeD
     }
 
     @Override
-    public List<RecipeOld> getRecipeByType(final RecipeType... types) {
+    public List<RecipeOld> getRecipeByType(final OldRecipeType... types) {
         LOGGER.debug("Filtering recipes by recipe type: {}", (Object[]) types);
         Validate.notNull(types, "At leas one recipe type must be specified.");
-        final Set<RecipeType> filteredTypes = EnumSet.copyOf(Arrays.asList(types));
+        final Set<OldRecipeType> filteredTypes = EnumSet.copyOf(Arrays.asList(types));
         final List<RecipeOld> recipes = readAll();
         final List<RecipeOld> filteredRecipes = recipes.stream().filter(
                 (recipe) -> !Collections.disjoint(filteredTypes, recipe.getRecipeTypes())

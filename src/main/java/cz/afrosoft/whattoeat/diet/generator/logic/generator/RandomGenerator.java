@@ -6,12 +6,12 @@
 
 package cz.afrosoft.whattoeat.diet.generator.logic.generator;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.diet.generator.logic.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -90,19 +90,19 @@ public class RandomGenerator extends AbstractGenerator implements Generator{
     }
 
     private enum MealGenerationType{
-        BREAKFAST(RecipeType.BREAKFAST, GeneratorParameters::getBreakfast, DayDiet::setBreakfast),
-        MORNING_SNACK(RecipeType.SNACK, GeneratorParameters::getMorningSnack, DayDiet::setMorningSnack),
-        SOUP(RecipeType.SOUP, GeneratorParameters::getSoup, DayDiet::setSoup),
-        LUNCH(RecipeType.LUNCH, GeneratorParameters::getLunch, DayDiet::setLunch),
-        SIDE_DISH(RecipeType.SIDE_DISH, GeneratorParameters::getSideDish, DayDiet::setSideDish),
-        AFTERNOON_SNACK(RecipeType.SNACK, GeneratorParameters::getAfternoonSnack, DayDiet::setAfternoonSnack),
-        DINNER(RecipeType.DINNER, GeneratorParameters::getDinner, DayDiet::setDinner);
+        BREAKFAST(OldRecipeType.BREAKFAST, GeneratorParameters::getBreakfast, DayDiet::setBreakfast),
+        MORNING_SNACK(OldRecipeType.SNACK, GeneratorParameters::getMorningSnack, DayDiet::setMorningSnack),
+        SOUP(OldRecipeType.SOUP, GeneratorParameters::getSoup, DayDiet::setSoup),
+        LUNCH(OldRecipeType.LUNCH, GeneratorParameters::getLunch, DayDiet::setLunch),
+        SIDE_DISH(OldRecipeType.SIDE_DISH, GeneratorParameters::getSideDish, DayDiet::setSideDish),
+        AFTERNOON_SNACK(OldRecipeType.SNACK, GeneratorParameters::getAfternoonSnack, DayDiet::setAfternoonSnack),
+        DINNER(OldRecipeType.DINNER, GeneratorParameters::getDinner, DayDiet::setDinner);
 
-        private final RecipeType recipeType;
+        private final OldRecipeType recipeType;
         private final BiConsumer<DayDiet, Meal> resultSetter;
         private final Function<GeneratorParameters, Boolean> enablingMethod;
 
-        MealGenerationType(RecipeType recipeType, Function<GeneratorParameters, Boolean> enablingMethod, BiConsumer<DayDiet, Meal> resultSetter) {
+        MealGenerationType(OldRecipeType recipeType, Function<GeneratorParameters, Boolean> enablingMethod, BiConsumer<DayDiet, Meal> resultSetter) {
             this.recipeType = recipeType;
             this.resultSetter = resultSetter;
             this.enablingMethod = enablingMethod;

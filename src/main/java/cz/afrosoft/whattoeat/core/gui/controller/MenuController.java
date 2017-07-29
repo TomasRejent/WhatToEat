@@ -15,7 +15,7 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
@@ -25,7 +25,7 @@ import java.util.ResourceBundle;
  * Controller for menu bar. Switches displayed pages according to pressed button.
  * @author Tomas Rejent
  */
-@Component
+@Controller
 public class MenuController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(MenuController.class);

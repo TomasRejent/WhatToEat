@@ -10,6 +10,6 @@ public interface IdEntity {
     /**
      * @return Id of entity. Id is unique for entity type.
      */
-    int getId();
+    Integer getId();
 
 }

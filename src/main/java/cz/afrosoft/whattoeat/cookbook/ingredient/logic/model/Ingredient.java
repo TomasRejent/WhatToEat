@@ -1,7 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-import cz.afrosoft.whattoeat.core.logic.model.KeywordEntity;
+import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
 
 /**
  * Represents definition of ingredient. Contains all ingredient properties
@@ -9,7 +9,7 @@ import cz.afrosoft.whattoeat.core.logic.model.KeywordEntity;
  *
  * @author Tomas Rejent
  */
-public interface Ingredient extends IdEntity, KeywordEntity {
+public interface Ingredient extends IdEntity, KeywordableEntity {
 
     /**
      * @return (NotNull) Gets name of ingredient.

@@ -5,9 +5,9 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 import java.util.Set;
 
@@ -40,7 +40,7 @@ public interface RecipeService {
     Set<RecipeOld> getAllRecipes();
 
     /**
-     * Gets all recipes which contains type {@link RecipeType#SIDE_DISH}.
+     * Gets all recipes which contains type {@link OldRecipeType#SIDE_DISH}.
      * @return (NotNull)(ReadOnly)
      */
     Set<RecipeOld> getAllSideDishes();

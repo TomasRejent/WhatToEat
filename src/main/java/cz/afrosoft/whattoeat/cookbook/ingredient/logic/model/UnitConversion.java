@@ -11,39 +11,39 @@ import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 public interface UnitConversion extends IdEntity {
 
     /**
-     * @return Gets number of grams per average piece of ingredient.
+     * @return (Nullable) Gets number of grams per average piece of ingredient.
      * For example average onion has 90g.
      */
-    float getGramsPerPiece();
+    Float getGramsPerPiece();
 
     /**
-     * @return Gets number of milliliters per gram. For example
+     * @return (Nullable) Gets number of milliliters per gram. For example
      * milk has 1.001 milliliters per gram.
      */
-    float getMilliliterPerGram();
+    Float getMilliliterPerGram();
 
     /**
-     * @return Gets grams per pinch. This conversion is typically used for
+     * @return (Nullable) Gets grams per pinch. This conversion is typically used for
      * spices. For example one pinch of rosemary weights 0.1g.
      */
-    float getGramsPerPinch();
+    Float getGramsPerPinch();
 
     /**
-     * @return Gets grams per cofee spoon. This conversion is typically used for
+     * @return (Nullable) Gets grams per cofee spoon. This conversion is typically used for
      * spices. For example one cofee spoon of salt weights 1.5g.
      * <p>
      * Meaning of spoon is that content is leveled so it is not above edges of spoon.
      * This allows to use same conversion field also for liquids.
      */
-    float getGramsPerCofeeSpoon();
+    Float getGramsPerCoffeeSpoon();
 
     /**
-     * @return Gets grams per spoon. This conversion is typically used for
+     * @return (Nullable) Gets grams per spoon. This conversion is typically used for
      * spices. For example one spoon of marjoram has 1.2g.
      * <p>
      * Meaning of spoon is that content is leveled so it is not above edges of spoon.
      * This allows to use same conversion field also for liquids.
      */
-    float getGramsPerSpoon();
+    Float getGramsPerSpoon();
 
 }

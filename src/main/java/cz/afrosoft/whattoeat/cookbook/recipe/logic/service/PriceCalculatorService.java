@@ -5,7 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 
 /**
  *

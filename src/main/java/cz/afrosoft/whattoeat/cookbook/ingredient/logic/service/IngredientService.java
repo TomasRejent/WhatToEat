@@ -7,10 +7,10 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
 
 import java.util.Collection;
 import java.util.List;

@@ -7,10 +7,10 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;

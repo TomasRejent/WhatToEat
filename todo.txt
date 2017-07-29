@@ -2,11 +2,13 @@
 
 
 ----- ARCHITECTURE -----------------------------------------------------------------------------------------------------
-- Create ER diagram and validate each attribute
+- Add hash code and equals to entities
+- Set nullable false to mandatory entity attributes
 
 Done:
 X - Add UUID to every entity and migrate existing data
 X - Use recipe UUIDs in diets
+X - Create ER diagram and validate each attribute
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.

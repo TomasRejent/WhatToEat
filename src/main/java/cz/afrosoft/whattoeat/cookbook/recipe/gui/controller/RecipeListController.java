@@ -7,12 +7,12 @@ package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeOld;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Labeled;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
@@ -107,7 +107,7 @@ public class RecipeListController implements Initializable {
         return new ReadOnlyObjectWrapper<>(StringUtils.join(stringSet, KEYWORD_SEPARATOR));
     }
 
-    private ObservableValue<String> getValueFromRecipeTypeSet(Set<RecipeType> recipeTypeSet){
+    private ObservableValue<String> getValueFromRecipeTypeSet(Set<OldRecipeType> recipeTypeSet) {
         return new ReadOnlyObjectWrapper<>(StringUtils.join(recipeTypeSet.stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).toArray(), KEYWORD_SEPARATOR));
     }
 

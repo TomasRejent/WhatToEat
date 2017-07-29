@@ -8,16 +8,17 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
 import com.google.common.collect.ImmutableSet;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.PieceConversionInfo;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo.GarlicConversionInfo;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.BasicConversionInfo;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.BasicConversionInfo;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *

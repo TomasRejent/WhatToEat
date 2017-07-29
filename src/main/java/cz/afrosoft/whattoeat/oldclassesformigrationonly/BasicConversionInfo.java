@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PersistentEntity;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
