@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.core.gui.controller;
 
 import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.PAGE;
+import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -19,6 +19,7 @@ import java.util.ResourceBundle;
 
 /**
  * Controller for menu bar. Switches displayed pages according to pressed button.
+ *
  * @author Tomas Rejent
  */
 @Controller
@@ -30,35 +31,41 @@ public class MenuController implements Initializable {
     private BorderPane rootPane;
 
     /**
-     * Initializes the controller class.
+     * {@inheritDoc}
      */
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
         LOGGER.debug("Initializing MenuController.");
-    }    
-    
+    }
+
+    @FXML
+    private void showAuthorList(final ActionEvent actionEvent) {
+        LOGGER.debug("Switching to Author page.");
+        showPage(Page.AUTHORS);
+    }
+
     @FXML
     private void showRecipeList(final ActionEvent actionEvent) {
         LOGGER.debug("Switching to Recipes page.");
-        showPage(PAGE.RECIPES);
+        showPage(Page.RECIPES);
     }
     
     @FXML
     private void showIngredientList(final ActionEvent actionEvent) {
         LOGGER.debug("Switching to Ingredients page.");
-        showPage(PAGE.INGREDIENTS);
+        showPage(Page.INGREDIENTS);
     }
 
     @FXML
     private void showFoodList(final ActionEvent actionEvent) {
         LOGGER.debug("Switching to Food list page.");
-        showPage(PAGE.FOOD_LIST);
+        showPage(Page.FOOD_LIST);
     }
     
     @FXML
     private void showGenerator(final ActionEvent actionEvent) {
         LOGGER.debug("Switching to Generator page.");
-        showPage(PAGE.GENERATOR);
+        showPage(Page.GENERATOR);
     }
 
     /**
@@ -67,7 +74,7 @@ public class MenuController implements Initializable {
      *
      * @param page (NotNull) Page to show in center of root border pane.
      */
-    private void showPage(final PAGE page) {
+    private void showPage(final Page page) {
         Validate.notNull(page);
         try {
             rootPane.setCenter(Main.loadPage(page));

@@ -10,6 +10,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -31,14 +32,21 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Set<Author> getAllAuthors() {
         LOGGER.debug("Getting all authors.");
-        return new HashSet<>(repository.findAll());
+        return new HashSet<>(repository.findAllWithCookbooks());
     }
 
     @Override
+    @Transactional
     public void delete(final Author author) {
         LOGGER.debug("Deleting author: {}", author);
         Validate.notNull(author, "Cannot delete null author.");
         repository.delete(author.getId());
+    }
+
+    @Override
+    public AuthorUpdateObject getCreateObject() {
+        LOGGER.debug("Creating update object for new author.");
+        return new AuthorEntity();
     }
 
     @Override
@@ -54,12 +62,18 @@ public class AuthorServiceImpl implements AuthorService {
     }
 
     @Override
+    @Transactional
     public Author update(final AuthorUpdateObject authorChanges) {
         LOGGER.debug("Updating author: {}", authorChanges);
         Validate.notNull(authorChanges, "Cannot update author with null changes.");
 
         if (authorChanges instanceof AuthorEntity) {
-            return repository.save((AuthorEntity) authorChanges);
+            AuthorEntity updatedAuthor = repository.save((AuthorEntity) authorChanges);
+            AuthorEntity oneWithCookbooks = repository.findOneWithCookbooks(updatedAuthor.getId());
+            if (oneWithCookbooks == null) {
+                throw new IllegalStateException(String.format("Author with id %s was not found.", updatedAuthor.getId()));
+            }
+            return oneWithCookbooks;
         } else {
             throw new IllegalStateException("This implementation of AuthorService supports only AuthorEntity as AuthorUpdateObject.");
         }

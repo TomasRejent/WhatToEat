@@ -24,6 +24,14 @@ public interface AuthorService {
     void delete(Author author);
 
     /**
+     * Gets update object for new Author. After data are filled it can be persisted using
+     * {@link #update(AuthorUpdateObject)} method.
+     *
+     * @return (NotNull)
+     */
+    AuthorUpdateObject getCreateObject();
+
+    /**
      * Gets update object for specified author. Update object is used to modify author.
      * Changes are not persisted until {@link #update(AuthorUpdateObject)} is called.
      *
@@ -37,6 +45,7 @@ public interface AuthorService {
      *
      * @param authorChanges (NotNull) Changes to persist.
      * @return (NotNull) Author with updated values.
+     * @throws IllegalStateException When update failed and updated user cannot be reloaded.
      */
     Author update(AuthorUpdateObject authorChanges);
 

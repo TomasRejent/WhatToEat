@@ -1,7 +1,7 @@
 package cz.afrosoft.whattoeat;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.PAGE;
+import cz.afrosoft.whattoeat.core.gui.Page;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.ConfigurableApplicationContext;
 
 import java.io.IOException;
@@ -30,6 +31,9 @@ public class Main extends Application {
      */
     private static ConfigurableApplicationContext applicationContext;
 
+    /**
+     * Root of application gui.
+     */
     private static BorderPane rootPane;
 
     /**
@@ -51,7 +55,7 @@ public class Main extends Application {
      * @return (NotNull) GUI Component loaded by FXML Loader representing specified page.
      * @throws IOException When fxml file specified in page cannot be loaded by FXML Loader.
      */
-    public static <T> T loadPage(final PAGE page) throws IOException {
+    public static <T> T loadPage(final Page page) throws IOException {
         Validate.notNull(page);
         Validate.notNull(applicationContext);
 
@@ -64,13 +68,14 @@ public class Main extends Application {
         return pageComponent;
     }
 
-
-    public static BorderPane getRootPane(){
-        if(rootPane == null){
-            throw new IllegalStateException("Root pane is null.");
-        }
-
-        return rootPane;
+    /**
+     * Gets Spring application context.
+     *
+     * @return (NotNull)
+     */
+    public static ApplicationContext getApplicationContext() {
+        Validate.notNull(applicationContext);
+        return applicationContext;
     }
 
     /**
@@ -83,7 +88,7 @@ public class Main extends Application {
         applicationContext = SpringApplication.run(Main.class);
 
         I18n.init("cz");
-        rootPane = loadPage(PAGE.ROOT);
+        rootPane = loadPage(Page.ROOT);
 
     }
 

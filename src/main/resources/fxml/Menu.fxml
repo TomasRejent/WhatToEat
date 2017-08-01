@@ -12,15 +12,12 @@
     <top>
         <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <items>
-                <Button styleClass="test" mnemonicParsing="false" onAction="#showRecipeList"
-                        text="%cz.afrosoft.whattoeat.menu.recipes"/>
-                <Button mnemonicParsing="false" onAction="#showIngredientList"
-                        text="%cz.afrosoft.whattoeat.menu.ingredients"/>
-                <Button mnemonicParsing="false" onAction="#showFoodList" text="Food list"/>
-                <Button mnemonicParsing="false" onAction="#showGenerator"
-                        text="%cz.afrosoft.whattoeat.menu.diet.generator"/>
+                <Button onAction="#showAuthorList" text="%cz.afrosoft.whattoeat.menu.authors"/>
+                <Button onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes"/>
+                <Button onAction="#showIngredientList" text="%cz.afrosoft.whattoeat.menu.ingredients"/>
+                <Button onAction="#showFoodList" text="%cz.afrosoft.whattoeat.menu.diet.foodlist"/>
+                <Button onAction="#showGenerator" text="%cz.afrosoft.whattoeat.menu.diet.generator"/>
             </items>
         </ToolBar>
     </top>
-
 </BorderPane>

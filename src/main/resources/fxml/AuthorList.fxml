@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="authorContainer"
+        stylesheets="@../styles/AuthoList.css"
+        styleClass="author-container"
+        fx:controller="cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller.AuthorController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
+            <Button fx:id="viewButton" onAction="#viewAuthor" text="%cz.afrosoft.whattoeat.authors.actions.view"/>
+            <Button onAction="#addAuthor" text="%cz.afrosoft.whattoeat.authors.actions.add"/>
+            <Button fx:id="editButton" onAction="#editAuthor" text="%cz.afrosoft.whattoeat.authors.actions.edit"/>
+            <Button fx:id="deleteButton" onAction="#deleteAuthor" text="%cz.afrosoft.whattoeat.authors.actions.delete"/>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="authorTable" styleClass="author-table">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="name"/>
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn fx:id="emailColumn" text="%cz.afrosoft.whattoeat.authors.table.header.email"/>
+                <TableColumn fx:id="cookbookColumn" text="%cz.afrosoft.whattoeat.authors.table.header.cookbooks"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

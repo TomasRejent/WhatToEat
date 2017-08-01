@@ -1,0 +1,9 @@
+/* Restyle dialog for view purpose. Style is triggered by setting fields as read only.*/
+
+.author-dialog .text-field:readonly{
+    -fx-background-color: rgb(244, 244, 244);
+}
+
+.author-dialog .text-area:readonly .content{
+    -fx-background-color: rgb(244, 244, 244);
+}

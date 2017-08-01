@@ -3,6 +3,9 @@ package cz.afrosoft.whattoeat.cookbook.cookbook.data.entity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
+import org.apache.commons.lang3.builder.EqualsBuilder;
+import org.apache.commons.lang3.builder.HashCodeBuilder;
+import org.hibernate.Hibernate;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -30,7 +33,7 @@ public class AuthorEntity implements Author, AuthorUpdateObject {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToMany(mappedBy = "authors")
+    @ManyToMany(targetEntity = CookbookEntity.class, mappedBy = "authors")
     private Set<CookbookEntity> cookbooks;
 
     @Override
@@ -83,5 +86,31 @@ public class AuthorEntity implements Author, AuthorUpdateObject {
     @Override
     public Author getAuthor() {
         return this;
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+
+        if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) return false;
+
+        AuthorEntity that = (AuthorEntity) o;
+
+        return new EqualsBuilder()
+                .append(id, that.id)
+                .append(name, that.name)
+                .append(email, that.email)
+                .append(description, that.description)
+                .isEquals();
+    }
+
+    @Override
+    public int hashCode() {
+        return new HashCodeBuilder(17, 37)
+                .append(id)
+                .append(name)
+                .append(email)
+                .append(description)
+                .toHashCode();
     }
 }

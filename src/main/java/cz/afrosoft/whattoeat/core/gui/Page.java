@@ -7,11 +7,14 @@ import java.net.URL;
 /**
  * Represent pages(screens) in application. Each contains path to fxml file to render it.
  */
-public enum PAGE {
+public enum Page {
     /**
      * Root page of application rendered after startup. This page contains menu which allows switching to other pages.
      */
     ROOT("/fxml/Menu.fxml"),
+    /**
+     * Page with list of authors. Provides crud operations to user.
+     */
     AUTHORS("/fxml/AuthorList.fxml"),
     COOKBOOKS("/fxml/CookbookList.fxml"),
     RECIPES("/fxml/RecipeList.fxml"),
@@ -24,7 +27,7 @@ public enum PAGE {
     /**
      * @param fxmlPath (NotBlank) Path to fxml file for this page.
      */
-    PAGE(final String fxmlPath) {
+    Page(final String fxmlPath) {
         Validate.notBlank(fxmlPath);
         this.fxmlPath = fxmlPath;
     }
@@ -41,7 +44,7 @@ public enum PAGE {
      * @throws IllegalStateException When resource for this enum item does not exist.
      */
     public URL toUrlResource() {
-        URL resource = PAGE.class.getResource(getFxmlPath());
+        URL resource = Page.class.getResource(getFxmlPath());
         if (resource == null) {
             throw new IllegalStateException(String.format("Cannot find resource with path: %s.", getFxmlPath()));
         }

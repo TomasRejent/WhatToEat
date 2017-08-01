@@ -32,7 +32,7 @@ public class CookbookEntity implements Cookbook {
     @JoinTable(name = "COOKBOOK_RECIPES")
     private Set<RecipeEntity> recipes;
 
-    @ManyToMany
+    @ManyToMany(targetEntity = AuthorEntity.class)
     @JoinTable(name = "COOKBOOK_AUTHORS")
     private Set<AuthorEntity> authors;
 

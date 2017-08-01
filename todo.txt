@@ -5,7 +5,8 @@
 - Add hash code and equals to entities
 - Set nullable false to mandatory entity attributes OR use hibernate validations
 - Use config property loading from Spring instead of ConfigService
-- Use property from config to set anguage of application
+- Use property from config to set language of application
+- Add transactional annotations to write service methods
 
 Done:
 X - Add UUID to every entity and migrate existing data

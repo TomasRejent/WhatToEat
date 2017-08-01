@@ -5,7 +5,6 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
@@ -37,7 +36,6 @@ import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -99,8 +97,6 @@ public class DietViewController implements Initializable {
             return;
         }
 
-        BorderPane rootPane = Main.getRootPane();
-        rootPane.setCenter(dietViewPane);
         final DietViewController dietViewController = fxmlLoader.getController();
         dietViewController.viewDiet(diet);
     }

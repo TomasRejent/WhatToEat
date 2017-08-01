@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<GridPane
+        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="dialogContainer"
+        styleClass="author-dialog"
+        stylesheets="@../styles/AuthorDialog.css"
+>
+    <Label
+            text="%cz.afrosoft.whattoeat.authors.add.name"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="0"/>
+    <TextField fx:id="nameField"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="0"/>
+    <Label text="%cz.afrosoft.whattoeat.authors.add.email"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="1"/>
+    <TextField fx:id="emailField"
+               GridPane.columnIndex="1"
+               GridPane.rowIndex="1"/>
+    <Label text="%cz.afrosoft.whattoeat.authors.add.description"
+           GridPane.columnIndex="0"
+           GridPane.rowIndex="2"
+           GridPane.columnSpan="2"/>
+    <TextArea fx:id="descriptionArea"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="3"
+              GridPane.columnSpan="2"/>
+</GridPane>
