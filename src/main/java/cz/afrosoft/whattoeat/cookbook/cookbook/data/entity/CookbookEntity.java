@@ -1,9 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.data.entity;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,7 +13,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "COOKBOOK")
-public class CookbookEntity implements Cookbook {
+public class CookbookEntity {
 
     @Id
     @GeneratedValue
@@ -36,48 +34,48 @@ public class CookbookEntity implements Cookbook {
     @JoinTable(name = "COOKBOOK_AUTHORS")
     private Set<AuthorEntity> authors;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public CookbookEntity setId(final Integer id) {
         this.id = id;
+        return this;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
+    public CookbookEntity setName(final String name) {
         this.name = name;
+        return this;
     }
 
-    @Override
     public String getDescription() {
         return description;
     }
 
-    public void setDescription(final String description) {
+    public CookbookEntity setDescription(final String description) {
         this.description = description;
+        return this;
     }
 
-    @Override
-    public Set<? extends Recipe> getRecipes() {
+    public Set<RecipeEntity> getRecipes() {
         return recipes;
     }
 
-    public void setRecipes(final Set<RecipeEntity> recipes) {
+    public CookbookEntity setRecipes(final Set<RecipeEntity> recipes) {
         this.recipes = recipes;
+        return this;
     }
 
-    @Override
-    public Set<? extends Author> getAuthors() {
+    public Set<AuthorEntity> getAuthors() {
         return authors;
     }
 
-    public void setAuthors(final Set<AuthorEntity> authors) {
+    public CookbookEntity setAuthors(final Set<AuthorEntity> authors) {
         this.authors = authors;
+        return this;
     }
 }

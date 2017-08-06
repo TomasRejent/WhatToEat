@@ -20,13 +20,13 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Integer> {
      * Loads author with specified id including his cookbooks.
      *
      * @param authorId (NotNull) Id of author to find.
-     * @return (Nullable) Author with specified id or null if does not exist.
+     * @return (Nullable) Author with specified id and joined cookbooks or null if does not exist.
      */
     @Query("SELECT a FROM AuthorEntity a LEFT JOIN FETCH a.cookbooks WHERE a.id = :authorId")
     AuthorEntity findOneWithCookbooks(@Param("authorId") Integer authorId);
 
     /**
-     * Loads are existing Authors including their cookbooks.
+     * Loads all existing Authors including their cookbooks.
      *
      * @return (NotNull)
      */

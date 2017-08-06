@@ -53,7 +53,7 @@ public interface RecipeService {
 
     /**
      * Saves specified recipe to persistent storage. It must already exist in storage.
-     * @param recipe (Required) Recipe to update.
+     * @param recipe (Required) Recipe to createOrUpdate.
      */
     void updateRecipe(RecipeOld recipe);
 

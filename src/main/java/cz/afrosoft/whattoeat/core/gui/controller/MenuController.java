@@ -45,6 +45,12 @@ public class MenuController implements Initializable {
     }
 
     @FXML
+    private void showCookbookList(final ActionEvent actionEvent) {
+        LOGGER.debug("Switching to Cookbook page.");
+        showPage(Page.COOKBOOKS);
+    }
+
+    @FXML
     private void showRecipeList(final ActionEvent actionEvent) {
         LOGGER.debug("Switching to Recipes page.");
         showPage(Page.RECIPES);

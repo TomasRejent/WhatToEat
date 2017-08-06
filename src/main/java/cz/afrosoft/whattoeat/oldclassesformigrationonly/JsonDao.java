@@ -112,7 +112,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
 
     /**
      * Updates entity in storage file specified when constructing this instance.
-     * @param entity (NotNull) UUIDEntity to update. UUIDEntity must already exist in storage.
+     * @param entity (NotNull) UUIDEntity to createOrUpdate. UUIDEntity must already exist in storage.
      * @throws DataLoadException If storage file cannot be read.
      * @throws DataSaveException If entity cannot be updated in storage.
      */
@@ -125,7 +125,7 @@ public class JsonDao<T extends PersistentEntity<K>, K extends Serializable> impl
             entities.set(entities.indexOf(entity), entity);
             saveAllInternal(entities);
         }else{
-            throw new DataSaveException(String.format("Cannot update entity %s because it does not exist in storage %s. Use create first.", entity, storageFile));
+            throw new DataSaveException(String.format("Cannot createOrUpdate entity %s because it does not exist in storage %s. Use create first.", entity, storageFile));
         }
     }
 

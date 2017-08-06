@@ -72,7 +72,7 @@ public class RecipeServiceImpl implements RecipeService{
     @Override
     public void updateRecipe(RecipeOld recipe) {
         LOGGER.debug("Updating recipe: {}", recipe);
-        ParameterCheckUtils.checkNotNull(recipe, "Cannot update null recipe.");
+        ParameterCheckUtils.checkNotNull(recipe, "Cannot createOrUpdate null recipe.");
         recipeDao.update(recipe);
     }
 

@@ -29,5 +29,5 @@ public interface Author extends IdEntity {
     /**
      * @return (NotNull) Set of cookbooks written by author. Can be empty set.
      */
-    Set<? extends Cookbook> getCookbooks();
+    Set<Cookbook> getCookbooks();
 }

@@ -64,7 +64,7 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
     private AuthorService authorService;
 
     /**
-     * Holds update object when creating or editing author.
+     * Holds createOrUpdate object when creating or editing author.
      */
     private AuthorUpdateObject authorUpdateObject;
 
@@ -95,7 +95,7 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
     /**
      * Shows dialog for adding author. This is blocking call. It waits until user close dialog.
      *
-     * @return (NotNull) Empty optional if user cancels dialog. Optional with author update object if user submit dialog.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with author createOrUpdate object if user submit dialog.
      */
     public Optional<AuthorUpdateObject> addAuthor() {
         setTitle(I18n.getText(ADD_TITLE_KEY));
@@ -109,7 +109,7 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
      * Shows dialog for editing author. This is blocking call. It waits until user close dialog.
      *
      * @param author (NotNull) Author to edit.
-     * @return (NotNull) Empty optional if user cancels dialog. Optional with author update object if user submit dialog.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with author createOrUpdate object if user submit dialog.
      */
     public Optional<AuthorUpdateObject> editAuthor(final AuthorUpdateObject author) {
         Validate.notNull(author, "Cannot edit null author.");
@@ -174,14 +174,14 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
     }
 
     /**
-     * Fills data from fields to update object. Precondition of this method is that {@link #authorUpdateObject} is not null.
+     * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #authorUpdateObject} is not null.
      *
      * @return (NotNull)
-     * @throws IllegalStateException If update object does not exist.
+     * @throws IllegalStateException If createOrUpdate object does not exist.
      */
     private AuthorUpdateObject fillUpdateObject() {
         if (authorUpdateObject == null) {
-            throw new IllegalStateException("Author update object cannot be null.");
+            throw new IllegalStateException("Author createOrUpdate object cannot be null.");
         }
 
         authorUpdateObject.setName(nameField.getText());

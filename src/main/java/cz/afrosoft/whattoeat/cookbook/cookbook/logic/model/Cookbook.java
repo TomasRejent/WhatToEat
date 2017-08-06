@@ -25,13 +25,12 @@ public interface Cookbook extends IdEntity {
     String getDescription();
 
     /**
-     * @return (NotNull) Gets all recipes belonging to this cookbook.
+     * @return (NotEmpty) Set containing all authors of cookbook. At least one author must exist.
      */
-    Set<? extends Recipe> getRecipes();
+    Set<Author> getAuthors();
 
     /**
-     * @return (NotNull) Set containing all authors of cookbook. At least one author must exist.
+     * @return (NotNull) Gets all recipes belonging to this cookbook.
      */
-    Set<? extends Author> getAuthors();
-
+    Set<Recipe> getRecipes();
 }

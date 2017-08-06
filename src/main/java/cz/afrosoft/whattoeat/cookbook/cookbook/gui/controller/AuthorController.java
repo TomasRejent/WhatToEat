@@ -7,16 +7,15 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import javafx.beans.property.ReadOnlyObjectWrapper;
+import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
+import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,28 +79,19 @@ public class AuthorController implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
         LOGGER.debug("Initializing authors controller.");
         setupColumnCellFactories();
-        authorTable.getItems().addAll(authorService.getAllAuthors());
         disableAuthorActionButtons(true);
         setupSelectionHandler();
+        authorTable.getItems().addAll(authorService.getAllAuthors());
     }
 
     /**
      * Setup cell value factories for all columns.
      */
     private void setupColumnCellFactories() {
-        nameColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getName()));
-        emailColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getEmail()));
-        cookbookColumn.setCellValueFactory(cell -> new ReadOnlyObjectWrapper<>(cell.getValue().getCookbooks()));
-        cookbookColumn.setCellFactory(column -> new CookbookCell());
-    }
-
-    /**
-     * Setup listener for table selection. Enables or disables buttons which require author to be selected.
-     */
-    private void setupSelectionHandler() {
-        authorTable.getSelectionModel().selectedItemProperty().addListener(
-                (observable, oldValue, newValue) -> disableAuthorActionButtons(newValue == null)
-        );
+        nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Author::getName));
+        emailColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Author::getEmail));
+        cookbookColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Author::getCookbooks, Collections.emptySet()));
+        cookbookColumn.setCellFactory(column -> CollectionCell.newInstance(Cookbook::getName));
     }
 
     /**
@@ -113,6 +103,15 @@ public class AuthorController implements Initializable {
         viewButton.setDisable(disabled);
         editButton.setDisable(disabled);
         deleteButton.setDisable(disabled);
+    }
+
+    /**
+     * Setup listener for table selection. Enables or disables buttons which require author to be selected.
+     */
+    private void setupSelectionHandler() {
+        authorTable.getSelectionModel().selectedItemProperty().addListener(
+                (observable, oldValue, newValue) -> disableAuthorActionButtons(newValue == null)
+        );
     }
 
     /**
@@ -146,7 +145,7 @@ public class AuthorController implements Initializable {
     private void addAuthor(final ActionEvent actionEvent) {
         LOGGER.debug("Add author action triggered.");
         authorDialog.addAuthor().ifPresent(
-                authorUpdateObject -> authorTable.getItems().add(authorService.update(authorUpdateObject)));
+                authorUpdateObject -> authorTable.getItems().add(authorService.createOrUpdate(authorUpdateObject)));
     }
 
     /**
@@ -159,7 +158,7 @@ public class AuthorController implements Initializable {
         LOGGER.debug("Edit author action triggered.");
         getSelectedAuthor().ifPresent((author -> //author is selected
                 authorDialog.editAuthor(authorService.getUpdateObject(author)).ifPresent( //edit is confirmed
-                        authorUpdateObject -> Collections.replaceAll(authorTable.getItems(), author, authorService.update(authorUpdateObject)) //table is updated
+                        authorUpdateObject -> Collections.replaceAll(authorTable.getItems(), author, authorService.createOrUpdate(authorUpdateObject)) //table is updated
                 )
         ));
     }
@@ -181,21 +180,4 @@ public class AuthorController implements Initializable {
             }
         }));
     }
-
-    /**
-     * Cell type for rendering Cookbook collection. Cookbooks are rendered as their names separated by comma.
-     */
-    private static class CookbookCell extends TableCell<Author, Collection<? extends Cookbook>> {
-
-        @Override
-        protected void updateItem(final Collection<? extends Cookbook> item, final boolean empty) {
-            super.updateItem(item, empty);
-            if (empty || item == null || item.isEmpty()) {
-                setText(StringUtils.EMPTY);
-            } else {
-                setText(StringUtils.join(item.stream().map(Cookbook::getName).toArray(), ", "));
-            }
-        }
-    }
-
 }

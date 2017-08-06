@@ -55,7 +55,7 @@ public interface IngredientService {
     Set<String> getAllIngredientKeywords();
 
     /**
-     * Save or update {@link OldIngredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
+     * Save or createOrUpdate {@link OldIngredient} and {@link PieceConversionInfo} specified in {@link IngredientRow}.
      * @param ingredientRow (NotNull) RecipeIngredient row to save.
      */
     void saveOrUpdate(IngredientRow ingredientRow);

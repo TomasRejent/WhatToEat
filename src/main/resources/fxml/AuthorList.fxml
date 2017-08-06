@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import javafx.scene.control.*?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 <BorderPane
@@ -23,11 +21,7 @@
     <center>
         <TableView fx:id="authorTable" styleClass="author-table">
             <columns>
-                <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name">
-                    <cellValueFactory>
-                        <PropertyValueFactory property="name"/>
-                    </cellValueFactory>
-                </TableColumn>
+                <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name"/>
                 <TableColumn fx:id="emailColumn" text="%cz.afrosoft.whattoeat.authors.table.header.email"/>
                 <TableColumn fx:id="cookbookColumn" text="%cz.afrosoft.whattoeat.authors.table.header.cookbooks"/>
             </columns>

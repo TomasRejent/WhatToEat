@@ -25,7 +25,7 @@ public interface AuthorService {
 
     /**
      * Gets update object for new Author. After data are filled it can be persisted using
-     * {@link #update(AuthorUpdateObject)} method.
+     * {@link #createOrUpdate(AuthorUpdateObject)} method.
      *
      * @return (NotNull)
      */
@@ -33,7 +33,7 @@ public interface AuthorService {
 
     /**
      * Gets update object for specified author. Update object is used to modify author.
-     * Changes are not persisted until {@link #update(AuthorUpdateObject)} is called.
+     * Changes are not persisted until {@link #createOrUpdate(AuthorUpdateObject)} is called.
      *
      * @param author (NotNull) Author to modify.
      * @return (NotNull) Update object which enables you to specify changes to author.
@@ -42,11 +42,12 @@ public interface AuthorService {
 
     /**
      * Applies changes specified by authorChanges to author for which authorChanges was constructed.
+     * It can also be used to persist new authors.
      *
      * @param authorChanges (NotNull) Changes to persist.
      * @return (NotNull) Author with updated values.
-     * @throws IllegalStateException When update failed and updated user cannot be reloaded.
+     * @throws IllegalStateException When createOrUpdate failed and updated user cannot be reloaded.
      */
-    Author update(AuthorUpdateObject authorChanges);
+    Author createOrUpdate(AuthorUpdateObject authorChanges);
 
 }
