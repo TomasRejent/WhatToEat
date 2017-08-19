@@ -1,9 +1,11 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
+import cz.afrosoft.whattoeat.core.util.VarargsUtil;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.util.Callback;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 /**
@@ -22,6 +24,11 @@ public final class ListCellFactory {
      */
     public static <T> Callback<ListView<T>, ListCell<T>> newCellFactory(final Function<T, String> mapFunction) {
         return listView -> new CustomStringCell<>(mapFunction);
+    }
+
+    @SafeVarargs
+    public static <T> Callback<ListView<T>, ListCell<T>> newRemovableCellFactory(final Function<T, String> mapFunction, final Consumer<T>... removeListeners) {
+        return listView -> new RemovableStringCell<>(mapFunction, VarargsUtil.toList(removeListeners));
     }
 
     private ListCellFactory() {

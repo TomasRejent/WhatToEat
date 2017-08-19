@@ -8,6 +8,8 @@
 - ConverterUtil can have method for converting not sorted sets. This can be used for converting before saving entities. (low priority)
 - Create some hack to internationalize buttons in javafx dialogs
 - Getting of all author names can have special query in repository to fetch names only
+- Decide if cells with complex graphics should be defined in code or in fxml
+- Decide if custom components should be created for add/edit/view/remove/delete buttons
 
 Done:
 X - Add UUID to every entity and migrate existing data
@@ -60,6 +62,7 @@ X - Add file coding settings.
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Check if all file operations closes their streams.
+- Combo Box binded to list - navigating by arrows in combo box select values immediately
 
 Done:
 X - Ingredient keywords overlaps in recipe detail dialog.

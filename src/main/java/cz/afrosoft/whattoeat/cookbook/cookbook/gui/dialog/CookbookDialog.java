@@ -6,6 +6,7 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -70,7 +71,7 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
 
     @Override
     public void afterPropertiesSet() throws Exception {
-        setupAuthorComboBox();
+        setupAuthorFields();
     }
 
     public Optional<CookbookUpdateObject> addCookbook() {
@@ -101,9 +102,10 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
         });
     }
 
-    private void setupAuthorComboBox() {
+    private void setupAuthorFields() {
         authorField.getItems().addAll(authorService.getAllAuthors());
         ComboBoxSuggestion.initSuggestion(authorField, Author::getName);
+        ListBinding.bindToComboBox(authorList, authorField, Author::getName);
     }
 
     private CookbookUpdateObject fillUpdateObject() {
