@@ -4,6 +4,8 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.CookbookDialog;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
 import javafx.event.ActionEvent;
@@ -36,6 +38,15 @@ import java.util.ResourceBundle;
 public class CookbookController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(CookbookController.class);
+
+    /**
+     * Title for cookbook delete confirmation dialog.
+     */
+    private static final String DELETE_TITLE = "cz.afrosoft.whattoeat.cookbook.delete.title";
+    /**
+     * Message for cookbook delete confirmation dialog.
+     */
+    private static final String DELETE_CONFIRM = "cz.afrosoft.whattoeat.cookbook.delete.confirm";
 
     @FXML
     private BorderPane cookbookContainer;
@@ -124,5 +135,13 @@ public class CookbookController implements Initializable {
     @FXML
     private void deleteCookbook(final ActionEvent event) {
         LOGGER.debug("Delete cookbook action triggered.");
+        getSelectedCookbook().ifPresent(cookbook -> {
+            if (DialogUtils.showConfirmDialog(
+                    I18n.getText(DELETE_TITLE), I18n.getText(DELETE_CONFIRM, cookbook.getName()))
+                    ) {
+                cookbookService.delete(cookbook);
+                cookbookTable.getItems().remove(cookbook);
+            }
+        });
     }
 }

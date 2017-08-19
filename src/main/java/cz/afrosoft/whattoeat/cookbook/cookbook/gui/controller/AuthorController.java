@@ -171,13 +171,13 @@ public class AuthorController implements Initializable {
     @FXML
     private void deleteAuthor(final ActionEvent actionEvent) {
         LOGGER.debug("Delete author action triggered.");
-        getSelectedAuthor().ifPresent((author -> {
+        getSelectedAuthor().ifPresent(author -> {
             if (DialogUtils.showConfirmDialog(
                     I18n.getText(DELETE_TITLE), I18n.getText(DELETE_CONFIRM, author.getName()))
                     ) {
                 authorService.delete(author);
                 authorTable.getItems().remove(author);
             }
-        }));
+        });
     }
 }
