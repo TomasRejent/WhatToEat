@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Implementation of {@link AuthorService} which uses {@link AuthorImpl} as implementation of {@link Author}
@@ -77,6 +78,12 @@ public class AuthorServiceImpl implements AuthorService {
                 .setDescription(authorChanges.getDescription())
                 .setCookbooks(ConverterUtil.convertToSet(authorChanges.getCookbooks(), this::cookbookToEntity));
         return entityToAuthor(repository.save(entity));
+    }
+
+    @Override
+    public Set<String> getAuthorNames() {
+        LOGGER.debug("Getting names of all authors.");
+        return repository.findAll().stream().map((AuthorEntity::getName)).collect(Collectors.toSet());
     }
 
     private Author entityToAuthor(final AuthorEntity entity) {

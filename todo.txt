@@ -2,17 +2,18 @@
 
 
 ----- ARCHITECTURE -----------------------------------------------------------------------------------------------------
-- Add hash code and equals to entities
 - Set nullable false to mandatory entity attributes OR use hibernate validations
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
-- Add transactional annotations to write service methods
 - ConverterUtil can have method for converting not sorted sets. This can be used for converting before saving entities. (low priority)
+- Create some hack to internationalize buttons in javafx dialogs
+- Getting of all author names can have special query in repository to fetch names only
 
 Done:
 X - Add UUID to every entity and migrate existing data
 X - Use recipe UUIDs in diets
 X - Create ER diagram and validate each attribute
+X - Add transactional annotations to write service methods
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.

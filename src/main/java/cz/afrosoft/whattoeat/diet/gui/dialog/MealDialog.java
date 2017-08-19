@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.diet.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
+import cz.afrosoft.whattoeat.core.gui.suggestion.FullWordSuggestionProvider;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;

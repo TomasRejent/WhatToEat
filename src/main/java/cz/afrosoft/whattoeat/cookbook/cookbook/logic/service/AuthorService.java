@@ -50,4 +50,8 @@ public interface AuthorService {
      */
     Author createOrUpdate(AuthorUpdateObject authorChanges);
 
+    /**
+     * @return (NotNull) Set of names of all authors.
+     */
+    Set<String> getAuthorNames();
 }

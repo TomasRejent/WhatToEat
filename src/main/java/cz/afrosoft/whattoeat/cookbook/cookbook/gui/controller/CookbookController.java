@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.CookbookDialog;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
@@ -53,6 +54,8 @@ public class CookbookController implements Initializable {
 
     @Autowired
     private CookbookService cookbookService;
+    @Autowired
+    private CookbookDialog cookbookDialog;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -108,6 +111,9 @@ public class CookbookController implements Initializable {
     @FXML
     private void addCookbook(final ActionEvent event) {
         LOGGER.debug("Add cookbook action triggered.");
+        cookbookDialog.addCookbook().ifPresent(
+                cookbookUpdateObject -> cookbookTable.getItems().add(cookbookService.createOrUpdate(cookbookUpdateObject))
+        );
     }
 
     @FXML
