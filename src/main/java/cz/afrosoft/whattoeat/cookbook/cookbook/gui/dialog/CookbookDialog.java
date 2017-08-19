@@ -21,6 +21,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.HashSet;
 import java.util.Optional;
 
 /**
@@ -87,6 +88,9 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
     private void clearDialog() {
         nameField.setText(StringUtils.EMPTY);
         descriptionArea.setText(StringUtils.EMPTY);
+        authorField.getItems().clear();
+        authorField.getItems().addAll(authorService.getAllAuthors());
+        authorList.getItems().clear();
     }
 
     /**
@@ -103,7 +107,6 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
     }
 
     private void setupAuthorFields() {
-        authorField.getItems().addAll(authorService.getAllAuthors());
         ComboBoxSuggestion.initSuggestion(authorField, Author::getName);
         ListBinding.bindToComboBox(authorList, authorField, Author::getName);
     }
@@ -115,6 +118,7 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
 
         cookbookUpdateObject.setName(nameField.getText());
         cookbookUpdateObject.setDescription(descriptionArea.getText());
+        cookbookUpdateObject.setAuthors(new HashSet<>(authorList.getItems()));
 
         return cookbookUpdateObject;
     }

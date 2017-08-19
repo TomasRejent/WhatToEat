@@ -35,7 +35,7 @@ public class AuthorServiceImpl implements AuthorService {
     @Override
     public Set<Author> getAllAuthors() {
         LOGGER.debug("Getting all authors.");
-        return ConverterUtil.convertToSet(repository.findAllWithCookbooks(), this::entityToAuthor);
+        return ConverterUtil.convertToSortedSet(repository.findAllWithCookbooks(), this::entityToAuthor);
     }
 
     @Override
@@ -93,7 +93,7 @@ public class AuthorServiceImpl implements AuthorService {
                 .setName(entity.getName())
                 .setEmail(entity.getEmail())
                 .setDescription(entity.getDescription())
-                .setCookbooks(ConverterUtil.convertToSet(entity.getCookbooks(), this::entityToCookbook))
+                .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), this::entityToCookbook))
                 .build();
     }
 

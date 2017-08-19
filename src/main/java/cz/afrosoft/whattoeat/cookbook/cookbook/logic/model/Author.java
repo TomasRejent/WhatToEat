@@ -9,7 +9,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Author extends IdEntity {
+public interface Author extends IdEntity, Comparable<Author> {
 
     /**
      * @return (NotNull) Get authors name.

@@ -4,7 +4,6 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.core.gui.I18n;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -65,11 +64,7 @@ final class CookbookImpl implements Cookbook, Comparable<Cookbook> {
 
     @Override
     public int compareTo(final Cookbook otherCookbook) {
-        if (otherCookbook == null) {
-            return 1;
-        } else {
-            return I18n.compareStringsIgnoreCase(name, otherCookbook.getName());
-        }
+        return CookbookComparator.INSTANCE.compare(this, otherCookbook);
     }
 
     @Override
@@ -171,6 +166,11 @@ final class CookbookImpl implements Cookbook, Comparable<Cookbook> {
         Cookbook build() {
             Validate.notNull(id);
             return new CookbookImpl(id, name, description, authors, recipes);
+        }
+
+        @Override
+        public int compareTo(final Cookbook otherCookbook) {
+            return CookbookComparator.INSTANCE.compare(this, otherCookbook);
         }
 
         @Override

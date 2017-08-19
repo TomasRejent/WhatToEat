@@ -25,7 +25,7 @@ final class AuthorWeakImpl implements Author {
     private final Integer id;
     private final String name;
 
-    public AuthorWeakImpl(final Integer id, final String name) {
+    AuthorWeakImpl(final Integer id, final String name) {
         Validate.notNull(id);
         Validate.notNull(name);
 
@@ -59,6 +59,11 @@ final class AuthorWeakImpl implements Author {
     public Set<Cookbook> getCookbooks() {
         LOGGER.warn("Trying to access author related entities[cookbooks] which are not preloaded. Empty Set is returned.");
         return Collections.emptySet();
+    }
+
+    @Override
+    public int compareTo(final Author otherAuthor) {
+        return AuthorComparator.INSTANCE.compare(this, otherAuthor);
     }
 
     @Override

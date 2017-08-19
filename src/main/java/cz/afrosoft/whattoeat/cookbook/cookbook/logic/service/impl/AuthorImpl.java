@@ -3,7 +3,6 @@ package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
-import cz.afrosoft.whattoeat.core.gui.I18n;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -65,11 +64,7 @@ final class AuthorImpl implements Author, Comparable<Author> {
 
     @Override
     public int compareTo(final Author otherAuthor) {
-        if (otherAuthor == null) {
-            return 1;
-        } else {
-            return I18n.compareStringsIgnoreCase(name, otherAuthor.getName());
-        }
+        return AuthorComparator.INSTANCE.compare(this, otherAuthor);
     }
 
     @Override
@@ -172,6 +167,11 @@ final class AuthorImpl implements Author, Comparable<Author> {
             Validate.noNullElements(cookbooks);
             this.cookbooks = cookbooks;
             return this;
+        }
+
+        @Override
+        public int compareTo(final Author otherAuthor) {
+            return AuthorComparator.INSTANCE.compare(this, otherAuthor);
         }
 
         Author build() {

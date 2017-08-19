@@ -35,7 +35,7 @@ public class CookbookServiceImpl implements CookbookService {
     @Override
     public Set<Cookbook> getAllCookbooks() {
         LOGGER.debug("Getting all cookbooks.");
-        return ConverterUtil.convertToSet(repository.findAllWithAuthors(), this::entityToCookbook);
+        return ConverterUtil.convertToSortedSet(repository.findAllWithAuthors(), this::entityToCookbook);
     }
 
     @Override
@@ -84,7 +84,7 @@ public class CookbookServiceImpl implements CookbookService {
         return new CookbookImpl.Builder()
                 .setId(entity.getId())
                 .setName(entity.getName())
-                .setAuthors(ConverterUtil.convertToSet(entity.getAuthors(), this::entityToAuthor))
+                .setAuthors(ConverterUtil.convertToSortedSet(entity.getAuthors(), this::entityToAuthor))
                 .setRecipes(Collections.emptySet())
                 .build();
     }
@@ -98,6 +98,7 @@ public class CookbookServiceImpl implements CookbookService {
         Validate.notNull(author);
         AuthorEntity entity = new AuthorEntity();
         entity.setId(author.getId());
+        entity.setName(author.getName());
         return entity;
     }
 }

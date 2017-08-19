@@ -63,6 +63,11 @@ final class CookbookWeakImpl implements Cookbook {
     }
 
     @Override
+    public int compareTo(final Cookbook otherCookbook) {
+        return CookbookComparator.INSTANCE.compare(this, otherCookbook);
+    }
+
+    @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("id", id)

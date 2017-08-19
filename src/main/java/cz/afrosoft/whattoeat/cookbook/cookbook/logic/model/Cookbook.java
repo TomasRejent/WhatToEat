@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Cookbook extends IdEntity {
+public interface Cookbook extends IdEntity, Comparable<Cookbook> {
 
     /**
      * @return (NotNull) Name of cookbook.
