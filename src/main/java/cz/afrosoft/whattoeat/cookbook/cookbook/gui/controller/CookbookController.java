@@ -8,13 +8,16 @@ import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
+import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import org.controlsfx.control.MasterDetailPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,10 @@ public class CookbookController implements Initializable {
     @FXML
     private BorderPane cookbookContainer;
     @FXML
+    private MasterDetailPane detailPane;
+    @FXML
+    private TextArea detailArea;
+    @FXML
     private TableView<Cookbook> cookbookTable;
     @FXML
     private TableColumn<Cookbook, String> nameColumn;
@@ -73,6 +80,7 @@ public class CookbookController implements Initializable {
         disableCookbookActionButtons(true);
         setupSelectionHandler();
         cookbookTable.getItems().addAll(cookbookService.getAllCookbooks());
+        DetailBinding.bindDetail(detailPane, cookbookTable, detailArea, Cookbook::getDescription);
     }
 
     private void setupColumnCellFactories() {
