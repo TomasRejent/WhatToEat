@@ -22,8 +22,7 @@ import java.util.Optional;
 
 /**
  * Dialog for adding new authors and editing existing ones. This allows to edit everything except
- * assigned cookbooks. These are set in cookbook page. It is also used for viewing of authors because
- * author description may be too long to display in author table.
+ * assigned cookbooks. These are set in cookbook page.
  * <p>
  * This dialog must be modal because controller using it has only one instance of this dialog.
  *
@@ -74,6 +73,37 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
     }
 
     /**
+     * Creates and sets result converter which handles dialog button events.
+     */
+    private void setupResultConverter() {
+        this.setResultConverter((buttonType) -> {
+            if (ButtonType.FINISH.equals(buttonType)) {
+                return fillUpdateObject();
+            } else {
+                return null;
+            }
+        });
+    }
+
+    /**
+     * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #authorUpdateObject} is not null.
+     *
+     * @return (NotNull)
+     * @throws IllegalStateException If createOrUpdate object does not exist.
+     */
+    private AuthorUpdateObject fillUpdateObject() {
+        if (authorUpdateObject == null) {
+            throw new IllegalStateException("Author createOrUpdate object cannot be null.");
+        }
+
+        authorUpdateObject.setName(nameField.getText());
+        authorUpdateObject.setEmail(emailField.getText());
+        authorUpdateObject.setDescription(descriptionArea.getText());
+
+        return authorUpdateObject;
+    }
+
+    /**
      * Shows dialog for adding author. This is blocking call. It waits until user close dialog.
      *
      * @return (NotNull) Empty optional if user cancels dialog. Optional with author createOrUpdate object if user submit dialog.
@@ -118,36 +148,5 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
         nameField.setText(StringUtils.EMPTY);
         emailField.setText(StringUtils.EMPTY);
         descriptionArea.setText(StringUtils.EMPTY);
-    }
-
-    /**
-     * Creates and sets result converter which handles dialog button events.
-     */
-    private void setupResultConverter() {
-        this.setResultConverter((buttonType) -> {
-            if (ButtonType.FINISH.equals(buttonType)) {
-                return fillUpdateObject();
-            } else {
-                return null;
-            }
-        });
-    }
-
-    /**
-     * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #authorUpdateObject} is not null.
-     *
-     * @return (NotNull)
-     * @throws IllegalStateException If createOrUpdate object does not exist.
-     */
-    private AuthorUpdateObject fillUpdateObject() {
-        if (authorUpdateObject == null) {
-            throw new IllegalStateException("Author createOrUpdate object cannot be null.");
-        }
-
-        authorUpdateObject.setName(nameField.getText());
-        authorUpdateObject.setEmail(emailField.getText());
-        authorUpdateObject.setDescription(descriptionArea.getText());
-
-        return authorUpdateObject;
     }
 }

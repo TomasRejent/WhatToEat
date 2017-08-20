@@ -15,9 +15,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -27,13 +24,16 @@ import java.util.HashSet;
 import java.util.Optional;
 
 /**
+ * Dialog for adding and editing of cookbooks. This dialog also allows to change relation between cookbook and authors.
+ * <p>
+ * This dialog must be modal because controller using it has only one instance of this dialog.
+ *
  * @author Tomas Rejent
  */
 @Controller
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implements InitializingBean {
+public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(CookbookDialog.class);
     private static final String DIALOG_FXML = "/fxml/CookbookDialog.fxml";
 
     /**
@@ -61,58 +61,27 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
     @Autowired
     private AuthorService authorService;
 
+    /**
+     * Holds createOrUpdate object when creating or editing cookbook.
+     */
     private CookbookUpdateObject cookbookUpdateObject;
 
+    /**
+     * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
+     */
     public CookbookDialog() {
         super(DIALOG_FXML);
         getDialogPane().getButtonTypes().add(ButtonType.FINISH);
         getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
+        setupAuthorFields();
         setupResultConverter();
     }
 
-    @Override
-    public void afterPropertiesSet() throws Exception {
-        setupAuthorFields();
-    }
-
-    public Optional<CookbookUpdateObject> addCookbook() {
-        setTitle(I18n.getText(ADD_TITLE_KEY));
-        clearDialog();
-        cookbookUpdateObject = cookbookService.getCreateObject();
-        return showAndWait();
-    }
-
-    public Optional<CookbookUpdateObject> editCookbook(final CookbookUpdateObject cookbook) {
-        Validate.notNull(cookbook);
-        setTitle(I18n.getText(EDIT_TITLE_KEY));
-        prefillDialog(cookbook);
-        cookbookUpdateObject = cookbook;
-        return showAndWait();
-    }
-
-    /**
-     * Clears all dialog fields.
-     */
-    private void clearDialog() {
-        nameField.setText(StringUtils.EMPTY);
-        descriptionArea.setText(StringUtils.EMPTY);
-        authorField.getItems().clear();
-        authorField.getItems().addAll(authorService.getAllAuthors());
-        authorList.getItems().clear();
-    }
-
-    /**
-     * Fills dialog fields with data from cookbook.
-     *
-     * @param cookbook (NotNull)
-     */
-    private void prefillDialog(final Cookbook cookbook) {
-        Validate.notNull(cookbook);
-        nameField.setText(cookbook.getName());
-        descriptionArea.setText(cookbook.getDescription());
-        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthors(), cookbook.getAuthors());
+    private void setupAuthorFields() {
+        ComboBoxSuggestion.initSuggestion(authorField, Author::getName);
+        ListBinding.bindToComboBox(authorList, authorField, Author::getName);
     }
 
     /**
@@ -128,11 +97,12 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
         });
     }
 
-    private void setupAuthorFields() {
-        ComboBoxSuggestion.initSuggestion(authorField, Author::getName);
-        ListBinding.bindToComboBox(authorList, authorField, Author::getName);
-    }
-
+    /**
+     * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #cookbookUpdateObject} is not null.
+     *
+     * @return (NotNull)
+     * @throws IllegalStateException If createOrUpdate object does not exist.
+     */
     private CookbookUpdateObject fillUpdateObject() {
         if (cookbookUpdateObject == null) {
             throw new IllegalStateException("Cookbook createOrUpdate object cannot be null.");
@@ -143,5 +113,54 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
         cookbookUpdateObject.setAuthors(new HashSet<>(authorList.getItems()));
 
         return cookbookUpdateObject;
+    }
+
+    /**
+     * Shows dialog for adding cookbook. This is blocking call. It waits until user close dialog.
+     *
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with cookbook createOrUpdate object if user submit dialog.
+     */
+    public Optional<CookbookUpdateObject> addCookbook() {
+        setTitle(I18n.getText(ADD_TITLE_KEY));
+        clearDialog();
+        cookbookUpdateObject = cookbookService.getCreateObject();
+        return showAndWait();
+    }
+
+    /**
+     * Shows dialog for editing cookbook. This is blocking call. It waits until user close dialog.
+     *
+     * @param cookbook (NotNull) Cookbook to edit.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with cookbook createOrUpdate object if user submit dialog.
+     */
+    public Optional<CookbookUpdateObject> editCookbook(final CookbookUpdateObject cookbook) {
+        Validate.notNull(cookbook);
+        setTitle(I18n.getText(EDIT_TITLE_KEY));
+        prefillDialog(cookbook);
+        cookbookUpdateObject = cookbook;
+        return showAndWait();
+    }
+
+    /**
+     * Fills dialog fields with data from cookbook.
+     *
+     * @param cookbook (NotNull)
+     */
+    private void prefillDialog(final Cookbook cookbook) {
+        Validate.notNull(cookbook);
+        nameField.setText(cookbook.getName());
+        descriptionArea.setText(cookbook.getDescription());
+        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthors(), cookbook.getAuthors());
+    }
+
+    /**
+     * Clears all dialog fields.
+     */
+    private void clearDialog() {
+        nameField.setText(StringUtils.EMPTY);
+        descriptionArea.setText(StringUtils.EMPTY);
+        authorField.getItems().clear();
+        authorField.getItems().addAll(authorService.getAllAuthors());
+        authorList.getItems().clear();
     }
 }

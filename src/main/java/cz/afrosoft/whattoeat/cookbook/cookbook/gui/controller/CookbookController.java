@@ -73,6 +73,11 @@ public class CookbookController implements Initializable {
     @Autowired
     private CookbookDialog cookbookDialog;
 
+    /**
+     * Setup column factories and loads data into table. Setup detail panel.
+     * <p>
+     * {@inheritDoc}
+     */
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         LOGGER.debug("Initializing cookbook controller");
@@ -83,6 +88,9 @@ public class CookbookController implements Initializable {
         DetailBinding.bindDetail(detailPane, cookbookTable, detailArea, Cookbook::getDescription);
     }
 
+    /**
+     * Setup cell value factories for all columns.
+     */
     private void setupColumnCellFactories() {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Cookbook::getName));
         authorColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Cookbook::getAuthors, Collections.emptySet()));
@@ -109,9 +117,9 @@ public class CookbookController implements Initializable {
     }
 
     /**
-     * Gets last selected author.
+     * Gets last selected cookbook.
      *
-     * @return (NotNull) Empty optional if no author  is selected. Otherwise optional with selected author.
+     * @return (NotNull) Empty optional if no author  is selected. Otherwise optional with selected cookbook.
      */
     private Optional<Cookbook> getSelectedCookbook() {
         return Optional.ofNullable(cookbookTable.getSelectionModel().getSelectedItem());
@@ -119,16 +127,26 @@ public class CookbookController implements Initializable {
 
     /* Button actions */
 
+    /**
+     * Handler for add button. Brings up dialog for adding cookbook. If cookbook is added then table is updated.
+     *
+     * @param actionEvent (Nullable)
+     */
     @FXML
-    private void addCookbook(final ActionEvent event) {
+    private void addCookbook(final ActionEvent actionEvent) {
         LOGGER.debug("Add cookbook action triggered.");
         cookbookDialog.addCookbook().ifPresent(
                 cookbookUpdateObject -> cookbookTable.getItems().add(cookbookService.createOrUpdate(cookbookUpdateObject))
         );
     }
 
+    /**
+     * Handler for edit button. Brings up edit dialog. If changes are saved then table is updated.
+     *
+     * @param actionEvent (Nullable)
+     */
     @FXML
-    private void editCookbook(final ActionEvent event) {
+    private void editCookbook(final ActionEvent actionEvent) {
         LOGGER.debug("Edit cookbook action triggered.");
         getSelectedCookbook().ifPresent(//cookbook is selected
                 (cookbook) -> cookbookDialog.editCookbook(cookbookService.getUpdateObject(cookbook)).ifPresent(//edit is confirmed
@@ -137,8 +155,13 @@ public class CookbookController implements Initializable {
         );
     }
 
+    /**
+     * Handler for delete button. Brings up confirmation dialog. If delete is confirmed then table is updated.
+     *
+     * @param actionEvent (Nullable)
+     */
     @FXML
-    private void deleteCookbook(final ActionEvent event) {
+    private void deleteCookbook(final ActionEvent actionEvent) {
         LOGGER.debug("Delete cookbook action triggered.");
         getSelectedCookbook().ifPresent(cookbook -> {
             if (DialogUtils.showConfirmDialog(

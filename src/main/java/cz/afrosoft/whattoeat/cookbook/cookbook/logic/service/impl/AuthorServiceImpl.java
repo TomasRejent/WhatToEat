@@ -86,6 +86,12 @@ public class AuthorServiceImpl implements AuthorService {
         return repository.findAll().stream().map((AuthorEntity::getName)).collect(Collectors.toSet());
     }
 
+    /**
+     * Converts {@link AuthorEntity} to {@link Author} using {@link AuthorImpl}.
+     *
+     * @param entity (NotNull) Entity to convert.
+     * @return (NotNull) New {@link Author} with data from entity.
+     */
     private Author entityToAuthor(final AuthorEntity entity) {
         Validate.notNull(entity);
         return new AuthorImpl.Builder()
@@ -97,11 +103,23 @@ public class AuthorServiceImpl implements AuthorService {
                 .build();
     }
 
+    /**
+     * Converts {@link CookbookEntity} to {@link Cookbook} using {@link CookbookWeakImpl}.
+     * @param entity (NotNull) Entity to convert.
+     * @return (NotNull) New {@link Cookbook} with subset of data from entity. Only id and name are filled.
+     */
     private Cookbook entityToCookbook(final CookbookEntity entity) {
         Validate.notNull(entity);
         return new CookbookWeakImpl(entity.getId(), entity.getName());
     }
 
+    /**
+     * Converts cookbook to entity. This is only to set relation between cookbook and author.
+     * For this purpose id is filled.
+     *
+     * @param cookbook (NotNull) Cookbook to convert to entity
+     * @return (NotNull) Partially filled cookbook entity(id).
+     */
     private CookbookEntity cookbookToEntity(final Cookbook cookbook) {
         Validate.notNull(cookbook);
         CookbookEntity entity = new CookbookEntity();

@@ -76,7 +76,7 @@ public class AuthorController implements Initializable {
     private AuthorDialog authorDialog;
 
     /**
-     * Setup column factories and loads data into table.
+     * Setup column factories and loads data into table. Setup detail panel.
      * <p>
      * {@inheritDoc}
      */
