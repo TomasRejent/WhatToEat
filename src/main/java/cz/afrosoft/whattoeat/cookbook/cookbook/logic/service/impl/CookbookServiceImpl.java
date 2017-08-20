@@ -84,6 +84,7 @@ public class CookbookServiceImpl implements CookbookService {
         return new CookbookImpl.Builder()
                 .setId(entity.getId())
                 .setName(entity.getName())
+                .setDescription(entity.getDescription())
                 .setAuthors(ConverterUtil.convertToSortedSet(entity.getAuthors(), this::entityToAuthor))
                 .setRecipes(Collections.emptySet())
                 .build();

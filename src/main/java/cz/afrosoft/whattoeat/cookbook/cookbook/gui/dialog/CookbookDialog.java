@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
@@ -13,6 +14,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -82,6 +84,14 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
         return showAndWait();
     }
 
+    public Optional<CookbookUpdateObject> editCookbook(final CookbookUpdateObject cookbook) {
+        Validate.notNull(cookbook);
+        setTitle(I18n.getText(EDIT_TITLE_KEY));
+        prefillDialog(cookbook);
+        cookbookUpdateObject = cookbook;
+        return showAndWait();
+    }
+
     /**
      * Clears all dialog fields.
      */
@@ -91,6 +101,18 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> implement
         authorField.getItems().clear();
         authorField.getItems().addAll(authorService.getAllAuthors());
         authorList.getItems().clear();
+    }
+
+    /**
+     * Fills dialog fields with data from cookbook.
+     *
+     * @param cookbook (NotNull)
+     */
+    private void prefillDialog(final Cookbook cookbook) {
+        Validate.notNull(cookbook);
+        nameField.setText(cookbook.getName());
+        descriptionArea.setText(cookbook.getDescription());
+        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthors(), cookbook.getAuthors());
     }
 
     /**

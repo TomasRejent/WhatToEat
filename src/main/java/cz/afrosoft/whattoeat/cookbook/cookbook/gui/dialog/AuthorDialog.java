@@ -13,8 +13,6 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
@@ -35,13 +33,8 @@ import java.util.Optional;
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AuthorDialog.class);
     private static final String DIALOG_FXML = "/fxml/AuthorDialog.fxml";
 
-    /**
-     * Title message displayed when dialog is in view mode.
-     */
-    private static final String VIEW_TITLE_KEY = "cz.afrosoft.whattoeat.authors.view.title";
     /**
      * Title message displayed when dialog is in add mode.
      */
@@ -75,21 +68,9 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
         super(DIALOG_FXML);
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
+        getDialogPane().getButtonTypes().add(ButtonType.FINISH);
+        getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         setupResultConverter();
-    }
-
-    /**
-     * Shows data about author in dialog. Data are read only. This is blocking call. It waits until user close dialog.
-     *
-     * @param author (NotNull) Author to view.
-     */
-    public void viewAuthor(final Author author) {
-        LOGGER.debug("Viewing author {}.", author);
-        Validate.notNull(author);
-        setTitle(I18n.getText(VIEW_TITLE_KEY));
-        prefillDialog(author);
-        setEditable(false);
-        showAndWait();
     }
 
     /**
@@ -100,7 +81,6 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
     public Optional<AuthorUpdateObject> addAuthor() {
         setTitle(I18n.getText(ADD_TITLE_KEY));
         clearDialog();
-        setEditable(true);
         authorUpdateObject = authorService.getCreateObject();
         return showAndWait();
     }
@@ -115,7 +95,6 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
         Validate.notNull(author, "Cannot edit null author.");
         setTitle(I18n.getText(EDIT_TITLE_KEY));
         prefillDialog(author);
-        setEditable(true);
         authorUpdateObject = author;
         return showAndWait();
     }
@@ -139,25 +118,6 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
         nameField.setText(StringUtils.EMPTY);
         emailField.setText(StringUtils.EMPTY);
         descriptionArea.setText(StringUtils.EMPTY);
-    }
-
-    /**
-     * Sets editability of dialog fields. Also replaces dialog buttons. In read only mode dialog has only close button.
-     * In editable mode it has finish and cancel button.
-     *
-     * @param editable True if fields should be editable. False for read only.
-     */
-    private void setEditable(final boolean editable) {
-        nameField.setEditable(editable);
-        emailField.setEditable(editable);
-        descriptionArea.setEditable(editable);
-        getDialogPane().getButtonTypes().clear();
-        if (editable) {
-            getDialogPane().getButtonTypes().add(ButtonType.FINISH);
-            getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-        } else {
-            getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-        }
     }
 
     /**

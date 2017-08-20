@@ -3,6 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MasterDetailPane?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
         fx:id="authorContainer"
@@ -12,19 +13,29 @@
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
-            <Button fx:id="viewButton" onAction="#viewAuthor" text="%cz.afrosoft.whattoeat.authors.actions.view"/>
             <Button onAction="#addAuthor" text="%cz.afrosoft.whattoeat.authors.actions.add"/>
             <Button fx:id="editButton" onAction="#editAuthor" text="%cz.afrosoft.whattoeat.authors.actions.edit"/>
             <Button fx:id="deleteButton" onAction="#deleteAuthor" text="%cz.afrosoft.whattoeat.authors.actions.delete"/>
         </VBox>
     </left>
     <center>
-        <TableView fx:id="authorTable" styleClass="author-table">
-            <columns>
-                <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name"/>
-                <TableColumn fx:id="emailColumn" text="%cz.afrosoft.whattoeat.authors.table.header.email"/>
-                <TableColumn fx:id="cookbookColumn" text="%cz.afrosoft.whattoeat.authors.table.header.cookbooks"/>
-            </columns>
-        </TableView>
+        <MasterDetailPane fx:id="detailPane" detailSide="RIGHT">
+            <masterNode>
+                <TableView fx:id="authorTable" styleClass="author-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name"/>
+                        <TableColumn fx:id="emailColumn" text="%cz.afrosoft.whattoeat.authors.table.header.email"/>
+                        <TableColumn fx:id="cookbookColumn"
+                                     text="%cz.afrosoft.whattoeat.authors.table.header.cookbooks"/>
+                    </columns>
+                </TableView>
+            </masterNode>
+            <detailNode>
+                <VBox>
+                    <Label text="%cz.afrosoft.whattoeat.authors.detail"/>
+                    <TextArea fx:id="detailArea"/>
+                </VBox>
+            </detailNode>
+        </MasterDetailPane>
     </center>
 </BorderPane>

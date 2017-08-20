@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
+import com.google.common.base.Predicates;
+import com.google.common.collect.Collections2;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
@@ -7,6 +9,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import org.apache.commons.lang3.Validate;
 
+import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
@@ -19,6 +22,28 @@ import java.util.function.Function;
  * @author Tomas Rejent
  */
 public class ListBinding {
+
+    /**
+     * Fill values for list bounded to combo box. All previously set values are cleared from list. Then selected items are set to list and difference between
+     * allItems and selectedItems is set to combo box.
+     *
+     * @param list          (NotNull) List bounded to combo box.
+     * @param comboBox      (NotNull) Combo box bounded to list.
+     * @param allItems      (NotNull) All available items, can include selected ones.
+     * @param selectedItems (NotNUll) Items which are selected.
+     * @param <T>           Type of both list and combo box items.
+     */
+    public static <T> void fillBoundedList(final ListView<T> list, final ComboBox<T> comboBox, final Collection<T> allItems, final Collection<T> selectedItems) {
+        Validate.notNull(list);
+        Validate.notNull(comboBox);
+        Validate.notNull(allItems);
+        Validate.notNull(selectedItems);
+
+        comboBox.getItems().clear();
+        list.getItems().clear();
+        list.getItems().addAll(selectedItems);
+        comboBox.getItems().addAll(Collections2.filter(allItems, Predicates.not(Predicates.in(selectedItems))));
+    }
 
     /**
      * Binds list and combo box together. Any item selected in combo box will be moved to list. List is set with removable

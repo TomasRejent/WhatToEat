@@ -57,8 +57,6 @@ public class CookbookController implements Initializable {
     @FXML
     private TableColumn<Cookbook, Collection<? extends Author>> authorColumn;
     @FXML
-    private Button viewButton;
-    @FXML
     private Button editButton;
     @FXML
     private Button deleteButton;
@@ -89,7 +87,6 @@ public class CookbookController implements Initializable {
      * @param disabled True to disable buttons, false to enable.
      */
     private void disableCookbookActionButtons(final boolean disabled) {
-        viewButton.setDisable(disabled);
         editButton.setDisable(disabled);
         deleteButton.setDisable(disabled);
     }
@@ -115,11 +112,6 @@ public class CookbookController implements Initializable {
     /* Button actions */
 
     @FXML
-    private void viewCookbook(final ActionEvent event) {
-        LOGGER.debug("View cookbook action triggered.");
-    }
-
-    @FXML
     private void addCookbook(final ActionEvent event) {
         LOGGER.debug("Add cookbook action triggered.");
         cookbookDialog.addCookbook().ifPresent(
@@ -130,6 +122,11 @@ public class CookbookController implements Initializable {
     @FXML
     private void editCookbook(final ActionEvent event) {
         LOGGER.debug("Edit cookbook action triggered.");
+        getSelectedCookbook().ifPresent(//cookbook is selected
+                (cookbook) -> cookbookDialog.editCookbook(cookbookService.getUpdateObject(cookbook)).ifPresent(//edit is confirmed
+                        (cookbookUpdateObject) -> Collections.replaceAll(cookbookTable.getItems(), cookbook, cookbookService.createOrUpdate(cookbookUpdateObject)) //table is updated
+                )
+        );
     }
 
     @FXML

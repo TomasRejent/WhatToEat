@@ -12,7 +12,6 @@
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
-            <Button fx:id="viewButton" onAction="#viewCookbook" text="%cz.afrosoft.whattoeat.cookbook.action.view"/>
             <Button onAction="#addCookbook" text="%cz.afrosoft.whattoeat.cookbook.action.add"/>
             <Button fx:id="editButton" onAction="#editCookbook" text="%cz.afrosoft.whattoeat.cookbook.action.edit"/>
             <Button fx:id="deleteButton" onAction="#deleteCookbook"

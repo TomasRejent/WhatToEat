@@ -9,13 +9,16 @@ import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
+import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
+import org.controlsfx.control.MasterDetailPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,6 +54,10 @@ public class AuthorController implements Initializable {
     @FXML
     private BorderPane authorContainer;
     @FXML
+    private MasterDetailPane detailPane;
+    @FXML
+    private TextArea detailArea;
+    @FXML
     private TableView<Author> authorTable;
     @FXML
     private TableColumn<Author, String> nameColumn;
@@ -58,8 +65,6 @@ public class AuthorController implements Initializable {
     private TableColumn<Author, String> emailColumn;
     @FXML
     private TableColumn<Author, Collection<? extends Cookbook>> cookbookColumn;
-    @FXML
-    private Button viewButton;
     @FXML
     private Button editButton;
     @FXML
@@ -82,6 +87,7 @@ public class AuthorController implements Initializable {
         disableAuthorActionButtons(true);
         setupSelectionHandler();
         authorTable.getItems().addAll(authorService.getAllAuthors());
+        DetailBinding.bindDetail(detailPane, authorTable, detailArea, Author::getDescription);
     }
 
     /**
@@ -100,7 +106,6 @@ public class AuthorController implements Initializable {
      * @param disabled True to disable buttons, false to enable.
      */
     private void disableAuthorActionButtons(final boolean disabled) {
-        viewButton.setDisable(disabled);
         editButton.setDisable(disabled);
         deleteButton.setDisable(disabled);
     }
@@ -126,17 +131,6 @@ public class AuthorController implements Initializable {
     /* Button actions. */
 
     /**
-     * Handler for view button. Brings up dialog with author details.
-     *
-     * @param actionEvent (Nullable)
-     */
-    @FXML
-    private void viewAuthor(final ActionEvent actionEvent) {
-        LOGGER.debug("View author action triggered.");
-        getSelectedAuthor().ifPresent(author -> authorDialog.viewAuthor(author));
-    }
-
-    /**
      * Handler for add button. Brings up dialog for adding author. If author is added then table is updated.
      *
      * @param actionEvent (Nullable)
@@ -156,9 +150,9 @@ public class AuthorController implements Initializable {
     @FXML
     private void editAuthor(final ActionEvent actionEvent) {
         LOGGER.debug("Edit author action triggered.");
-        getSelectedAuthor().ifPresent((author -> //author is selected
+        getSelectedAuthor().ifPresent(((author) -> //author is selected
                 authorDialog.editAuthor(authorService.getUpdateObject(author)).ifPresent( //edit is confirmed
-                        authorUpdateObject -> Collections.replaceAll(authorTable.getItems(), author, authorService.createOrUpdate(authorUpdateObject)) //table is updated
+                        (authorUpdateObject) -> Collections.replaceAll(authorTable.getItems(), author, authorService.createOrUpdate(authorUpdateObject)) //table is updated
                 )
         ));
     }
