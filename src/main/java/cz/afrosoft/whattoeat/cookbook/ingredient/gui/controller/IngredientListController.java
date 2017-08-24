@@ -6,10 +6,10 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRow;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.IngredientRow;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.IngredientService;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;

@@ -4,13 +4,10 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import com.google.common.collect.ImmutableSet;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.conversioninfo.GarlicConversionInfo;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.BasicConversionInfo;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

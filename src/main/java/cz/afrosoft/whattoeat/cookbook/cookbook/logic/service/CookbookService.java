@@ -5,7 +5,7 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import java.util.Set;
 
 /**
- * Service providing methods for operating on {@link cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook}.
+ * Service providing methods for operating on {@link Cookbook}.
  *
  * @author Tomas Rejent
  */

@@ -13,6 +13,6 @@ public interface KeywordableEntity {
      * @return (NotNull) Gets all keywords attached to entity or empty set if entity does
      * not have any keyword.
      */
-    Set<? extends Keyword> getKeywords();
+    Set<Keyword> getKeywords();
 
 }

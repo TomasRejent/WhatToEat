@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "KEYWORD")
-public class KeywordEntity implements Keyword {
+public class KeywordEntity {
 
     @Id
     @GeneratedValue
@@ -21,21 +21,21 @@ public class KeywordEntity implements Keyword {
     @Column(name = "NAME")
     private String name;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public KeywordEntity setId(final Integer id) {
         this.id = id;
+        return this;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
+    public KeywordEntity setName(final String name) {
         this.name = name;
+        return this;
     }
 }

@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
-
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.BasicConversionInfo;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionInfo;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.util.List;
 

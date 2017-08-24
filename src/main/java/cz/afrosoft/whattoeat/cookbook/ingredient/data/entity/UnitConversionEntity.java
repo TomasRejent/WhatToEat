@@ -11,7 +11,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "UNIT_CONVERSION")
-public class UnitConversionEntity implements UnitConversion {
+public class UnitConversionEntity {
 
     @Id
     @GeneratedValue
@@ -33,57 +33,57 @@ public class UnitConversionEntity implements UnitConversion {
     @Column(name = "GRAMS_PER_SPOON")
     private Float gramsPerSpoon;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public UnitConversionEntity setId(final Integer id) {
         this.id = id;
+        return this;
     }
 
-    @Override
     public Float getGramsPerPiece() {
         return gramsPerPiece;
     }
 
-    public void setGramsPerPiece(final Float gramsPerPiece) {
+    public UnitConversionEntity setGramsPerPiece(final Float gramsPerPiece) {
         this.gramsPerPiece = gramsPerPiece;
+        return this;
     }
 
-    @Override
     public Float getMilliliterPerGram() {
         return milliliterPerGram;
     }
 
-    public void setMilliliterPerGram(final Float milliliterPerGram) {
+    public UnitConversionEntity setMilliliterPerGram(final Float milliliterPerGram) {
         this.milliliterPerGram = milliliterPerGram;
+        return this;
     }
 
-    @Override
     public Float getGramsPerPinch() {
         return gramsPerPinch;
     }
 
-    public void setGramsPerPinch(final Float gramsPerPinch) {
+    public UnitConversionEntity setGramsPerPinch(final Float gramsPerPinch) {
         this.gramsPerPinch = gramsPerPinch;
+        return this;
     }
 
-    @Override
     public Float getGramsPerCoffeeSpoon() {
         return gramsPerCoffeeSpoon;
     }
 
-    public void setGramsPerCoffeeSpoon(final Float gramsPerCoffeeSpoon) {
+    public UnitConversionEntity setGramsPerCoffeeSpoon(final Float gramsPerCoffeeSpoon) {
         this.gramsPerCoffeeSpoon = gramsPerCoffeeSpoon;
+        return this;
     }
 
-    @Override
     public Float getGramsPerSpoon() {
         return gramsPerSpoon;
     }
 
-    public void setGramsPerSpoon(final Float gramsPerSpoon) {
+    public UnitConversionEntity setGramsPerSpoon(final Float gramsPerSpoon) {
         this.gramsPerSpoon = gramsPerSpoon;
+        return this;
     }
 }

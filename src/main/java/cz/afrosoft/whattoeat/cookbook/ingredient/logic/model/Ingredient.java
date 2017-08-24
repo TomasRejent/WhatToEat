@@ -9,7 +9,7 @@ import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
  *
  * @author Tomas Rejent
  */
-public interface Ingredient extends IdEntity, KeywordableEntity {
+public interface Ingredient extends IdEntity, KeywordableEntity, Comparable<Ingredient> {
 
     /**
      * @return (NotNull) Gets name of ingredient.

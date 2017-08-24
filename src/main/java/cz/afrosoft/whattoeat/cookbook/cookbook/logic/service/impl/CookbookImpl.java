@@ -21,7 +21,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-final class CookbookImpl implements Cookbook, Comparable<Cookbook> {
+final class CookbookImpl implements Cookbook {
 
     private final Integer id;
     private final String name;
@@ -148,6 +148,7 @@ final class CookbookImpl implements Cookbook, Comparable<Cookbook> {
             return authors;
         }
 
+        @Override
         public Builder setAuthors(final Set<Author> authors) {
             this.authors = authors;
             return this;

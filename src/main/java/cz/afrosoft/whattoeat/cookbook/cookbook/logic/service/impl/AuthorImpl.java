@@ -21,7 +21,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-final class AuthorImpl implements Author, Comparable<Author> {
+final class AuthorImpl implements Author {
 
     private final Integer id;
     private final String name;

@@ -1,10 +1,5 @@
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.BasicConversionInfoJsonDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientInfoJsonDao;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.*;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.PriceCalculatorService;

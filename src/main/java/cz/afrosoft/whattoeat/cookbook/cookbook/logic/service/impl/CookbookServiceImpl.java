@@ -19,7 +19,7 @@ import java.util.Collections;
 import java.util.Set;
 
 /**
- * Implementation of {@link CookbookService} which uses {@link CookbookEntity} as implementation of
+ * Implementation of {@link CookbookService} which uses {@link CookbookImpl} as implementation of
  * {@link Cookbook} and provides its own implementation of {@link CookbookUpdateObject}.
  *
  * @author Tomas Rejent

@@ -6,8 +6,6 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.OldIngredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
@@ -18,10 +16,7 @@ import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
 import cz.afrosoft.whattoeat.core.gui.suggestion.FullWordSuggestionProvider;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.*;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.*;

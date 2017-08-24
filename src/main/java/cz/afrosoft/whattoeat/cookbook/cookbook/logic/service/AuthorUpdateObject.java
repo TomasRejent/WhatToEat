@@ -20,7 +20,7 @@ public interface AuthorUpdateObject extends Author {
     AuthorUpdateObject setName(String name);
 
     /**
-     * Changes name of author. If called multiple times only value from last call is used.
+     * Changes email of author. If called multiple times only value from last call is used.
      *
      * @param email (NotNull) Email of author. Use empty String to clear email.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.

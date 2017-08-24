@@ -3,10 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.cookbook.ingredient.data;
-
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.BasicConversionInfo;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 /**
  * Interface for {@link BasicConversionInfo} entity DAO to provide BasicConversionInfo specific data services.

@@ -11,7 +11,7 @@ package cz.afrosoft.whattoeat.core.logic.model;
  *
  * @author Tomas Rejent
  */
-public interface Keyword extends IdEntity {
+public interface Keyword extends IdEntity, Comparable<Keyword> {
 
     /**
      * @return (NotNull) Gets name (text) of keyword.

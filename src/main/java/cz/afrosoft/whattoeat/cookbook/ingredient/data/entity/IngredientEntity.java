@@ -3,7 +3,6 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.data.entity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -15,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "INGREDIENT")
-public class IngredientEntity implements Ingredient {
+public class IngredientEntity {
 
     @Id
     @GeneratedValue
@@ -38,57 +37,57 @@ public class IngredientEntity implements Ingredient {
     @JoinTable(name = "INGREDIENT_KEYWORDS")
     private Set<KeywordEntity> keywords;
 
-    @Override
     public Integer getId() {
         return id;
     }
 
-    public void setId(final int id) {
+    public IngredientEntity setId(final Integer id) {
         this.id = id;
+        return this;
     }
 
-    @Override
     public String getName() {
         return name;
     }
 
-    public void setName(final String name) {
+    public IngredientEntity setName(final String name) {
         this.name = name;
+        return this;
     }
 
-    @Override
     public IngredientUnit getIngredientUnit() {
         return ingredientUnit;
     }
 
-    public void setIngredientUnit(final IngredientUnit ingredientUnit) {
+    public IngredientEntity setIngredientUnit(final IngredientUnit ingredientUnit) {
         this.ingredientUnit = ingredientUnit;
+        return this;
     }
 
-    @Override
     public float getPrice() {
         return price;
     }
 
-    public void setPrice(final float price) {
+    public IngredientEntity setPrice(final float price) {
         this.price = price;
+        return this;
     }
 
-    @Override
     public UnitConversionEntity getUnitConversion() {
         return unitConversion;
     }
 
-    public void setUnitConversion(final UnitConversionEntity unitConversion) {
+    public IngredientEntity setUnitConversion(final UnitConversionEntity unitConversion) {
         this.unitConversion = unitConversion;
+        return this;
     }
 
-    @Override
-    public Set<? extends Keyword> getKeywords() {
+    public Set<KeywordEntity> getKeywords() {
         return keywords;
     }
 
-    public void setKeywords(final Set<KeywordEntity> keywords) {
+    public IngredientEntity setKeywords(final Set<KeywordEntity> keywords) {
         this.keywords = keywords;
+        return this;
     }
 }
