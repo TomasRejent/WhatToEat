@@ -1,15 +1,13 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
+import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.controlsfx.glyphfont.FontAwesome;
-import org.controlsfx.glyphfont.Glyph;
 
 import java.util.Collection;
 import java.util.function.Consumer;
@@ -40,7 +38,7 @@ final class RemovableStringCell<T> extends CustomStringCell<T> {
         Validate.notNull(removeListeners);
 
         this.label = new Label();
-        this.removeButton = new Button(StringUtils.EMPTY, new Glyph("FontAwesome", FontAwesome.Glyph.REMOVE));
+        this.removeButton = new RemoveButton();
         this.layout = new HBox(label, removeButton);
         this.removeListeners = removeListeners;
 

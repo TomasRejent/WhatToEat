@@ -2,7 +2,6 @@ package cz.afrosoft.whattoeat.cookbook.recipe.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -15,7 +14,7 @@ import java.util.Set;
  */
 @Entity
 @Table(name = "RECIPE")
-public class RecipeEntity implements Recipe {
+public class RecipeEntity {
 
     @Id
     @GeneratedValue
@@ -55,7 +54,6 @@ public class RecipeEntity implements Recipe {
     @JoinTable(name = "RECIPE_KEYWORDS")
     private Set<KeywordEntity> keywords;
 
-    @Override
     public Integer getId() {
         return id;
     }
@@ -64,7 +62,6 @@ public class RecipeEntity implements Recipe {
         this.id = id;
     }
 
-    @Override
     public String getName() {
         return name;
     }
@@ -73,7 +70,6 @@ public class RecipeEntity implements Recipe {
         this.name = name;
     }
 
-    @Override
     public String getPreparation() {
         return preparation;
     }
@@ -82,7 +78,6 @@ public class RecipeEntity implements Recipe {
         this.preparation = preparation;
     }
 
-    @Override
     public int getRating() {
         return rating;
     }
@@ -91,7 +86,6 @@ public class RecipeEntity implements Recipe {
         this.rating = rating;
     }
 
-    @Override
     public Set<RecipeType> getRecipeTypes() {
         return recipeTypes;
     }
@@ -100,7 +94,6 @@ public class RecipeEntity implements Recipe {
         this.recipeTypes = recipeTypes;
     }
 
-    @Override
     public Taste getTaste() {
         return taste;
     }
@@ -109,7 +102,6 @@ public class RecipeEntity implements Recipe {
         this.taste = taste;
     }
 
-    @Override
     public Duration getIngredientPreparationTime() {
         return ingredientPreparationTime;
     }
@@ -118,7 +110,6 @@ public class RecipeEntity implements Recipe {
         this.ingredientPreparationTime = ingredientPreparationTime;
     }
 
-    @Override
     public Duration getCookingTime() {
         return cookingTime;
     }
@@ -127,8 +118,7 @@ public class RecipeEntity implements Recipe {
         this.cookingTime = cookingTime;
     }
 
-    @Override
-    public Set<? extends Recipe> getSideDishes() {
+    public Set<RecipeEntity> getSideDishes() {
         return sideDishes;
     }
 
@@ -136,7 +126,6 @@ public class RecipeEntity implements Recipe {
         this.sideDishes = sideDishes;
     }
 
-    @Override
     public Set<? extends RecipeIngredient> getIngredients() {
         return recipeIngredients;
     }
@@ -153,8 +142,7 @@ public class RecipeEntity implements Recipe {
         this.recipeIngredients = recipeIngredients;
     }
 
-    @Override
-    public Set<? extends Keyword> getKeywords() {
+    public Set<KeywordEntity> getKeywords() {
         return keywords;
     }
 
@@ -162,7 +150,6 @@ public class RecipeEntity implements Recipe {
         this.keywords = keywords;
     }
 
-    @Override
     public PreparationTime getTotalPreparationTime() {
         Duration totalDuration = getIngredientPreparationTime().plus(getCookingTime());
         return PreparationTime.fromDuration(totalDuration);

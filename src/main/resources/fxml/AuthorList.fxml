@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,9 +16,9 @@
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
-            <Button onAction="#addAuthor" text="%cz.afrosoft.whattoeat.authors.actions.add"/>
-            <Button fx:id="editButton" onAction="#editAuthor" text="%cz.afrosoft.whattoeat.authors.actions.edit"/>
-            <Button fx:id="deleteButton" onAction="#deleteAuthor" text="%cz.afrosoft.whattoeat.authors.actions.delete"/>
+            <AddButton onAction="#addAuthor"/>
+            <EditButton fx:id="editButton" onAction="#editAuthor"/>
+            <DeleteButton fx:id="deleteButton" onAction="#deleteAuthor"/>
         </VBox>
     </left>
     <center>

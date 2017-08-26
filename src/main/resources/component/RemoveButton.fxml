@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import org.controlsfx.glyphfont.Glyph?>
+<fx:root type="javafx.scene.control.Button" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.121">
+    <graphic>
+        <Glyph fontFamily="FontAwesome" icon="REMOVE"/>
+    </graphic>
+</fx:root>
