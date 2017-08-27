@@ -1870,5 +1870,14 @@
     "price": 0.0,
     "keywords": [],
     "uuid": "09a1f0ea-bc1d-4621-a703-4e4a755b6b1b"
+  },
+  {
+    "name": "bezlepková kolínka",
+    "ingredientUnit": "WEIGHT",
+    "price": 0.0,
+    "keywords": [
+      "bezlepkové"
+    ],
+    "uuid": "5b228ec0-15e8-4f70-b65d-6735e226dd78"
   }
 ]
