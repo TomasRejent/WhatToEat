@@ -18,7 +18,7 @@ import java.util.function.Function;
  * @param <T> Type of item in collection to be rendered.
  * @author Tomas Rejent
  */
-public class CollectionCell<S, T> extends TableCell<S, Collection<? extends T>> {
+public class CollectionCell<S, T> extends TableCell<S, Collection<T>> {
 
     /**
      * Separates String representations of rendered items.
@@ -43,7 +43,7 @@ public class CollectionCell<S, T> extends TableCell<S, Collection<? extends T>> 
     }
 
     @Override
-    protected void updateItem(final Collection<? extends T> item, final boolean empty) {
+    protected void updateItem(final Collection<T> item, final boolean empty) {
         super.updateItem(item, empty);
         if (empty || item == null || item.isEmpty()) {
             setText(StringUtils.EMPTY);

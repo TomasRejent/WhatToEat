@@ -62,7 +62,7 @@ public class CookbookController implements Initializable {
     @FXML
     private TableColumn<Cookbook, String> nameColumn;
     @FXML
-    private TableColumn<Cookbook, Collection<? extends Author>> authorColumn;
+    private TableColumn<Cookbook, Collection<Author>> authorColumn;
     @FXML
     private Button editButton;
     @FXML
@@ -119,7 +119,7 @@ public class CookbookController implements Initializable {
     /**
      * Gets last selected cookbook.
      *
-     * @return (NotNull) Empty optional if no author  is selected. Otherwise optional with selected cookbook.
+     * @return (NotNull) Empty optional if no ingredient is selected. Otherwise optional with selected cookbook.
      */
     private Optional<Cookbook> getSelectedCookbook() {
         return Optional.ofNullable(cookbookTable.getSelectionModel().getSelectedItem());

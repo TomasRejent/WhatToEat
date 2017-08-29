@@ -64,7 +64,7 @@ public class AuthorController implements Initializable {
     @FXML
     private TableColumn<Author, String> emailColumn;
     @FXML
-    private TableColumn<Author, Collection<? extends Cookbook>> cookbookColumn;
+    private TableColumn<Author, Collection<Cookbook>> cookbookColumn;
     @FXML
     private Button editButton;
     @FXML
