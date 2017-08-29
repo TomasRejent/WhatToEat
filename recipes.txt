@@ -3040,11 +3040,11 @@
       },
       {
         "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
-        "quantity": 50.0
+        "quantity": 40.0
       },
       {
         "ingredientKey": "76ddb868-05d0-4486-89d7-9525a4adec18",
-        "quantity": 1.0
+        "quantity": 100.0
       },
       {
         "ingredientKey": "9f88ebb1-4cac-48ed-9dc8-a1c2cf886731",
@@ -3079,7 +3079,8 @@
     "taste": "SALTY",
     "rating": 5,
     "keywords": [
-      "bezlepkové"
+      "bezlepkové",
+      "váženo"
     ],
     "sideDishes": [],
     "uuid": "df81522c-1054-481b-889f-c794415b70ae"
