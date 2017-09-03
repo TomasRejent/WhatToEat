@@ -1,14 +1,12 @@
 package cz.afrosoft.whattoeat.core.gui.suggestion;
 
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListCellFactory;
 import javafx.scene.control.ComboBox;
 import javafx.util.StringConverter;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 
-import java.util.Objects;
 import java.util.function.Function;
 
 /**
@@ -37,7 +35,7 @@ public class ComboBoxSuggestion {
      * @param <T>         Type of items in combo box.
      */
     public static <T> void initSuggestion(final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
-        StringConverter<T> stringConverter = createStringConverter(comboBox, mapFunction);
+        StringConverter<T> stringConverter = ComboBoxUtils.createStringConverter(comboBox, mapFunction);
         ComboBoxSuggestionProvider<T> suggestionProvider = new ComboBoxSuggestionProvider<>(comboBox, mapFunction);
         comboBox.setEditable(true);
         comboBox.setConverter(stringConverter);
@@ -51,37 +49,6 @@ public class ComboBoxSuggestion {
         comboBox.widthProperty().addListener(
                 (observable, oldValue, newValue) -> suggestionBinding.setPrefWidth(newValue.doubleValue() - BORDER_OFFSET)
         );
-    }
-
-    /**
-     * Creates string converter for specified combo box which uses supplied map function to do conversion.
-     *
-     * @param comboBox    (NotNull) Combo box for which converter is created.
-     * @param mapFunction (NotNull) Function which maps item from combo box to String.
-     * @param <T>         Type of items in combo box.
-     * @return (NotNull) New converter based on map function.
-     */
-    private static <T> StringConverter<T> createStringConverter(final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
-        Validate.notNull(comboBox);
-        Validate.notNull(mapFunction);
-
-        return new StringConverter<T>() {
-            @Override
-            public String toString(final T object) {
-                if (object == null) {
-                    return StringUtils.EMPTY;
-                } else {
-                    return mapFunction.apply(object);
-                }
-            }
-
-            @Override
-            public T fromString(final String string) {
-                return comboBox.getItems().stream().filter(
-                        object -> Objects.equals(string, toString(object))
-                ).findFirst().orElse(null);
-            }
-        };
     }
 
     private ComboBoxSuggestion() {
