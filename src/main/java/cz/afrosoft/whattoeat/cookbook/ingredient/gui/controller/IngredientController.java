@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
@@ -14,6 +15,8 @@ import javafx.scene.control.TableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
 import java.net.URL;
@@ -27,6 +30,7 @@ import java.util.ResourceBundle;
  * @author Tomas Rejent
  */
 @Controller
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class IngredientController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientController.class);
@@ -51,6 +55,8 @@ public class IngredientController implements Initializable {
 
     @Autowired
     private IngredientService ingredientService;
+    @Autowired
+    private IngredientDialog dialog;
 
     @Override
     public void initialize(final URL url, final ResourceBundle rb) {
@@ -104,6 +110,7 @@ public class IngredientController implements Initializable {
     @FXML
     private void addIngredient(){
         LOGGER.debug("Add ingredient action called.");
+        dialog.show();
     }
 
     @FXML
