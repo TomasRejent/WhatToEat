@@ -1463,23 +1463,23 @@
     "ingredients": [
       {
         "ingredientKey": "293e13ec-edb2-4a84-973c-5687b591c353",
-        "quantity": 55.0
+        "quantity": 40.0
       },
       {
         "ingredientKey": "257cbe42-9939-4862-b0b6-2ae022edc242",
-        "quantity": 37.0
+        "quantity": 29.6
       },
       {
         "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
-        "quantity": 23.0
+        "quantity": 18.4
       },
       {
         "ingredientKey": "4cfee394-7b9f-46ba-afba-c45c50061a56",
-        "quantity": 4.0
+        "quantity": 3.2
       },
       {
         "ingredientKey": "b2a0e4db-8c42-42e0-9501-3bc5dfbe8638",
-        "quantity": 0.25
+        "quantity": 0.4
       },
       {
         "ingredientKey": "f7429c1a-8313-4b9d-90d9-574416458e77",
@@ -1495,7 +1495,7 @@
       },
       {
         "ingredientKey": "8a37ee81-3f53-46fa-a7cc-38489665cb60",
-        "quantity": 16.0
+        "quantity": 12.8
       },
       {
         "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
@@ -1503,7 +1503,7 @@
       },
       {
         "ingredientKey": "5c18153b-486b-42c7-90df-c8df2f4eac06",
-        "quantity": 10.5
+        "quantity": 8.4
       }
     ],
     "preparationTime": "MEDIUM",
