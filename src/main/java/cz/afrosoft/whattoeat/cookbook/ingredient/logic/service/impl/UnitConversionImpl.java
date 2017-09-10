@@ -9,6 +9,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.Arrays;
+
 /**
  * Immutable implementation of {@link UnitConversion}.
  * <p>
@@ -70,14 +72,14 @@ final class UnitConversionImpl implements UnitConversion {
             return true;
         }
 
-        if (o == null || !(o instanceof UnitConversion)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
-        UnitConversion that = (UnitConversion) o;
+        UnitConversionImpl that = (UnitConversionImpl) o;
 
         return new EqualsBuilder()
-                .append(id, that.getId())
+                .append(id, that.id)
                 .isEquals();
     }
 
@@ -125,6 +127,7 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         public Builder setGramsPerPiece(final Float gramsPerPiece) {
+            validateNotNegative(gramsPerPiece, "gramsPerPiece");
             this.gramsPerPiece = gramsPerPiece;
             return this;
         }
@@ -135,6 +138,7 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         public Builder setMilliliterPerGram(final Float milliliterPerGram) {
+            validateNotNegative(milliliterPerGram, "milliliterPerGram");
             this.milliliterPerGram = milliliterPerGram;
             return this;
         }
@@ -145,6 +149,7 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         public Builder setGramsPerPinch(final Float gramsPerPinch) {
+            validateNotNegative(gramsPerPinch, "gramsPerPinch");
             this.gramsPerPinch = gramsPerPinch;
             return this;
         }
@@ -155,6 +160,7 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         public Builder setGramsPerCoffeeSpoon(final Float gramsPerCoffeeSpoon) {
+            validateNotNegative(gramsPerCoffeeSpoon, "gramsPerCoffeeSpoon");
             this.gramsPerCoffeeSpoon = gramsPerCoffeeSpoon;
             return this;
         }
@@ -165,13 +171,36 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         public Builder setGramsPerSpoon(final Float gramsPerSpoon) {
+            validateNotNegative(gramsPerSpoon, "gramsPerSpoon");
             this.gramsPerSpoon = gramsPerSpoon;
             return this;
         }
 
+        private void validateNotNegative(final Float value, final String fieldName) {
+            if (value != null && value < 0) {
+                throw new IllegalArgumentException(String.format("Conversion rate for %s cannot be negative.", fieldName));
+            }
+        }
+
+        private boolean hasUsefulValue(final Float value) {
+            return (value != null && value > 0);
+        }
+
+        private boolean hasAnyUsefulValue(final Float... values) {
+            Validate.notNull(values);
+            return Arrays.stream(values).anyMatch(this::hasUsefulValue);
+        }
+
+        /**
+         * @return (Nullable) Conversion info or null when no values other than null or zero were set.
+         */
         public UnitConversion build() {
-            Validate.notNull(id);
-            return new UnitConversionImpl(id, gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon);
+            if (hasAnyUsefulValue(gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon)) {
+                Validate.notNull(id);
+                return new UnitConversionImpl(id, gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon);
+            } else {
+                return null;
+            }
         }
 
         @Override

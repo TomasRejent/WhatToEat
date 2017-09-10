@@ -30,7 +30,7 @@ public class IngredientEntity {
     @Column(name = "PRICE")
     private float price;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     private UnitConversionEntity unitConversion;
 
     @ManyToMany

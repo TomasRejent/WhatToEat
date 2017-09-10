@@ -98,7 +98,7 @@ public class IngredientServiceImpl implements IngredientService {
                 .build();
     }
 
-    private UnitConversion entityToUnitConversion(UnitConversionEntity entity) {
+    private UnitConversion entityToUnitConversion(final UnitConversionEntity entity) {
         if (entity == null) {
             return null;
         } else {
@@ -108,17 +108,30 @@ public class IngredientServiceImpl implements IngredientService {
                     .setMilliliterPerGram(entity.getMilliliterPerGram())
                     .setGramsPerPinch(entity.getGramsPerPinch())
                     .setGramsPerCoffeeSpoon(entity.getGramsPerCoffeeSpoon())
-                    .setGramsPerSpoon(entity.getGramsPerCoffeeSpoon())
+                    .setGramsPerSpoon(entity.getGramsPerSpoon())
                     .build();
         }
     }
 
+    /**
+     * Converts unit conversion to entity. Creates new entity and sets all values from unit conversion to it.
+     * Entity is not saved by this method.
+     *
+     * @param unitConversion (Nullable)
+     * @return (Nullable)
+     */
     private UnitConversionEntity unitConversionToEntity(final UnitConversion unitConversion) {
         if (unitConversion == null) {
             return null;
         } else {
             UnitConversionEntity entity = new UnitConversionEntity();
-            return entity.setId(unitConversion.getId());
+            return entity
+                    .setId(unitConversion.getId())
+                    .setGramsPerPiece(unitConversion.getGramsPerPiece())
+                    .setMilliliterPerGram(unitConversion.getMilliliterPerGram())
+                    .setGramsPerPinch(unitConversion.getGramsPerPinch())
+                    .setGramsPerCoffeeSpoon(unitConversion.getGramsPerCoffeeSpoon())
+                    .setGramsPerSpoon(unitConversion.getGramsPerSpoon());
         }
     }
 }

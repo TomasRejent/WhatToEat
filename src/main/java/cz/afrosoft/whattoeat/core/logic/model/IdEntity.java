@@ -8,7 +8,7 @@ package cz.afrosoft.whattoeat.core.logic.model;
 public interface IdEntity {
 
     /**
-     * @return Id of entity. Id is unique for entity type.
+     * @return (Nullable) Id of entity. Id is unique for entity type. May be null if entity is not persisted.
      */
     Integer getId();
 

@@ -46,7 +46,7 @@ final class KeywordImpl implements Keyword {
             return true;
         }
 
-        if (o == null || !(o instanceof Keyword)) {
+        if (o == null || getClass() != o.getClass()) {
             return false;
         }
 
@@ -75,7 +75,7 @@ final class KeywordImpl implements Keyword {
     /**
      * Builder for {@link KeywordImpl} used by {@link KeywordServiceImpl}.
      */
-    static final class Builder {
+    static final class Builder implements Keyword {
 
         private Integer id;
         private String name;
@@ -103,6 +103,11 @@ final class KeywordImpl implements Keyword {
             Validate.notBlank(name);
 
             return new KeywordImpl(id, name);
+        }
+
+        @Override
+        public int compareTo(final Keyword otherKeyword) {
+            return KeywordComparator.INSTANCE.compare(this, otherKeyword);
         }
 
         @Override

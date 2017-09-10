@@ -18,7 +18,7 @@ public class KeywordEntity {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME")
+    @Column(name = "NAME", unique = true, nullable = false)
     private String name;
 
     public Integer getId() {

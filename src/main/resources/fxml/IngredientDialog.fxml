@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import cz.afrosoft.whattoeat.core.gui.component.FloatFiled?>
+<?import cz.afrosoft.whattoeat.core.gui.component.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <GridPane
@@ -29,4 +29,48 @@
     <FloatFiled fx:id="priceField"
                 GridPane.columnIndex="3"
                 GridPane.rowIndex="1"/>
+    <KeywordField fx:id="keywordField"
+                  GridPane.columnIndex="0"
+                  GridPane.rowIndex="2"
+                  GridPane.columnSpan="4"
+    />
+    <TitledPane fx:id="unitConversionPane"
+                text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion"
+                expanded="false"
+                GridPane.columnIndex="0"
+                GridPane.rowIndex="3"
+                GridPane.columnSpan="4">
+        <GridPane>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.piece"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+            <FloatFiled fx:id="gramsPerPieceField"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="0"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.gram"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"/>
+            <FloatFiled fx:id="milliliterPerGramField"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="1"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.pinch"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="2"/>
+            <FloatFiled fx:id="gramsPerPinchField"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="2"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.cofeespoon"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="3"/>
+            <FloatFiled fx:id="gramsPerCoffeeSpoonField"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="3"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.spoon"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="4"/>
+            <FloatFiled fx:id="gramsPerSpoonField"
+                        GridPane.columnIndex="1"
+                        GridPane.rowIndex="4"/>
+        </GridPane>
+    </TitledPane>
 </GridPane>

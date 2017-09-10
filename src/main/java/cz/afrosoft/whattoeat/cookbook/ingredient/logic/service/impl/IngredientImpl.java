@@ -176,6 +176,17 @@ final class IngredientImpl implements Ingredient {
         }
 
         @Override
+        public IngredientUpdateObject setUnitConversion(final Float gramsPerPiece, final Float milliliterPerGram, final Float gramsPerPinch, final Float gramsPerCoffeeSpoon, final Float gramsPerSpoon) {
+            this.unitConversion = new UnitConversionImpl.Builder()
+                    .setGramsPerPiece(gramsPerPiece)
+                    .setMilliliterPerGram(milliliterPerGram)
+                    .setGramsPerPinch(gramsPerPinch)
+                    .setGramsPerCoffeeSpoon(gramsPerCoffeeSpoon)
+                    .setGramsPerSpoon(gramsPerSpoon);
+            return this;
+        }
+
+        @Override
         public Builder setKeywords(final Set<Keyword> keywords) {
             this.keywords = keywords;
             return this;

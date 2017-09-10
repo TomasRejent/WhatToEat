@@ -16,6 +16,8 @@ import java.util.List;
 @Repository
 public interface KeywordRepository extends JpaRepository<KeywordEntity, Integer> {
 
+    KeywordEntity findByName(String name);
+
     List<KeywordEntity> findByNameIn(Collection<String> names);
 
 }

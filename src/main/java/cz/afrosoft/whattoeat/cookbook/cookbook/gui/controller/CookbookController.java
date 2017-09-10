@@ -9,7 +9,6 @@ import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
 import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -129,11 +128,9 @@ public class CookbookController implements Initializable {
 
     /**
      * Handler for add button. Brings up dialog for adding cookbook. If cookbook is added then table is updated.
-     *
-     * @param actionEvent (Nullable)
      */
     @FXML
-    private void addCookbook(final ActionEvent actionEvent) {
+    private void addCookbook() {
         LOGGER.debug("Add cookbook action triggered.");
         cookbookDialog.addCookbook().ifPresent(
                 cookbookUpdateObject -> cookbookTable.getItems().add(cookbookService.createOrUpdate(cookbookUpdateObject))
@@ -142,11 +139,9 @@ public class CookbookController implements Initializable {
 
     /**
      * Handler for edit button. Brings up edit dialog. If changes are saved then table is updated.
-     *
-     * @param actionEvent (Nullable)
      */
     @FXML
-    private void editCookbook(final ActionEvent actionEvent) {
+    private void editCookbook() {
         LOGGER.debug("Edit cookbook action triggered.");
         getSelectedCookbook().ifPresent(//cookbook is selected
                 (cookbook) -> cookbookDialog.editCookbook(cookbookService.getUpdateObject(cookbook)).ifPresent(//edit is confirmed
@@ -157,11 +152,9 @@ public class CookbookController implements Initializable {
 
     /**
      * Handler for delete button. Brings up confirmation dialog. If delete is confirmed then table is updated.
-     *
-     * @param actionEvent (Nullable)
      */
     @FXML
-    private void deleteCookbook(final ActionEvent actionEvent) {
+    private void deleteCookbook() {
         LOGGER.debug("Delete cookbook action triggered.");
         getSelectedCookbook().ifPresent(cookbook -> {
             if (DialogUtils.showConfirmDialog(

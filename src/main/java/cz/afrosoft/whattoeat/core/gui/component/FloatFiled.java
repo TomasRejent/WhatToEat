@@ -48,6 +48,31 @@ public class FloatFiled extends TextField {
     }
 
     /**
+     * @return (NotNull) Returns float value of zero if field is empty.
+     */
+    public float getFloatOrZero() {
+        Float value = getFloat();
+        if (value == null) {
+            return 0;
+        } else {
+            return value;
+        }
+    }
+
+    /**
+     * Sets value to field.
+     *
+     * @param value (Nullable) Value to set
+     */
+    public void setFloat(final Float value) {
+        if (value == null) {
+            setText(StringUtils.EMPTY);
+        } else {
+            setText(value.toString());
+        }
+    }
+
+    /**
      * Replaces all commas with dots so text can be parsed to float.
      *
      * @param text (NotNull) Text for replacement.

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<fx:root
+        type="javafx.scene.layout.GridPane"
+        xmlns:fx="http://javafx.com/fxml"
+        styleClass="keyword-component"
+        stylesheets="@KeywordField.css">
+    <Label
+            text="%cz.afrosoft.whattoeat.component.keywordfield.label"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="0"/>
+    <ComboBox fx:id="keywordField"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="0"/>
+    <FlowPane fx:id="keywordContainer"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="1"/>
+</fx:root>

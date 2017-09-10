@@ -50,6 +50,18 @@ public interface IngredientUpdateObject extends Ingredient {
     IngredientUpdateObject setUnitConversion(UnitConversion unitConversion);
 
     /**
+     * Changes unit conversion info about ingredient. This is optional for ingredient. Conversion is specified by conversion rates.
+     *
+     * @param gramsPerPiece       (Nullable)
+     * @param milliliterPerGram   (Nullable)
+     * @param gramsPerPinch       (Nullable)
+     * @param gramsPerCoffeeSpoon (Nullable)
+     * @param gramsPerSpoon       (Nullable)
+     * @return (NotNull) This createOrUpdate object so setter calls can be chained.
+     */
+    IngredientUpdateObject setUnitConversion(Float gramsPerPiece, Float milliliterPerGram, Float gramsPerPinch, Float gramsPerCoffeeSpoon, Float gramsPerSpoon);
+
+    /**
      * Changes keywords of ingredient. If called multiple times only value from last call is used.
      *
      * @param keywords (NotNull) Keywords to associate with ingredient.

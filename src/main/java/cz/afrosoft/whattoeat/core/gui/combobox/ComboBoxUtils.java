@@ -77,6 +77,39 @@ public final class ComboBoxUtils {
         };
     }
 
+    /**
+     * Creates string converter for specified combo box which uses different function for mapping item to string and string to item. This is useful when combo box supports creating of new values.
+     *
+     * @param toStringFnc   (NotNull) Function which maps item from combo box to String.
+     * @param fromStringFnc (NotNull) Function which maps string to item.
+     * @param <T>           Type of items in combo box.
+     * @return (NotNull) New converter based on map function.
+     */
+    public static <T> StringConverter<T> createAsymmetricStringConverter(final Function<T, String> toStringFnc, final Function<String, T> fromStringFnc) {
+        Validate.notNull(toStringFnc);
+        Validate.notNull(fromStringFnc);
+
+        return new StringConverter<T>() {
+            @Override
+            public String toString(final T object) {
+                if (object == null) {
+                    return StringUtils.EMPTY;
+                } else {
+                    return toStringFnc.apply(object);
+                }
+            }
+
+            @Override
+            public T fromString(final String string) {
+                if (StringUtils.isEmpty(string)) {
+                    return null;
+                } else {
+                    return fromStringFnc.apply(string);
+                }
+            }
+        };
+    }
+
     private ComboBoxUtils() {
         throw new IllegalStateException("This class cannot be instanced.");
     }
