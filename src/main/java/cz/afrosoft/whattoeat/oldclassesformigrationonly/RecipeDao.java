@@ -3,11 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.cookbook.recipe.data;
-
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.BaseDao;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.util.List;
 import java.util.Set;

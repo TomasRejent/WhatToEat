@@ -7,8 +7,8 @@
 package cz.afrosoft.whattoeat.diet.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeIngredient;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
 import javafx.stage.Modality;

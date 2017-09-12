@@ -6,13 +6,9 @@
 
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.IngredientService;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldIngredient;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PieceConversionService;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;

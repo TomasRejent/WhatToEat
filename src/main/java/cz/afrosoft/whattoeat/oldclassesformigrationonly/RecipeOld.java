@@ -5,7 +5,6 @@
  */
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.gui.I18n;

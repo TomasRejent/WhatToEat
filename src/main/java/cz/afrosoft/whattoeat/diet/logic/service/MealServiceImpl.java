@@ -1,9 +1,9 @@
 package cz.afrosoft.whattoeat.diet.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.diet.gui.view.MealView;
 import cz.afrosoft.whattoeat.diet.logic.model.Meal;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

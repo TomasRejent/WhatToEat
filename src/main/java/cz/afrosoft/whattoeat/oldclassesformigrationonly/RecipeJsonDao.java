@@ -4,12 +4,9 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.recipe.data;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.JsonDao;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeType;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

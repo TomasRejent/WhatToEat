@@ -6,12 +6,8 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.validator.RecipeValidator;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;

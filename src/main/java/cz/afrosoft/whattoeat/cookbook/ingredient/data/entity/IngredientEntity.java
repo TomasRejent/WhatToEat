@@ -21,7 +21,7 @@ public class IngredientEntity {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME", nullable = false)
+    @Column(name = "NAME", unique = true, nullable = false)
     private String name;
 
     @Column(name = "UNIT", nullable = false)

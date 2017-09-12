@@ -6,8 +6,6 @@
 
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

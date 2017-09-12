@@ -5,11 +5,7 @@
  */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.IngredientInfoDao;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.IngredientQuantityService;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldIngredient;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.*;
 
 import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 

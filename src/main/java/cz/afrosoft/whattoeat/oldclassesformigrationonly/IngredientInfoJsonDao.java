@@ -6,7 +6,6 @@
 
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeJsonDao;
 import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

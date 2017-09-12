@@ -13,7 +13,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Recipe extends IdEntity, KeywordableEntity {
+public interface Recipe extends IdEntity, KeywordableEntity, Comparable<Recipe> {
 
     /**
      * @return (NotNull) Gets name of recipe. This is not unique identifier.

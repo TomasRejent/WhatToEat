@@ -5,8 +5,6 @@
  */
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.IngredientCouple;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 
 import java.util.Collection;

@@ -33,8 +33,9 @@ public class RecipeIngredientEntity implements RecipeIngredient {
         return id;
     }
 
-    public void setId(final Integer id) {
+    public RecipeIngredientEntity setId(final Integer id) {
         this.id = id;
+        return this;
     }
 
     @Override
@@ -42,23 +43,26 @@ public class RecipeIngredientEntity implements RecipeIngredient {
         return quantity;
     }
 
-    public void setQuantity(final Float quantity) {
+    public RecipeIngredientEntity setQuantity(final Float quantity) {
         this.quantity = quantity;
+        return this;
     }
 
     public RecipeEntity getRecipe() {
         return recipe;
     }
 
-    public void setRecipe(final RecipeEntity recipe) {
+    public RecipeIngredientEntity setRecipe(final RecipeEntity recipe) {
         this.recipe = recipe;
+        return this;
     }
 
     public IngredientEntity getIngredient() {
         return ingredient;
     }
 
-    public void setIngredient(final IngredientEntity ingredient) {
+    public RecipeIngredientEntity setIngredient(final IngredientEntity ingredient) {
         this.ingredient = ingredient;
+        return this;
     }
 }

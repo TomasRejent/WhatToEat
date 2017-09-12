@@ -3,9 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
-
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.PersistentEntity;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import java.io.Serializable;
 import java.util.Objects;

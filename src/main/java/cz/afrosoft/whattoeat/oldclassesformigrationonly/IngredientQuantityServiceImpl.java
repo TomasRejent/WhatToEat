@@ -7,7 +7,6 @@
 package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.OldRecipeIngredient;
 import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import org.apache.commons.lang3.Validate;
 

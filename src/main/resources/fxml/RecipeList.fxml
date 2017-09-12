@@ -1,49 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.ViewButton?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        fx:id="recipeContainer"
+        stylesheets="@../styles/RecipeList.css"
+        styleClass="recipe-container"
+        fx:controller="cz.afrosoft.whattoeat.cookbook.recipe.gui.controller.RecipeController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.recipes.actions.title"/>
+            <ViewButton fx:id="viewButton" onAction="#showRecipe"/>
+            <AddButton onAction="#addRecipe"/>
+            <EditButton fx:id="editButton" onAction="#editRecipe"/>
+            <DeleteButton fx:id="deleteButton" onAction="#deleteRecipe"/>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="recipeTable" styleClass="recipe-table">
+            <columns>
+                <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.name"/>
+                <TableColumn fx:id="recipeTypeColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType"/>
+                <TableColumn fx:id="preparationTimeColumn"
+                             text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime"/>
+                <TableColumn fx:id="tasteColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.taste"/>
+                <TableColumn fx:id="ratingColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.rating"/>
+                <TableColumn fx:id="keywordsColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords"/>
+            </columns>
+        </TableView>
+    </center>
 
-<GridPane minHeight="200.0" minWidth="200.0" prefHeight="700.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.cookbook.recipe.gui.controller.RecipeListController">
-   <columnConstraints>
-      <ColumnConstraints hgrow="NEVER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-      <ColumnConstraints hgrow="ALWAYS" minWidth="0.0" />
-   </columnConstraints>
-   <rowConstraints>
-      <RowConstraints maxHeight="50.0" minHeight="10.0" prefHeight="50.0" vgrow="NEVER" />
-      <RowConstraints minHeight="10.0" valignment="TOP" vgrow="ALWAYS" />
-   </rowConstraints>
-   <children>
-      <HBox GridPane.columnSpan="2">
-         <children>
-            <Label contentDisplay="CENTER" lineSpacing="1.0" prefHeight="31.0" prefWidth="132.0" text="%cz.afrosoft.whattoeat.recipes.filter.title" />
-         </children>
-      </HBox>
-      <VBox alignment="TOP_CENTER" prefHeight="300.0" prefWidth="3.0" GridPane.rowIndex="1">
-         <children>
-            <Separator prefWidth="200.0" />
-            <Label alignment="CENTER" prefHeight="21.0" prefWidth="46.0" text="%cz.afrosoft.whattoeat.recipes.actions.title" />
-            <Button mnemonicParsing="false" onAction="#addRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.add" />
-            <Button id="viewRecipeButton" mnemonicParsing="false" onAction="#showRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.view" />
-            <Button mnemonicParsing="false" onAction="#editRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.edit" />
-            <Button mnemonicParsing="false" onAction="#deleteRecipe" prefHeight="31.0" prefWidth="25.0" text="%cz.afrosoft.whattoeat.recipes.actions.delete" />
-         </children>
-      </VBox>
-      <TableView fx:id="recipeTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="200.0" minWidth="200.0" nodeOrientation="LEFT_TO_RIGHT" GridPane.columnIndex="1" GridPane.hgrow="ALWAYS" GridPane.rowIndex="1" GridPane.vgrow="ALWAYS">
-        <columns>
-          <TableColumn fx:id="nameColumn" editable="false" minWidth="50.0" prefWidth="200.0" text="%cz.afrosoft.whattoeat.recipes.table.header.ingredientKey" />
-          <TableColumn fx:id="recipeTypeColumn" editable="false" maxWidth="150.0" minWidth="50.0" prefWidth="75.0" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType" />
-            <TableColumn fx:id="tasteColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.taste" />
-            <TableColumn fx:id="preparationTimeColumn" editable="false" maxWidth="75.0" minWidth="50.0" prefWidth="75.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime" />
-            <TableColumn fx:id="ratingColumn" editable="false" maxWidth="100.0" minWidth="50.0" prefWidth="100.0" resizable="false" text="%cz.afrosoft.whattoeat.recipes.table.header.rating" />
-            <TableColumn fx:id="keywordsColumn" editable="false" prefWidth="625.0" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords" />
-        </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-   </children>
-</GridPane>
+</BorderPane>

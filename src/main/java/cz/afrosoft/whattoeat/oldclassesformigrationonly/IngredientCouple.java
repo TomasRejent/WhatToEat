@@ -4,10 +4,9 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldIngredient;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Objects;

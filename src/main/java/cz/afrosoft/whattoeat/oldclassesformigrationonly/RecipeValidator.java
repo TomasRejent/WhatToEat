@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.recipe.logic.validator;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.logic.validator.EntityValidator;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.RecipeOld;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.HashMap;

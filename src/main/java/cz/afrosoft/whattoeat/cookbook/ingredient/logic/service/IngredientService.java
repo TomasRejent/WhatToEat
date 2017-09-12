@@ -45,7 +45,7 @@ public interface IngredientService {
      * It can also be used to persist new ingredients.
      *
      * @param ingredientChanges (NotNull) Changes to persist.
-     * @return (NotNull) Cookbook with updated values.
+     * @return (NotNull) Ingredient with updated values.
      */
     Ingredient createOrUpdate(IngredientUpdateObject ingredientChanges);
 
