@@ -40,17 +40,34 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Override
     public void delete(final Recipe recipe) {
-
+        LOGGER.debug("Deleting recipe: {}", recipe);
+        Validate.notNull(recipe);
+        repository.delete(recipe.getId());
     }
 
     @Override
     public RecipeUpdateObject getCreateObject() {
-        return null;
+        return new RecipeImpl.Builder();
     }
 
     @Override
     public RecipeUpdateObject getUpdateObject(final Recipe recipe) {
-        return null;
+        LOGGER.debug("Getting update object for recipe: {}", recipe);
+        Validate.notNull(recipe);
+
+        return new RecipeImpl.Builder()
+                .setId(recipe.getId())
+                .setName(recipe.getName())
+                .setPreparation(recipe.getPreparation())
+                .setRating(recipe.getRating())
+                .setRecipeTypes(recipe.getRecipeTypes())
+                .setTaste(recipe.getTaste())
+                .setIngredientPreparationTime(recipe.getIngredientPreparationTime())
+                .setCookingTime(recipe.getCookingTime())
+                .setIngredients(recipe.getIngredients())
+                .setSideDishes(recipe.getSideDishes())
+                //.setCookbooks()//TODO
+                .setKeywords(recipe.getKeywords());
     }
 
     @Override

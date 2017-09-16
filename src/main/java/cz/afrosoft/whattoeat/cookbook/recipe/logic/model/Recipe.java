@@ -73,11 +73,11 @@ public interface Recipe extends IdEntity, KeywordableEntity, Comparable<Recipe> 
      * @return (NotNull) Gets all suitable side dishes for this recipe. Only recipes containing type {@link OldRecipeType#MAIN_DISH}
      * can have side dishes. Others types returns empty set.
      */
-    Set<? extends Recipe> getSideDishes();
+    Set<Recipe> getSideDishes();
 
     /**
      * @return (NotNull) Gets ingredients and their quantities needed to prepare meal from recipe.
      * Recipe must have at least one ingredient.
      */
-    Set<? extends RecipeIngredient> getIngredients();
+    Set<RecipeIngredient> getIngredients();
 }
