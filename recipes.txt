@@ -3705,5 +3705,118 @@
     ],
     "sideDishes": [],
     "uuid": "670e322d-be84-4ed8-b45f-3a9e82a76dc8"
+  },
+  {
+    "name": "Řízek",
+    "preparation": "Maso omyjeme a nakrájíme na plátky. Rozklepeme paličkou a mírně posolíme. Bokem v talíři rozmícháme vajíčka a taky mírně posolíme. Maso obalíme v mouce, poté namočíme ve vajíčku a nakonec obalíme ve strouhance. Na pánvi rozpalíme olej a maso osmažíme.",
+    "ingredients": [
+      {
+        "ingredientKey": "911b5900-43ee-49a9-8079-96d34565a960",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "b2a0e4db-8c42-42e0-9501-3bc5dfbe8638",
+        "quantity": 0.5
+      },
+      {
+        "ingredientKey": "cd809d46-94bc-44a6-ab15-8d6ad783a1d8",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "287451c1-8445-4c1c-8715-6cf91166b48b",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "9f88ebb1-4cac-48ed-9dc8-a1c2cf886731",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "b0c062bc-9d51-4879-b8dc-cf8e50ebe826",
+        "quantity": 140.0
+      }
+    ],
+    "preparationTime": "SHORT",
+    "recipeTypes": [
+      "DINNER",
+      "LUNCH"
+    ],
+    "taste": "SALTY",
+    "rating": 6,
+    "keywords": [
+      "váženo"
+    ],
+    "sideDishes": [
+      "Řepové šťouchané brambory",
+      "Bramborové hranolky",
+      "Mrkvovo celerové hranolky",
+      "Šťouchané brambory",
+      "Bramborová kaše",
+      "Celerové hranolky",
+      "Vařené brambory"
+    ],
+    "uuid": "1a841a87-d96d-440b-aeb7-1f3e65c57ad6"
+  },
+  {
+    "name": "Česnačka",
+    "preparation": "Cibuli nakrájíme na drobno. Oškrábeme brambory a nakrájíme na kostičky. V hrnci rozpálíme olej a osmahneme cibulku do zlatova. Poté zalejeme vodou, přidáme brambory a necháme vařit. Když voda vaří rozmícháme bujonovou kostku, přidáme kmín a pokud polévka není dostatečně slaná, tak dosolíme. Ke konci přidáme majoránku. Nakonec rozklepneme do polévky vejce a rozmýcháme ho. Vypneme plotnu a pak teprv prolisujem česnek. Pro vylepšení si můžeme na pánvi osmahnout chléb nakrájený na kostičky a před servírováním do polévky nastrouhat trochu sýra.",
+    "ingredients": [
+      {
+        "ingredientKey": "2a245e73-5c29-429a-8777-67ceb4b8bcb0",
+        "quantity": 0.25
+      },
+      {
+        "ingredientKey": "659c2819-d6cb-4fac-8c16-ea10ce398b07",
+        "quantity": 20.4
+      },
+      {
+        "ingredientKey": "4cfee394-7b9f-46ba-afba-c45c50061a56",
+        "quantity": 4.3
+      },
+      {
+        "ingredientKey": "b2a0e4db-8c42-42e0-9501-3bc5dfbe8638",
+        "quantity": 0.5
+      },
+      {
+        "ingredientKey": "9fba337f-9a20-4e42-8579-d64a09b83f15",
+        "quantity": 26.5
+      },
+      {
+        "ingredientKey": "48b3bc9d-4102-4007-8aee-4a15d79c4933",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "136985cb-26c6-4838-825d-b7529579eadb",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "4385053e-2218-4155-b8c0-2a574c49f739",
+        "quantity": 0.0
+      },
+      {
+        "ingredientKey": "8d8deea8-4f0c-46d4-bcfb-5d1da5733243",
+        "quantity": 106.0
+      },
+      {
+        "ingredientKey": "cd7f4479-feb8-4676-870d-45d5f4e0f750",
+        "quantity": 261.0
+      },
+      {
+        "ingredientKey": "9f88ebb1-4cac-48ed-9dc8-a1c2cf886731",
+        "quantity": 0.0
+      }
+    ],
+    "preparationTime": "MEDIUM",
+    "recipeTypes": [
+      "SOUP"
+    ],
+    "taste": "SALTY",
+    "rating": 6,
+    "keywords": [
+      "bezlepkové",
+      "váženo",
+      "bezmasé"
+    ],
+    "sideDishes": [],
+    "uuid": "fda6f78a-675a-431b-a344-b0e65cb969f5"
   }
 ]
