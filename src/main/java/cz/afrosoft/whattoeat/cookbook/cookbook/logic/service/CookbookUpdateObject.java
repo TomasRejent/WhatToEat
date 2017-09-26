@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 
 import java.util.Set;
@@ -36,5 +36,5 @@ public interface CookbookUpdateObject extends Cookbook {
      * @param authors (NotEmpty) Authors to set.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    CookbookUpdateObject setAuthors(Set<Author> authors);
+    CookbookUpdateObject setAuthors(Set<AuthorRef> authors);
 }

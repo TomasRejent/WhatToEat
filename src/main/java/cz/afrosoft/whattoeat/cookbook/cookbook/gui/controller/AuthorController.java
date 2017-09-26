@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.AuthorDialog;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
@@ -64,7 +64,7 @@ public class AuthorController implements Initializable {
     @FXML
     private TableColumn<Author, String> emailColumn;
     @FXML
-    private TableColumn<Author, Collection<Cookbook>> cookbookColumn;
+    private TableColumn<Author, Collection<CookbookRef>> cookbookColumn;
     @FXML
     private Button editButton;
     @FXML
@@ -97,7 +97,7 @@ public class AuthorController implements Initializable {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Author::getName));
         emailColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Author::getEmail));
         cookbookColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Author::getCookbooks, Collections.emptySet()));
-        cookbookColumn.setCellFactory(column -> CollectionCell.newInstance(Cookbook::getName));
+        cookbookColumn.setCellFactory(column -> CollectionCell.newInstance(CookbookRef::getName));
     }
 
     /**

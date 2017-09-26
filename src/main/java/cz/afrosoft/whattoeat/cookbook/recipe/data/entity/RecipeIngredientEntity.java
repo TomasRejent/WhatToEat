@@ -12,7 +12,7 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name = "RECIPE_INGREDIENT")
-public class RecipeIngredientEntity implements RecipeIngredient {
+public class RecipeIngredientEntity {
 
     @Id
     @GeneratedValue
@@ -28,7 +28,6 @@ public class RecipeIngredientEntity implements RecipeIngredient {
     @ManyToOne(optional = false)
     private IngredientEntity ingredient;
 
-    @Override
     public Integer getId() {
         return id;
     }
@@ -38,7 +37,6 @@ public class RecipeIngredientEntity implements RecipeIngredient {
         return this;
     }
 
-    @Override
     public float getQuantity() {
         return quantity;
     }

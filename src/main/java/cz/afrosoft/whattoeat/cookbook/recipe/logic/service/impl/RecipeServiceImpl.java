@@ -1,8 +1,11 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
@@ -28,6 +31,15 @@ public class RecipeServiceImpl implements RecipeService {
 
     @Autowired
     private RecipeRepository repository;
+
+    @Autowired
+    private CookbookRefService cookbookRefService;
+
+    @Autowired
+    private RecipeRefService recipeRefService;
+
+    @Autowired
+    private RecipeIngredientRefService recipeIngredientRefService;
 
     @Autowired
     private KeywordService keywordService;
@@ -66,15 +78,39 @@ public class RecipeServiceImpl implements RecipeService {
                 .setCookingTime(recipe.getCookingTime())
                 .setIngredients(recipe.getIngredients())
                 .setSideDishes(recipe.getSideDishes())
-                //.setCookbooks()//TODO
+                .setCookbooks(recipe.getCookbooks())
                 .setKeywords(recipe.getKeywords());
     }
 
     @Override
     public Recipe createOrUpdate(final RecipeUpdateObject recipeChanges) {
-        return null;
+        LOGGER.debug("Updating recipe: {}", recipeChanges);
+
+        Validate.notNull(recipeChanges, "Cannot createOrUpdate recipe with null changes.");
+
+        RecipeEntity entity = new RecipeEntity();
+        entity.setId(recipeChanges.getId())
+                .setName(recipeChanges.getName())
+                .setPreparation(recipeChanges.getPreparation())
+                .setRating(recipeChanges.getRating())
+                .setRecipeTypes(recipeChanges.getRecipeTypes())
+                .setTaste(recipeChanges.getTaste())
+                .setIngredientPreparationTime(recipeChanges.getIngredientPreparationTime())
+                .setCookingTime(recipeChanges.getCookingTime())
+                .setSideDishes(ConverterUtil.convertToSet(recipeChanges.getSideDishes(), recipeRefService::toEntity))
+                .setIngredients(ConverterUtil.convertToSet(recipeChanges.getIngredients(), recipeIngredientRefService::toEntity))
+                .setKeywords(ConverterUtil.convertToSet(recipeChanges.getKeywords(), keywordService::keywordToEntity))
+                .setCookbooks(ConverterUtil.convertToSet(recipeChanges.getCookbooks(), cookbookRefService::toEntity));
+
+        return entityToRecipe(repository.save(entity));
     }
 
+    /**
+     * Converts {@link RecipeEntity} to {@link Recipe} using {@link RecipeImpl}.
+     *
+     * @param entity (NotNull) Entity to convert.
+     * @return (NotNull) New {@link Recipe} with data from entity.
+     */
     private Recipe entityToRecipe(final RecipeEntity entity) {
         Validate.notNull(entity);
 
@@ -87,7 +123,9 @@ public class RecipeServiceImpl implements RecipeService {
                 .setTaste(entity.getTaste())
                 .setIngredientPreparationTime(entity.getIngredientPreparationTime())
                 .setCookingTime(entity.getCookingTime())
-                //TODO ingredients, sideDishes, cookbooks
+                .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), cookbookRefService::fromEntity))
+                .setIngredients(ConverterUtil.convertToSet(entity.getIngredients(), recipeIngredientRefService::fromEntity))
+                .setSideDishes(ConverterUtil.convertToSortedSet(entity.getSideDishes(), recipeRefService::fromEntity))
                 .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword))
                 .build();
     }

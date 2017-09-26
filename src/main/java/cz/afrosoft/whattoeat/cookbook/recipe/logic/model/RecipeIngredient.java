@@ -10,11 +10,16 @@ import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
  *
  * @author Tomas Rejent
  */
-public interface RecipeIngredient extends IdEntity {
+public interface RecipeIngredient extends RecipeIngredientRef, IdEntity {
 
     /**
      * @return Quantity of ingredient needed to prepare one serving of meal
      * from recipe. Unit of this quantity is determined by {@link Ingredient#getIngredientUnit()}.
      */
     float getQuantity();
+
+    /**
+     * @return (NotNull) Gets ingredient for which this recipe ingredient describes quantity in specific recipe.
+     */
+    Ingredient getIngredient();
 }

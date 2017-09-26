@@ -2,7 +2,6 @@ package cz.afrosoft.whattoeat.cookbook.recipe.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
@@ -142,7 +141,7 @@ public class RecipeEntity {
         return this;
     }
 
-    public Set<? extends RecipeIngredient> getIngredients() {
+    public Set<RecipeIngredientEntity> getIngredients() {
         return recipeIngredients;
     }
 

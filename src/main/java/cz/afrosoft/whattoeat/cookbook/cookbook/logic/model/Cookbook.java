@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.model;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 
 import java.util.Set;
@@ -12,12 +12,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Cookbook extends IdEntity, Comparable<Cookbook> {
-
-    /**
-     * @return (NotNull) Name of cookbook.
-     */
-    String getName();
+public interface Cookbook extends CookbookRef, IdEntity, Comparable<CookbookRef> {
 
     /**
      * @return (NotNull) Description of cookbook or empty String.
@@ -27,10 +22,10 @@ public interface Cookbook extends IdEntity, Comparable<Cookbook> {
     /**
      * @return (NotEmpty) Set containing all authors of cookbook. At least one author must exist.
      */
-    Set<Author> getAuthors();
+    Set<AuthorRef> getAuthors();
 
     /**
      * @return (NotNull) Gets all recipes belonging to this cookbook.
      */
-    Set<Recipe> getRecipes();
+    Set<RecipeRef> getRecipes();
 }

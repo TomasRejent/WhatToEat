@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
@@ -52,9 +52,9 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
     @FXML
     private TextArea descriptionArea;
     @FXML
-    private ComboBox<Author> authorField;
+    private ComboBox<AuthorRef> authorField;
     @FXML
-    private ListView<Author> authorList;
+    private ListView<AuthorRef> authorList;
 
     @Autowired
     private CookbookService cookbookService;
@@ -80,8 +80,8 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
     }
 
     private void setupAuthorFields() {
-        ComboBoxSuggestion.initSuggestion(authorField, Author::getName);
-        ListBinding.bindToComboBox(authorList, authorField, Author::getName);
+        ComboBoxSuggestion.initSuggestion(authorField, AuthorRef::getName);
+        ListBinding.bindToComboBox(authorList, authorField, AuthorRef::getName);
     }
 
     /**
@@ -150,7 +150,7 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
         Validate.notNull(cookbook);
         nameField.setText(cookbook.getName());
         descriptionArea.setText(cookbook.getDescription());
-        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthors(), cookbook.getAuthors());
+        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthorRefs(), cookbook.getAuthors());
     }
 
     /**

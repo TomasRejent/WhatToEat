@@ -1,10 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 import java.time.Duration;
@@ -77,7 +74,7 @@ public interface RecipeUpdateObject extends Recipe {
      * @param ingredients (NotNull) Ingredients to set.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    RecipeUpdateObject setIngredients(Set<RecipeIngredient> ingredients);
+    RecipeUpdateObject setIngredients(Set<RecipeIngredientRef> ingredients);
 
     /**
      * Changes side dishes of recipe. Make sense only for some type of recipes.
@@ -85,7 +82,7 @@ public interface RecipeUpdateObject extends Recipe {
      * @param sideDishes (NotNull) Side dishes to set or empty set.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    RecipeUpdateObject setSideDishes(Set<Recipe> sideDishes);
+    RecipeUpdateObject setSideDishes(Set<RecipeRef> sideDishes);
 
     /**
      * Changes cookbooks to which recipe belongs.
@@ -93,7 +90,7 @@ public interface RecipeUpdateObject extends Recipe {
      * @param cookbooks (NotEmpty) Cookbooks to which recipe is assigned. At least one cookbook must be specified.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    RecipeUpdateObject setCookbooks(Set<Cookbook> cookbooks);
+    RecipeUpdateObject setCookbooks(Set<CookbookRef> cookbooks);
 
     /**
      * Changes keywords of recipe.

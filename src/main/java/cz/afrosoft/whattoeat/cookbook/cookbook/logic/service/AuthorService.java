@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 
 import java.util.Set;
 
@@ -15,6 +16,12 @@ public interface AuthorService {
      * @return (NotNull) Return all authors defined in application.
      */
     Set<Author> getAllAuthors();
+
+    /**
+     * @return (NotNull) Return all authors defined in application. Authors are loaded only as reference so they
+     * contains only id and name. This is suitable to connecting other entities to authors.
+     */
+    Set<AuthorRef> getAllAuthorRefs();
 
     /**
      * Deletes specified author.

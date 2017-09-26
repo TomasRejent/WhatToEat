@@ -1,7 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.CookbookDialog;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
@@ -61,7 +61,7 @@ public class CookbookController implements Initializable {
     @FXML
     private TableColumn<Cookbook, String> nameColumn;
     @FXML
-    private TableColumn<Cookbook, Collection<Author>> authorColumn;
+    private TableColumn<Cookbook, Collection<AuthorRef>> authorColumn;
     @FXML
     private Button editButton;
     @FXML
@@ -93,7 +93,7 @@ public class CookbookController implements Initializable {
     private void setupColumnCellFactories() {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Cookbook::getName));
         authorColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Cookbook::getAuthors, Collections.emptySet()));
-        authorColumn.setCellFactory(column -> CollectionCell.newInstance(Author::getName));
+        authorColumn.setCellFactory(column -> CollectionCell.newInstance(AuthorRef::getName));
     }
 
     /**

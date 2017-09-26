@@ -1,9 +1,10 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -26,10 +27,10 @@ final class CookbookImpl implements Cookbook {
     private final Integer id;
     private final String name;
     private final String description;
-    private final Set<Author> authors;
-    private final Set<Recipe> recipes;
+    private final Set<AuthorRef> authors;
+    private final Set<RecipeRef> recipes;
 
-    private CookbookImpl(final Integer id, final String name, final String description, final Set<Author> authors, final Set<Recipe> recipes) {
+    private CookbookImpl(final Integer id, final String name, final String description, final Set<AuthorRef> authors, final Set<RecipeRef> recipes) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -53,17 +54,17 @@ final class CookbookImpl implements Cookbook {
     }
 
     @Override
-    public Set<Author> getAuthors() {
+    public Set<AuthorRef> getAuthors() {
         return authors;
     }
 
     @Override
-    public Set<Recipe> getRecipes() {
+    public Set<RecipeRef> getRecipes() {
         return recipes;
     }
 
     @Override
-    public int compareTo(final Cookbook otherCookbook) {
+    public int compareTo(final CookbookRef otherCookbook) {
         return CookbookComparator.INSTANCE.compare(this, otherCookbook);
     }
 
@@ -108,8 +109,8 @@ final class CookbookImpl implements Cookbook {
         private Integer id;
         private String name;
         private String description;
-        private Set<Author> authors = new HashSet<>();
-        private Set<Recipe> recipes = new HashSet<>();
+        private Set<AuthorRef> authors = new HashSet<>();
+        private Set<RecipeRef> recipes = new HashSet<>();
 
         @Override
         public Integer getId() {
@@ -144,22 +145,22 @@ final class CookbookImpl implements Cookbook {
         }
 
         @Override
-        public Set<Author> getAuthors() {
+        public Set<AuthorRef> getAuthors() {
             return authors;
         }
 
         @Override
-        public Builder setAuthors(final Set<Author> authors) {
+        public Builder setAuthors(final Set<AuthorRef> authors) {
             this.authors = authors;
             return this;
         }
 
         @Override
-        public Set<Recipe> getRecipes() {
+        public Set<RecipeRef> getRecipes() {
             return recipes;
         }
 
-        public Builder setRecipes(final Set<Recipe> recipes) {
+        public Builder setRecipes(final Set<RecipeRef> recipes) {
             this.recipes = recipes;
             return this;
         }
@@ -170,7 +171,7 @@ final class CookbookImpl implements Cookbook {
         }
 
         @Override
-        public int compareTo(final Cookbook otherCookbook) {
+        public int compareTo(final CookbookRef otherCookbook) {
             return CookbookComparator.INSTANCE.compare(this, otherCookbook);
         }
 

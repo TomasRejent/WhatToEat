@@ -1,12 +1,13 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.AuthorEntity;
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.AuthorRepository;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -32,10 +33,22 @@ public class AuthorServiceImpl implements AuthorService {
     @Autowired
     private AuthorRepository repository;
 
+    @Autowired
+    private AuthorRefService refService;
+
+    @Autowired
+    private CookbookRefService cookbookRefService;
+
     @Override
     public Set<Author> getAllAuthors() {
         LOGGER.debug("Getting all authors.");
         return ConverterUtil.convertToSortedSet(repository.findAllWithCookbooks(), this::entityToAuthor);
+    }
+
+    @Override
+    public Set<AuthorRef> getAllAuthorRefs() {
+        LOGGER.debug("Getting all authors as reference.");
+        return ConverterUtil.convertToSortedSet(repository.findAll(), refService::fromEntity);
     }
 
     @Override
@@ -76,7 +89,7 @@ public class AuthorServiceImpl implements AuthorService {
                 .setName(authorChanges.getName())
                 .setEmail(authorChanges.getEmail())
                 .setDescription(authorChanges.getDescription())
-                .setCookbooks(ConverterUtil.convertToSet(authorChanges.getCookbooks(), this::cookbookToEntity));
+                .setCookbooks(ConverterUtil.convertToSet(authorChanges.getCookbooks(), cookbookRefService::toEntity));
         return entityToAuthor(repository.save(entity));
     }
 
@@ -99,30 +112,7 @@ public class AuthorServiceImpl implements AuthorService {
                 .setName(entity.getName())
                 .setEmail(entity.getEmail())
                 .setDescription(entity.getDescription())
-                .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), this::entityToCookbook))
+                .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), cookbookRefService::fromEntity))
                 .build();
-    }
-
-    /**
-     * Converts {@link CookbookEntity} to {@link Cookbook} using {@link CookbookWeakImpl}.
-     * @param entity (NotNull) Entity to convert.
-     * @return (NotNull) New {@link Cookbook} with subset of data from entity. Only id and name are filled.
-     */
-    private Cookbook entityToCookbook(final CookbookEntity entity) {
-        Validate.notNull(entity);
-        return new CookbookWeakImpl(entity.getId(), entity.getName());
-    }
-
-    /**
-     * Converts cookbook to entity. This is only to set relation between cookbook and author.
-     * For this purpose id is filled.
-     *
-     * @param cookbook (NotNull) Cookbook to convert to entity
-     * @return (NotNull) Partially filled cookbook entity(id).
-     */
-    private CookbookEntity cookbookToEntity(final Cookbook cookbook) {
-        Validate.notNull(cookbook);
-        CookbookEntity entity = new CookbookEntity();
-        return entity.setId(cookbook.getId());
     }
 }

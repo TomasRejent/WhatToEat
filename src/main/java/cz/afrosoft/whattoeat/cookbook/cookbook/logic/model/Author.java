@@ -9,12 +9,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Author extends IdEntity, Comparable<Author> {
-
-    /**
-     * @return (NotNull) Get authors name.
-     */
-    String getName();
+public interface Author extends AuthorRef, IdEntity, Comparable<AuthorRef> {
 
     /**
      * @return (NotNull) Authors email or empty String if not filled.
@@ -29,5 +24,5 @@ public interface Author extends IdEntity, Comparable<Author> {
     /**
      * @return (NotNull) Set of cookbooks written by author. Can be empty set.
      */
-    Set<Cookbook> getCookbooks();
+    Set<CookbookRef> getCookbooks();
 }

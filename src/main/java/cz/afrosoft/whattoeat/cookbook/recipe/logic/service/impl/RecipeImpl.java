@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
@@ -31,11 +31,15 @@ final class RecipeImpl implements Recipe {
     private final Taste taste;
     private final Duration ingredientPreparationTime;
     private final Duration cookingTime;
-    private final Set<RecipeIngredient> ingredients;
-    private final Set<Recipe> sideDishes;
+    private final Set<RecipeIngredientRef> ingredients;
+    private final Set<RecipeRef> sideDishes;
     private final Set<Keyword> keywords;
+    private final Set<CookbookRef> cookbooks;
 
-    private RecipeImpl(final Integer id, final String name, final String preparation, final Integer rating, final Set<RecipeType> recipeTypes, final Taste taste, final Duration ingredientPreparationTime, final Duration cookingTime, final Set<RecipeIngredient> ingredients, final Set<Recipe> sideDishes, final Set<Keyword> keywords) {
+    private RecipeImpl(final Integer id, final String name, final String preparation, final Integer rating, final Set<RecipeType> recipeTypes,
+                       final Taste taste, final Duration ingredientPreparationTime, final Duration cookingTime,
+                       final Set<RecipeIngredientRef> ingredients, final Set<RecipeRef> sideDishes, final Set<Keyword> keywords,
+                       final Set<CookbookRef> cookbooks) {
         this.id = id;
         this.name = name;
         this.preparation = preparation;
@@ -47,6 +51,7 @@ final class RecipeImpl implements Recipe {
         this.ingredients = Collections.unmodifiableSet(ingredients);
         this.sideDishes = Collections.unmodifiableSet(sideDishes);
         this.keywords = Collections.unmodifiableSet(keywords);
+        this.cookbooks = Collections.unmodifiableSet(cookbooks);
     }
 
     @Override
@@ -90,12 +95,12 @@ final class RecipeImpl implements Recipe {
     }
 
     @Override
-    public Set<RecipeIngredient> getIngredients() {
+    public Set<RecipeIngredientRef> getIngredients() {
         return ingredients;
     }
 
     @Override
-    public Set<Recipe> getSideDishes() {
+    public Set<RecipeRef> getSideDishes() {
         return sideDishes;
     }
 
@@ -111,7 +116,12 @@ final class RecipeImpl implements Recipe {
     }
 
     @Override
-    public int compareTo(final Recipe otherRecipe) {
+    public Set<CookbookRef> getCookbooks() {
+        return cookbooks;
+    }
+
+    @Override
+    public int compareTo(final RecipeRef otherRecipe) {
         return RecipeComparator.INSTANCE.compare(this, otherRecipe);
     }
 
@@ -157,10 +167,10 @@ final class RecipeImpl implements Recipe {
         private Taste taste;
         private Duration ingredientPreparationTime;
         private Duration cookingTime;
-        private Set<RecipeIngredient> ingredients;
-        private Set<Recipe> sideDishes;
+        private Set<RecipeIngredientRef> ingredients;
+        private Set<RecipeRef> sideDishes;
         private Set<Keyword> keywords;
-        private Set<Cookbook> cookbooks;
+        private Set<CookbookRef> cookbooks;
 
         @Override
         public Integer getId() {
@@ -250,23 +260,23 @@ final class RecipeImpl implements Recipe {
         }
 
         @Override
-        public Set<RecipeIngredient> getIngredients() {
+        public Set<RecipeIngredientRef> getIngredients() {
             return ingredients;
         }
 
         @Override
-        public Builder setIngredients(final Set<RecipeIngredient> ingredients) {
+        public Builder setIngredients(final Set<RecipeIngredientRef> ingredients) {
             this.ingredients = ingredients;
             return this;
         }
 
         @Override
-        public Set<Recipe> getSideDishes() {
+        public Set<RecipeRef> getSideDishes() {
             return sideDishes;
         }
 
         @Override
-        public Builder setSideDishes(final Set<Recipe> sideDishes) {
+        public Builder setSideDishes(final Set<RecipeRef> sideDishes) {
             this.sideDishes = sideDishes;
             return this;
         }
@@ -282,12 +292,13 @@ final class RecipeImpl implements Recipe {
             return this;
         }
 
-        public Set<Cookbook> getCookbooks() {
+        @Override
+        public Set<CookbookRef> getCookbooks() {
             return cookbooks;
         }
 
         @Override
-        public Builder setCookbooks(final Set<Cookbook> cookbooks) {
+        public Builder setCookbooks(final Set<CookbookRef> cookbooks) {
             this.cookbooks = cookbooks;
             return this;
         }
@@ -299,7 +310,7 @@ final class RecipeImpl implements Recipe {
         }
 
         @Override
-        public int compareTo(final Recipe otherRecipe) {
+        public int compareTo(final RecipeRef otherRecipe) {
             return RecipeComparator.INSTANCE.compare(this, otherRecipe);
         }
 
@@ -313,7 +324,8 @@ final class RecipeImpl implements Recipe {
             Validate.notNull(cookingTime);
             Validate.notEmpty(ingredients);
 
-            return new RecipeImpl(id, name, preparation, rating, recipeTypes, taste, ingredientPreparationTime, cookingTime, ingredients, sideDishes, keywords);
+            return new RecipeImpl(id, name, preparation, rating, recipeTypes, taste, ingredientPreparationTime, cookingTime,
+                    ingredients, sideDishes, keywords, cookbooks);
         }
 
         @Override

@@ -1,10 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.AuthorEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
@@ -31,6 +30,9 @@ public class CookbookServiceImpl implements CookbookService {
 
     @Autowired
     private CookbookRepository repository;
+
+    @Autowired
+    private AuthorRefService authorRefService;
 
     @Override
     public Set<Cookbook> getAllCookbooks() {
@@ -75,7 +77,7 @@ public class CookbookServiceImpl implements CookbookService {
         entity.setId(cookbookChanges.getId())
                 .setName(cookbookChanges.getName())
                 .setDescription(cookbookChanges.getDescription())
-                .setAuthors(ConverterUtil.convertToSet(cookbookChanges.getAuthors(), this::authorToEntity));
+                .setAuthors(ConverterUtil.convertToSet(cookbookChanges.getAuthors(), authorRefService::toEntity));
         return entityToCookbook(repository.save(entity));
     }
 
@@ -91,35 +93,8 @@ public class CookbookServiceImpl implements CookbookService {
                 .setId(entity.getId())
                 .setName(entity.getName())
                 .setDescription(entity.getDescription())
-                .setAuthors(ConverterUtil.convertToSortedSet(entity.getAuthors(), this::entityToAuthor))
+                .setAuthors(ConverterUtil.convertToSortedSet(entity.getAuthors(), authorRefService::fromEntity))
                 .setRecipes(Collections.emptySet())
                 .build();
-    }
-
-    /**
-     * Converts {@link AuthorEntity} to {@link Author} using {@link AuthorWeakImpl}.
-     *
-     * @param entity (NotNull) Entity to convert.
-     * @return (NotNull) New {@link Author} with subset of data from entity. Only id and name are filled.
-     */
-    private Author entityToAuthor(final AuthorEntity entity) {
-        Validate.notNull(entity);
-        return new AuthorWeakImpl(entity.getId(), entity.getName());
-    }
-
-    /**
-     * Converts author to entity. This is only to set relation between cookbook and author. For this purpose id is filled.
-     * Also name is filled because if it is not then cookbook after save has to be reloaded else it does not contain name and that
-     * causes failure on front end. So name is also filled here so reloading is not necessary.
-     *
-     * @param author (NotNull) Author to convert to entity.
-     * @return (NotNull) Partially filled author entity(id and name).
-     */
-    private AuthorEntity authorToEntity(final Author author) {
-        Validate.notNull(author);
-        AuthorEntity entity = new AuthorEntity();
-        entity.setId(author.getId());
-        entity.setName(author.getName());
-        return entity;
     }
 }
