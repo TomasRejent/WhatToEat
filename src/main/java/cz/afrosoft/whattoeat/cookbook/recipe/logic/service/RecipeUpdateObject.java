@@ -1,16 +1,85 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 import java.time.Duration;
+import java.util.Optional;
 import java.util.Set;
 
 /**
+ * Update object for {@link Recipe} Serves for its creation or editing.
+ *
+ * //TODO - write javadoc to getters
+ *
  * @author Tomas Rejent
  */
-public interface RecipeUpdateObject extends Recipe {
+public interface RecipeUpdateObject {
+
+    /**
+     * @return (NotNull) Empty optional if update object is for creating new entity or optional filled with id of entity
+     * which is edited.
+     */
+    Optional<Integer> getId();
+
+    /**
+     * @return (NotNull)
+     */
+    Optional<String> getName();
+
+    /**
+     * @return (NotNull)
+     */
+    Optional<String> getPreparation();
+
+    /**
+     * @return
+     */
+    Optional<Integer> getRating();
+
+    /**
+     * @return (NotNull) .
+     */
+    Set<RecipeType> getRecipeTypes();
+
+    /**
+     * @return (NotNull) Gets taste of recipe. Determines if recipe is sweet or salty for example.
+     */
+    Optional<Taste> getTaste();
+
+    /**
+     * @return (NotNull)
+     */
+    Optional<Duration> getIngredientPreparationTime();
+
+    /**
+     * @return (NutNull)
+     */
+    Optional<Duration> getCookingTime();
+
+    /**
+     * @return (NotNull)
+     */
+    Set<RecipeRef> getSideDishes();
+
+    /**
+     * @return (NotNull)
+     */
+    Set<RecipeIngredientUpdateObject> getIngredients();
+
+    /**
+     * @return (NotNull)
+     */
+    Set<CookbookRef> getCookbooks();
+
+    /**
+     * @return (NotNull)
+     */
+    Set<Keyword> getKeywords();
 
     /**
      * Changes name of recipe.
@@ -74,7 +143,7 @@ public interface RecipeUpdateObject extends Recipe {
      * @param ingredients (NotNull) Ingredients to set.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    RecipeUpdateObject setIngredients(Set<RecipeIngredientRef> ingredients);
+    RecipeUpdateObject setIngredients(Set<RecipeIngredientUpdateObject> ingredients);
 
     /**
      * Changes side dishes of recipe. Make sense only for some type of recipes.

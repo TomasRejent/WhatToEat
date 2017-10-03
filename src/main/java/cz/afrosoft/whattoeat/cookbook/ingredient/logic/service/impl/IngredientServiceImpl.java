@@ -85,7 +85,8 @@ public class IngredientServiceImpl implements IngredientService {
         return entityToIngredient(repository.save(entity));
     }
 
-    private Ingredient entityToIngredient(final IngredientEntity entity) {
+    @Override
+    public Ingredient entityToIngredient(final IngredientEntity entity) {
         Validate.notNull(entity);
 
         return new IngredientImpl.Builder()

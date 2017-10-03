@@ -31,7 +31,7 @@
                              text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime"/>
                 <TableColumn fx:id="tasteColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.taste"/>
                 <TableColumn fx:id="ratingColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.rating"/>
-                <TableColumn fx:id="keywordsColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords"/>
+                <TableColumn fx:id="keywordColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords"/>
             </columns>
         </TableView>
     </center>

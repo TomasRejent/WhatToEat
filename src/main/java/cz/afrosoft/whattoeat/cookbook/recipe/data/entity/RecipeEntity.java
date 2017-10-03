@@ -33,7 +33,7 @@ public class RecipeEntity {
     @Column(name = "RATING", nullable = false)
     private Integer rating;
 
-    @ElementCollection(targetClass = RecipeType.class)
+    @ElementCollection(targetClass = RecipeType.class, fetch = FetchType.EAGER)
     @JoinTable(name = "RECIPE_TYPES")
     private Set<RecipeType> recipeTypes;
 
@@ -57,7 +57,8 @@ public class RecipeEntity {
     @JoinTable(name = "RECIPE_KEYWORDS")
     private Set<KeywordEntity> keywords;
 
-    @ManyToMany(mappedBy = "recipes")
+    @ManyToMany
+    @JoinTable(name = "COOKBOOK_RECIPES")
     private Set<CookbookEntity> cookbooks;
 
     public Integer getId() {

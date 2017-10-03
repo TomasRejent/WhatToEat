@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 
 import java.util.Set;
@@ -48,5 +49,13 @@ public interface IngredientService {
      * @return (NotNull) Ingredient with updated values.
      */
     Ingredient createOrUpdate(IngredientUpdateObject ingredientChanges);
+
+    /**
+     * Converts entity to Ingredient.
+     *
+     * @param entity (NotNull) Entity to convert.
+     * @return (NotNull)
+     */
+    Ingredient entityToIngredient(final IngredientEntity entity);
 
 }

@@ -1,15 +1,39 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
+import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.gui.component.DurationField;
+import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
+import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
 import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
+import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
+import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
+import cz.afrosoft.whattoeat.core.gui.table.RemoveCell;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
+import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.controlsfx.control.CheckComboBox;
+import org.controlsfx.control.Rating;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +41,9 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Controller;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
 
 /**
@@ -43,19 +70,6 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     private static final String EDIT_TITLE_KEY = "cz.afrosoft.whattoeat.recipe.edit.title";
 
-    private static final String I18N_NAME = "cz.afrosoft.whattoeat.recipes.add.name";
-    private static final String I18N_TYPE = "cz.afrosoft.whattoeat.recipes.add.type";
-    private static final String I18N_TASTE = "cz.afrosoft.whattoeat.recipes.add.taste";
-    private static final String I18N_TIME = "cz.afrosoft.whattoeat.recipes.add.time";
-    private static final String I18N_RATING = "cz.afrosoft.whattoeat.recipes.add.rating";
-    private static final String I18N_KEYWORDS = "cz.afrosoft.whattoeat.recipes.add.keywords";
-    private static final String I18N_INGREDIENTS = "cz.afrosoft.whattoeat.recipes.add.ingredients";
-    private static final String I18N_INGREDIENTS_NAME = "cz.afrosoft.whattoeat.recipes.add.ingredients.name";
-    private static final String I18N_INGREDIENTS_QUANTITY = "cz.afrosoft.whattoeat.recipes.add.ingredients.quantity";
-    private static final String I18N_PREPARATION = "cz.afrosoft.whattoeat.recipes.add.preparation";
-    private static final String I18N_SIDE_DISHES = "cz.afrosoft.whattoeat.recipes.add.sideDishes";
-    private static final String I18N_SIDE_DISH_NAME = "cz.afrosoft.whattoeat.recipes.add.sideDishes.name";
-
     private static final int MAX_RATING = 10;
 
     @FXML
@@ -63,14 +77,56 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
 
     @FXML
     private TextField nameField;
+    @FXML
+    private CheckComboBox<CookbookRef> cookbooksField;
+    @FXML
+    private CheckComboBox<RecipeType> recipeTypeField;
+    @FXML
+    private ComboBox<Taste> tasteField;
+    @FXML
+    private DurationField preparationTimeField;
+    @FXML
+    private DurationField cookingTimeField;
+    @FXML
+    private Label totalTimeLabel;
+    @FXML
+    private Rating ratingField;
+    @FXML
+    private TextField ingredientNameField;
+    @FXML
+    private FloatFiled ingredientQuantityField;
+    @FXML
+    private Label unitLabel;
+    @FXML
+    private TableView<RecipeIngredientUpdateObject> ingredientTable;
+    @FXML
+    private TableColumn<RecipeIngredientUpdateObject, String> ingredientNameColumn;
+    @FXML
+    private TableColumn<RecipeIngredientUpdateObject, Float> ingredientQuantityColumn;
+    @FXML
+    private TableColumn<RecipeIngredientUpdateObject, Collection<Keyword>> ingredientKeywordColumn;
+    @FXML
+    private TableColumn<RecipeIngredientUpdateObject, Void> ingredientRemoveColumn;
+    @FXML
+    private TextArea preparationField;
+    @FXML
+    private KeywordField keywordField;
 
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private CookbookService cookbookService;
+    @Autowired
+    private IngredientService ingredientService;
+
+    private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
 
     /**
      * Holds createOrUpdate object when creating or editing recipe.
      */
     private RecipeUpdateObject recipeUpdateObject;
+
+    private Ingredient selectedIngredient;
 
     /**
      * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
@@ -82,6 +138,9 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
         setupResultConverter();
+        setupFields();
+        setupStaticFieldOptions();
+        setupIngredientTable();
     }
 
     /**
@@ -97,6 +156,54 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         });
     }
 
+    private void setupFields() {
+        ComboBoxUtils.initLabeledComboBox(tasteField);
+        ComboBoxUtils.initLabeledCheckComboBox(recipeTypeField);
+        cookbooksField.setConverter(ComboBoxUtils.createAsymmetricStringConverter(CookbookRef::getName, string -> null));
+
+        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
+        AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientNameField, ingredientSuggestionProvider, ingredientConverter);
+        ingredientBinding.setOnAutoCompleted(event -> {
+            selectedIngredient = event.getCompletion();
+            unitLabel.setText(I18n.getText(selectedIngredient.getIngredientUnit().getLabelKey()));
+            ingredientQuantityField.requestFocus();
+        });
+
+        ingredientQuantityField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                ingredientTable.getItems().add(
+                        recipeService.getRecipeIngredientCreateObject()
+                                .setQuantity(ingredientQuantityField.getFloat())
+                                .setIngredient(selectedIngredient)
+                );
+                selectedIngredient = null;
+                ingredientQuantityField.setText(StringUtils.EMPTY);
+                ingredientNameField.setText(StringUtils.EMPTY);
+                ingredientNameField.requestFocus();
+            }
+        });
+    }
+
+    private void setupIngredientTable() {
+        ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getName).orElse(StringUtils.EMPTY)));
+        ingredientQuantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getQuantity().orElse(null), 0F));
+        ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections.emptySet()), Collections.emptySet()));
+        ingredientKeywordColumn.setCellFactory(param -> new KeywordCell<>());
+        ingredientRemoveColumn.setCellFactory(param -> new RemoveCell<>());
+    }
+
+    private void setupStaticFieldOptions() {
+        recipeTypeField.getItems().addAll(RecipeType.values());
+        tasteField.getItems().addAll(Taste.values());
+        ratingField.setMax(MAX_RATING);
+    }
+
+    private void setupDynamicFieldOptions() {
+        cookbooksField.getItems().removeAll();
+        cookbooksField.getItems().addAll(cookbookService.getAllCookbookRefs());
+        ingredientSuggestionProvider.setPossibleSuggestions(ingredientService.getAllIngredients());
+    }
+
     /**
      * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #recipeUpdateObject} is not null.
      *
@@ -109,7 +216,16 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         }
 
         recipeUpdateObject.setName(nameField.getText());
-        //TODO add remaining fields
+        recipeUpdateObject.setPreparation(preparationField.getText());
+        recipeUpdateObject.setRating((int) ratingField.getRating());
+        recipeUpdateObject.setRecipeTypes(new HashSet<>(recipeTypeField.getCheckModel().getCheckedItems()));
+        recipeUpdateObject.setTaste(tasteField.getValue());
+        recipeUpdateObject.setIngredientPreparationTime(preparationTimeField.getDuration());
+        recipeUpdateObject.setCookingTime(cookingTimeField.getDuration());
+        recipeUpdateObject.setIngredients(new HashSet<>(ingredientTable.getItems()));
+        //TODO add side dishes
+        recipeUpdateObject.setCookbooks(new HashSet<>(cookbooksField.getCheckModel().getCheckedItems()));
+        recipeUpdateObject.setKeywords(keywordField.getSelectedKeywords());
 
         return recipeUpdateObject;
     }
@@ -122,7 +238,23 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     public Optional<RecipeUpdateObject> addRecipe() {
         setTitle(I18n.getText(ADD_TITLE_KEY));
         clearDialog();
+        setupDynamicFieldOptions();
         recipeUpdateObject = recipeService.getCreateObject();
+        return showAndWait();
+    }
+
+    /**
+     * Shows dialog for editing recipe. This is blocking call. It waits until user close dialog.
+     *
+     * @param recipe (NotNull) Recipe to edit.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with recipe createOrUpdate object if user submit dialog.
+     */
+    public Optional<RecipeUpdateObject> editRecipe(final Recipe recipe) {
+        Validate.notNull(recipe);
+        setTitle(I18n.getText(EDIT_TITLE_KEY));
+        prefillDialog(recipe);
+        setupDynamicFieldOptions();
+        recipeUpdateObject = recipeService.getUpdateObject(recipe);
         return showAndWait();
     }
 
@@ -131,6 +263,33 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     private void clearDialog() {
         nameField.setText(StringUtils.EMPTY);
-        //TODO add remaining fields
+        preparationField.setText(StringUtils.EMPTY);
+        ratingField.setRating(5);
+        recipeTypeField.getCheckModel().clearChecks();
+        tasteField.getSelectionModel().clearSelection();
+        preparationTimeField.setText(StringUtils.EMPTY);
+        cookingTimeField.setText(StringUtils.EMPTY);
+        //TODO side dishes
+        ingredientTable.getItems().clear();
+        ingredientNameField.setText(StringUtils.EMPTY);
+        ingredientQuantityField.setText(StringUtils.EMPTY);
+        cookbooksField.getCheckModel().clearChecks();
+        keywordField.clearSelectedKeywords();
+    }
+
+    private void prefillDialog(final Recipe recipe) {
+        Validate.notNull(recipe);
+        nameField.setText(recipe.getName());
+        preparationField.setText(recipe.getPreparation());
+        ratingField.setRating(recipe.getRating());
+        FillUtils.checkItems(recipeTypeField, recipe.getRecipeTypes());
+        tasteField.getSelectionModel().select(recipe.getTaste());
+        preparationTimeField.setDuration(recipe.getIngredientPreparationTime());
+        cookingTimeField.setDuration(recipe.getCookingTime());
+        //TODO side dishes
+        ingredientTable.getItems().clear();
+        ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
+        FillUtils.checkItems(cookbooksField, recipe.getCookbooks());
+        keywordField.setSelectedKeywords(recipe.getKeywords());
     }
 }

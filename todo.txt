@@ -10,6 +10,8 @@
 - Decide if cells with complex graphics should be defined in code or in fxml
 - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
 - replace join fetch queries with entity graph annotation
+- update objects should not extend model interfaces
+- check all services if they properly use Transactional annotation
 
 Done:
 X - Add UUID to every entity and migrate existing data

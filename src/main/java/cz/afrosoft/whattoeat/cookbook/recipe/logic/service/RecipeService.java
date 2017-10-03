@@ -1,7 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -46,5 +48,16 @@ public interface RecipeService {
      * @return (NotNull) Recipe with updated values.
      */
     Recipe createOrUpdate(RecipeUpdateObject recipeChanges);
+
+    /**
+     * Creates new object for creating recipe ingredient. After object is filled with data it can be set to recipe by
+     * {@link RecipeUpdateObject#setIngredients(Set)}. Recipe ingredients are persisted together with recipe.
+     *
+     * @return (NotNull)
+     */
+    RecipeIngredientUpdateObject getRecipeIngredientCreateObject();
+
+    //TODO javadoc
+    Collection<RecipeIngredientUpdateObject> toUpdateObjects(Collection<RecipeIngredientRef> recipeIngredients);
 
 }

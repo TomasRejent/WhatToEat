@@ -1,13 +1,15 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientRefService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.*;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
@@ -15,7 +17,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
 import java.util.Set;
 
 /**
@@ -25,12 +29,16 @@ import java.util.Set;
  * @author Tomas Rejent
  */
 @Service
+@Transactional(readOnly = true)
 public class RecipeServiceImpl implements RecipeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeServiceImpl.class);
 
     @Autowired
     private RecipeRepository repository;
+
+    @Autowired
+    private RecipeIngredientRepository recipeIngredientRepository;
 
     @Autowired
     private CookbookRefService cookbookRefService;
@@ -42,6 +50,12 @@ public class RecipeServiceImpl implements RecipeService {
     private RecipeIngredientRefService recipeIngredientRefService;
 
     @Autowired
+    private IngredientService ingredientService;
+
+    @Autowired
+    private IngredientRefService ingredientRefService;
+
+    @Autowired
     private KeywordService keywordService;
 
     @Override
@@ -51,6 +65,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = false)
     public void delete(final Recipe recipe) {
         LOGGER.debug("Deleting recipe: {}", recipe);
         Validate.notNull(recipe);
@@ -67,8 +82,7 @@ public class RecipeServiceImpl implements RecipeService {
         LOGGER.debug("Getting update object for recipe: {}", recipe);
         Validate.notNull(recipe);
 
-        return new RecipeImpl.Builder()
-                .setId(recipe.getId())
+        return new RecipeImpl.Builder(recipe.getId())
                 .setName(recipe.getName())
                 .setPreparation(recipe.getPreparation())
                 .setRating(recipe.getRating())
@@ -76,33 +90,47 @@ public class RecipeServiceImpl implements RecipeService {
                 .setTaste(recipe.getTaste())
                 .setIngredientPreparationTime(recipe.getIngredientPreparationTime())
                 .setCookingTime(recipe.getCookingTime())
-                .setIngredients(recipe.getIngredients())
+                .setIngredients(ConverterUtil.convertToSet(recipe.getIngredients(), this::toUpdateObject))
                 .setSideDishes(recipe.getSideDishes())
                 .setCookbooks(recipe.getCookbooks())
                 .setKeywords(recipe.getKeywords());
     }
 
     @Override
+    @Transactional(readOnly = false)
     public Recipe createOrUpdate(final RecipeUpdateObject recipeChanges) {
         LOGGER.debug("Updating recipe: {}", recipeChanges);
 
         Validate.notNull(recipeChanges, "Cannot createOrUpdate recipe with null changes.");
 
         RecipeEntity entity = new RecipeEntity();
-        entity.setId(recipeChanges.getId())
-                .setName(recipeChanges.getName())
-                .setPreparation(recipeChanges.getPreparation())
-                .setRating(recipeChanges.getRating())
+        entity.setId(recipeChanges.getId().orElse(null))
+                .setName(recipeChanges.getName().get())
+                .setPreparation(recipeChanges.getPreparation().get())
+                .setRating(recipeChanges.getRating().get())
                 .setRecipeTypes(recipeChanges.getRecipeTypes())
-                .setTaste(recipeChanges.getTaste())
-                .setIngredientPreparationTime(recipeChanges.getIngredientPreparationTime())
-                .setCookingTime(recipeChanges.getCookingTime())
+                .setTaste(recipeChanges.getTaste().get())
+                .setIngredientPreparationTime(recipeChanges.getIngredientPreparationTime().get())
+                .setCookingTime(recipeChanges.getCookingTime().get())
                 .setSideDishes(ConverterUtil.convertToSet(recipeChanges.getSideDishes(), recipeRefService::toEntity))
-                .setIngredients(ConverterUtil.convertToSet(recipeChanges.getIngredients(), recipeIngredientRefService::toEntity))
                 .setKeywords(ConverterUtil.convertToSet(recipeChanges.getKeywords(), keywordService::keywordToEntity))
                 .setCookbooks(ConverterUtil.convertToSet(recipeChanges.getCookbooks(), cookbookRefService::toEntity));
 
-        return entityToRecipe(repository.save(entity));
+        RecipeEntity entityWithoutIngredients = repository.save(entity);
+        Set<RecipeIngredientEntity> recipeIngredients = ConverterUtil.convertToSet(recipeChanges.getIngredients(), this::fromUpdateObject);
+        recipeIngredients.forEach(recipeIngredient -> recipeIngredient.setRecipe(entityWithoutIngredients));
+        entityWithoutIngredients.setIngredients(recipeIngredients);
+        return entityToRecipe(repository.save(entityWithoutIngredients));
+    }
+
+    @Override
+    public RecipeIngredientUpdateObject getRecipeIngredientCreateObject() {
+        return new RecipeIngredientImpl.Builder();
+    }
+
+    @Override
+    public Collection<RecipeIngredientUpdateObject> toUpdateObjects(final Collection<RecipeIngredientRef> recipeIngredients) {
+        return ConverterUtil.convertToSet(recipeIngredients, this::toUpdateObject);
     }
 
     /**
@@ -114,9 +142,8 @@ public class RecipeServiceImpl implements RecipeService {
     private Recipe entityToRecipe(final RecipeEntity entity) {
         Validate.notNull(entity);
 
-        return new RecipeImpl.Builder()
-                .setId(entity.getId())
-                .setName(entity.getName())
+        RecipeImpl.Builder builder = new RecipeImpl.Builder(entity.getId());
+        builder.setName(entity.getName())
                 .setPreparation(entity.getPreparation())
                 .setRating(entity.getRating())
                 .setRecipeTypes(entity.getRecipeTypes())
@@ -124,9 +151,26 @@ public class RecipeServiceImpl implements RecipeService {
                 .setIngredientPreparationTime(entity.getIngredientPreparationTime())
                 .setCookingTime(entity.getCookingTime())
                 .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), cookbookRefService::fromEntity))
-                .setIngredients(ConverterUtil.convertToSet(entity.getIngredients(), recipeIngredientRefService::fromEntity))
                 .setSideDishes(ConverterUtil.convertToSortedSet(entity.getSideDishes(), recipeRefService::fromEntity))
-                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword))
-                .build();
+                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
+
+        builder.setExistingIngredients(ConverterUtil.convertToSet(entity.getIngredients(), recipeIngredientRefService::fromEntity));
+        return builder.build();
+    }
+
+    private RecipeIngredientEntity fromUpdateObject(final RecipeIngredientUpdateObject updateObject) {
+        Validate.notNull(updateObject);
+
+        return new RecipeIngredientEntity()
+                .setId(updateObject.getId().orElse(null))
+                .setQuantity(updateObject.getQuantity().get())
+                .setIngredient(ingredientRefService.toEntity(updateObject.getIngredient().get()));
+    }
+
+    private RecipeIngredientUpdateObject toUpdateObject(final RecipeIngredientRef recipeIngredient) {
+        RecipeIngredientEntity entity = recipeIngredientRepository.getOne(recipeIngredient.getId());
+        return new RecipeIngredientImpl.Builder(entity.getId())
+                .setQuantity(entity.getQuantity())
+                .setIngredient(ingredientService.entityToIngredient(entity.getIngredient()));
     }
 }

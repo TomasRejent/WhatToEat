@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 
 import java.util.Set;
 
@@ -15,6 +16,12 @@ public interface CookbookService {
      * @return (NotNull) Return all cookbooks defined in application.
      */
     Set<Cookbook> getAllCookbooks();
+
+    /**
+     * @return (NotNull) Return all cookbooks defined in application. Cookbooks are loaded only as reference so they
+     * contains only id and name. This is suitable to connecting other entities to cookbook.
+     */
+    Set<CookbookRef> getAllCookbookRefs();
 
     /**
      * Deletes specified cookbook.

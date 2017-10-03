@@ -3,7 +3,9 @@ package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
@@ -32,12 +34,21 @@ public class CookbookServiceImpl implements CookbookService {
     private CookbookRepository repository;
 
     @Autowired
+    private CookbookRefService cookbookRefService;
+
+    @Autowired
     private AuthorRefService authorRefService;
 
     @Override
     public Set<Cookbook> getAllCookbooks() {
         LOGGER.debug("Getting all cookbooks.");
         return ConverterUtil.convertToSortedSet(repository.findAllWithAuthors(), this::entityToCookbook);
+    }
+
+    @Override
+    public Set<CookbookRef> getAllCookbookRefs() {
+        LOGGER.debug("Getting all cookbooks refs.");
+        return ConverterUtil.convertToSortedSet(repository.findAll(), cookbookRefService::fromEntity);
     }
 
     @Override

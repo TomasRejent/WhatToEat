@@ -26,8 +26,7 @@ public class CookbookEntity {
     @Column(name = "DESCRIPTION")
     private String description;
 
-    @ManyToMany
-    @JoinTable(name = "COOKBOOK_RECIPES")
+    @ManyToMany(mappedBy = "cookbooks")
     private Set<RecipeEntity> recipes;
 
     @ManyToMany(targetEntity = AuthorEntity.class)

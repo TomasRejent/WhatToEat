@@ -15,7 +15,7 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Integer> {
 
-    @EntityGraph(attributePaths = {"keywords"}, type = EntityGraph.EntityGraphType.LOAD)
+    @EntityGraph(attributePaths = {"cookbooks", "keywords"}, type = EntityGraph.EntityGraphType.LOAD)
     List<RecipeEntity> findAll();
 
 }

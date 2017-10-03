@@ -16,7 +16,7 @@ import java.util.function.Function;
  *
  * @author Tomas Rejent
  */
-public class ComboBoxSuggestion {
+public final class ComboBoxSuggestion {
 
     /**
      * When width of suggestion popup is determined this value is subtracted from width of combo box because
