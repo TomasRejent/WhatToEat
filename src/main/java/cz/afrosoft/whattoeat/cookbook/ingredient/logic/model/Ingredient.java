@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
 import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
@@ -32,8 +34,8 @@ public interface Ingredient extends IngredientRef, IdEntity, NamedEntity, Keywor
     float getPrice();
 
     /**
-     * @return (Nullable) Gets unit conversion defined for this ingredient. May be null
+     * @return (NotNull) Gets optional with unit conversion defined for this ingredient. May be empty optional
      * if ingredient does not have any conversion defined.
      */
-    UnitConversion getUnitConversion();
+    Optional<UnitConversion> getUnitConversion();
 }

@@ -1,9 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service;
 
+import java.util.Set;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
-
-import java.util.Set;
 
 /**
  * Service providing methods for operating on {@link cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author}.
@@ -56,9 +56,4 @@ public interface AuthorService {
      * @throws IllegalStateException When createOrUpdate failed and updated user cannot be reloaded.
      */
     Author createOrUpdate(AuthorUpdateObject authorChanges);
-
-    /**
-     * @return (NotNull) Set of names of all authors.
-     */
-    Set<String> getAuthorNames();
 }

@@ -1,14 +1,16 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 
 /**
  * Implementation of {@link RecipeRefService} which uses {@link RecipeRefImpl} as {@link RecipeRef}.
@@ -32,6 +34,7 @@ public class RecipeRefServiceImpl implements RecipeRefService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RecipeEntity toEntity(final RecipeRef reference) {
         LOGGER.trace("Converting reference {} to entity.", reference);
         Validate.notNull(reference);

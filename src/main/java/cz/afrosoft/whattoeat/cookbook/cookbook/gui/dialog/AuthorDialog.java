@@ -1,5 +1,14 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
@@ -11,14 +20,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.Optional;
 
 /**
  * Dialog for adding new authors and editing existing ones. This allows to edit everything except
@@ -121,11 +122,11 @@ public class AuthorDialog extends CustomDialog<AuthorUpdateObject> {
      * @param author (NotNull) Author to edit.
      * @return (NotNull) Empty optional if user cancels dialog. Optional with author createOrUpdate object if user submit dialog.
      */
-    public Optional<AuthorUpdateObject> editAuthor(final AuthorUpdateObject author) {
+    public Optional<AuthorUpdateObject> editAuthor(final Author author) {
         Validate.notNull(author, "Cannot edit null author.");
         setTitle(I18n.getText(EDIT_TITLE_KEY));
         prefillDialog(author);
-        authorUpdateObject = author;
+        authorUpdateObject = authorService.getUpdateObject(author);
         return showAndWait();
     }
 

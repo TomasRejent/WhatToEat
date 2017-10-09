@@ -1,11 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -13,7 +7,16 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Collections;
+import java.util.Optional;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 /**
  * Immutable and comparable implementation of {@link Ingredient}. Natural ordering is based
@@ -62,8 +65,8 @@ final class IngredientImpl implements Ingredient {
     }
 
     @Override
-    public UnitConversion getUnitConversion() {
-        return unitConversion;
+    public Optional<UnitConversion> getUnitConversion() {
+        return Optional.ofNullable(unitConversion);
     }
 
     @Override
@@ -110,68 +113,77 @@ final class IngredientImpl implements Ingredient {
 
     static final class Builder implements IngredientUpdateObject {
 
-        private Integer id;
+        private final Integer id;
         private String name;
         private IngredientUnit ingredientUnit;
-        private float price;
-        private UnitConversion unitConversion;
+        private Float price;
+        private UnitConversionUpdateObject unitConversion;
+        private UnitConversion existingUnitConversion;
         private Set<Keyword> keywords;
 
-        @Override
-        public Integer getId() {
-            return id;
+        public Builder() {
+            this.id = null;
+        }
+
+        public Builder(final Integer id) {
+            Validate.notNull(id);
+            this.id = id;
         }
 
         @Override
-        public String getName() {
-            return name;
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
         }
 
         @Override
-        public IngredientUnit getIngredientUnit() {
-            return ingredientUnit;
+        public Optional<String> getName() {
+            return Optional.ofNullable(name);
         }
 
         @Override
-        public float getPrice() {
-            return price;
+        public Optional<IngredientUnit> getIngredientUnit() {
+            return Optional.ofNullable(ingredientUnit);
         }
 
         @Override
-        public UnitConversion getUnitConversion() {
-            return unitConversion;
+        public Optional<Float> getPrice() {
+            return Optional.ofNullable(price);
+        }
+
+        @Override
+        public Optional<UnitConversionUpdateObject> getUnitConversion() {
+            return Optional.ofNullable(unitConversion);
         }
 
         @Override
         public Set<Keyword> getKeywords() {
-            return keywords;
-        }
-
-        public Builder setId(final Integer id) {
-            this.id = id;
-            return this;
+            return Optional.ofNullable(keywords).orElse(Collections.emptySet());
         }
 
         @Override
         public Builder setName(final String name) {
+            Validate.notBlank(name);
             this.name = name;
             return this;
         }
 
         @Override
         public Builder setIngredientUnit(final IngredientUnit ingredientUnit) {
+            Validate.notNull(ingredientUnit);
             this.ingredientUnit = ingredientUnit;
             return this;
         }
 
         @Override
         public Builder setPrice(final float price) {
+            Validate.isTrue(price >= 0, "Price cannot be negative.");
             this.price = price;
             return this;
         }
 
         @Override
-        public Builder setUnitConversion(final UnitConversion unitConversion) {
+        public Builder setUnitConversion(final UnitConversionUpdateObject unitConversion) {
+            Validate.notNull(unitConversion);
             this.unitConversion = unitConversion;
             return this;
         }
@@ -189,7 +201,14 @@ final class IngredientImpl implements Ingredient {
 
         @Override
         public Builder setKeywords(final Set<Keyword> keywords) {
+            Validate.noNullElements(keywords);
             this.keywords = keywords;
+            return this;
+        }
+
+        public Builder setExistingUnitConversion(final UnitConversion existingUnitConversion) {
+            Validate.notNull(existingUnitConversion);
+            this.existingUnitConversion = existingUnitConversion;
             return this;
         }
 
@@ -197,13 +216,10 @@ final class IngredientImpl implements Ingredient {
             Validate.notNull(id);
             Validate.notBlank(name);
             Validate.notNull(ingredientUnit);
+            Validate.notNull(price);
+            Validate.isTrue(price >= 0, "Price cannot be negative.");
 
-            return new IngredientImpl(id, name, ingredientUnit, price, unitConversion, keywords);
-        }
-
-        @Override
-        public int compareTo(final Ingredient otherIngredient) {
-            return IngredientComparator.INSTANCE.compare(this, otherIngredient);
+            return new IngredientImpl(id, name, ingredientUnit, price, existingUnitConversion, keywords);
         }
 
         @Override

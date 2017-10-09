@@ -1,5 +1,16 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
@@ -17,16 +28,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Modality;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.Optional;
 
 /**
  * Dialog for adding and editing of ingredients. This dialog also allows to specify conversion rates between ingredient
@@ -155,11 +156,11 @@ public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
      * @param ingredient (NotNull) Ingredient to edit.
      * @return (NotNull) Empty optional if user cancels dialog. Optional with ingredient createOrUpdate object if user submit dialog.
      */
-    public Optional<IngredientUpdateObject> editIngredient(final IngredientUpdateObject ingredient) {
+    public Optional<IngredientUpdateObject> editIngredient(final Ingredient ingredient) {
         Validate.notNull(ingredient);
         setTitle(I18n.getText(EDIT_TITLE_KEY));
         prefillDialog(ingredient);
-        ingredientUpdateObject = ingredient;
+        ingredientUpdateObject = ingredientService.getUpdateObject(ingredient);
         return showAndWait();
     }
 
@@ -175,9 +176,10 @@ public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
         unitField.getSelectionModel().select(ingredient.getIngredientUnit());
         priceField.setFloat(ingredient.getPrice());
         keywordField.setSelectedKeywords(ingredient.getKeywords());
-        UnitConversion unitConversion = ingredient.getUnitConversion();
-        LOGGER.trace("Filling dialog fields with unit conversion: {}.", unitConversion);
-        if (unitConversion != null) {
+        Optional<UnitConversion> unitConversionOpt = ingredient.getUnitConversion();
+        LOGGER.trace("Filling dialog fields with unit conversion: {}.", unitConversionOpt);
+        if (unitConversionOpt.isPresent()) {
+            UnitConversion unitConversion = unitConversionOpt.get();
             gramsPerPieceField.setFloat(unitConversion.getGramsPerPiece());
             milliliterPerGramField.setFloat(unitConversion.getMilliliterPerGram());
             gramsPerPinchField.setFloat(unitConversion.getGramsPerPinch());

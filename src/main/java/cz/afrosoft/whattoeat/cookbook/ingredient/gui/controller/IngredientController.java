@@ -1,5 +1,18 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
@@ -15,18 +28,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * Controller for page {@link cz.afrosoft.whattoeat.core.gui.Page#INGREDIENTS}.
@@ -131,7 +132,7 @@ public class IngredientController implements Initializable {
     private void editIngredient(){
         LOGGER.debug("Edit ingredient action called.");
         getSelectedIngredient().ifPresent(//cookbook is selected
-                ingredient -> dialog.editIngredient(ingredientService.getUpdateObject(ingredient)).ifPresent(//edit is confirmed
+                ingredient -> dialog.editIngredient(ingredient).ifPresent(//edit is confirmed
                         ingredientUpdateObject -> Collections.replaceAll(ingredientTable.getItems(), ingredient, ingredientService.createOrUpdate(ingredientUpdateObject)) //table is updated
                 )
         );

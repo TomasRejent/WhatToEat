@@ -1,15 +1,55 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
 
 /**
- * Enables to specify and transfer info about createOrUpdate of unit conversion.
- * This enables {@link UnitConversion} to exist without setter methods, so its implementation
- * can be immutable. Provides fluent setters for all editable parameters.
+ * Update object for {@link UnitConversion} Serves for its creation or editing. This allows {@link UnitConversion} to be immutable.
  *
  * @author Tomas Rejent
  */
-public interface UnitConversionUpdateObject extends UnitConversion {
+public interface UnitConversionUpdateObject {
+
+    /**
+     * @return (NotNull) Empty optional if update object is for creating new entity or optional filled with id of entity which is edited.
+     */
+    Optional<Integer> getId();
+
+    /**
+     * @return (NotNull) Conversion rate for grams to pieces. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setGramsPerPiece(Float)}. Else is optional filled with conversion rate set by {@link #setGramsPerPiece(Float)}. If conversion rate was not set and this object is
+     * for update of existing recipe then it contains original conversion rate of recipe.
+     */
+    Optional<Float> getGramsPerPiece();
+
+    /**
+     * @return (NotNull) Conversion rate for milliliters to grams. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setMilliliterPerGram(Float)}. Else is optional filled with conversion rate set by {@link #setMilliliterPerGram(Float)}. If conversion rate was not set and this
+     * object is for update of existing recipe then it contains original conversion rate of recipe.
+     */
+    Optional<Float> getMilliliterPerGram();
+
+    /**
+     * @return (NotNull) Conversion rate for grams to pinch. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setGramsPerPinch(Float)}. Else is optional filled with conversion rate set by {@link #setGramsPerPinch(Float)}. If conversion rate was not set and this object is
+     * for update of existing recipe then it contains original conversion rate of recipe.
+     */
+    Optional<Float> getGramsPerPinch();
+
+    /**
+     * @return (NotNull) Conversion rate for grams to coffee spoon. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setGramsPerCoffeeSpoon(Float)}. Else is optional filled with conversion rate set by {@link #setGramsPerCoffeeSpoon(Float)}. If conversion rate was not set and
+     * this object is for update of existing recipe then it contains original conversion rate of recipe.
+     */
+    Optional<Float> getGramsPerCoffeeSpoon();
+
+    /**
+     * @return (NotNull) Conversion rate for grams to spoon. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setGramsPerSpoon(Float)}. Else is optional filled with conversion rate set by {@link #setGramsPerSpoon(Float)}. If conversion rate was not set and this object is
+     * for update of existing recipe then it contains original conversion rate of recipe.
+     */
+    Optional<Float> getGramsPerSpoon();
 
     /**
      * Changes conversion rate between grams and pieces. If called multiple times only value from last call is used.

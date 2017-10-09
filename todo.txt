@@ -6,12 +6,8 @@
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
 - Create some hack to internationalize buttons in javafx dialogs
-- Getting of all author names can have special query in repository to fetch names only
 - Decide if cells with complex graphics should be defined in code or in fxml
 - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
-- replace join fetch queries with entity graph annotation
-- update objects should not extend model interfaces
-- check all services if they properly use Transactional annotation
 
 Done:
 X - Add UUID to every entity and migrate existing data
@@ -21,15 +17,17 @@ X - Add transactional annotations to write service methods
 X - Decide if custom components should be created for add/edit/view/remove/delete buttons
 X - ConverterUtil can have method for converting not sorted sets. This can be used for converting before saving entities. (low priority)
 X - Create number field
+X - check all services if they properly use Transactional annotation
+X - update objects should not extend model interfaces
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.
     - Styling dialog
-    - Add way to remove added keywords
+    X - Add way to remove added keywords
     - Add way to remove ingredients and side dishes
     - Add way to edit added recipeIngredient quantity
-    - Add internationalization for combo box values.
-    - Add way to remove ingredients
+    X - Add internationalization for combo box values.
+    X - Add way to remove ingredients
     X - Add validations
     - Add validation errors to UI
     X - Add possible side dishes

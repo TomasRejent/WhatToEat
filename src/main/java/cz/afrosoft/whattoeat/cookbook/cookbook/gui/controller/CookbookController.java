@@ -1,5 +1,19 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller;
 
+import org.controlsfx.control.MasterDetailPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.CookbookDialog;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
@@ -16,19 +30,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import org.controlsfx.control.MasterDetailPane;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * Controller for page {@link cz.afrosoft.whattoeat.core.gui.Page#COOKBOOKS}.
@@ -144,7 +145,7 @@ public class CookbookController implements Initializable {
     private void editCookbook() {
         LOGGER.debug("Edit cookbook action triggered.");
         getSelectedCookbook().ifPresent(//cookbook is selected
-                (cookbook) -> cookbookDialog.editCookbook(cookbookService.getUpdateObject(cookbook)).ifPresent(//edit is confirmed
+                (cookbook) -> cookbookDialog.editCookbook(cookbook).ifPresent(//edit is confirmed
                         (cookbookUpdateObject) -> Collections.replaceAll(cookbookTable.getItems(), cookbook, cookbookService.createOrUpdate(cookbookUpdateObject)) //table is updated
                 )
         );

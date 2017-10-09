@@ -1,9 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -12,7 +8,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
 
 /**
  * Immutable and comparable implementation of {@link Author}. Natural ordering is based
@@ -106,41 +108,39 @@ final class AuthorImpl implements Author {
      */
     static final class Builder implements AuthorUpdateObject {
 
-        private Integer id;
+        private final Integer id;
         private String name;
         private String email;
         private String description;
         private Set<CookbookRef> cookbooks = new HashSet<>();
 
-        @Override
-        public Integer getId() {
-            return id;
+        public Builder() {
+            this.id = null;
         }
 
-        @Override
-        public String getName() {
-            return name;
-        }
-
-        @Override
-        public String getEmail() {
-            return email;
-        }
-
-        @Override
-        public String getDescription() {
-            return description;
-        }
-
-        @Override
-        public Set<CookbookRef> getCookbooks() {
-            return cookbooks;
-        }
-
-        public Builder setId(final Integer id) {
+        public Builder(final Integer id) {
             Validate.notNull(id);
             this.id = id;
-            return this;
+        }
+
+        @Override
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        @Override
+        public Optional<String> getName() {
+            return Optional.ofNullable(name);
+        }
+
+        @Override
+        public Optional<String> getEmail() {
+            return Optional.ofNullable(email);
+        }
+
+        @Override
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         @Override
@@ -152,31 +152,27 @@ final class AuthorImpl implements Author {
 
         @Override
         public Builder setEmail(final String email) {
-            Validate.notNull(email);
             this.email = email;
             return this;
         }
 
         @Override
         public Builder setDescription(final String description) {
-            Validate.notNull(description);
             this.description = description;
             return this;
         }
 
-        public Builder setCookbooks(final Set<CookbookRef> cookbooks) {
+        public Builder setExistingCookbooks(final Set<CookbookRef> cookbooks) {
             Validate.noNullElements(cookbooks);
+
             this.cookbooks = cookbooks;
             return this;
         }
 
-        @Override
-        public int compareTo(final AuthorRef otherAuthor) {
-            return AuthorComparator.INSTANCE.compare(this, otherAuthor);
-        }
-
         Author build() {
             Validate.notNull(id);
+            Validate.notBlank(name);
+
             return new AuthorImpl(id, name, email, description, cookbooks);
         }
 

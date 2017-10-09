@@ -1,8 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -10,6 +7,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Arrays;
+import java.util.Optional;
+
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 
 /**
  * Immutable implementation of {@link UnitConversion}.
@@ -104,26 +106,30 @@ final class UnitConversionImpl implements UnitConversion {
 
     static final class Builder implements UnitConversionUpdateObject {
 
-        private Integer id;
+        private final Integer id;
         private Float gramsPerPiece;
         private Float milliliterPerGram;
         private Float gramsPerPinch;
         private Float gramsPerCoffeeSpoon;
         private Float gramsPerSpoon;
 
-        @Override
-        public Integer getId() {
-            return id;
+        public Builder() {
+            this.id = null;
         }
 
-        public Builder setId(final Integer id) {
+        public Builder(final Integer id) {
+            Validate.notNull(id);
             this.id = id;
-            return this;
         }
 
         @Override
-        public Float getGramsPerPiece() {
-            return gramsPerPiece;
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        @Override
+        public Optional<Float> getGramsPerPiece() {
+            return Optional.ofNullable(gramsPerPiece);
         }
 
         public Builder setGramsPerPiece(final Float gramsPerPiece) {
@@ -133,8 +139,8 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         @Override
-        public Float getMilliliterPerGram() {
-            return milliliterPerGram;
+        public Optional<Float> getMilliliterPerGram() {
+            return Optional.ofNullable(milliliterPerGram);
         }
 
         public Builder setMilliliterPerGram(final Float milliliterPerGram) {
@@ -144,8 +150,8 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         @Override
-        public Float getGramsPerPinch() {
-            return gramsPerPinch;
+        public Optional<Float> getGramsPerPinch() {
+            return Optional.ofNullable(gramsPerPinch);
         }
 
         public Builder setGramsPerPinch(final Float gramsPerPinch) {
@@ -155,8 +161,8 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         @Override
-        public Float getGramsPerCoffeeSpoon() {
-            return gramsPerCoffeeSpoon;
+        public Optional<Float> getGramsPerCoffeeSpoon() {
+            return Optional.ofNullable(gramsPerCoffeeSpoon);
         }
 
         public Builder setGramsPerCoffeeSpoon(final Float gramsPerCoffeeSpoon) {
@@ -166,8 +172,8 @@ final class UnitConversionImpl implements UnitConversion {
         }
 
         @Override
-        public Float getGramsPerSpoon() {
-            return gramsPerSpoon;
+        public Optional<Float> getGramsPerSpoon() {
+            return Optional.ofNullable(gramsPerSpoon);
         }
 
         public Builder setGramsPerSpoon(final Float gramsPerSpoon) {

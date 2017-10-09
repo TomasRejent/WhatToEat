@@ -1,5 +1,15 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.HashSet;
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
@@ -10,18 +20,13 @@ import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
 import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.HashSet;
-import java.util.Optional;
 
 /**
  * Dialog for adding and editing of cookbooks. This dialog also allows to change relation between cookbook and authors.
@@ -133,11 +138,11 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
      * @param cookbook (NotNull) Cookbook to edit.
      * @return (NotNull) Empty optional if user cancels dialog. Optional with cookbook createOrUpdate object if user submit dialog.
      */
-    public Optional<CookbookUpdateObject> editCookbook(final CookbookUpdateObject cookbook) {
+    public Optional<CookbookUpdateObject> editCookbook(final Cookbook cookbook) {
         Validate.notNull(cookbook);
         setTitle(I18n.getText(EDIT_TITLE_KEY));
         prefillDialog(cookbook);
-        cookbookUpdateObject = cookbook;
+        cookbookUpdateObject = cookbookService.getUpdateObject(cookbook);
         return showAndWait();
     }
 

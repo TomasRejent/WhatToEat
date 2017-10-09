@@ -1,14 +1,16 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.AuthorEntity;
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.AuthorRepository;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.AuthorEntity;
+import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.AuthorRepository;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
 
 /**
  * Implementation of {@link AuthorRefService} which uses {@link AuthorRefImpl} as {@link cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef}
@@ -32,6 +34,7 @@ class AuthorRefServiceImpl implements AuthorRefService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public AuthorEntity toEntity(final AuthorRef reference) {
         LOGGER.trace("Converting reference {} to entity.", reference);
         Validate.notNull(reference);

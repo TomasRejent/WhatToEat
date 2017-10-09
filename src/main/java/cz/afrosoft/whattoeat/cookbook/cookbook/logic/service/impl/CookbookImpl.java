@@ -1,18 +1,21 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 
 /**
  * Immutable and comparable implementation of {@link Cookbook}. Natural ordering is based
@@ -34,8 +37,8 @@ final class CookbookImpl implements Cookbook {
         this.id = id;
         this.name = name;
         this.description = description;
-        this.authors = authors;
-        this.recipes = recipes;
+        this.authors = Collections.unmodifiableSet(new HashSet<>(authors));
+        this.recipes = Collections.unmodifiableSet(new HashSet<>(recipes));
     }
 
     @Override
@@ -106,36 +109,41 @@ final class CookbookImpl implements Cookbook {
      */
     static final class Builder implements CookbookUpdateObject {
 
-        private Integer id;
+        private final Integer id;
         private String name;
         private String description;
         private Set<AuthorRef> authors = new HashSet<>();
         private Set<RecipeRef> recipes = new HashSet<>();
 
-        @Override
-        public Integer getId() {
-            return id;
+        public Builder() {
+            this.id = null;
         }
 
-        public Builder setId(final Integer id) {
+        public Builder(final Integer id) {
+            Validate.notNull(id);
             this.id = id;
-            return this;
         }
 
         @Override
-        public String getName() {
-            return name;
+        public Optional<Integer> getId() {
+            return Optional.ofNullable(id);
+        }
+
+        @Override
+        public Optional<String> getName() {
+            return Optional.ofNullable(name);
         }
 
         @Override
         public Builder setName(final String name) {
+            Validate.notBlank(name);
             this.name = name;
             return this;
         }
 
         @Override
-        public String getDescription() {
-            return description;
+        public Optional<String> getDescription() {
+            return Optional.ofNullable(description);
         }
 
         @Override
@@ -146,33 +154,33 @@ final class CookbookImpl implements Cookbook {
 
         @Override
         public Set<AuthorRef> getAuthors() {
-            return authors;
+            return Optional.ofNullable(authors).orElse(Collections.emptySet());
         }
 
         @Override
         public Builder setAuthors(final Set<AuthorRef> authors) {
+            Validate.notEmpty(authors);
+            Validate.noNullElements(authors);
+
             this.authors = authors;
             return this;
         }
 
-        @Override
-        public Set<RecipeRef> getRecipes() {
-            return recipes;
-        }
+        public Builder setExistingRecipes(final Set<RecipeRef> recipes) {
+            Validate.noNullElements(recipes);
 
-        public Builder setRecipes(final Set<RecipeRef> recipes) {
             this.recipes = recipes;
             return this;
         }
 
         Cookbook build() {
             Validate.notNull(id);
-            return new CookbookImpl(id, name, description, authors, recipes);
-        }
+            Validate.notBlank(name);
+            Validate.notEmpty(authors);
+            Validate.noNullElements(authors);
+            Validate.noNullElements(recipes);
 
-        @Override
-        public int compareTo(final CookbookRef otherCookbook) {
-            return CookbookComparator.INSTANCE.compare(this, otherCookbook);
+            return new CookbookImpl(id, name, description, authors, recipes);
         }
 
         @Override

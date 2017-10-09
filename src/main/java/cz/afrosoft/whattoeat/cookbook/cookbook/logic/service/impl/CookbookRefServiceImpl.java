@@ -1,14 +1,16 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
-import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
+import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 
 /**
  * Implementation of {@link CookbookRefService} which uses {@link CookbookRefImpl} as {@link cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef}
@@ -32,6 +34,7 @@ class CookbookRefServiceImpl implements CookbookRefService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public CookbookEntity toEntity(final CookbookRef reference) {
         LOGGER.trace("Converting reference {} to entity.", reference);
         Validate.notNull(reference);

@@ -1,20 +1,58 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
-
+import java.util.Optional;
 import java.util.Set;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+
 /**
- * Enables to specify and transfer info about createOrUpdate of ingredient.
- * This enables {@link Ingredient} to exist without setter methods, so its implementation
- * can be immutable. Provides fluent setters for all editable parameters.
+ * Update object for {@link Ingredient} Serves for its creation or editing. This allows {@link Ingredient} to be immutable.
  *
  * @author Tomas Rejent
  */
-public interface IngredientUpdateObject extends Ingredient {
+public interface IngredientUpdateObject {
+
+    /**
+     * @return (NotNull) Empty optional if update object is for creating new entity or optional filled with id of entity which is edited.
+     */
+    Optional<Integer> getId();
+
+    /**
+     * @return (NotNull) Name of ingredient. Is empty optional if update object is for creating new entity and value was not yet set by {@link #setName(String)}. Else is
+     * optional filled with name set by {@link #setName(String)}. If name was not set and this object is for update of existing ingredient then it contains original name
+     * of ingredient.
+     */
+    Optional<String> getName();
+
+    /**
+     * @return (NotNull) Unit for measuring ingredient. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setIngredientUnit(IngredientUnit)}. Else is optional filled with unit set by {@link #setIngredientUnit(IngredientUnit)}. If unit was not set and this object is
+     * for update of existing ingredient then it contains original unit of ingredient.
+     */
+    Optional<IngredientUnit> getIngredientUnit();
+
+    /**
+     * @return (NotNull) Price of one unit of ingredient. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setPrice(float)}. Else is optional filled with unit set by {@link #setPrice(float)}. If price was not set and this object is for update of existing ingredient
+     * then it contains original price of ingredient.
+     */
+    Optional<Float> getPrice();
+
+    /**
+     * @return (NotNull) Unit conversion info for this ingredient. Is empty optional if update object is for creating new entity and value was not yet set by {@link
+     * #setUnitConversion(UnitConversionUpdateObject)} or {@link #setUnitConversion(Float, Float, Float, Float, Float)}. Else is optional filled with one of those method.
+     * If conversion info was not set and this object is for update of existing ingredient then it contains original unit conversion of ingredient.
+     */
+    Optional<UnitConversionUpdateObject> getUnitConversion();
+
+    /**
+     * @return (NotNull) Keywords of ingredient. Is empty set if update object is for creating new entity and value was not yet set by {@link #setKeywords(Set)}. Else is
+     * set filled with keywords set by {@link #setKeywords(Set)}. If keywords were not set and this object is for update of existing ingredient then it contains original
+     * keywords of ingredient.
+     */
+    Set<Keyword> getKeywords();
 
     /**
      * Changes name of ingredient. If called multiple times only value from last call is used.
@@ -47,7 +85,7 @@ public interface IngredientUpdateObject extends Ingredient {
      * @param unitConversion (Nullable) Unit conversion to set or null to clear existing one.
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
-    IngredientUpdateObject setUnitConversion(UnitConversion unitConversion);
+    IngredientUpdateObject setUnitConversion(UnitConversionUpdateObject unitConversion);
 
     /**
      * Changes unit conversion info about ingredient. This is optional for ingredient. Conversion is specified by conversion rates.

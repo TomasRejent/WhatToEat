@@ -1,5 +1,19 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller;
 
+import org.controlsfx.control.MasterDetailPane;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.ResourceBundle;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog.AuthorDialog;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
@@ -18,19 +32,6 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
-import org.controlsfx.control.MasterDetailPane;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
 
 /**
  * Controller for author page {@link Page#AUTHORS}.
@@ -151,7 +152,7 @@ public class AuthorController implements Initializable {
     private void editAuthor(final ActionEvent actionEvent) {
         LOGGER.debug("Edit author action triggered.");
         getSelectedAuthor().ifPresent(((author) -> //author is selected
-                authorDialog.editAuthor(authorService.getUpdateObject(author)).ifPresent( //edit is confirmed
+                authorDialog.editAuthor(author).ifPresent( //edit is confirmed
                         (authorUpdateObject) -> Collections.replaceAll(authorTable.getItems(), author, authorService.createOrUpdate(authorUpdateObject)) //table is updated
                 )
         ));

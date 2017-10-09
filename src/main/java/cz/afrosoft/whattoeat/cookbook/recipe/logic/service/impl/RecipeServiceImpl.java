@@ -1,17 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.*;
-import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,6 +10,23 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Collection;
 import java.util.Set;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
+import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+
 /**
  * Implementation of {@link RecipeService} which uses {@link cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl.RecipeImpl} as implementation of
  * {@link Recipe} and provides its own implementation of {@link RecipeUpdateObject}.
@@ -29,7 +34,6 @@ import java.util.Set;
  * @author Tomas Rejent
  */
 @Service
-@Transactional(readOnly = true)
 public class RecipeServiceImpl implements RecipeService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeServiceImpl.class);
@@ -59,13 +63,17 @@ public class RecipeServiceImpl implements RecipeService {
     private KeywordService keywordService;
 
     @Override
+    @Transactional(readOnly = true)
     public Set<Recipe> getAllRecipes() {
         LOGGER.debug("Getting all recipes.");
-        return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
+        long time = System.nanoTime();
+        final Set<Recipe> recipes = ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
+        LOGGER.info("Recipes loading time: {}ms", (System.nanoTime() - time) * 0.000001);
+        return recipes;
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public void delete(final Recipe recipe) {
         LOGGER.debug("Deleting recipe: {}", recipe);
         Validate.notNull(recipe);
@@ -78,6 +86,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public RecipeUpdateObject getUpdateObject(final Recipe recipe) {
         LOGGER.debug("Getting update object for recipe: {}", recipe);
         Validate.notNull(recipe);
@@ -97,7 +106,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
-    @Transactional(readOnly = false)
+    @Transactional
     public Recipe createOrUpdate(final RecipeUpdateObject recipeChanges) {
         LOGGER.debug("Updating recipe: {}", recipeChanges);
 
@@ -112,15 +121,12 @@ public class RecipeServiceImpl implements RecipeService {
                 .setTaste(recipeChanges.getTaste().get())
                 .setIngredientPreparationTime(recipeChanges.getIngredientPreparationTime().get())
                 .setCookingTime(recipeChanges.getCookingTime().get())
+                .setIngredients(ConverterUtil.convertToSet(recipeChanges.getIngredients(), this::fromUpdateObject))
                 .setSideDishes(ConverterUtil.convertToSet(recipeChanges.getSideDishes(), recipeRefService::toEntity))
                 .setKeywords(ConverterUtil.convertToSet(recipeChanges.getKeywords(), keywordService::keywordToEntity))
                 .setCookbooks(ConverterUtil.convertToSet(recipeChanges.getCookbooks(), cookbookRefService::toEntity));
 
-        RecipeEntity entityWithoutIngredients = repository.save(entity);
-        Set<RecipeIngredientEntity> recipeIngredients = ConverterUtil.convertToSet(recipeChanges.getIngredients(), this::fromUpdateObject);
-        recipeIngredients.forEach(recipeIngredient -> recipeIngredient.setRecipe(entityWithoutIngredients));
-        entityWithoutIngredients.setIngredients(recipeIngredients);
-        return entityToRecipe(repository.save(entityWithoutIngredients));
+        return entityToRecipe(repository.save(entity));
     }
 
     @Override
@@ -129,6 +135,7 @@ public class RecipeServiceImpl implements RecipeService {
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Collection<RecipeIngredientUpdateObject> toUpdateObjects(final Collection<RecipeIngredientRef> recipeIngredients) {
         return ConverterUtil.convertToSet(recipeIngredients, this::toUpdateObject);
     }

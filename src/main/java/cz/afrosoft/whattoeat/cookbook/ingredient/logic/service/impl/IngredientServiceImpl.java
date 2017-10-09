@@ -1,14 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
-import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,11 +7,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
 import java.util.Set;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
+import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+
 /**
- * Implementation of {@link IngredientService} which uses {@link IngredientImpl} as implementation of
- * {@link Ingredient} and provides its own implementation of {@link IngredientUpdateObject}.
+ * Implementation of {@link IngredientService} which uses {@link IngredientImpl} as implementation of {@link Ingredient} and provides its own implementation of {@link
+ * IngredientUpdateObject}.
  *
  * @author Tomas Rejent
  */
@@ -36,6 +39,7 @@ public class IngredientServiceImpl implements IngredientService {
     private IngredientRepository repository;
 
     @Override
+    @Transactional(readOnly = true)
     public Set<Ingredient> getAllIngredients() {
         LOGGER.debug("Getting all ingredients.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToIngredient);
@@ -60,13 +64,13 @@ public class IngredientServiceImpl implements IngredientService {
         LOGGER.debug("Getting update object for ingredient: {}", ingredient);
         Validate.notNull(ingredient);
 
-        return new IngredientImpl.Builder()
-                .setId(ingredient.getId())
+        final IngredientImpl.Builder builder = new IngredientImpl.Builder(ingredient.getId())
                 .setName(ingredient.getName())
                 .setIngredientUnit(ingredient.getIngredientUnit())
                 .setPrice(ingredient.getPrice())
-                .setUnitConversion(ingredient.getUnitConversion())
                 .setKeywords(ingredient.getKeywords());
+        ingredient.getUnitConversion().ifPresent(unitConversion -> builder.setUnitConversion(toUpdateObject(unitConversion)));
+        return builder;
     }
 
     @Override
@@ -76,11 +80,11 @@ public class IngredientServiceImpl implements IngredientService {
         Validate.notNull(ingredientChanges, "Cannot createOrUpdate ingredient with null changes.");
 
         IngredientEntity entity = new IngredientEntity();
-        entity.setId(ingredientChanges.getId())
-                .setName(ingredientChanges.getName())
-                .setIngredientUnit(ingredientChanges.getIngredientUnit())
-                .setPrice(ingredientChanges.getPrice())
-                .setUnitConversion(unitConversionToEntity(ingredientChanges.getUnitConversion()))
+        entity.setId(ingredientChanges.getId().orElse(null))
+                .setName(ingredientChanges.getName().get())
+                .setIngredientUnit(ingredientChanges.getIngredientUnit().get())
+                .setPrice(ingredientChanges.getPrice().get())
+                .setUnitConversion(unitConversionToEntity(ingredientChanges.getUnitConversion().orElse(null)))
                 .setKeywords(ConverterUtil.convertToSet(ingredientChanges.getKeywords(), keywordService::keywordToEntity));
         return entityToIngredient(repository.save(entity));
     }
@@ -89,50 +93,58 @@ public class IngredientServiceImpl implements IngredientService {
     public Ingredient entityToIngredient(final IngredientEntity entity) {
         Validate.notNull(entity);
 
-        return new IngredientImpl.Builder()
-                .setId(entity.getId())
+        final IngredientImpl.Builder builder = new IngredientImpl.Builder(entity.getId())
                 .setName(entity.getName())
                 .setIngredientUnit(entity.getIngredientUnit())
                 .setPrice(entity.getPrice())
-                .setUnitConversion(entityToUnitConversion(entity.getUnitConversion()))
-                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword))
-                .build();
+                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
+        entityToUnitConversion(entity.getUnitConversion()).ifPresent(builder::setExistingUnitConversion);
+        return builder.build();
     }
 
-    private UnitConversion entityToUnitConversion(final UnitConversionEntity entity) {
+    private Optional<UnitConversion> entityToUnitConversion(final UnitConversionEntity entity) {
         if (entity == null) {
-            return null;
+            return Optional.empty();
         } else {
-            return new UnitConversionImpl.Builder()
-                    .setId(entity.getId())
+            return Optional.ofNullable(new UnitConversionImpl.Builder(entity.getId())
                     .setGramsPerPiece(entity.getGramsPerPiece())
                     .setMilliliterPerGram(entity.getMilliliterPerGram())
                     .setGramsPerPinch(entity.getGramsPerPinch())
                     .setGramsPerCoffeeSpoon(entity.getGramsPerCoffeeSpoon())
                     .setGramsPerSpoon(entity.getGramsPerSpoon())
-                    .build();
+                    .build());
         }
     }
 
     /**
-     * Converts unit conversion to entity. Creates new entity and sets all values from unit conversion to it.
-     * Entity is not saved by this method.
+     * Converts unit conversion to entity. Creates new entity and sets all values from unit conversion to it. Entity is not saved by this method.
      *
      * @param unitConversion (Nullable)
      * @return (Nullable)
      */
-    private UnitConversionEntity unitConversionToEntity(final UnitConversion unitConversion) {
+    private UnitConversionEntity unitConversionToEntity(final UnitConversionUpdateObject unitConversion) {
         if (unitConversion == null) {
             return null;
         } else {
             UnitConversionEntity entity = new UnitConversionEntity();
             return entity
-                    .setId(unitConversion.getId())
-                    .setGramsPerPiece(unitConversion.getGramsPerPiece())
-                    .setMilliliterPerGram(unitConversion.getMilliliterPerGram())
-                    .setGramsPerPinch(unitConversion.getGramsPerPinch())
-                    .setGramsPerCoffeeSpoon(unitConversion.getGramsPerCoffeeSpoon())
-                    .setGramsPerSpoon(unitConversion.getGramsPerSpoon());
+                    .setId(unitConversion.getId().orElse(null))
+                    .setGramsPerPiece(unitConversion.getGramsPerPiece().orElse(null))
+                    .setMilliliterPerGram(unitConversion.getMilliliterPerGram().orElse(null))
+                    .setGramsPerPinch(unitConversion.getGramsPerPinch().orElse(null))
+                    .setGramsPerCoffeeSpoon(unitConversion.getGramsPerCoffeeSpoon().orElse(null))
+                    .setGramsPerSpoon(unitConversion.getGramsPerSpoon().orElse(null));
         }
+    }
+
+    private UnitConversionUpdateObject toUpdateObject(final UnitConversion unitConversion) {
+        Validate.notNull(unitConversion);
+
+        return new UnitConversionImpl.Builder(unitConversion.getId())
+                .setGramsPerPiece(unitConversion.getGramsPerPiece())
+                .setMilliliterPerGram(unitConversion.getMilliliterPerGram())
+                .setGramsPerPinch(unitConversion.getGramsPerPinch())
+                .setGramsPerCoffeeSpoon(unitConversion.getGramsPerCoffeeSpoon())
+                .setGramsPerSpoon(unitConversion.getGramsPerSpoon());
     }
 }

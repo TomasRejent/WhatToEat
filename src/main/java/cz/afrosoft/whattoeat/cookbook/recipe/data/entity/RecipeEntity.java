@@ -1,14 +1,27 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.data.entity;
 
+import org.apache.commons.lang3.Validate;
+
+import java.time.Duration;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.Table;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
-
-import javax.persistence.*;
-import java.time.Duration;
-import java.util.Set;
 
 /**
  * Entity for {@link Recipe}
@@ -147,7 +160,9 @@ public class RecipeEntity {
     }
 
     public RecipeEntity setIngredients(final Set<RecipeIngredientEntity> recipeIngredients) {
+        Validate.noNullElements(recipeIngredients);
         this.recipeIngredients = recipeIngredients;
+        this.recipeIngredients.forEach(recipeIngredient -> recipeIngredient.setRecipe(this));
         return this;
     }
 

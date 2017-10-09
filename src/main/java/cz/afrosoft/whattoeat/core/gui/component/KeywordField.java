@@ -1,17 +1,8 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import com.google.common.collect.Sets;
-import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
-import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
-import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
+
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +12,19 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
+import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
 
 /**
  * Component for picking keywords.
@@ -86,6 +90,7 @@ public class KeywordField extends GridPane {
         keywordContainer.getChildren().add(keywordLabel);
         //update keyword field
         keywordField.getSelectionModel().clearSelection();
+        keywordField.getEditor().setText(StringUtils.EMPTY);
         keywordField.getItems().remove(addedKeyword);
     }
 
@@ -99,6 +104,11 @@ public class KeywordField extends GridPane {
                     }
                 }
         );
+        /**
+         * Consumes event after enter key is pressed to add keyword. Without this adding of keyword caused submitting of dialog which use keyword field.
+         */
+        keywordField.setOnAction(Event::consume);
+
         refreshKeywords();
     }
 

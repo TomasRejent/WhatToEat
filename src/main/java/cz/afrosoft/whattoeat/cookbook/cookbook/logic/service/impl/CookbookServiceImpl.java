@@ -1,5 +1,14 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
@@ -8,16 +17,8 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorRefService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Collections;
-import java.util.Set;
 
 /**
  * Implementation of {@link CookbookService} which uses {@link CookbookImpl} as implementation of
@@ -39,13 +40,18 @@ public class CookbookServiceImpl implements CookbookService {
     @Autowired
     private AuthorRefService authorRefService;
 
+    @Autowired
+    private RecipeRefService recipeRefService;
+
     @Override
+    @Transactional(readOnly = true)
     public Set<Cookbook> getAllCookbooks() {
         LOGGER.debug("Getting all cookbooks.");
         return ConverterUtil.convertToSortedSet(repository.findAllWithAuthors(), this::entityToCookbook);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public Set<CookbookRef> getAllCookbookRefs() {
         LOGGER.debug("Getting all cookbooks refs.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), cookbookRefService::fromEntity);
@@ -70,12 +76,11 @@ public class CookbookServiceImpl implements CookbookService {
         LOGGER.debug("Getting update object for cookbook: {}", cookbook);
         Validate.notNull(cookbook, "Cannot get update object for null cookbook.");
 
-        return new CookbookImpl.Builder()
-                .setId(cookbook.getId())
+        return new CookbookImpl.Builder(cookbook.getId())
                 .setName(cookbook.getName())
                 .setDescription(cookbook.getDescription())
                 .setAuthors(cookbook.getAuthors())
-                .setRecipes(cookbook.getRecipes());
+                .setExistingRecipes(cookbook.getRecipes());
     }
 
     @Override
@@ -85,9 +90,9 @@ public class CookbookServiceImpl implements CookbookService {
         Validate.notNull(cookbookChanges, "Cannot createOrUpdate cookbook with null changes.");
 
         CookbookEntity entity = new CookbookEntity();
-        entity.setId(cookbookChanges.getId())
-                .setName(cookbookChanges.getName())
-                .setDescription(cookbookChanges.getDescription())
+        entity.setId(cookbookChanges.getId().orElse(null))
+                .setName(cookbookChanges.getName().get())
+                .setDescription(cookbookChanges.getDescription().orElse(null))
                 .setAuthors(ConverterUtil.convertToSet(cookbookChanges.getAuthors(), authorRefService::toEntity));
         return entityToCookbook(repository.save(entity));
     }
@@ -100,12 +105,11 @@ public class CookbookServiceImpl implements CookbookService {
      */
     private Cookbook entityToCookbook(final CookbookEntity entity) {
         Validate.notNull(entity);
-        return new CookbookImpl.Builder()
-                .setId(entity.getId())
+        return new CookbookImpl.Builder(entity.getId())
                 .setName(entity.getName())
                 .setDescription(entity.getDescription())
                 .setAuthors(ConverterUtil.convertToSortedSet(entity.getAuthors(), authorRefService::fromEntity))
-                .setRecipes(Collections.emptySet())
+                .setExistingRecipes(ConverterUtil.convertToSet(entity.getRecipes(), recipeRefService::fromEntity))
                 .build();
     }
 }
