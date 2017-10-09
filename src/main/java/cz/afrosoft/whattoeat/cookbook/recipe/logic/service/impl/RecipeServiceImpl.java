@@ -19,6 +19,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRep
 import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientRefService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
@@ -66,10 +68,13 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional(readOnly = true)
     public Set<Recipe> getAllRecipes() {
         LOGGER.debug("Getting all recipes.");
-        long time = System.nanoTime();
-        final Set<Recipe> recipes = ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
-        LOGGER.info("Recipes loading time: {}ms", (System.nanoTime() - time) * 0.000001);
-        return recipes;
+        return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
+    }
+
+    @Override
+    public Set<RecipeRef> getAllSideDishRefs() {
+        LOGGER.debug("Getting side dish references.");
+        return ConverterUtil.convertToSortedSet(repository.findByRecipeTypesContains(RecipeType.SIDE_DISH), recipeRefService::fromEntity);
     }
 
     @Override

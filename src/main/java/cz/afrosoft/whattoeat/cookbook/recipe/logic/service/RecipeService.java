@@ -1,10 +1,11 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
-
 import java.util.Collection;
 import java.util.Set;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 
 /**
  * @author Tomas Rejent
@@ -15,6 +16,11 @@ public interface RecipeService {
      * @return (NotNull) Return all recipes defined in application.
      */
     Set<Recipe> getAllRecipes();
+
+    /**
+     * @return (NotNull) Return set of references to recipes which contains side dish type.
+     */
+    Set<RecipeRef> getAllSideDishRefs();
 
     /**
      * Deletes specified recipe.
@@ -57,7 +63,12 @@ public interface RecipeService {
      */
     RecipeIngredientUpdateObject getRecipeIngredientCreateObject();
 
-    //TODO javadoc
+    /**
+     * Converts collection of recipe ingredient references to their update objects.
+     *
+     * @param recipeIngredients (Nullable)
+     * @return (Nullable)
+     */
     Collection<RecipeIngredientUpdateObject> toUpdateObjects(Collection<RecipeIngredientRef> recipeIngredients);
 
 }

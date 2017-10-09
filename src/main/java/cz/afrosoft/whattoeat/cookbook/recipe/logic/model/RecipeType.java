@@ -1,8 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
+import org.apache.commons.lang3.Validate;
+
 import cz.afrosoft.whattoeat.core.data.IdEnum;
 import cz.afrosoft.whattoeat.core.gui.Labeled;
-import org.apache.commons.lang3.Validate;
 
 /**
  * Specifies type of recipe. Recipe can have several types at once. This is because boundaries between types cannot be
@@ -35,7 +36,7 @@ public enum RecipeType implements IdEnum, Labeled {
     /**
      * Recipes which can be used to prepare deserts, which are typically consumed after main dish.
      */
-    DESSERT(6, "cz.afrosoft.whattoeat.recipeType.salad"),
+    DESSERT(6, "cz.afrosoft.whattoeat.recipeType.dessert"),
     /**
      * Recipes which can be used to prepare salads. These can typically consist of vegetables or fruits.
      */
