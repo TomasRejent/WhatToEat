@@ -36,69 +36,62 @@
                                GridPane.columnSpan="3"/>
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.cookbooks"
-                            GridPane.columnIndex="4"
-                            GridPane.rowIndex="0"/>
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="1"/>
                     <CheckComboBox
                             fx:id="cookbooksField"
-                            GridPane.columnIndex="5"
-                            GridPane.rowIndex="0"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="1"
+                            GridPane.columnSpan="3"
                     />
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.type"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="1"/>
+                            GridPane.rowIndex="2"/>
                     <CheckComboBox
                             fx:id="recipeTypeField"
                             GridPane.columnIndex="1"
-                            GridPane.rowIndex="1"
+                            GridPane.rowIndex="2"
                     />
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.taste"
                             GridPane.columnIndex="2"
-                            GridPane.rowIndex="1"/>
+                            GridPane.rowIndex="2"/>
                     <ComboBox
                             fx:id="tasteField"
                             GridPane.columnIndex="3"
-                            GridPane.rowIndex="1"
+                            GridPane.rowIndex="2"
                     />
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.time.preparation"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="2"/>
+                            GridPane.rowIndex="3"/>
                     <DurationField
                             fx:id="preparationTimeField"
                             GridPane.columnIndex="1"
-                            GridPane.rowIndex="2"/>
+                            GridPane.rowIndex="3"/>
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.time.cooking"
                             GridPane.columnIndex="2"
-                            GridPane.rowIndex="2"/>
+                            GridPane.rowIndex="3"/>
                     <DurationField
                             fx:id="cookingTimeField"
                             GridPane.columnIndex="3"
-                            GridPane.rowIndex="2"/>
-                    <Label
-                            text="%cz.afrosoft.whattoeat.recipes.add.time.total"
-                            GridPane.columnIndex="4"
-                            GridPane.rowIndex="2"/>
-                    <Label
-                            fx:id="totalTimeLabel"
-                            GridPane.columnIndex="5"
-                            GridPane.rowIndex="2"/>
+                            GridPane.rowIndex="3"/>
                     <Label
                             text="%cz.afrosoft.whattoeat.recipes.add.rating"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="3"/>
+                            GridPane.rowIndex="4"/>
                     <Rating
                             fx:id="ratingField"
                             GridPane.columnIndex="1"
-                            GridPane.rowIndex="3"
+                            GridPane.rowIndex="4"
                     />
                     <KeywordField
                             fx:id="keywordField"
                             GridPane.columnIndex="0"
-                            GridPane.rowIndex="4"
-                            GridPane.columnSpan="6"
+                            GridPane.rowIndex="5"
+                            GridPane.columnSpan="3"
                     />
                 </GridPane>
             </Tab>

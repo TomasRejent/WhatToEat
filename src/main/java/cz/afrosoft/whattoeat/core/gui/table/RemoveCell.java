@@ -15,6 +15,11 @@ public class RemoveCell<T> extends TableCell<T, Void> {
     public RemoveCell() {
         removeButton = new RemoveButton();
         setGraphic(removeButton);
+        initRemoveListener();
+    }
+
+    private void initRemoveListener() {
+        removeButton.setOnAction(event -> this.getTableView().getItems().remove(this.getTableRow().getIndex()));
     }
 
     @Override

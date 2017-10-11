@@ -102,8 +102,6 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     @FXML
     private DurationField cookingTimeField;
     @FXML
-    private Label totalTimeLabel;
-    @FXML
     private Rating ratingField;
     @FXML
     private TextField ingredientNameField;
@@ -225,7 +223,8 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     private void setupIngredientTable() {
         ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getName).orElse(StringUtils.EMPTY)));
         ingredientQuantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getQuantity().orElse(null), 0F));
-        ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections.emptySet()), Collections.emptySet()));
+        ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections
+                .emptySet()), Collections.emptySet()));
         ingredientKeywordColumn.setCellFactory(param -> new KeywordCell<>());
         ingredientRemoveColumn.setCellFactory(param -> new RemoveCell<>());
     }
