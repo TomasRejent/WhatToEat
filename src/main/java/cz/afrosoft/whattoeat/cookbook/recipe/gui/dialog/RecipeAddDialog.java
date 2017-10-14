@@ -1,27 +1,10 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.CheckComboBox;
-import org.controlsfx.control.Rating;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
-
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.recipe.gui.table.IngredientQuantityCell;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
@@ -45,20 +28,28 @@ import cz.afrosoft.whattoeat.core.gui.table.RemoveCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Tab;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.util.StringConverter;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.controlsfx.control.CheckComboBox;
+import org.controlsfx.control.Rating;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
 
 /**
  * Dialog for adding and editing of recipes. This dialog also allows to change relation between recipe and cookbooks.
@@ -221,8 +212,12 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     }
 
     private void setupIngredientTable() {
+        ingredientTable.setEditable(true);
         ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getName).orElse(StringUtils.EMPTY)));
         ingredientQuantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getQuantity().orElse(null), 0F));
+        ingredientQuantityColumn.setCellFactory(param -> new IngredientQuantityCell());
+        ingredientQuantityColumn.setEditable(true);
+        ingredientQuantityColumn.setOnEditCommit(event -> event.getRowValue().setQuantity(event.getNewValue()));
         ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections
                 .emptySet()), Collections.emptySet()));
         ingredientKeywordColumn.setCellFactory(param -> new KeywordCell<>());
@@ -317,6 +312,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     private void prefillDialog(final Recipe recipe) {
         Validate.notNull(recipe);
         nameField.setText(recipe.getName());
+        FillUtils.checkItems(cookbooksField, recipe.getCookbooks());
         preparationField.setText(recipe.getPreparation());
         ratingField.setRating(recipe.getRating());
         FillUtils.checkItems(recipeTypeField, recipe.getRecipeTypes());
@@ -326,7 +322,6 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         ListBinding.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), recipe.getSideDishes());
         ingredientTable.getItems().clear();
         ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
-        FillUtils.checkItems(cookbooksField, recipe.getCookbooks());
         keywordField.setSelectedKeywords(recipe.getKeywords());
     }
 }

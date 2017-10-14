@@ -19,7 +19,7 @@ public class RemoveCell<T> extends TableCell<T, Void> {
     }
 
     private void initRemoveListener() {
-        removeButton.setOnAction(event -> this.getTableView().getItems().remove(this.getTableRow().getIndex()));
+        removeButton.setOnAction(event -> this.getTableView().getItems().remove(getIndex()));
     }
 
     @Override

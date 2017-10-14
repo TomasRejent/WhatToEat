@@ -1,8 +1,10 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
+import javafx.beans.NamedArg;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.TextField;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
 
 import java.util.regex.Pattern;
 
@@ -12,14 +14,24 @@ import java.util.regex.Pattern;
  */
 public class FloatFiled extends TextField {
 
-    private static final String VALIDATION_REGEX = "^$|^[-]?([0-9]*[.,])?[0-9]*$";
-    private static final Pattern VALIDATION_PATTERN = Pattern.compile(VALIDATION_REGEX);
+    private final TYPE type;
+
+    /**
+     * Creates new field and attaches change listener which validates user input. Default type of field is {@link TYPE#ALL}.
+     */
+    public FloatFiled() {
+        this(TYPE.ALL);
+    }
 
     /**
      * Creates new field and attaches change listener which validates user input.
+     *
+     * @param type (NotNull) Type of validation for field.
      */
-    public FloatFiled() {
+    public FloatFiled(@NamedArg("type") final TYPE type) {
+        Validate.notNull(type);
         textProperty().addListener(createChangeListener());
+        this.type = type;
     }
 
     /**
@@ -29,7 +41,7 @@ public class FloatFiled extends TextField {
      */
     private ChangeListener<String> createChangeListener() {
         return (observable, oldValue, newValue) -> {
-            if (!VALIDATION_PATTERN.matcher(newValue).matches()) {
+            if (!type.getPattern().matcher(newValue).matches()) {
                 setText(oldValue);
             }
         };
@@ -80,5 +92,33 @@ public class FloatFiled extends TextField {
      */
     private String getTextWithoutComma(final String text) {
         return text.replaceAll(",", ".");
+    }
+
+    /**
+     * Possible types of float field.
+     */
+    public enum TYPE {
+        /**
+         * Accepts only floats which are not negative ( >= 0).
+         */
+        NON_NEGATIVE("^$|^([0-9]*[.,])?[0-9]*$"),
+        /**
+         * Accepts all floats. Positive, negative and zero.
+         */
+        ALL("^$|^[-]?([0-9]*[.,])?[0-9]*$");
+
+        private final Pattern pattern;
+
+        TYPE(final String regex) {
+            Validate.notBlank(regex);
+            this.pattern = Pattern.compile(regex);
+        }
+
+        /**
+         * @return (NotNull) Pattern for validation of corresponding type.
+         */
+        public Pattern getPattern() {
+            return pattern;
+        }
     }
 }
