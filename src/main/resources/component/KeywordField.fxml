@@ -8,6 +8,14 @@
         xmlns:fx="http://javafx.com/fxml"
         styleClass="keyword-component"
         stylesheets="@KeywordField.css">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" minWidth="130" maxWidth="130"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
     <Label
             text="%cz.afrosoft.whattoeat.component.keywordfield.label"
             GridPane.columnIndex="0"
@@ -17,5 +25,6 @@
               GridPane.rowIndex="0"/>
     <FlowPane fx:id="keywordContainer"
               GridPane.columnIndex="0"
-              GridPane.rowIndex="1"/>
+              GridPane.rowIndex="1"
+              GridPane.columnSpan="2"/>
 </fx:root>

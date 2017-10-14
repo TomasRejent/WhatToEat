@@ -1,0 +1,9 @@
+FlowPane{
+    -fx-hgap: 5px;
+    -fx-vgap: 5px;
+}
+
+.keyword-component{
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
