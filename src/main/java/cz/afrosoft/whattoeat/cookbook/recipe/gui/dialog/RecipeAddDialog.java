@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.table.IngredientQuantityCell;
@@ -15,6 +16,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.gui.component.AddButton;
 import cz.afrosoft.whattoeat.core.gui.component.DurationField;
 import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
@@ -26,6 +28,9 @@ import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
 import cz.afrosoft.whattoeat.core.gui.table.RemoveCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import javafx.application.Platform;
+import javafx.beans.property.Property;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -79,7 +84,6 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
 
     @FXML
     private GridPane dialogContainer;
-
     @FXML
     private TextField nameField;
     @FXML
@@ -100,6 +104,8 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     private FloatFiled ingredientQuantityField;
     @FXML
     private Label unitLabel;
+    @FXML
+    private AddButton ingredientAddButton;
     @FXML
     private TableView<RecipeIngredientUpdateObject> ingredientTable;
     @FXML
@@ -124,6 +130,8 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     private ListView<RecipeRef> sideDishList;
 
     @Autowired
+    private IngredientDialog ingredientDialog;
+    @Autowired
     private RecipeService recipeService;
     @Autowired
     private CookbookService cookbookService;
@@ -137,7 +145,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     private RecipeUpdateObject recipeUpdateObject;
 
-    private Ingredient selectedIngredient;
+    private Property<Ingredient> selectedIngredient = new SimpleObjectProperty<>();
 
     /**
      * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
@@ -174,20 +182,36 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
 
         StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
         AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientNameField, ingredientSuggestionProvider, ingredientConverter);
-        ingredientBinding.setOnAutoCompleted(event -> {
-            selectedIngredient = event.getCompletion();
-            unitLabel.setText(I18n.getText(selectedIngredient.getIngredientUnit().getLabelKey()));
-            ingredientQuantityField.requestFocus();
+        ingredientBinding.setOnAutoCompleted(event -> pickIngredient(event.getCompletion()));
+
+        ingredientNameField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String ingredientName = ingredientNameField.getText();
+                Optional<Ingredient> ingredient = ingredientService.findByName(ingredientName);
+                if (ingredient.isPresent()) {
+                    pickIngredient(ingredient.get());
+                } else {
+                    Platform.runLater(this::addIngredient);
+                }
+                event.consume();
+            }
         });
+        ingredientNameField.setOnKeyReleased(event -> {
+            String ingredientName = ingredientNameField.getText();
+            ingredientAddButton.setDisable(StringUtils.isEmpty(ingredientName) || ingredientService.existByName(ingredientName));
+        });
+
+        //listener which enables quantity field only when ingredient is selected
+        selectedIngredient.addListener((observable, oldValue, newValue) -> ingredientQuantityField.setDisable(newValue == null));
 
         ingredientQuantityField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 ingredientTable.getItems().add(
                         recipeService.getRecipeIngredientCreateObject()
                                 .setQuantity(ingredientQuantityField.getFloat())
-                                .setIngredient(selectedIngredient)
+                                .setIngredient(selectedIngredient.getValue())
                 );
-                selectedIngredient = null;
+                selectedIngredient.setValue(null);
                 ingredientQuantityField.setText(StringUtils.EMPTY);
                 ingredientNameField.setText(StringUtils.EMPTY);
                 ingredientNameField.requestFocus();
@@ -305,6 +329,9 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         ingredientTable.getItems().clear();
         ingredientNameField.setText(StringUtils.EMPTY);
         ingredientQuantityField.setText(StringUtils.EMPTY);
+        selectedIngredient.setValue(null);
+        ingredientQuantityField.setDisable(true);
+        ingredientAddButton.setDisable(true);
         cookbooksField.getCheckModel().clearChecks();
         keywordField.clearSelectedKeywords();
     }
@@ -323,5 +350,30 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         ingredientTable.getItems().clear();
         ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
         keywordField.setSelectedKeywords(recipe.getKeywords());
+    }
+
+    /**
+     * Pick specified ingredient in ingredient tab so its quantity can be specified afterwards.
+     *
+     * @param ingredient (NotNull)
+     */
+    private void pickIngredient(final Ingredient ingredient) {
+        Validate.notNull(ingredient);
+        selectedIngredient.setValue(ingredient);
+        unitLabel.setText(I18n.getText(selectedIngredient.getValue().getIngredientUnit().getLabelKey()));
+        ingredientQuantityField.requestFocus();
+    }
+
+    /**
+     * Event handler for button for adding of new ingredients.
+     */
+    @FXML
+    private void addIngredient() {
+        LOGGER.debug("Add ingredient action triggered.");
+        ingredientDialog.addIngredient(ingredientNameField.getText())
+                .ifPresent(ingredientUpdateObject -> {
+                    Ingredient newIngredient = ingredientService.createOrUpdate(ingredientUpdateObject);
+                    pickIngredient(newIngredient);
+                });
     }
 }

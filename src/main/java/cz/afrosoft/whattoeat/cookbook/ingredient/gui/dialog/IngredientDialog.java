@@ -1,16 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.Optional;
-
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
@@ -28,6 +17,16 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TitledPane;
 import javafx.stage.Modality;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.Optional;
 
 /**
  * Dialog for adding and editing of ingredients. This dialog also allows to specify conversion rates between ingredient
@@ -146,6 +145,20 @@ public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
     public Optional<IngredientUpdateObject> addIngredient() {
         setTitle(I18n.getText(ADD_TITLE_KEY));
         clearDialog();
+        ingredientUpdateObject = ingredientService.getCreateObject();
+        return showAndWait();
+    }
+
+    /**
+     * Shows dialog for adding ingredient and prefills name field with specified value. This is blocking call. It waits until user close dialog.
+     *
+     * @param ingredientName (Nullable) Ingredient name which is prefilled into name field of dialog.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with ingredient createOrUpdate object if user submit dialog.
+     */
+    public Optional<IngredientUpdateObject> addIngredient(final String ingredientName) {
+        setTitle(I18n.getText(ADD_TITLE_KEY));
+        clearDialog();
+        nameField.setText(ingredientName);
         ingredientUpdateObject = ingredientService.getCreateObject();
         return showAndWait();
     }

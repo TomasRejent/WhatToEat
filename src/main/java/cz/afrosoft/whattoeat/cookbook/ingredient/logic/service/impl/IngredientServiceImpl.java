@@ -1,15 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
-import java.util.Set;
-
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
@@ -20,6 +10,15 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateO
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Implementation of {@link IngredientService} which uses {@link IngredientImpl} as implementation of {@link Ingredient} and provides its own implementation of {@link
@@ -43,6 +42,20 @@ public class IngredientServiceImpl implements IngredientService {
     public Set<Ingredient> getAllIngredients() {
         LOGGER.debug("Getting all ingredients.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToIngredient);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public boolean existByName(final String ingredientName) {
+        Validate.notEmpty(ingredientName);
+        return repository.existsByName(ingredientName);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Optional<Ingredient> findByName(final String ingredientName) {
+        Validate.notEmpty(ingredientName);
+        return Optional.ofNullable(repository.findByName(ingredientName));
     }
 
     @Override
