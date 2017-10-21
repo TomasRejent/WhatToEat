@@ -98,6 +98,7 @@
                             GridPane.rowIndex="4"/>
                     <Rating
                             fx:id="ratingField"
+                            styleClass="rating-field"
                             GridPane.columnIndex="1"
                             GridPane.rowIndex="4"
                     />

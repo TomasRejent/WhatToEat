@@ -30,9 +30,11 @@ import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.util.StringConverter;
@@ -155,13 +157,15 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     public RecipeAddDialog() {
         super(DIALOG_FXML);
-        setupButtons();
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
+
+        setupButtons();
         setupResultConverter();
         setupFields();
         setupStaticFieldOptions();
         setupIngredientTable();
+        setupFocusTraversal();
     }
 
     /**
@@ -177,10 +181,49 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         });
     }
 
+    private void setupFocusTraversal() {
+        EventHandler<KeyEvent> tabHandler = event -> {
+            if (event.getCode() == KeyCode.TAB) {
+                nextButton.fire();
+                event.consume();
+            }
+        };
+
+        keywordField.addEventFilter(KeyEvent.KEY_PRESSED, tabHandler);
+        ingredientNameField.addEventFilter(KeyEvent.KEY_PRESSED, tabHandler);
+        preparationField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (!nextButton.isDisable() && event.getCode() == KeyCode.TAB && event.isControlDown()) {
+                nextButton.fire();
+                event.consume();
+            } else if (!finishButton.isDisable() && event.getCode() == KeyCode.ENTER && event.isControlDown()) {
+                finishButton.fire();
+            }
+        });
+    }
+
     private void setupFields() {
+        /* Focus name field after dialog is shown. Must be in runLater, because onShown event is actually fired before dialog is shown
+            because it is blocking call. */
+        setOnShown(event -> Platform.runLater(() -> {
+            nameField.requestFocus();
+            getDialogPane().getScene().focusOwnerProperty().addListener((observable, oldValue, newValue) -> {
+                LOGGER.debug("Focused node {} -> {}", oldValue, newValue);
+            });
+        }));
+
         ComboBoxUtils.initLabeledComboBox(tasteField);
         ComboBoxUtils.initLabeledCheckComboBox(recipeTypeField);
         cookbooksField.setConverter(ComboBoxUtils.createAsymmetricStringConverter(CookbookRef::getName, string -> null));
+
+        //setup key controls for rating field
+        ratingField.setOnKeyReleased(event -> {
+            KeyCode code = event.getCode();
+            if (code == KeyCode.UP || code == KeyCode.RIGHT) {
+                ratingField.setRating(Math.min(ratingField.getMax(), ratingField.getRating() + 1));
+            } else if (code == KeyCode.DOWN || code == KeyCode.LEFT) {
+                ratingField.setRating(Math.max(0, ratingField.getRating() - 1));
+            }
+        });
 
         StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
         AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientNameField, ingredientSuggestionProvider, ingredientConverter);
@@ -247,7 +290,9 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         translateButtons();
 
         recipeTabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
-            updateButtons(newValue.intValue());
+            int selectedIndex = newValue.intValue();
+            updateButtons(selectedIndex);
+            Platform.runLater(() -> updateFocus(selectedIndex));
         });
 
         nextButton.addEventFilter(ActionEvent.ACTION, event -> {
@@ -266,6 +311,18 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         nextButton.setDisable(last);
         previousButton.setDisable(first);
         finishButton.setDisable(!last);
+    }
+
+    private void updateFocus(final int selectedIndex) {
+        if (selectedIndex == 0) {
+            nameField.requestFocus();
+        } else if (selectedIndex == 1) {
+            ingredientServingsField.requestFocus();
+        } else if (selectedIndex == 2) {
+            preparationField.requestFocus();
+        } else if (selectedIndex == 3) {
+            sideDishField.requestFocus();
+        }
     }
 
     private void setupIngredientTable() {
