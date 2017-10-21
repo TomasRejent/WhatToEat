@@ -95,6 +95,8 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     @FXML
     private Rating ratingField;
     @FXML
+    private FloatFiled ingredientServingsField;
+    @FXML
     private TextField ingredientNameField;
     @FXML
     private FloatFiled ingredientQuantityField;
@@ -202,9 +204,11 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
 
         ingredientQuantityField.setOnKeyPressed(event -> {
             if (event.getCode() == KeyCode.ENTER) {
+                float servings = ingredientServingsField.getFloatOrZero();
+                float divisionCoefficient = servings == 0 ? 1f : servings;
                 ingredientTable.getItems().add(
                         recipeService.getRecipeIngredientCreateObject()
-                                .setQuantity(ingredientQuantityField.getFloat())
+                                .setQuantity(ingredientQuantityField.getFloat() / divisionCoefficient)
                                 .setIngredient(selectedIngredient.getValue())
                 );
                 selectedIngredient.setValue(null);
@@ -323,6 +327,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         cookingTimeField.setText(StringUtils.EMPTY);
         ListBinding.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), Collections.emptySet());
         ingredientTable.getItems().clear();
+        ingredientServingsField.setFloat(1f);
         ingredientNameField.setText(StringUtils.EMPTY);
         ingredientQuantityField.setText(StringUtils.EMPTY);
         selectedIngredient.setValue(null);

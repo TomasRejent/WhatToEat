@@ -14,6 +14,6 @@ GridPane{
     -fx-padding: 10px 0 0 0;
 }
 
-.ingredient-quantity-field{
+.ingredient-float-field{
     -fx-max-width: 100px;
 }
