@@ -29,6 +29,7 @@ import javafx.application.Platform;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -127,6 +128,10 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     @FXML
     private ListView<RecipeRef> sideDishList;
 
+    private Button finishButton;
+    private Button nextButton;
+    private Button previousButton;
+
     @Autowired
     private IngredientDialog ingredientDialog;
     @Autowired
@@ -150,8 +155,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     public RecipeAddDialog() {
         super(DIALOG_FXML);
-        getDialogPane().getButtonTypes().add(ButtonType.FINISH);
-        getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        setupButtons();
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
         setupResultConverter();
@@ -233,6 +237,35 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         //setup side dish suggestion
         ComboBoxSuggestion.initSuggestion(sideDishField, RecipeRef::getName);
         ListBinding.bindToComboBox(sideDishList, sideDishField, RecipeRef::getName);
+    }
+
+    private void setupButtons() {
+        getDialogPane().getButtonTypes().addAll(ButtonType.FINISH, ButtonType.NEXT, ButtonType.PREVIOUS, ButtonType.CANCEL);
+        finishButton = (Button) getDialogPane().lookupButton(ButtonType.FINISH);
+        nextButton = (Button) getDialogPane().lookupButton(ButtonType.NEXT);
+        previousButton = (Button) getDialogPane().lookupButton(ButtonType.PREVIOUS);
+        translateButtons();
+
+        recipeTabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
+            updateButtons(newValue.intValue());
+        });
+
+        nextButton.addEventFilter(ActionEvent.ACTION, event -> {
+            recipeTabs.getSelectionModel().selectNext();
+            event.consume();
+        });
+        previousButton.addEventFilter(ActionEvent.ACTION, event -> {
+            recipeTabs.getSelectionModel().selectPrevious();
+            event.consume();
+        });
+    }
+
+    private void updateButtons(final int selectedIndex) {
+        boolean first = selectedIndex == 0;
+        boolean last = selectedIndex == recipeTabs.getTabs().size() - 1;
+        nextButton.setDisable(last);
+        previousButton.setDisable(first);
+        finishButton.setDisable(!last);
     }
 
     private void setupIngredientTable() {
@@ -318,6 +351,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      * Clears all dialog fields.
      */
     private void clearDialog() {
+        resetDialog();
         nameField.setText(StringUtils.EMPTY);
         preparationField.setText(StringUtils.EMPTY);
         ratingField.setRating(5);
@@ -327,18 +361,18 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         cookingTimeField.setText(StringUtils.EMPTY);
         ListBinding.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), Collections.emptySet());
         ingredientTable.getItems().clear();
-        ingredientServingsField.setFloat(1f);
-        ingredientNameField.setText(StringUtils.EMPTY);
-        ingredientQuantityField.setText(StringUtils.EMPTY);
-        selectedIngredient.setValue(null);
-        ingredientQuantityField.setDisable(true);
-        ingredientAddButton.setDisable(true);
         cookbooksField.getCheckModel().clearChecks();
         keywordField.clearSelectedKeywords();
     }
 
+    /**
+     * Prefill dialog fields with values from specified recipe.
+     *
+     * @param recipe (NotNull)
+     */
     private void prefillDialog(final Recipe recipe) {
         Validate.notNull(recipe);
+        resetDialog();
         nameField.setText(recipe.getName());
         FillUtils.checkItems(cookbooksField, recipe.getCookbooks());
         preparationField.setText(recipe.getPreparation());
@@ -351,6 +385,21 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         ingredientTable.getItems().clear();
         ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
         keywordField.setSelectedKeywords(recipe.getKeywords());
+    }
+
+    /**
+     * Reset dialog to its initial state. This is common for clearing and prefilling dialog.
+     * It sets values which does not depend on recipe, like default selected tab or ingredient fields excluding table.
+     */
+    private void resetDialog() {
+        ingredientServingsField.setFloat(1f);
+        recipeTabs.getSelectionModel().select(0);
+        ingredientNameField.setText(StringUtils.EMPTY);
+        ingredientQuantityField.setText(StringUtils.EMPTY);
+        selectedIngredient.setValue(null);
+        ingredientQuantityField.setDisable(true);
+        ingredientAddButton.setDisable(true);
+        updateButtons(0);
     }
 
     /**
