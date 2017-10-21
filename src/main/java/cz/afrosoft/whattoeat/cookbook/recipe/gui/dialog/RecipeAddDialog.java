@@ -16,10 +16,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.AddButton;
-import cz.afrosoft.whattoeat.core.gui.component.DurationField;
-import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
-import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
+import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
 import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
@@ -40,7 +37,6 @@ import javafx.stage.Modality;
 import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.Rating;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
@@ -87,9 +83,9 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     @FXML
     private TextField nameField;
     @FXML
-    private CheckComboBox<CookbookRef> cookbooksField;
+    private MultiSelect<CookbookRef> cookbooksField;
     @FXML
-    private CheckComboBox<RecipeType> recipeTypeField;
+    private MultiSelect<RecipeType> recipeTypeField;
     @FXML
     private ComboBox<Taste> tasteField;
     @FXML
