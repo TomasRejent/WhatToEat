@@ -5,9 +5,9 @@
 - Set nullable false to mandatory entity attributes OR use hibernate validations
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
-- Create some hack to internationalize buttons in javafx dialogs
 - Decide if cells with complex graphics should be defined in code or in fxml
 - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
+- Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 
 Done:
 X - Add UUID to every entity and migrate existing data
@@ -19,6 +19,7 @@ X - ConverterUtil can have method for converting not sorted sets. This can be us
 X - Create number field
 X - check all services if they properly use Transactional annotation
 X - update objects should not extend model interfaces
+X - Create some hack to internationalize buttons in javafx dialogs
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.

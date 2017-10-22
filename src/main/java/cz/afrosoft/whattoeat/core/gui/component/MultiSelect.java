@@ -51,12 +51,21 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         return skin;
     }
 
+    /**
+     * Gets underlying combo box of check combo box from its skin. This is implementation specific and not safe, but there is no public api to get combo box.
+     *
+     * @param skin (NotNull) Skin from which combo box is torn.
+     * @return Hopefully underlying combo box of check combo box.
+     */
     private ComboBox<T> getComboBox(final CheckComboBoxSkin<T> skin) {
         Validate.notNull(skin);
         return (ComboBox<T>) skin.getChildren().stream().filter(node -> node instanceof ComboBox).findFirst().get();
     }
 
     private void setUpComboBox() {
+        /* Listener for closing combo box on TAB or ESC key.
+        There is no other way to obtain list view from combo box. However skin is not available during call of this method, so it
+        must be obtained in listener after combo box is shown. */
         comboBox.setOnShown(showEvent -> {
             ((ComboBoxListViewSkin<T>) comboBox.getSkin()).getListView().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
                 if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.ESCAPE) {
@@ -66,7 +75,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
                 }
             });
         });
-
+        //wrapping of cell factory which adds listeners which enable checking items by enter key and mouse click on cell.
         Callback<ListView<T>, ListCell<T>> cellFactory = comboBox.getCellFactory();
         comboBox.setCellFactory(param -> {
             ListCell<T> cell = cellFactory.call(param);
@@ -74,7 +83,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
             cell.setOnKeyPressed(createKeyHandler(cell));
             return cell;
         });
-
+        //event for opening combo box with key down.
         comboBox.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.DOWN) {
                 openComboBox();
@@ -83,6 +92,9 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         });
     }
 
+    /**
+     * When check combo box receives focus it automatically open combo box.
+     */
     private void setupFocusTraversal() {
         focusedProperty().addListener((observable, oldValue, newValue) -> {
             if (BooleanUtils.isTrue(newValue)) {
@@ -91,6 +103,9 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         });
     }
 
+    /**
+     * Open popup list view of {@link #comboBox} and select first entry.
+     */
     private void openComboBox() {
         comboBox.show();
         comboBox.getSelectionModel().select(0);
@@ -117,6 +132,15 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         };
     }
 
+    /**
+     * Cretes handler for key pressed on combo box cell. This handler inverts check status of selected cell on enter key.
+     *
+     * This method also add another listener which focus checkbox from cell when cell is selected. This is needed in order
+     * to receive key events by cell.
+     *
+     * @param cell (NotNull) Cell for which handler is created. Is used to obtain index.
+     * @return (NotNull) New handler.
+     */
     private EventHandler<KeyEvent> createKeyHandler(final ListCell<T> cell) {
         Validate.notNull(cell);
 
@@ -134,6 +158,10 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         };
     }
 
+    /**
+     * Inverts state of checkbox on specified index.
+     * @param index Index of check to invert. Must be within bounds of existing options.
+     */
     private void negateCheckedProperty(final int index) {
         BooleanProperty itemBooleanProperty = getItemBooleanProperty(index);
         itemBooleanProperty.setValue(!itemBooleanProperty.get());
