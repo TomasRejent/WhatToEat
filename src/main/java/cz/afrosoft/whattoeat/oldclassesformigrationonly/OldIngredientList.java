@@ -4,11 +4,10 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Label;
@@ -28,24 +27,24 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public final class IngredientList extends ListView<IngredientView>{
+public final class OldIngredientList extends ListView<OldIngredientView> {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(IngredientList.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(OldIngredientList.class);
 
     private final PieceConversionService pieceConversionService = ServiceHolder.getPieceConversionService();
 
-    private final ObservableList<IngredientView> ingredientList = FXCollections.observableList(new LinkedList<IngredientView>());
+    private final ObservableList<OldIngredientView> ingredientList = FXCollections.observableList(new LinkedList<OldIngredientView>());
 
     private final IngredientService ingredientService;
 
-    public IngredientList() {
+    public OldIngredientList() {
         setItems(ingredientList);
-        setCellFactory((ListView<IngredientView> param) -> new IngredientViewCell(pieceConversionService));
+        setCellFactory((ListView<OldIngredientView> param) -> new IngredientViewCell(pieceConversionService));
         this.ingredientService = ServiceHolder.getIngredientInfoService();
     }
 
     public void setServings(int servings){
-        for(IngredientView ingredient : ingredientList){
+        for (OldIngredientView ingredient : ingredientList) {
             ingredient.setServings(servings);
         }
         this.refresh();
@@ -60,18 +59,18 @@ public final class IngredientList extends ListView<IngredientView>{
                 continue;
             }
 
-            ingredientList.add(new IngredientView(ingredient, ingredientInfo));
+            ingredientList.add(new OldIngredientView(ingredient, ingredientInfo));
         }
         Collections.sort(ingredientList);
     }
 
-    public void setIngredientViews(final Collection<IngredientView> ingredients){
+    public void setIngredientViews(final Collection<OldIngredientView> ingredients) {
         ingredientList.clear();
         ingredientList.addAll(ingredients);
         Collections.sort(ingredientList);
     }
 
-    private static class IngredientViewCell extends ListCell<IngredientView>{
+    private static class IngredientViewCell extends ListCell<OldIngredientView> {
 
         private static final double ITEM_ELEMENT_SPACING = 5;
 
@@ -89,7 +88,7 @@ public final class IngredientList extends ListView<IngredientView>{
         }
 
         @Override
-        protected void updateItem(IngredientView item, boolean empty) {
+        protected void updateItem(OldIngredientView item, boolean empty) {
             super.updateItem(item, empty);
             setText(null);
             if (empty || item == null) {
@@ -100,13 +99,13 @@ public final class IngredientList extends ListView<IngredientView>{
             }
         }
 
-        private void updateCellContent(IngredientView item){
+        private void updateCellContent(OldIngredientView item) {
             quantityText.setText(getQuantityText(item));
             nameText.setText(item.getName());
             updateKeywords(item.getKeywords());
         }
 
-        private String getQuantityText(IngredientView ingredientView){
+        private String getQuantityText(OldIngredientView ingredientView) {
             StringBuilder stringBuilder = new StringBuilder();
             String unitLabel = I18n.getText(ingredientView.getIngredientUnit().getLabelKey());
             stringBuilder.append(ingredientView.getQuantity()).append(unitLabel);

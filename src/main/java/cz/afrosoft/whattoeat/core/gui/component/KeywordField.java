@@ -1,7 +1,22 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import com.google.common.collect.Sets;
-
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
+import javafx.application.Platform;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.value.ChangeListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableSet;
+import javafx.collections.SetChangeListener;
+import javafx.event.Event;
+import javafx.fxml.FXML;
+import javafx.scene.control.ComboBox;
+import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.GridPane;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -12,19 +27,6 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
 import java.util.Set;
-
-import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
-import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
-import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableSet;
-import javafx.collections.SetChangeListener;
-import javafx.event.Event;
-import javafx.fxml.FXML;
-import javafx.scene.control.ComboBox;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
 
 /**
  * Component for picking keywords.
@@ -42,6 +44,8 @@ public class KeywordField extends GridPane {
     @FXML
     private FlowPane keywordContainer;
 
+    private BooleanProperty editableProperty = new SimpleBooleanProperty(this, "editable", true);
+
     /**
      * Observable set of keywords. Keywords in this set are displayed in keyword container.
      */
@@ -53,6 +57,7 @@ public class KeywordField extends GridPane {
     public KeywordField() {
         ComponentUtil.initFxmlComponent(this, FXML_PATH);
         keywords.addListener(createChangeListener());
+        editableProperty.addListener(createEditableChangeListener());
         initKeywordField();
     }
 
@@ -65,6 +70,18 @@ public class KeywordField extends GridPane {
                 processKeywordAddition(change);
             }
         });
+    }
+
+    private ChangeListener<Boolean> createEditableChangeListener() {
+        return (observable, oldValue, newValue) -> {
+            if (BooleanUtils.isTrue(newValue)) {
+                if (!getChildren().contains(keywordField)) {
+                    getChildren().add(keywordField);
+                }
+            } else {
+                getChildren().remove(keywordField);
+            }
+        };
     }
 
     private void processKeywordRemove(final SetChangeListener.Change<? extends Keyword> change) {
@@ -85,7 +102,7 @@ public class KeywordField extends GridPane {
         Keyword addedKeyword = change.getElementAdded();
         //update panel with displayed keywords
         KeywordLabel keywordLabel = keywordService.createKeywordLabel(addedKeyword);
-        keywordLabel.setRemovable(true);
+        keywordLabel.setRemovable(editableProperty.get());
         keywordLabel.setRemoveListener(removedKeywordLabel -> keywords.remove(removedKeywordLabel.getKeyword()));
         keywordContainer.getChildren().add(keywordLabel);
         //update keyword field
@@ -146,5 +163,17 @@ public class KeywordField extends GridPane {
      */
     public void clearSelectedKeywords() {
         keywords.clear();
+    }
+
+    public boolean isEditable() {
+        return editableProperty.get();
+    }
+
+    public void setEditable(final boolean editable) {
+        editableProperty.set(editable);
+    }
+
+    public BooleanProperty editablePropertyProperty() {
+        return editableProperty;
     }
 }

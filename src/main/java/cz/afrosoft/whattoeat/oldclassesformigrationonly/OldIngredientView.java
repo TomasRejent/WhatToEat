@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 
-package cz.afrosoft.whattoeat.cookbook.ingredient.gui.view;
+package cz.afrosoft.whattoeat.oldclassesformigrationonly;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.ImmutableSortedSet;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldIngredient;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeIngredient;
-import cz.afrosoft.whattoeat.oldclassesformigrationonly.ServiceHolder;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -23,14 +20,14 @@ import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUti
  *
  * @author Tomas Rejent
  */
-final class IngredientView implements Comparable<IngredientView>{
+final class OldIngredientView implements Comparable<OldIngredientView> {
 
     private final OldRecipeIngredient ingredient;
     private final OldIngredient ingredientInfo;
 
         private int servings = 1;
 
-    public IngredientView(OldRecipeIngredient ingredient, OldIngredient ingredientInfo) {
+    public OldIngredientView(OldRecipeIngredient ingredient, OldIngredient ingredientInfo) {
             checkNotNull(ingredient, "RecipeIngredient cannot be null.");
             checkNotNull(ingredientInfo, "RecipeIngredient info cannot be null.");
 
@@ -67,7 +64,7 @@ final class IngredientView implements Comparable<IngredientView>{
         }
 
     @Override
-    public int compareTo(IngredientView ingredientView) {
+    public int compareTo(OldIngredientView ingredientView) {
         Validate.notNull(ingredientView, "Cannot compare to null.");
 
         final int LESS = -1;

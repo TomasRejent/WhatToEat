@@ -6,8 +6,8 @@
 
 package cz.afrosoft.whattoeat.diet.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.gui.view.IngredientList;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldIngredientList;
 import cz.afrosoft.whattoeat.oldclassesformigrationonly.OldRecipeIngredient;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
@@ -24,7 +24,7 @@ public class ShoppingListDialog extends Dialog<Void>{
     private static final String TITLE_KEY = "cz.afrosoft.whattoeat.dietview.dialog.shoppping.title";
     private static final double WIDTH = 800;
     private static final double HEIGHT = 800;
-    private final IngredientList ingredientList = new IngredientList();
+    private final OldIngredientList ingredientList = new OldIngredientList();
 
     public ShoppingListDialog() {
         super();

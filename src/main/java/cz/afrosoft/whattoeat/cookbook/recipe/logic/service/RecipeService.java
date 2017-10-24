@@ -1,11 +1,12 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import java.util.Collection;
-import java.util.Set;
-
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+
+import java.util.Collection;
+import java.util.Set;
 
 /**
  * @author Tomas Rejent
@@ -70,5 +71,13 @@ public interface RecipeService {
      * @return (Nullable)
      */
     Collection<RecipeIngredientUpdateObject> toUpdateObjects(Collection<RecipeIngredientRef> recipeIngredients);
+
+    /**
+     * Loads {@link RecipeIngredient} for {@link RecipeIngredientRef}.
+     *
+     * @param references (NotNull) References to load.
+     * @return (NotNull) Loaded references.
+     */
+    Collection<RecipeIngredient> loadRecipeIngredients(Collection<RecipeIngredientRef> references);
 
 }

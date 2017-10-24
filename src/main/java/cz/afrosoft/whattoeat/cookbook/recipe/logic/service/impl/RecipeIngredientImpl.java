@@ -111,14 +111,14 @@ final class RecipeIngredientImpl implements RecipeIngredient {
         }
 
         @Override
-        public RecipeIngredientUpdateObject setQuantity(final float quantity) {
+        public Builder setQuantity(final float quantity) {
             Validate.isTrue(quantity >= 0);
             this.quantity = quantity;
             return this;
         }
 
         @Override
-        public RecipeIngredientUpdateObject setIngredient(final Ingredient ingredient) {
+        public Builder setIngredient(final Ingredient ingredient) {
             Validate.notNull(ingredient);
             this.ingredient = ingredient;
             return this;

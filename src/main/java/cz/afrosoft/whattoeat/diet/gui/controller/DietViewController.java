@@ -5,7 +5,6 @@
  */
 package cz.afrosoft.whattoeat.diet.gui.controller;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.gui.dialog.MealDialog;
 import cz.afrosoft.whattoeat.diet.gui.dialog.ShoppingListDialog;
@@ -76,7 +75,6 @@ public class DietViewController implements Initializable {
     @FXML
     private TableColumn<DayDiet, MealView> dinnerColumn;
     private ObservableList<DayDiet> dayDietList = FXCollections.observableArrayList();
-    private RecipeViewDialog recipeViewDialog;
     private MealDialog mealDialog;
     private ShoppingListDialog shoppingListDialog;
 
@@ -106,7 +104,6 @@ public class DietViewController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        recipeViewDialog = new RecipeViewDialog();
         mealDialog = new MealDialog();
         shoppingListDialog = new ShoppingListDialog();
         
@@ -179,7 +176,6 @@ public class DietViewController implements Initializable {
             if(recipe == null){
                 return;
             }
-            recipeViewDialog.showRecipe(recipe);
         }
     }
 

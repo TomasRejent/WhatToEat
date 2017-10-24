@@ -1,8 +1,6 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import javafx.beans.NamedArg;
-import javafx.beans.value.ChangeListener;
-import javafx.scene.control.TextField;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
@@ -12,9 +10,7 @@ import java.util.regex.Pattern;
  * Text field allowing only input of float values. Accepts both "." and "," for decimal part separation.
  * Empty value is also allowed.
  */
-public class FloatFiled extends TextField {
-
-    private final TYPE type;
+public class FloatFiled extends RegexRestrictedField {
 
     /**
      * Creates new field and attaches change listener which validates user input. Default type of field is {@link TYPE#ALL}.
@@ -29,22 +25,7 @@ public class FloatFiled extends TextField {
      * @param type (NotNull) Type of validation for field.
      */
     public FloatFiled(@NamedArg("type") final TYPE type) {
-        Validate.notNull(type);
-        textProperty().addListener(createChangeListener());
-        this.type = type;
-    }
-
-    /**
-     * Creates change listener which performs validation.
-     *
-     * @return (NotNull)
-     */
-    private ChangeListener<String> createChangeListener() {
-        return (observable, oldValue, newValue) -> {
-            if (!type.getPattern().matcher(newValue).matches()) {
-                setText(oldValue);
-            }
-        };
+        super(type.getPattern());
     }
 
     /**

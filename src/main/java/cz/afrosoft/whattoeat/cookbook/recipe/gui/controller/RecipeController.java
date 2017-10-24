@@ -1,6 +1,8 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
+import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
+import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
@@ -16,7 +18,6 @@ import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -131,12 +132,16 @@ public class RecipeController implements Initializable {
     /* Button actions */
 
     @FXML
-    private void showRecipe(ActionEvent actionEvent){
+    private void showRecipe() {
         LOGGER.debug("Show recipe action triggered.");
+        getSelectedRecipe().ifPresent(recipe -> {
+            RecipeViewDialog viewDialog = Main.getApplicationContext().getBean(RecipeViewDialog.class);
+            viewDialog.showRecipe(recipe);
+        });
     }
 
     @FXML
-    private void addRecipe(ActionEvent actionEvent){
+    private void addRecipe() {
         LOGGER.debug("Add recipe action triggered.");
         recipeAddDialog.addRecipe().ifPresent(
                 recipeUpdateObject -> recipeTable.getItems().add(recipeService.createOrUpdate(recipeUpdateObject))
@@ -144,7 +149,7 @@ public class RecipeController implements Initializable {
     }
 
     @FXML
-    private void editRecipe(ActionEvent actionEvent){
+    private void editRecipe() {
         LOGGER.debug("Edit recipe action triggered.");
         getSelectedRecipe().ifPresent(//recipe is selected
                 recipe -> recipeAddDialog.editRecipe(recipe).ifPresent(//edit is confirmed
@@ -154,7 +159,7 @@ public class RecipeController implements Initializable {
     }
 
     @FXML
-    private void deleteRecipe(ActionEvent actionEvent){
+    private void deleteRecipe() {
         LOGGER.debug("Delete recipe action called.");
         getSelectedRecipe().ifPresent(recipe -> {
             if (DialogUtils.showConfirmDialog(
