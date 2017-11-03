@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
-import com.sun.javafx.scene.control.skin.ComboBoxListViewSkin;
+
 import impl.org.controlsfx.skin.CheckComboBoxSkin;
 import javafx.beans.property.BooleanProperty;
 import javafx.event.EventHandler;
@@ -9,6 +9,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.Skin;
+import javafx.scene.control.skin.ComboBoxListViewSkin;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,7 +31,7 @@ import java.util.Optional;
  * Cell factory is replaced only when using default skin. If you set custom skin by {@link #setSkin(Skin)} or in css by
  * -fx-skin then you must implement this behavior yourselves. This is because lookup of underlying {@link ComboBox} is dependent
  * on skin implementation.
- *
+ * <p>
  * Another added functionality is ability to navigate in items by keys and change item selection by enter key.
  *
  * @author Tomas Rejent
@@ -57,6 +58,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
      * @param skin (NotNull) Skin from which combo box is torn.
      * @return Hopefully underlying combo box of check combo box.
      */
+    @SuppressWarnings("unchecked")
     private ComboBox<T> getComboBox(final CheckComboBoxSkin<T> skin) {
         Validate.notNull(skin);
         return (ComboBox<T>) skin.getChildren().stream().filter(node -> node instanceof ComboBox).findFirst().get();
@@ -67,13 +69,13 @@ public class MultiSelect<T> extends CheckComboBox<T> {
         There is no other way to obtain list view from combo box. However skin is not available during call of this method, so it
         must be obtained in listener after combo box is shown. */
         comboBox.setOnShown(showEvent -> {
-            ((ComboBoxListViewSkin<T>) comboBox.getSkin()).getListView().addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            findListView(comboBox).ifPresent(listView -> listView.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
                 if (event.getCode() == KeyCode.TAB || event.getCode() == KeyCode.ESCAPE) {
                     comboBox.hide();
                     comboBox.requestFocus();
                     event.consume();
                 }
-            });
+            }));
         });
         //wrapping of cell factory which adds listeners which enable checking items by enter key and mouse click on cell.
         Callback<ListView<T>, ListCell<T>> cellFactory = comboBox.getCellFactory();
@@ -90,6 +92,13 @@ public class MultiSelect<T> extends CheckComboBox<T> {
                 event.consume();
             }
         });
+    }
+
+    @SuppressWarnings("unchecked")
+    private Optional<ListView<T>> findListView(final ComboBox<T> comboBox) {
+        Optional<Node> listViewOpt = ((ComboBoxListViewSkin<T>) comboBox.getSkin()).getChildren().stream().filter(node -> node instanceof ListView).findFirst();
+        ListView<T> listView = (ListView<T>) listViewOpt.orElse(null);
+        return Optional.ofNullable(listView);
     }
 
     /**
@@ -134,7 +143,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
 
     /**
      * Cretes handler for key pressed on combo box cell. This handler inverts check status of selected cell on enter key.
-     *
+     * <p>
      * This method also add another listener which focus checkbox from cell when cell is selected. This is needed in order
      * to receive key events by cell.
      *
@@ -160,6 +169,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
 
     /**
      * Inverts state of checkbox on specified index.
+     *
      * @param index Index of check to invert. Must be within bounds of existing options.
      */
     private void negateCheckedProperty(final int index) {
