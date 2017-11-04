@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
@@ -9,13 +10,17 @@ import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author Tomas Rejent
  */
-public class IngredientQuantityTable extends TableView<IngredientQuantityTable.IngredientQuantity> {
+public class IngredientQuantityTable extends TableView<IngredientQuantity> {
 
     private static final String FXML_PATH = "/component/IngredientQuantityTable.fxml";
 
@@ -28,6 +33,9 @@ public class IngredientQuantityTable extends TableView<IngredientQuantityTable.I
     @FXML
     private TableColumn<IngredientQuantity, Collection<Keyword>> keywordColumn;
 
+    @Autowired
+    private IngredientQuantityService quantityService;
+
     private final Map<Ingredient, IngredientQuantity> lookupMap;
 
     public IngredientQuantityTable() {
@@ -38,6 +46,7 @@ public class IngredientQuantityTable extends TableView<IngredientQuantityTable.I
 
     private void setupColumnCellFactories() {
         quantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getQuantity, 0f));
+        quantityColumn.setCellFactory(param -> new IngredientQuantityCell(quantityService));
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(IngredientQuantity::getName));
         priceColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getPrice, 0f));
         keywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getKeywords, Collections.emptySet()));
@@ -83,47 +92,4 @@ public class IngredientQuantityTable extends TableView<IngredientQuantityTable.I
         return getItems().stream().map(IngredientQuantity::getPrice).reduce((price1, price2) -> price1 + price2).orElse(0f);
     }
 
-    static class IngredientQuantity {
-
-        private float quantity;
-        private final Ingredient ingredient;
-
-        IngredientQuantity(final float quantity, final Ingredient ingredient) {
-            Validate.notNull(ingredient);
-            Validate.isTrue(quantity >= 0, "Quantity cannot be negative");
-
-            this.quantity = quantity;
-            this.ingredient = ingredient;
-        }
-
-        void addQuantity(final float newQuantity) {
-            Validate.isTrue(newQuantity >= 0);
-            quantity += newQuantity;
-        }
-
-        void setQuantity(final float quantity) {
-            Validate.isTrue(quantity >= 0);
-            this.quantity = quantity;
-        }
-
-        public Ingredient getIngredient() {
-            return ingredient;
-        }
-
-        public float getQuantity() {
-            return quantity;
-        }
-
-        public float getPrice() {
-            return quantity * ingredient.getPrice();
-        }
-
-        public String getName() {
-            return ingredient.getName();
-        }
-
-        public Set<Keyword> getKeywords() {
-            return ingredient.getKeywords();
-        }
-    }
 }

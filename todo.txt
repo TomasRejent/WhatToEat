@@ -8,6 +8,7 @@
 - Decide if cells with complex graphics should be defined in code or in fxml
 - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
+- Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 
 Done:
 X - Add UUID to every entity and migrate existing data
@@ -51,6 +52,7 @@ X - Create some hack to internationalize buttons in javafx dialogs
 - Add ability to delete diet
 - Translate new cz messages to en
 - Add language to config file and use it program
+- Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 
 
 Done:
