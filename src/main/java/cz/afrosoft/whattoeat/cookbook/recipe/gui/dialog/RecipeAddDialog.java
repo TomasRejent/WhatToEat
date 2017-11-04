@@ -310,7 +310,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         boolean last = selectedIndex == recipeTabs.getTabs().size() - 1;
         nextButton.setDisable(last);
         previousButton.setDisable(first);
-        finishButton.setDisable(!last);
+        finishButton.setDisable(!(recipeUpdateObject.getId().isPresent() || last));
     }
 
     private void updateFocus(final int selectedIndex) {
@@ -383,9 +383,10 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      */
     public Optional<RecipeUpdateObject> addRecipe() {
         setTitle(I18n.getText(ADD_TITLE_KEY));
+        //this must be before clear dialog, because recipeUpdateObject is used in buttons setup
+        recipeUpdateObject = recipeService.getCreateObject();
         clearDialog();
         setupDynamicFieldOptions();
-        recipeUpdateObject = recipeService.getCreateObject();
         return showAndWait();
     }
 
@@ -398,9 +399,10 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
     public Optional<RecipeUpdateObject> editRecipe(final Recipe recipe) {
         Validate.notNull(recipe);
         setTitle(I18n.getText(EDIT_TITLE_KEY));
+        //this must be before prefill dialog, because recipeUpdateObject is used in buttons setup
+        recipeUpdateObject = recipeService.getUpdateObject(recipe);
         setupDynamicFieldOptions();
         prefillDialog(recipe);
-        recipeUpdateObject = recipeService.getUpdateObject(recipe);
         return showAndWait();
     }
 
