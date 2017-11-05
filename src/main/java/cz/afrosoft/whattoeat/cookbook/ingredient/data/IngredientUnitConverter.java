@@ -1,4 +1,4 @@
-package cz.afrosoft.whattoeat.oldclassesformigrationonly;
+package cz.afrosoft.whattoeat.cookbook.ingredient.data;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.core.data.IdEnumConverter;

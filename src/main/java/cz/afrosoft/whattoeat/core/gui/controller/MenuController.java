@@ -62,18 +62,6 @@ public class MenuController implements Initializable {
         showPage(Page.INGREDIENTS);
     }
 
-    @FXML
-    private void showFoodList(final ActionEvent actionEvent) {
-        LOGGER.debug("Switching to Food list page.");
-        showPage(Page.FOOD_LIST);
-    }
-    
-    @FXML
-    private void showGenerator(final ActionEvent actionEvent) {
-        LOGGER.debug("Switching to Generator page.");
-        showPage(Page.GENERATOR);
-    }
-
     /**
      * Shows specified page in center of root border pane. If page cannot be loaded by
      * FXML Loader, then label with error message is shown instead of page.

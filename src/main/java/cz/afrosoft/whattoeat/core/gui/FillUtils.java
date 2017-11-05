@@ -1,11 +1,10 @@
 package cz.afrosoft.whattoeat.core.gui;
 
+import org.apache.commons.lang3.Validate;
 import org.controlsfx.control.CheckComboBox;
 import org.controlsfx.control.IndexedCheckModel;
 
 import java.util.Collection;
-
-import static cz.afrosoft.whattoeat.oldclassesformigrationonly.ParameterCheckUtils.checkNotNull;
 
 /**
  * Utils for filling specific GUI components.
@@ -20,8 +19,8 @@ public class FillUtils {
      * @param <T> Type of {@link CheckComboBox} items.
      */
     public static <T> void checkItems(CheckComboBox<T> checkComboBox, Collection<T> items){
-        checkNotNull(checkComboBox, "CheckComboBox to fill cannot be null.");
-        checkNotNull(items, "Item collection cannot be null.");
+        Validate.notNull(checkComboBox, "CheckComboBox to fill cannot be null.");
+        Validate.notNull(items, "Item collection cannot be null.");
 
         IndexedCheckModel<T> checkModel = checkComboBox.getCheckModel();
         checkModel.clearChecks();

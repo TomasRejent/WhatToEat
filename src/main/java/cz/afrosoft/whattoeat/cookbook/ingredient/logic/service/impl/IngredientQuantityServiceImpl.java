@@ -12,6 +12,10 @@ import org.springframework.stereotype.Service;
  * <p>
  * TODO - Currently only basic formatting where internacionalized ingerdient unit is appended to entity is implemented.
  *
+ * TODO - Garlic conversion
+ * private static final int GRAMS_OF_AVERAGE_GARLIC_BULB = 65;
+ * private static final int GRAMS_OF_AVERAGE_GARLIC_CLOVE = 4;
+ *
  * @author Tomas Rejent
  */
 @Service
