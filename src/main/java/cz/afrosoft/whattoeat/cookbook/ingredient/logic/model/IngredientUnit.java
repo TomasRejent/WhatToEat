@@ -1,39 +1,44 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
+import cz.afrosoft.whattoeat.core.data.IdEnum;
 import cz.afrosoft.whattoeat.core.gui.Labeled;
+import org.apache.commons.lang3.Validate;
 
 /**
+ * Determines how quantity of ingredient is measured.
  *
- * @author Alexandra
+ * @author Tomas Rejent
  */
-public enum IngredientUnit implements Labeled{
+public enum IngredientUnit implements IdEnum, Labeled {
     /**
-     * Quantity expressed by number of units. For example three pieces of lemon.
+     * Quantity expressed by number of units. For example three pieces of eggs.
      */
-    PIECE("cz.afrosoft.whattoeat.ingredientUnit.piece"),
+    PIECE(1, "cz.afrosoft.whattoeat.ingredientUnit.piece"),
     /**
      * Quantity expressed by weight. Unit is gram. For example 500g of flour.
      */
-    WEIGHT("cz.afrosoft.whattoeat.ingredientUnit.weight"),
+    WEIGHT(2, "cz.afrosoft.whattoeat.ingredientUnit.weight"),
     /**
      * Quantity expressed by volume. Unit is milliliter. For example 350ml of milk.
      */
-    VOLUME("cz.afrosoft.whattoeat.ingredientUnit.volume");
+    VOLUME(3, "cz.afrosoft.whattoeat.ingredientUnit.volume");
 
-    private String labelKey;
+    private final int id;
+    private final String labelKey;
 
-    private IngredientUnit(String labelKey) {
+    IngredientUnit(final int id, final String labelKey) {
+        Validate.notBlank(labelKey);
+        this.id = id;
         this.labelKey = labelKey;
+    }
+
+    @Override
+    public int getId() {
+        return id;
     }
 
     @Override
     public String getLabelKey() {
         return labelKey;
     }
-        
 }

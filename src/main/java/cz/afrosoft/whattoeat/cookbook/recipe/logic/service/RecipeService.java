@@ -1,75 +1,83 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
-import cz.afrosoft.whattoeat.core.data.exception.NotFoundException;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+
+import java.util.Collection;
 import java.util.Set;
 
 /**
- * Service which handles work with {@link Recipe} and related entities on business layer.
  * @author Tomas Rejent
  */
 public interface RecipeService {
 
     /**
-     * Gets recipe by key.
-     * @param recipeKey (NotNull) Key of recipe.
-     * @return (NotNull) Recipe with specified key.
-     * @throws NotFoundException If recipe with given key does not exist.
-     */
-    Recipe getRecipeByKey(String recipeKey);
-
-    /**
-     * Gets recipe by name.
-     * @param name (NotNull) Name of recipe.
-     * @return (NotNull) Recipe with specified name.
-     * @throws NotFoundException If recipe with given name does not exist.
-     */
-    Recipe getRecipeByName(String name);
-
-    /**
-     * Gets all recipes.
-     * @return (NotNull)(ReadOnly) Set of recipes.
+     * @return (NotNull) Return all recipes defined in application.
      */
     Set<Recipe> getAllRecipes();
 
     /**
-     * Gets all recipes which contains type {@link RecipeType#SIDE_DISH}.
-     * @return (NotNull)(ReadOnly)
+     * @return (NotNull) Return set of references to recipes which contains side dish type.
      */
-    Set<Recipe> getAllSideDishes();
+    Set<RecipeRef> getAllSideDishRefs();
 
     /**
-     * Add new Recipe.
-     * @param recipe (NotNull) Recipe to add.
+     * Deletes specified recipe.
+     *
+     * @param recipe (NotNull) Recipe to delete.
      */
-    void addRecipe(Recipe recipe);
+    void delete(Recipe recipe);
 
     /**
-     * Saves specified recipe to persistent storage. It must already exist in storage.
-     * @param recipe (Required) Recipe to update.
+     * Gets createOrUpdate object for new Recipe. After data are filled it can be persisted using
+     * {@link #createOrUpdate(RecipeUpdateObject)} method.
+     *
+     * @return (NotNull)
      */
-    void updateRecipe(Recipe recipe);
+    RecipeUpdateObject getCreateObject();
 
     /**
-     * Deletes specified recipe from storage.
-     * @param recipe (Required) recipe to delete.
+     * Gets update object for specified ingredient. Update object is used to modify ingredient.
+     * Changes are not persisted until {@link #createOrUpdate(RecipeUpdateObject)} is called.
+     *
+     * @param recipe (NotNull) Recipe to modify.
+     * @return (NotNull)
      */
-    void deleteRecipe(Recipe recipe);
+    RecipeUpdateObject getUpdateObject(Recipe recipe);
 
     /**
-     * @return (NotNull)(ReadOnly) Set of keywords from all recipes.
+     * Applies changes specified by recipeChanges to recipe for which recipeChanges was constructed.
+     * It can also be used to persist new recipes.
+     *
+     * @param recipeChanges (NotNull) Changes to persist.
+     * @return (NotNull) Recipe with updated values.
      */
-    Set<String> getAllRecipeKeywords();
+    Recipe createOrUpdate(RecipeUpdateObject recipeChanges);
 
     /**
-     * @return (NotNull)(ReadOnly) Set containing names of all recipes.
+     * Creates new object for creating recipe ingredient. After object is filled with data it can be set to recipe by
+     * {@link RecipeUpdateObject#setIngredients(Set)}. Recipe ingredients are persisted together with recipe.
+     *
+     * @return (NotNull)
      */
-    Set<String> getAllRecipeNames();
+    RecipeIngredientUpdateObject getRecipeIngredientCreateObject();
+
+    /**
+     * Converts collection of recipe ingredient references to their update objects.
+     *
+     * @param recipeIngredients (Nullable)
+     * @return (Nullable)
+     */
+    Collection<RecipeIngredientUpdateObject> toUpdateObjects(Collection<RecipeIngredientRef> recipeIngredients);
+
+    /**
+     * Loads {@link RecipeIngredient} for {@link RecipeIngredientRef}.
+     *
+     * @param references (NotNull) References to load.
+     * @return (NotNull) Loaded references.
+     */
+    Collection<RecipeIngredient> loadRecipeIngredients(Collection<RecipeIngredientRef> references);
 
 }

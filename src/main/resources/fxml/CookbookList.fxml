@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MasterDetailPane?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="cookbookContainer"
+        stylesheets="@../styles/CookbookList.css"
+        styleClass="cookbook-container"
+        fx:controller="cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller.CookbookController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
+            <AddButton onAction="#addCookbook"/>
+            <EditButton fx:id="editButton" onAction="#editCookbook"/>
+            <DeleteButton fx:id="deleteButton" onAction="#deleteCookbook"/>
+        </VBox>
+    </left>
+    <center>
+        <MasterDetailPane fx:id="detailPane" detailSide="RIGHT">
+            <masterNode>
+                <TableView fx:id="cookbookTable" styleClass="cookbook-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.cookbook.table.header.name"/>
+                        <TableColumn fx:id="authorColumn" text="%cz.afrosoft.whattoeat.cookbook.table.header.authors"/>
+                    </columns>
+                </TableView>
+            </masterNode>
+            <detailNode>
+                <VBox>
+                    <Label text="%cz.afrosoft.whattoeat.cookbook.detail"/>
+                    <TextArea fx:id="detailArea"/>
+                </VBox>
+            </detailNode>
+        </MasterDetailPane>
+    </center>
+</BorderPane>

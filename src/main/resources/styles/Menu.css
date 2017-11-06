@@ -1,7 +1,4 @@
-/*
- * Empty Stylesheet file.
- */
-
-.mainFxmlClass {
-
+.root-pane {
+   -fx-pref-width: 900px;
+   -fx-pref-height: 600px;
 }

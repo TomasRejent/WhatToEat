@@ -1,21 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.net.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<BorderPane fx:id="RootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.core.gui.controller.MenuController">
-   <top>
-      <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-         <items>
-            <Button mnemonicParsing="false" onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes" />
-            <Button mnemonicParsing="false" onAction="#showIngredientList" text="%cz.afrosoft.whattoeat.menu.ingredients" />
-            <Button mnemonicParsing="false" onAction="#showFoodList" text="Food list" />
-            <Button mnemonicParsing="false" onAction="#showGenerator" text="%cz.afrosoft.whattoeat.menu.diet.generator" />
-         </items>
-      </ToolBar>
-   </top>
+<?import javafx.scene.layout.BorderPane?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        xmlns="http://javafx.com/javafx/8"
+        fx:id="rootPane"
+        stylesheets="@../styles/Menu.css"
+        styleClass="root-pane"
+        fx:controller="cz.afrosoft.whattoeat.core.gui.controller.MenuController">
+    <top>
+        <ToolBar prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+            <items>
+                <Button onAction="#showAuthorList" text="%cz.afrosoft.whattoeat.menu.authors"/>
+                <Button onAction="#showCookbookList" text="%cz.afrosoft.whattoeat.menu.cookbooks"/>
+                <Button onAction="#showRecipeList" text="%cz.afrosoft.whattoeat.menu.recipes"/>
+                <Button onAction="#showIngredientList" text="%cz.afrosoft.whattoeat.menu.ingredients"/>
+            </items>
+        </ToolBar>
+    </top>
 </BorderPane>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.FloatFiled?>
+<?import cz.afrosoft.whattoeat.core.gui.component.IngredientQuantityTable?>
+<?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<VBox
+        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="dialogContainer"
+        styleClass="recipe-view-dialog, no-padding"
+        stylesheets="@../styles/RecipeViewDialog.css"
+>
+    <!-- General attributes pane -->
+    <TitledPane fx:id="generalPane" text="%cz.afrosoft.whattoeat.recipes.view.properties.title" expanded="false">
+        <GridPane fx:id="generalLayout">
+            <columnConstraints>
+                <ColumnConstraints hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+                <ColumnConstraints hgrow="NEVER"/>
+                <ColumnConstraints hgrow="ALWAYS"/>
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="NEVER"/>
+                <RowConstraints vgrow="ALWAYS"/>
+            </rowConstraints>
+
+            <Label text="%cz.afrosoft.whattoeat.recipes.add.type"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="0"/>
+            <Label fx:id="typeLabel"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="0"/>
+            <Label text="%cz.afrosoft.whattoeat.recipes.add.taste"
+                   GridPane.columnIndex="2"
+                   GridPane.rowIndex="0"/>
+            <Label fx:id="tasteLabel"
+                   GridPane.columnIndex="3"
+                   GridPane.rowIndex="0"/>
+            <Label text="%cz.afrosoft.whattoeat.recipes.add.time.total"
+                   GridPane.columnIndex="0"
+                   GridPane.rowIndex="1"/>
+            <Label fx:id="timeLabel"
+                   GridPane.columnIndex="1"
+                   GridPane.rowIndex="1"/>
+            <Label text="%cz.afrosoft.whattoeat.recipes.add.rating"
+                   GridPane.columnIndex="2"
+                   GridPane.rowIndex="1"/>
+            <Label fx:id="ratingLabel"
+                   GridPane.columnIndex="3"
+                   GridPane.rowIndex="1"/>
+            <KeywordField fx:id="keywordField" editable="false"
+                          GridPane.columnIndex="0"
+                          GridPane.rowIndex="2"
+                          GridPane.columnSpan="4"/>
+        </GridPane>
+    </TitledPane>
+
+    <SplitPane fx:id="splitPane" orientation="VERTICAL" maxHeight="100000" VBox.vgrow="ALWAYS">
+        <!-- Ingredient pane -->
+        <TitledPane fx:id="ingredientPane" text="%cz.afrosoft.whattoeat.recipes.view.ingredients.title" expanded="true"
+                    styleClass="split-title">
+            <GridPane styleClass="top-padding">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="NEVER"/>
+                    <ColumnConstraints hgrow="NEVER"/>
+                    <ColumnConstraints hgrow="NEVER"/>
+                    <ColumnConstraints hgrow="ALWAYS"/>
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints vgrow="NEVER"/>
+                    <RowConstraints vgrow="ALWAYS"/>
+                </rowConstraints>
+
+                <Label text="%cz.afrosoft.whattoeat.recipes.view.ingredients.servings"
+                       styleClass="first-label"
+                       GridPane.columnIndex="0"
+                       GridPane.rowIndex="0"/>
+                <FloatFiled fx:id="servingsField"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="0"/>
+                <Label text="%cz.afrosoft.whattoeat.recipes.view.ingredients.price"
+                       GridPane.columnIndex="2"
+                       GridPane.rowIndex="0"/>
+                <Label fx:id="priceLabel"
+                       GridPane.columnIndex="3"
+                       GridPane.rowIndex="0"/>
+                <IngredientQuantityTable fx:id="ingredientQuantityTable"
+                                         GridPane.columnIndex="0"
+                                         GridPane.rowIndex="1"
+                                         GridPane.columnSpan="4"/>
+            </GridPane>
+        </TitledPane>
+        <!-- Preparation pane -->
+        <TitledPane fx:id="preparationPane" text="%cz.afrosoft.whattoeat.recipes.view.preparation.title" expanded="true"
+                    styleClass="split-title">
+            <TextArea fx:id="preparation"/>
+        </TitledPane>
+    </SplitPane>
+
+
+</VBox>

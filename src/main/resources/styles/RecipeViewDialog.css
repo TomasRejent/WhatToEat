@@ -1,0 +1,21 @@
+GridPane{
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+}
+
+.no-padding{
+    -fx-padding: 0;
+}
+
+.top-padding{
+     -fx-padding: 10px 0 0 0;
+}
+
+.first-label{
+    -fx-padding: 0 0 0 10px;
+}
+
+.split-title{
+    -fx-min-height: 30px;
+    -fx-max-height: 100000px;
+}

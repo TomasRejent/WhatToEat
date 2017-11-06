@@ -1,0 +1,23 @@
+.recipe-add-dialog TabPane .tab-header-background{
+    -fx-background-color: transparent;
+}
+
+.recipe-add-dialog TabPane .tab-content-area{
+    -fx-padding: 0 10px 0 10px;
+    -fx-border-color: lightgrey;
+    -fx-border-width: 1px 0 0 0;
+}
+
+GridPane{
+    -fx-hgap: 10px;
+    -fx-vgap: 10px;
+    -fx-padding: 10px 0 0 0;
+}
+
+.ingredient-float-field{
+    -fx-max-width: 100px;
+}
+
+.rating-field:focused > .container > .button {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,200,0.6) , 8, 0.0 , 0 , 0 );
+}

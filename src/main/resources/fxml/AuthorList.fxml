@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MasterDetailPane?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="authorContainer"
+        stylesheets="@../styles/AuthoList.css"
+        styleClass="author-container"
+        fx:controller="cz.afrosoft.whattoeat.cookbook.cookbook.gui.controller.AuthorController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.authors.actions.title"/>
+            <AddButton onAction="#addAuthor"/>
+            <EditButton fx:id="editButton" onAction="#editAuthor"/>
+            <DeleteButton fx:id="deleteButton" onAction="#deleteAuthor"/>
+        </VBox>
+    </left>
+    <center>
+        <MasterDetailPane fx:id="detailPane" detailSide="RIGHT">
+            <masterNode>
+                <TableView fx:id="authorTable" styleClass="author-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.authors.table.header.name"/>
+                        <TableColumn fx:id="emailColumn" text="%cz.afrosoft.whattoeat.authors.table.header.email"/>
+                        <TableColumn fx:id="cookbookColumn"
+                                     text="%cz.afrosoft.whattoeat.authors.table.header.cookbooks"/>
+                    </columns>
+                </TableView>
+            </masterNode>
+            <detailNode>
+                <VBox>
+                    <Label text="%cz.afrosoft.whattoeat.authors.detail"/>
+                    <TextArea fx:id="detailArea"/>
+                </VBox>
+            </detailNode>
+        </MasterDetailPane>
+    </center>
+</BorderPane>

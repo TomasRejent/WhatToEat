@@ -8,6 +8,7 @@ package cz.afrosoft.whattoeat.core.gui;
 import org.apache.commons.lang3.Validate;
 
 import java.text.Collator;
+import java.text.MessageFormat;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -25,7 +26,7 @@ public final class I18n {
 
     private I18n(){}
 
-    public static void init(String language){
+    public static void init(final String language) {
         Locale locale = new Locale(language);
         I18n.resourceBundle = ResourceBundle.getBundle(TEXTS_BUNDLE_NAME, locale);
         I18n.collator = Collator.getInstance(locale);
@@ -33,11 +34,29 @@ public final class I18n {
 
     /**
      * Get localized text for specified key.
-     * @param key
-     * @return
+     * @param key (NotBlank) Key of text.
+     * @return (NotNull) Localized text.
+     * @throws java.util.MissingResourceException If key is not found in loaded resource bundle.
      */
-    public static String getText(String key){
+    public static String getText(final String key) {
+        Validate.notBlank(key);
         return resourceBundle.getString(key);
+    }
+
+    /**
+     * Get localized text for specified key and fill specified parameters to it.
+     *
+     * @param key    (NotBlank) Key of text.
+     * @param params (NotNull) Parameters to fill into message.
+     * @return (NotNull) Localized text with filled parameters.
+     * @throws java.util.MissingResourceException If key is not found in loaded resource bundle.
+     * @see MessageFormat#format(String, Object...).
+     */
+    public static String getText(final String key, final Object... params) {
+        Validate.notBlank(key);
+        Validate.notNull(params);
+
+        return MessageFormat.format(getText(key), params);
     }
 
     /**

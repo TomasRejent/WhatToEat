@@ -1,219 +1,232 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.*;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.core.ServiceHolder;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.KeywordLabelFactory;
-import cz.afrosoft.whattoeat.core.gui.controller.suggestion.FullWordSuggestionProvider;
-import java.util.HashSet;
-import java.util.Optional;
-import java.util.Set;
-import javafx.geometry.Orientation;
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
+import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
+import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.titledpane.TitledPaneUtils;
+import javafx.fxml.FXML;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Label;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.TitledPane;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.PrefixSelectionChoiceBox;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.util.Optional;
 
 /**
- * Dialog for adding and editing of {@link Ingredient}.
+ * Dialog for adding and editing of ingredients. This dialog also allows to specify conversion rates between ingredient
+ * units.
+ * <p>
+ * This dialog must be modal because controller using it has only one instance of this dialog.
+ *
  * @author Tomas Rejent
  */
-public class IngredientDialog extends Dialog<IngredientRow>{
+@Controller
+@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
+public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientDialog.class);
 
-    private static final String I18N_NAME = "cz.afrosoft.whattoeat.ingredients.dialog.name";
-    private static final String I18N_UNIT = "cz.afrosoft.whattoeat.ingredients.dialog.unit";
-    private static final String I18N_PRICE = "cz.afrosoft.whattoeat.ingredients.dialog.price";
-    private static final String I18N_CONVERSION = "cz.afrosoft.whattoeat.ingredients.dialog.conversion";
-    private static final String I18N_KEYWORDS = "cz.afrosoft.whattoeat.ingredients.dialog.keywords";
+    private static final String DIALOG_FXML = "/fxml/IngredientDialog.fxml";
 
-    private final VBox verticalBox = new VBox();
-    private final HBox firstRow = new HBox();
-    private final HBox secondRow = new HBox();
-    private final HBox thirdRow = new HBox();
-    private final HBox fourthRow = new HBox();
+    /**
+     * Title message displayed when dialog is in add mode.
+     */
+    private static final String ADD_TITLE_KEY = "cz.afrosoft.whattoeat.ingredient.dialog.title.add";
 
-    private final Label nameLabel = new Label();
-    private final TextField nameField = new TextField();
-    private final Label unitLabel = new Label();
-    private final PrefixSelectionChoiceBox<IngredientUnit> unitField = new PrefixSelectionChoiceBox<>();
-    private final Label priceLabel = new Label();
-    private final TextField priceField = new TextField();
-    private final Label conversionLabel = new Label();
-    private final TextField conversionField = new TextField();
-    private final Label keywordLabel = new Label();
-    private final TextField keywordField = new TextField();
-    private final FlowPane keywordsView = new FlowPane(Orientation.HORIZONTAL);
-    private final Set<String> keywordSet = new HashSet<>();
+    /**
+     * Title message displayed when dialog is in edit mode.
+     */
+    private static final String EDIT_TITLE_KEY = "cz.afrosoft.whattoeat.ingredient.dialog.title.edit";
 
-    private final IngredientService ingredientService = ServiceHolder.getIngredientInfoService();
+    @FXML
+    private TextField nameField;
+    @FXML
+    private ComboBox<IngredientUnit> unitField;
+    @FXML
+    private FloatFiled priceField;
+    @FXML
+    private KeywordField keywordField;
+    @FXML
+    private TitledPane unitConversionPane;
+    @FXML
+    private FloatFiled gramsPerPieceField;
+    @FXML
+    private FloatFiled milliliterPerGramField;
+    @FXML
+    private FloatFiled gramsPerPinchField;
+    @FXML
+    private FloatFiled gramsPerCoffeeSpoonField;
+    @FXML
+    private FloatFiled gramsPerSpoonField;
 
-    private IngredientRow editRow;
+    @Autowired
+    private IngredientService ingredientService;
 
+    /**
+     * Holds createOrUpdate object when creating or editing ingredient.
+     */
+    private IngredientUpdateObject ingredientUpdateObject;
+
+    /**
+     * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
+     */
     public IngredientDialog() {
-        LOGGER.debug("Creating RecipeIngredient add/edit dialog.");
-        this.setResizable(true);
-        this.initModality(Modality.APPLICATION_MODAL);
-        this.getDialogPane().getButtonTypes().add(ButtonType.FINISH);
-        this.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
-        this.setupLayout();
-        this.setupKeywordSuggestion();
-        this.setupResultConverter();
+        super(DIALOG_FXML);
+        getDialogPane().getButtonTypes().add(ButtonType.FINISH);
+        getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+        setResizable(true);
+        initModality(Modality.APPLICATION_MODAL);
+        setupResultConverter();
+        ComboBoxUtils.initLabeledComboBox(unitField, IngredientUnit.values());
     }
 
-    public IngredientRow showForCreate(){
-        clearDialog();
-        final Optional<IngredientRow> dialogResult = this.showAndWait();
-        return dialogResult.orElse(null);
-    }
-
-    public IngredientRow showForEdit(final IngredientRow editRow){
-        Validate.notNull(editRow);
-        clearDialog();
-        this.editRow = editRow;
-        final Ingredient ingredientInfo = editRow.getIngredientInfo();
-        Validate.notNull(ingredientInfo);
-        nameField.setText(ingredientInfo.getName());
-        unitField.getSelectionModel().select(ingredientInfo.getIngredientUnit());
-        priceField.setText(String.valueOf(ingredientInfo.getPrice()));
-        for(String keyword : ingredientInfo.getKeywords()){
-            addKeyword(keyword);
-        }
-
-        final PieceConversionInfo pieceConversionInfo = editRow.getPieceConversionInfo();
-        if(pieceConversionInfo != null){
-            conversionField.setText(String.valueOf(pieceConversionInfo.getGramsOfAveragePiece()));
-        }
-
-        final Optional<IngredientRow> dialogResult = this.showAndWait();
-        return dialogResult.orElse(null);
-    }
-
-    private void setupResultConverter(){
+    /**
+     * Creates and sets result converter which handles dialog button events.
+     */
+    private void setupResultConverter() {
         this.setResultConverter((buttonType) -> {
-            if(ButtonType.FINISH.equals(buttonType)){
-                return fillFromDialog();
-            }else{
+            if (ButtonType.FINISH.equals(buttonType)) {
+                return fillUpdateObject();
+            } else {
                 return null;
             }
         });
     }
 
-    private void clearDialog(){
-        this.editRow = null;
+    /**
+     * Fills data from fields to createOrUpdate object. Precondition of this method is that {@link #ingredientUpdateObject} is not null.
+     *
+     * @return (NotNull)
+     * @throws IllegalStateException If createOrUpdate object does not exist.
+     */
+    private IngredientUpdateObject fillUpdateObject() {
+        LOGGER.trace("Filling update object: {}", ingredientUpdateObject);
+        if (ingredientUpdateObject == null) {
+            throw new IllegalStateException("Ingredient createOrUpdate object cannot be null.");
+        }
+
+        ingredientUpdateObject.setName(nameField.getText());
+        ingredientUpdateObject.setIngredientUnit(unitField.getValue());
+        ingredientUpdateObject.setPrice(priceField.getFloatOrZero());
+        ingredientUpdateObject.setKeywords(keywordField.getSelectedKeywords());
+        ingredientUpdateObject.setUnitConversion(
+                gramsPerPieceField.getFloat(),
+                milliliterPerGramField.getFloat(),
+                gramsPerPinchField.getFloat(),
+                gramsPerCoffeeSpoonField.getFloat(),
+                gramsPerSpoonField.getFloat()
+        );
+
+        LOGGER.trace("Update object filled to: {}", ingredientUpdateObject);
+        return ingredientUpdateObject;
+    }
+
+    /**
+     * Shows dialog for adding ingredient. This is blocking call. It waits until user close dialog.
+     *
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with ingredient createOrUpdate object if user submit dialog.
+     */
+    public Optional<IngredientUpdateObject> addIngredient() {
+        setTitle(I18n.getText(ADD_TITLE_KEY));
+        clearDialog();
+        ingredientUpdateObject = ingredientService.getCreateObject();
+        return showAndWait();
+    }
+
+    /**
+     * Shows dialog for adding ingredient and prefills name field with specified value. This is blocking call. It waits until user close dialog.
+     *
+     * @param ingredientName (Nullable) Ingredient name which is prefilled into name field of dialog.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with ingredient createOrUpdate object if user submit dialog.
+     */
+    public Optional<IngredientUpdateObject> addIngredient(final String ingredientName) {
+        setTitle(I18n.getText(ADD_TITLE_KEY));
+        clearDialog();
+        nameField.setText(ingredientName);
+        ingredientUpdateObject = ingredientService.getCreateObject();
+        return showAndWait();
+    }
+
+    /**
+     * Shows dialog for editing ingredient. This is blocking call. It waits until user close dialog.
+     *
+     * @param ingredient (NotNull) Ingredient to edit.
+     * @return (NotNull) Empty optional if user cancels dialog. Optional with ingredient createOrUpdate object if user submit dialog.
+     */
+    public Optional<IngredientUpdateObject> editIngredient(final Ingredient ingredient) {
+        Validate.notNull(ingredient);
+        setTitle(I18n.getText(EDIT_TITLE_KEY));
+        prefillDialog(ingredient);
+        ingredientUpdateObject = ingredientService.getUpdateObject(ingredient);
+        return showAndWait();
+    }
+
+    /**
+     * Fills dialog fields with data from ingredient.
+     *
+     * @param ingredient (NotNull)
+     */
+    private void prefillDialog(final Ingredient ingredient) {
+        LOGGER.trace("Filling dialog fields with ingredient: {}.", ingredient);
+        Validate.notNull(ingredient);
+        nameField.setText(ingredient.getName());
+        unitField.getSelectionModel().select(ingredient.getIngredientUnit());
+        priceField.setFloat(ingredient.getPrice());
+        keywordField.setSelectedKeywords(ingredient.getKeywords());
+        Optional<UnitConversion> unitConversionOpt = ingredient.getUnitConversion();
+        LOGGER.trace("Filling dialog fields with unit conversion: {}.", unitConversionOpt);
+        if (unitConversionOpt.isPresent()) {
+            UnitConversion unitConversion = unitConversionOpt.get();
+            gramsPerPieceField.setFloat(unitConversion.getGramsPerPiece());
+            milliliterPerGramField.setFloat(unitConversion.getMilliliterPerGram());
+            gramsPerPinchField.setFloat(unitConversion.getGramsPerPinch());
+            gramsPerCoffeeSpoonField.setFloat(unitConversion.getGramsPerCoffeeSpoon());
+            gramsPerSpoonField.setFloat(unitConversion.getGramsPerSpoon());
+            TitledPaneUtils.setExpandedWithoutAnimation(unitConversionPane, true);
+        } else {
+            clearUnitConversionFields();
+        }
+    }
+
+    /**
+     * Clears are dialog fields or sets them to default values.
+     */
+    private void clearDialog() {
+        LOGGER.trace("Clearing dialog fields.");
         nameField.setText(StringUtils.EMPTY);
-        unitField.getSelectionModel().clearSelection();
-        priceField.setText(StringUtils.EMPTY);
-        conversionField.setText(StringUtils.EMPTY);
-        keywordSet.clear();
-        keywordsView.getChildren().clear();
+        unitField.getSelectionModel().select(IngredientUnit.WEIGHT);
+        priceField.setFloat(null);
+        keywordField.clearSelectedKeywords();
+        clearUnitConversionFields();
     }
 
-    private IngredientRow fillFromDialog(){
-        final Ingredient ingredientInfo = getOrCreateIngredientInfo();
-        ingredientInfo.setName(nameField.getText());
-        ingredientInfo.setIngredientUnit(unitField.getValue());
-        ingredientInfo.setPrice(Float.valueOf(priceField.getText()));
-        ingredientInfo.setKeywords(keywordSet);
-
-        final PieceConversionInfo pieceConversionInfo = getPieceConversionInfo(ingredientInfo.getName());
-        return new IngredientRow(ingredientInfo, pieceConversionInfo);
-    }
-
-    private Ingredient getOrCreateIngredientInfo(){
-        if(this.editRow == null){
-            return new Ingredient();
-        }else{
-            return this.editRow.getIngredientInfo();
-        }
-    }
-
-    private PieceConversionInfo getPieceConversionInfo(final String ingredientName){
-        final PieceConversionInfo pieceConversionInfo;
-        final String conversionString = conversionField.getText();
-        if(StringUtils.isNotBlank(conversionString)){
-            final int conversion = Integer.valueOf(conversionString);
-            pieceConversionInfo = new BasicConversionInfo(ingredientName, conversion);
-        }else{
-            pieceConversionInfo = null;
-        }
-
-        return pieceConversionInfo;
-    }
-
-    private void setupLayout(){
-        setTextToLabel(nameLabel, I18N_NAME);
-        firstRow.getChildren().addAll(nameLabel, nameField);
-
-        setTextToLabel(unitLabel, I18N_UNIT);
-        setTextToLabel(priceLabel, I18N_PRICE);
-        unitField.getItems().addAll(IngredientUnit.values());
-        secondRow.getChildren().addAll(unitLabel, unitField, priceLabel, priceField);
-
-        setTextToLabel(conversionLabel, I18N_CONVERSION);
-        thirdRow.getChildren().addAll(conversionLabel, conversionField);
-
-        setTextToLabel(keywordLabel, I18N_KEYWORDS);
-        fourthRow.getChildren().addAll(keywordLabel, keywordField);
-
-        verticalBox.getChildren().addAll(firstRow, secondRow, thirdRow, fourthRow, keywordsView);
-        verticalBox.setFillWidth(true);
-        this.getDialogPane().setContent(verticalBox);
-    }
-
-    private void setTextToLabel(final Label label, final String messageKey){
-        label.setText(I18n.getText(messageKey));
-    }
-
-    private void addKeyword(final String keyword) {
-        keywordField.clear();
-        if (keywordSet.contains(keyword)) {
-            return;
-        }
-
-        keywordSet.add(keyword);
-        final Label keywordLabel = KeywordLabelFactory.createKeywordLabel(keyword);
-        keywordsView.getChildren().add(keywordLabel);
-    }
-
-    private void setupKeywordSuggestion(){
-        AutoCompletionBinding<String> autoCompletion = TextFields.bindAutoCompletion(keywordField, new FullWordSuggestionProvider(ingredientService.getAllIngredientKeywords()));
-
-        autoCompletion.setOnAutoCompleted((completionEvent -> {
-            final String keyword = completionEvent.getCompletion();
-            addKeyword(keyword);
-        }));
-
-        keywordField.setOnKeyPressed((keyEvent) -> {
-            switch (keyEvent.getCode()) {
-                case ENTER:
-                    keyEvent.consume();
-                    addKeyword(keywordField.getText());
-                    break;
-                default:
-                    break;
-                }
-        });
+    /**
+     * Clears all fields related to unit conversion and collapses unit conversion panel.
+     */
+    private void clearUnitConversionFields() {
+        LOGGER.trace("Clearing dialog unit conversion fields.");
+        gramsPerPieceField.setFloat(null);
+        milliliterPerGramField.setFloat(null);
+        gramsPerPinchField.setFloat(null);
+        gramsPerCoffeeSpoonField.setFloat(null);
+        gramsPerSpoonField.setFloat(null);
+        TitledPaneUtils.setExpandedWithoutAnimation(unitConversionPane, false);
     }
 
 }
