@@ -11,49 +11,41 @@
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 
 Done:
-X - Add UUID to every entity and migrate existing data
-X - Use recipe UUIDs in diets
-X - Create ER diagram and validate each attribute
-X - Add transactional annotations to write service methods
-X - Decide if custom components should be created for add/edit/view/remove/delete buttons
-X - ConverterUtil can have method for converting not sorted sets. This can be used for converting before saving entities. (low priority)
-X - Create number field
-X - check all services if they properly use Transactional annotation
-X - update objects should not extend model interfaces
-X - Create some hack to internationalize buttons in javafx dialogs
+
+
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Add dialg for creating new recipes and ingredients.
     X - Basic dialog.
-    - Styling dialog
+    X - Styling dialog
     X - Add way to remove added keywords
-    - Add way to remove ingredients and side dishes
-    - Add way to edit added recipeIngredient quantity
+    X - Add way to remove ingredients and side dishes
+    X - Add way to edit added recipeIngredient quantity
     X - Add internationalization for combo box values.
     X - Add way to remove ingredients
     X - Add validations
     - Add validation errors to UI
     X - Add possible side dishes
     X - Suggestions should stay open even for exact match
-- Recipe view dialog
-    - styling so preparation has more space and whole dialog space is used even
-    when some categories are closed
-- Ingredient view
 
-- Create mechanism for Generator with custom settings
-- Diet view
-    - Create mechanism for manual editing of generated food lists
-    X - Update DayDiet to contain numer of servings which will be used for shopping list generation
-    - Add editation mechanism for number of servings
-    X - Add shopping list generation from selected recipes
-    - Add export for shopping list
-    - Show recipe on double cilck
+Startup optimization
+    - add splashscreen
+    - optimize spring boot startup
 
+- Measure and optimize loading of tables
 
-- Add ability to delete diet
-- Translate new cz messages to en
-- Add language to config file and use it program
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 
+- Add language to config file and use it in program
+- Translate new cz messages to en
+- Translate new cz messages to sk
+
+----- BUGS -------------------------------------------------------------------------------------------------------------
+- Check if all file operations closes their streams.
+- Combo Box binded to list - navigating by arrows in combo box select values immediately
+
+Done:
+X - Ingredient keywords overlaps in recipe detail dialog.
+X - Fix random generator to work even if no recipes are available for some type.
 
 Done:
 X - Add possibility to open recipe by double click in recipe view table.
@@ -65,11 +57,18 @@ X - Add UI for food list generator.
 X - Create view for generated food lists
 X - Add config file for setting application settings.
 X - Add file coding settings.
+X - Recipe view dialog
+    X- styling so preparation has more space and whole dialog space is used even when some categories are closed
+X - Ingredient view
 
------ BUGS -------------------------------------------------------------------------------------------------------------
-- Check if all file operations closes their streams.
-- Combo Box binded to list - navigating by arrows in combo box select values immediately
-
-Done:
-X - Ingredient keywords overlaps in recipe detail dialog.
-X - Fix random generator to work even if no recipes are available for some type.
+Done Arch:
+X - Add UUID to every entity and migrate existing data
+X - Use recipe UUIDs in diets
+X - Create ER diagram and validate each attribute
+X - Add transactional annotations to write service methods
+X - Decide if custom components should be created for add/edit/view/remove/delete buttons
+X - ConverterUtil can have method for converting not sorted sets. This can be used for converting before saving entities. (low priority)
+X - Create number field
+X - check all services if they properly use Transactional annotation
+X - update objects should not extend model interfaces
+X - Create some hack to internationalize buttons in javafx dialogs
