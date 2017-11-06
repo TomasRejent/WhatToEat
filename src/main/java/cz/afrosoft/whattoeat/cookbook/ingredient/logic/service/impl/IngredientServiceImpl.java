@@ -63,7 +63,7 @@ public class IngredientServiceImpl implements IngredientService {
     public void delete(final Ingredient ingredient) {
         LOGGER.debug("Deleting ingredient: {}", ingredient);
         Validate.notNull(ingredient);
-        repository.delete(ingredient.getId());
+        repository.deleteById(ingredient.getId());
     }
 
     @Override

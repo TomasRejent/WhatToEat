@@ -1,14 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Set;
-
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.AuthorEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.AuthorRepository;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Author;
@@ -18,6 +9,14 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 /**
  * Implementation of {@link AuthorService} which uses {@link AuthorImpl} as implementation of {@link Author}
@@ -58,7 +57,7 @@ public class AuthorServiceImpl implements AuthorService {
     public void delete(final Author author) {
         LOGGER.debug("Deleting author: {}", author);
         Validate.notNull(author, "Cannot delete null author.");
-        repository.delete(author.getId());
+        repository.deleteById(author.getId());
     }
 
     @Override

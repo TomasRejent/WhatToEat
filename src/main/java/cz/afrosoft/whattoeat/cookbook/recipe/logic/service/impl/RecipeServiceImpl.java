@@ -77,7 +77,7 @@ public class RecipeServiceImpl implements RecipeService {
     public void delete(final Recipe recipe) {
         LOGGER.debug("Deleting recipe: {}", recipe);
         Validate.notNull(recipe);
-        repository.delete(recipe.getId());
+        repository.deleteById(recipe.getId());
     }
 
     @Override
@@ -146,7 +146,7 @@ public class RecipeServiceImpl implements RecipeService {
         LOGGER.debug("Loading RecipeIngredients for references: {}", references);
         Validate.noNullElements(references);
 
-        List<RecipeIngredientEntity> entities = recipeIngredientRepository.findAll(references.stream().map(IdEntity::getId).collect(Collectors.toSet()));
+        List<RecipeIngredientEntity> entities = recipeIngredientRepository.findAllById(references.stream().map(IdEntity::getId).collect(Collectors.toSet()));
         return ConverterUtil.convertToSet(entities, this::entityToRecipeIngredient);
     }
 

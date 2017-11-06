@@ -1,14 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.impl;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Set;
-
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.data.repository.CookbookRepository;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
@@ -19,6 +10,14 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.Set;
 
 /**
  * Implementation of {@link CookbookService} which uses {@link CookbookImpl} as implementation of
@@ -62,7 +61,7 @@ public class CookbookServiceImpl implements CookbookService {
     public void delete(final Cookbook cookbook) {
         LOGGER.debug("Deleting cookbook: {}", cookbook);
         Validate.notNull(cookbook, "Cannot delete null cookbook.");
-        repository.delete(cookbook.getId());
+        repository.deleteById(cookbook.getId());
     }
 
     @Override
