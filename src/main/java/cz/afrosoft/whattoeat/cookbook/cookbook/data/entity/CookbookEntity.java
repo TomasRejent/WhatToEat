@@ -23,7 +23,7 @@ public class CookbookEntity {
     @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", columnDefinition = "CLOB")
     private String description;
 
     @ManyToMany(mappedBy = "cookbooks")

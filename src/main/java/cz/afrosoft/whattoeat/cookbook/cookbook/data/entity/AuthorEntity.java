@@ -25,7 +25,7 @@ public class AuthorEntity {
     @Column(name = "EMAIL")
     private String email;
 
-    @Column(name = "DESCRIPTION")
+    @Column(name = "DESCRIPTION", columnDefinition = "CLOB")
     private String description;
 
     @ManyToMany(targetEntity = CookbookEntity.class, mappedBy = "authors")
