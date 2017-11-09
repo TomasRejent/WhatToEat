@@ -2,11 +2,14 @@ package cz.afrosoft.whattoeat;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
+import cz.afrosoft.whattoeat.core.gui.component.SplashScreen;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -78,32 +81,71 @@ public class Main extends Application {
         return applicationContext;
     }
 
-    /**
-     * Initializes application before it is started. Creates Spring application context and sets it as provider
-     * for JavaFX controllers.
-     * @throws Exception
-     */
     @Override
     public void init() throws Exception {
-        applicationContext = SpringApplication.run(Main.class);
-
+        long time = System.nanoTime();
         I18n.init("cz");
-        rootPane = loadPage(Page.ROOT);
-
+        LOGGER.info("I18n initialized in {}ms", (System.nanoTime() - time) * 0.000001);
     }
 
     @Override
     public void start(final Stage stage) throws Exception {
         LOGGER.info("Starting application.");
+        Stage splashStage = showSplashScreen();
+        /**
+         * Initialization of Spring is not done in CompletableFuture in parallel because it does not work for jar.
+         * If run by IDE it works, but when it is packed to jar and run, then exception
+         * <code>
+         *     Caused by: java.lang.IllegalArgumentException: No auto configuration classes found in META-INF/spring.factories.
+         *     If you are using a custom packaging, make sure that file is correct.
+         * </code>
+         * occurs. So Spring must be initialised in JavaFX thread. Because splash screen does not consume any user interaction
+         * it does not matter that JavaFX thread is blocked for several seconds when initializing Spring.
+         * */
+        Platform.runLater(this::prepareApplication);
+        Platform.runLater(() -> switchToMainStage(stage, splashStage));
+    }
 
+    /**
+     * Shows {@link SplashScreen} component in undecorated stage.
+     *
+     * @return (NotNull) Splash screen stage. Can be used to hide splash screen with {@link Stage#hide()}.
+     */
+    private Stage showSplashScreen() {
+        long time = System.nanoTime();
+        Stage splashStage = new Stage(StageStyle.UNDECORATED);
+        splashStage.setScene(new Scene(new SplashScreen()));
+        splashStage.show();
+        LOGGER.info("Splash screen initialized in {}ms", (System.nanoTime() - time) * 0.000001);
+        return splashStage;
+    }
 
+    /**
+     * Initializes Spring and persistence layer. Creates root component of UI from fxml.
+     */
+    private void prepareApplication() {
+        LOGGER.info("Initializing spring.");
+        long time = System.nanoTime();
+        applicationContext = SpringApplication.run(Main.class);
+        try {
+            rootPane = loadPage(Page.ROOT);
+        } catch (IOException e) {
+            throw new RuntimeException("", e);
+        }
+        LOGGER.info("Spring initialized in {}ms", (System.nanoTime() - time) * 0.000001);
+    }
+
+    private void switchToMainStage(final Stage stage, final Stage splashStage) {
+        LOGGER.info("Switching to main window.");
+        long time = System.nanoTime();
         Scene scene = new Scene(rootPane);
         scene.getStylesheets().add("/styles/Menu.css");
-        
+
         stage.setTitle(I18n.getText("cz.afrosoft.whattoeat.title"));
         stage.setScene(scene);
         stage.show();
-
+        splashStage.hide();
+        LOGGER.info("Screen switch in {}ms", (System.nanoTime() - time) * 0.000001);
         LOGGER.info("Application started.");
     }
 

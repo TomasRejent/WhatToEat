@@ -72,6 +72,17 @@
 
     <build>
         <plugins>
+            <!-- Plugin for source compilation.  -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.7.0</version>
+                <configuration>
+                    <source>9</source>
+                    <target>9</target>
+                </configuration>
+            </plugin>
+            <!-- Plugin for packing dependencies into app jar. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -90,25 +101,28 @@
                     </execution>
                 </executions>
             </plugin>
+            <!-- Plugin for jar packaging. Adds information about version to produced jar. -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>3.0.2</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.7.0</version>
                 <configuration>
-                    <source>9</source>
-                    <target>9</target>
+                    <archive>
+                        <manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
-            <!-- Needed for packing jar file which is executable without IDE. -->
+
+            <!-- Needed for packing spring boot jar file which is executable without IDE. -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring.boot.version}</version>
+                <configuration>
+                    <mainClass>${mainClass}</mainClass>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -120,6 +134,7 @@
         </plugins>
     </build>
 
+    <!-- This is specification of repositories for Spring boot milestones, which are needed to java 9 and are not released on official repo yet. -->
     <pluginRepositories>
         <pluginRepository>
             <id>spring-milestones</id>
