@@ -34,7 +34,7 @@
             <detailNode>
                 <VBox>
                     <Label text="%cz.afrosoft.whattoeat.cookbook.detail"/>
-                    <TextArea fx:id="detailArea"/>
+                    <TextArea fx:id="detailArea" wrapText="true"/>
                 </VBox>
             </detailNode>
         </MasterDetailPane>

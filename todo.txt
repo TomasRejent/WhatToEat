@@ -40,15 +40,15 @@ Startup optimization
 - Translate new cz messages to sk
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
-- Enable text wrap for text areas in dialogs and in cookbook and author detail
 - Check if all file operations closes their streams.
 - Combo Box binded to list - navigating by arrows in combo box select values immediately
 
-Done:
+Done bugs:
 X - Ingredient keywords overlaps in recipe detail dialog.
 X - Fix random generator to work even if no recipes are available for some type.
+X - Enable text wrap for text areas in dialogs and in cookbook and author detail
 
-Done:
+Done features:
 X - Add possibility to open recipe by double click in recipe view table.
 X - Display error dialog when recipe cannot be displayed because of invalid recipeIngredient info
 X - Show diet view on double click

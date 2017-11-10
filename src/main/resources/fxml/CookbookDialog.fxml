@@ -19,6 +19,7 @@
            GridPane.columnIndex="0"
            GridPane.rowIndex="1"/>
     <TextArea fx:id="descriptionArea"
+              wrapText="true"
               GridPane.columnIndex="0"
               GridPane.rowIndex="2"
               GridPane.columnSpan="2"/>

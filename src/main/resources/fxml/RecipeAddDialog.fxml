@@ -183,7 +183,7 @@
             </Tab>
             <!-- Tab with recipe preparation -->
             <Tab text="%cz.afrosoft.whattoeat.recipes.add.preparation" closable="false">
-                <TextArea fx:id="preparationField"/>
+                <TextArea fx:id="preparationField" wrapText="true"/>
             </Tab>
             <!-- Tab with side dishes -->
             <Tab fx:id="sideDishTab" text="%cz.afrosoft.whattoeat.recipes.add.sideDishes" closable="false">

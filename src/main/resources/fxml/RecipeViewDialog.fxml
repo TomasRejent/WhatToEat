@@ -95,7 +95,7 @@
         <!-- Preparation pane -->
         <TitledPane fx:id="preparationPane" text="%cz.afrosoft.whattoeat.recipes.view.preparation.title" expanded="true"
                     styleClass="split-title">
-            <TextArea fx:id="preparation"/>
+            <TextArea fx:id="preparation" wrapText="true"/>
         </TitledPane>
     </SplitPane>
 

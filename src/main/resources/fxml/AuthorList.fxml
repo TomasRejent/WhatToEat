@@ -36,7 +36,7 @@
             <detailNode>
                 <VBox>
                     <Label text="%cz.afrosoft.whattoeat.authors.detail"/>
-                    <TextArea fx:id="detailArea"/>
+                    <TextArea fx:id="detailArea" wrapText="true"/>
                 </VBox>
             </detailNode>
         </MasterDetailPane>
