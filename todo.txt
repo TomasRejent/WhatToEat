@@ -40,6 +40,7 @@ Startup optimization
 - Translate new cz messages to sk
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
+- Enable text wrap for text areas in dialogs and in cookbook and author detail
 - Check if all file operations closes their streams.
 - Combo Box binded to list - navigating by arrows in combo box select values immediately
 
