@@ -1,6 +1,5 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
-import com.google.common.collect.Sets;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
@@ -23,10 +22,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.LinkedHashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * Component for picking keywords.
@@ -135,7 +131,9 @@ public class KeywordField extends GridPane {
     public void refreshKeywords() {
         Set<Keyword> allKeywords = keywordService.getAllKeywords();
         keywordField.getSelectionModel().clearSelection();
-        keywordField.getItems().addAll(Sets.difference(allKeywords, keywords));
+        Set<Keyword> setDifference = new HashSet<>(allKeywords);
+        setDifference.removeAll(this.keywords);
+        keywordField.getItems().addAll(setDifference);
     }
 
     /**

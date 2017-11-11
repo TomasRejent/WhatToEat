@@ -1,7 +1,5 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
-import com.google.common.base.Predicates;
-import com.google.common.collect.Collections2;
 import javafx.application.Platform;
 import javafx.beans.value.ChangeListener;
 import javafx.scene.control.ComboBox;
@@ -12,6 +10,7 @@ import org.apache.commons.lang3.Validate;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 
 /**
@@ -42,7 +41,7 @@ public class ListBinding {
         comboBox.getItems().clear();
         list.getItems().clear();
         list.getItems().addAll(selectedItems);
-        comboBox.getItems().addAll(Collections2.filter(allItems, Predicates.not(Predicates.in(selectedItems))));
+        comboBox.getItems().addAll(allItems.stream().filter(item -> !selectedItems.contains(item)).collect(Collectors.toList()));
     }
 
     /**
