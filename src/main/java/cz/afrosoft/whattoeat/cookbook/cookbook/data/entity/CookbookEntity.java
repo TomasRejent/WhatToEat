@@ -16,7 +16,7 @@ import java.util.Set;
 public class CookbookEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 

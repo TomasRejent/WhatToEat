@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class RecipeIngredientEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 

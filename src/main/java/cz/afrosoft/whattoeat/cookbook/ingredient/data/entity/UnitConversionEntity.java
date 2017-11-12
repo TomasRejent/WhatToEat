@@ -14,7 +14,7 @@ import javax.persistence.*;
 public class UnitConversionEntity {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Integer id;
 
