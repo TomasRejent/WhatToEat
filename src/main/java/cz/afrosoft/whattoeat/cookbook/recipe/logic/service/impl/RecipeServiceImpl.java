@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
@@ -59,11 +60,19 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private KeywordService keywordService;
 
+
     @Override
     @Transactional(readOnly = true)
     public Set<Recipe> getAllRecipes() {
         LOGGER.debug("Getting all recipes.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Recipe> getFilteredRecipes(final RecipeFilter filter) {
+        Validate.notNull(filter);
+        return ConverterUtil.convertToSortedSet(repository.findRecipesByFilter(filter), this::entityToRecipe);
     }
 
     @Override

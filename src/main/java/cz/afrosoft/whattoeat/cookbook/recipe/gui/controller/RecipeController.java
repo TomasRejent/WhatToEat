@@ -1,6 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.controller;
 
 import cz.afrosoft.whattoeat.Main;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeAddDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.PreparationTime;
@@ -11,6 +14,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
 import cz.afrosoft.whattoeat.core.gui.component.EditButton;
+import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
 import cz.afrosoft.whattoeat.core.gui.component.ViewButton;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
@@ -22,6 +26,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +53,13 @@ public class RecipeController implements Initializable {
     private static final String DELETE_CONFIRM_MESSAGE_KEY = "cz.afrosoft.whattoeat.dialog.delete.recipe.messages";
 
     @FXML
+    private TextField nameFilter;
+    @FXML
+    private MultiSelect<CookbookRef> cookbookFilter;
+    @FXML
+    private MultiSelect<RecipeType> typeFilter;
+
+    @FXML
     private TableView<Recipe> recipeTable;
     @FXML
     private TableColumn<Recipe, String> nameColumn;
@@ -71,9 +83,10 @@ public class RecipeController implements Initializable {
 
     @Autowired
     private RecipeAddDialog recipeAddDialog;
-
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private CookbookService cookbookService;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -81,6 +94,8 @@ public class RecipeController implements Initializable {
         setupColumnCellFactories();
         disableRecipeActionButtons(true);
         setupSelectionHandler();
+        cookbookFilter.getItems().addAll(cookbookService.getAllCookbookRefs());
+        typeFilter.getItems().addAll(RecipeType.values());
         recipeTable.getItems().addAll(recipeService.getAllRecipes());
     }
 
@@ -130,6 +145,18 @@ public class RecipeController implements Initializable {
     }
 
     /* Button actions */
+    @FXML
+    private void filterRecipes() {
+        LOGGER.debug("Filtering recipes action triggered.");
+
+        RecipeFilter filter = new RecipeFilter.Builder()
+                .setName(nameFilter.getText())
+                .setCookbooks(cookbookFilter.getValues())
+                .setType(typeFilter.getValues())
+                .build();
+        recipeTable.getItems().clear();
+        recipeTable.getItems().addAll(recipeService.getFilteredRecipes(filter));
+    }
 
     @FXML
     private void showRecipe() {
@@ -170,5 +197,4 @@ public class RecipeController implements Initializable {
             }
         });
     }
-    
 }

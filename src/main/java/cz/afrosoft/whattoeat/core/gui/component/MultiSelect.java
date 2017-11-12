@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.core.gui.component;
 
 import impl.org.controlsfx.skin.CheckComboBoxSkin;
 import javafx.beans.property.BooleanProperty;
+import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.ComboBox;
@@ -18,7 +19,10 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.Validate;
 import org.controlsfx.control.CheckComboBox;
 
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.Optional;
+import java.util.Set;
 
 
 /**
@@ -42,6 +46,20 @@ public class MultiSelect<T> extends CheckComboBox<T> {
 
     public MultiSelect() {
         setupFocusTraversal();
+    }
+
+    /**
+     * Gets checked values as set.
+     *
+     * @return (NotNull)
+     */
+    public Set<T> getValues() {
+        ObservableList<T> checkedItems = getCheckModel().getCheckedItems();
+        if (checkedItems.isEmpty()) {
+            return Collections.emptySet();
+        } else {
+            return new HashSet<>(checkedItems);
+        }
     }
 
     @Override

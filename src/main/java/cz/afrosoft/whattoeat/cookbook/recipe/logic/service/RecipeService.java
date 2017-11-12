@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
@@ -17,6 +18,8 @@ public interface RecipeService {
      * @return (NotNull) Return all recipes defined in application.
      */
     Set<Recipe> getAllRecipes();
+
+    Set<Recipe> getFilteredRecipes(RecipeFilter filter);
 
     /**
      * @return (NotNull) Return set of references to recipes which contains side dish type.
