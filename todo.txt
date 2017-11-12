@@ -40,6 +40,8 @@ Startup optimization
 - Translate new cz messages to sk
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
+- Check why ingredient creates unit conversion entity even when not filled
+- Suggestion in keyword field does not work
 - Check if all file operations closes their streams.
 - Combo Box binded to list - navigating by arrows in combo box select values immediately
 
