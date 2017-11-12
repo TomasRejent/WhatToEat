@@ -1,8 +1,8 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
-import java.util.Optional;
-
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+
+import java.util.Optional;
 
 /**
  * Update object for {@link UnitConversion} Serves for its creation or editing. This allows {@link UnitConversion} to be immutable.
@@ -90,5 +90,12 @@ public interface UnitConversionUpdateObject {
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
     UnitConversionUpdateObject setGramsPerSpoon(Float gramsPerSpoon);
+
+    /**
+     * Utility method for checking if this update object has any useful (positive) conversion value set.
+     *
+     * @return True if any conversion value is set to positive number. False otherwise.
+     */
+    boolean hasAnyUsefulValue();
 
 }

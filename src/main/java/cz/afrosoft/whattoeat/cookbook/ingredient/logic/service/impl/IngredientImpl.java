@@ -1,5 +1,12 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -9,14 +16,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.Collections;
 import java.util.Optional;
 import java.util.Set;
-
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
-import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 /**
  * Immutable and comparable implementation of {@link Ingredient}. Natural ordering is based
@@ -184,19 +183,36 @@ final class IngredientImpl implements Ingredient {
         @Override
         public Builder setUnitConversion(final UnitConversionUpdateObject unitConversion) {
             Validate.notNull(unitConversion);
-            this.unitConversion = unitConversion;
+
+            setUnitConversionIfUseful(unitConversion);
             return this;
         }
 
         @Override
         public IngredientUpdateObject setUnitConversion(final Float gramsPerPiece, final Float milliliterPerGram, final Float gramsPerPinch, final Float gramsPerCoffeeSpoon, final Float gramsPerSpoon) {
-            this.unitConversion = new UnitConversionImpl.Builder()
+            setUnitConversionIfUseful(new UnitConversionImpl.Builder()
                     .setGramsPerPiece(gramsPerPiece)
                     .setMilliliterPerGram(milliliterPerGram)
                     .setGramsPerPinch(gramsPerPinch)
                     .setGramsPerCoffeeSpoon(gramsPerCoffeeSpoon)
-                    .setGramsPerSpoon(gramsPerSpoon);
+                    .setGramsPerSpoon(gramsPerSpoon));
             return this;
+        }
+
+        /**
+         * Set specified conversion to {@link #unitConversion} if it contains useful values (positive), else sets
+         * null.
+         *
+         * @param unitConversion (NotNull) Unit conversion to set.
+         */
+        private void setUnitConversionIfUseful(final UnitConversionUpdateObject unitConversion) {
+            Validate.notNull(unitConversion);
+
+            if (unitConversion.hasAnyUsefulValue()) {
+                this.unitConversion = unitConversion;
+            } else {
+                this.unitConversion = null;
+            }
         }
 
         @Override

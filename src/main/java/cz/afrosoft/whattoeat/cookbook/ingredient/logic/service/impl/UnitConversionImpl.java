@@ -1,5 +1,8 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -8,10 +11,6 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.util.Arrays;
 import java.util.Optional;
-
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 
 /**
  * Immutable implementation of {@link UnitConversion}.
@@ -197,11 +196,16 @@ final class UnitConversionImpl implements UnitConversion {
             return Arrays.stream(values).anyMatch(this::hasUsefulValue);
         }
 
+        @Override
+        public boolean hasAnyUsefulValue() {
+            return hasAnyUsefulValue(gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon);
+        }
+
         /**
          * @return (Nullable) Conversion info or null when no values other than null or zero were set.
          */
         public UnitConversion build() {
-            if (hasAnyUsefulValue(gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon)) {
+            if (hasAnyUsefulValue()) {
                 Validate.notNull(id);
                 return new UnitConversionImpl(id, gramsPerPiece, milliliterPerGram, gramsPerPinch, gramsPerCoffeeSpoon, gramsPerSpoon);
             } else {

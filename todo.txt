@@ -10,7 +10,7 @@
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 
-Done:
+- low priority - try to use metamodel in criteria queries
 
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
@@ -27,9 +27,7 @@ Done:
     X - Add possible side dishes
     X - Suggestions should stay open even for exact match
 
-Startup optimization
-    - add splashscreen
-    - optimize spring boot startup
+- Add suggestion to keyword field
 
 - Measure and optimize loading of tables
 
@@ -40,15 +38,14 @@ Startup optimization
 - Translate new cz messages to sk
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
-- Check why ingredient creates unit conversion entity even when not filled
-- Suggestion in keyword field does not work
 - Check if all file operations closes their streams.
-- Combo Box binded to list - navigating by arrows in combo box select values immediately
+- Combo Box bound to list - navigating by arrows in combo box select values immediately
 
 Done bugs:
 X - Ingredient keywords overlaps in recipe detail dialog.
 X - Fix random generator to work even if no recipes are available for some type.
 X - Enable text wrap for text areas in dialogs and in cookbook and author detail
+X - Check why ingredient creates unit conversion entity even when not filled
 
 Done features:
 X - Add possibility to open recipe by double click in recipe view table.
@@ -63,6 +60,9 @@ X - Add file coding settings.
 X - Recipe view dialog
     X- styling so preparation has more space and whole dialog space is used even when some categories are closed
 X - Ingredient view
+X Startup optimization
+    X - add splashscreen
+    X - optimize spring boot startup
 
 Done Arch:
 X - Add UUID to every entity and migrate existing data
