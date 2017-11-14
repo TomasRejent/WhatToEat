@@ -12,6 +12,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
 import cz.afrosoft.whattoeat.core.gui.component.EditButton;
 import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
@@ -27,6 +28,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -92,6 +94,7 @@ public class RecipeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         LOGGER.info("Initializing recipe controller");
         setupColumnCellFactories();
+        setupFilter();
         disableRecipeActionButtons(true);
         setupSelectionHandler();
         cookbookFilter.getItems().addAll(cookbookService.getAllCookbookRefs());
@@ -113,6 +116,14 @@ public class RecipeController implements Initializable {
         ratingColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getRating, 0));
         keywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getKeywords, Collections.emptySet()));
         keywordColumn.setCellFactory(column -> new KeywordCell<>());
+    }
+
+    /**
+     * Setuup filter fields.
+     */
+    private void setupFilter() {
+        cookbookFilter.setConverter(ComboBoxUtils.createStringConverter(cookbookFilter, CookbookRef::getName));
+        ComboBoxUtils.initLabeledCheckComboBox(typeFilter);
     }
 
     /**
@@ -151,11 +162,22 @@ public class RecipeController implements Initializable {
 
         RecipeFilter filter = new RecipeFilter.Builder()
                 .setName(nameFilter.getText())
-                .setCookbooks(cookbookFilter.getValues())
                 .setType(typeFilter.getValues())
+                .setCookbooks(cookbookFilter.getValues())
                 .build();
         recipeTable.getItems().clear();
         recipeTable.getItems().addAll(recipeService.getFilteredRecipes(filter));
+    }
+
+    @FXML
+    private void clearRecipe() {
+        LOGGER.debug("Clear filter action triggered.");
+
+        nameFilter.setText(StringUtils.EMPTY);
+        typeFilter.getCheckModel().clearChecks();
+        cookbookFilter.getCheckModel().clearChecks();
+        recipeTable.getItems().clear();
+        recipeTable.getItems().addAll(recipeService.getAllRecipes());
     }
 
     @FXML

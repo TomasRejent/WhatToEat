@@ -12,7 +12,7 @@
         styleClass="recipe-container"
         fx:controller="cz.afrosoft.whattoeat.cookbook.recipe.gui.controller.RecipeController">
     <top>
-        <HBox>
+        <HBox styleClass="filter-bar">
             <Label text="%cz.afrosoft.whattoeat.recipes.filter.title"/>
             <Label text="%cz.afrosoft.whattoeat.recipes.filter.name"/>
             <TextField fx:id="nameFilter"/>
@@ -20,9 +20,13 @@
             <MultiSelect fx:id="cookbookFilter"/>
             <Label text="%cz.afrosoft.whattoeat.recipes.filter.type"/>
             <MultiSelect fx:id="typeFilter"/>
-            <Button fx:id="filterSubmitButton"
-                    onAction="#filterRecipes"
-                    text="%cz.afrosoft.whattoeat.recipes.filter.button"/>
+            <HBox>
+                <SearchButton fx:id="filterSubmitButton"
+                              onAction="#filterRecipes"/>
+                <RemoveButton fx:id="filterClearButton"
+                              onAction="#clearRecipe"/>
+            </HBox>
+
         </HBox>
     </top>
     <left>

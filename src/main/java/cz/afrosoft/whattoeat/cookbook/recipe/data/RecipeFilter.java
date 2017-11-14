@@ -9,6 +9,9 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.util.Optional;
 import java.util.Set;
 
+/**
+ * Immutable class representing recipe filter. Use {@link RecipeFilter.Builder} to construct filter instance.
+ */
 public final class RecipeFilter {
 
     private final String name;
@@ -21,14 +24,23 @@ public final class RecipeFilter {
         this.type = type;
     }
 
+    /**
+     * @return (NotNull) Empty optional if name is not filtered. Optional with name to filter otherwise.
+     */
     public Optional<String> getName() {
         return Optional.ofNullable(name);
     }
 
+    /**
+     * @return (NotNull) Empty optional if cookbooks are not filtered. Optional with cookbooks to filter otherwise.
+     */
     public Optional<Set<CookbookRef>> getCookbooks() {
         return Optional.ofNullable(cookbooks);
     }
 
+    /**
+     * @return (NotNull) Empty optional if recipe types are not filtered. Optional with recipe types to filter otherwise.
+     */
     public Optional<Set<RecipeType>> getType() {
         return Optional.ofNullable(type);
     }
@@ -42,16 +54,19 @@ public final class RecipeFilter {
                 .toString();
     }
 
+    /**
+     * Builder for recipe filter.
+     */
     public static class Builder {
 
         private String name;
         private Set<CookbookRef> cookbooks;
         private Set<RecipeType> type;
 
-        public String getName() {
-            return name;
-        }
-
+        /**
+         * @param name (Nullable) Name to filter by. If null, empty or blank value is specified, then recipes are not filtered by name.
+         * @return (NotNull) This builder to enable method chaining.
+         */
         public Builder setName(final String name) {
             if (StringUtils.isBlank(name)) {
                 this.name = null;
@@ -61,32 +76,36 @@ public final class RecipeFilter {
             return this;
         }
 
-        public Set<CookbookRef> getCookbooks() {
-            return cookbooks;
-        }
-
-        public Builder setCookbooks(final Set<CookbookRef> cookbooks) {
-            if (cookbooks == null || cookbooks.isEmpty()) {
-                this.cookbooks = null;
-            } else {
-                this.cookbooks = cookbooks;
-            }
-            return this;
-        }
-
-        public Set<RecipeType> getType() {
-            return type;
-        }
-
+        /**
+         * @param type (Nullable) Recipe types to filter by. If null or empty set is specified, then recipes are not filtered by recipe types.
+         * @return (NotNull) This builder to enable method chaining.
+         */
         public Builder setType(final Set<RecipeType> type) {
-            if (type == null || type.isEmpty()) {
-                this.type = null;
-            } else {
-                this.type = type;
-            }
+            this.type = emptyToNull(type);
             return this;
         }
 
+        /**
+         * @param cookbooks (Nullable) Cookbooks to filter by. If null or empty set is specified, then recipes are not filtered by cookbooks.
+         * @return (NotNull) This builder to enable method chaining.
+         */
+        public Builder setCookbooks(final Set<CookbookRef> cookbooks) {
+            this.cookbooks = emptyToNull(cookbooks);
+            return this;
+        }
+
+        private <T> Set<T> emptyToNull(final Set<T> set) {
+            if (set == null || set.isEmpty()) {
+                return null;
+            } else {
+                return set;
+            }
+        }
+
+        /**
+         * Builds filter from this builder with previously specified filtering criteria.
+         * @return (NotNull)
+         */
         public RecipeFilter build() {
             return new RecipeFilter(name, cookbooks, type);
         }

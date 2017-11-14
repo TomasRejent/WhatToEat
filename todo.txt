@@ -7,31 +7,27 @@
 - Use property from config to set language of application
 - Decide if cells with complex graphics should be defined in code or in fxml
 - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
+\- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
+
 
 - low priority - try to use metamodel in criteria queries
 
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
-- Add dialg for creating new recipes and ingredients.
-    X - Basic dialog.
-    X - Styling dialog
-    X - Add way to remove added keywords
-    X - Add way to remove ingredients and side dishes
-    X - Add way to edit added recipeIngredient quantity
-    X - Add internationalization for combo box values.
-    X - Add way to remove ingredients
-    X - Add validations
-    - Add validation errors to UI
-    X - Add possible side dishes
-    X - Suggestions should stay open even for exact match
+- Measure and optimize loading of tables
+- add brief toString to entities so logging of convert operation makes sense
+
+- Add validation errors to UI
+- wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 - Add suggestion to keyword field
-
-- Measure and optimize loading of tables
-
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
+
+- add persisting of last used filter for recipes
+- Optimize focus transferring and key events for recipe filter
+- Add name filter to ingredients
 
 - Add language to config file and use it in program
 - Translate new cz messages to en
@@ -63,6 +59,18 @@ X - Ingredient view
 X Startup optimization
     X - add splashscreen
     X - optimize spring boot startup
+X - Add dialg for creating new recipes and ingredients.
+    X - Basic dialog.
+    X - Styling dialog
+    X - Add way to remove added keywords
+    X - Add way to remove ingredients and side dishes
+    X - Add way to edit added recipeIngredient quantity
+    X - Add internationalization for combo box values.
+    X - Add way to remove ingredients
+    X - Add validations
+    X - Add possible side dishes
+    X - Suggestions should stay open even for exact match
+X - Basic recipe filter
 
 Done Arch:
 X - Add UUID to every entity and migrate existing data

@@ -4,7 +4,7 @@
 <?import org.controlsfx.glyphfont.Glyph?>
 <fx:root type="javafx.scene.control.Button" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.121">
     <graphic>
-        <Glyph fontFamily="FontAwesome" icon="EYE"/>
+        <Glyph fontFamily="FontAwesome" icon="SEARCH"/>
     </graphic>
     <maxHeight>25</maxHeight>
     <minHeight>25</minHeight>

@@ -19,6 +19,12 @@ public interface RecipeService {
      */
     Set<Recipe> getAllRecipes();
 
+    /**
+     * Gets recipes matching specified filter.
+     *
+     * @param filter (NotNull)
+     * @return (NotNull)
+     */
     Set<Recipe> getFilteredRecipes(RecipeFilter filter);
 
     /**

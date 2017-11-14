@@ -6,4 +6,8 @@
     <graphic>
         <Glyph fontFamily="FontAwesome" icon="EDIT"/>
     </graphic>
+    <maxHeight>25</maxHeight>
+    <minHeight>25</minHeight>
+    <maxWidth>30</maxWidth>
+    <minWidth>30</minWidth>
 </fx:root>
