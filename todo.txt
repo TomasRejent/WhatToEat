@@ -34,7 +34,6 @@
 - Translate new cz messages to sk
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
-- Check if all file operations closes their streams.
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
 
 Done bugs:
@@ -42,6 +41,7 @@ X - Ingredient keywords overlaps in recipe detail dialog.
 X - Fix random generator to work even if no recipes are available for some type.
 X - Enable text wrap for text areas in dialogs and in cookbook and author detail
 X - Check why ingredient creates unit conversion entity even when not filled
+X - Check if all file operations closes their streams.
 
 Done features:
 X - Add possibility to open recipe by double click in recipe view table.
