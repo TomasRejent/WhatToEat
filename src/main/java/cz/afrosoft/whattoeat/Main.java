@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.component.SplashScreen;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
@@ -121,17 +122,25 @@ public class Main extends Application {
     }
 
     /**
-     * Initializes Spring and persistence layer. Creates root component of UI from fxml.
+     * Initializes Spring and persistence layer. Creates root component of UI from fxml. Must be called from JavaFX thread,
+     * because it sets exception handler for thread and because Spring does not work in packaged jar when initialized from other thread.
      */
     private void prepareApplication() {
         LOGGER.info("Initializing spring.");
         long time = System.nanoTime();
+        //start Spring
         applicationContext = SpringApplication.run(Main.class);
         try {
+            //load main screen
             rootPane = loadPage(Page.ROOT);
         } catch (IOException e) {
             throw new RuntimeException("", e);
         }
+        //setup exception handler
+        Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
+            LOGGER.error("Unhandled exception occurred.", throwable);
+            DialogUtils.showExceptionDialog(I18n.getText("cz.afrosoft.whattoeat.common.exception"), throwable);
+        });
         LOGGER.info("Spring initialized in {}ms", (System.nanoTime() - time) * 0.000001);
     }
 

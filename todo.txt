@@ -20,7 +20,6 @@
 - add brief toString to entities so logging of convert operation makes sense
 
 - Add validation errors to UI
-- wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 - Add suggestion to keyword field
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
@@ -71,6 +70,7 @@ X - Add dialg for creating new recipes and ingredients.
     X - Add possible side dishes
     X - Suggestions should stay open even for exact match
 X - Basic recipe filter
+X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
 X - Add UUID to every entity and migrate existing data
