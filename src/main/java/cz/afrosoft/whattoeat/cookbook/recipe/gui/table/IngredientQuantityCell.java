@@ -54,7 +54,6 @@ public class IngredientQuantityCell extends TableCell<RecipeIngredientUpdateObje
         super.updateItem(item, empty);
         if (empty || item == null) {
             setText(StringUtils.EMPTY);
-            setGraphic(null);
         } else {
             RecipeIngredientUpdateObject recipeIngredient = getTableView().getItems().get(getIndex());
             setText(String.valueOf(item) + " " + recipeIngredient.getIngredient().map(ingredient -> I18n.getText(ingredient.getIngredientUnit().getLabelKey())).orElse("?"));
