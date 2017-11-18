@@ -329,7 +329,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         ingredientTable.setEditable(true);
         ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getName).orElse(StringUtils.EMPTY)));
         ingredientQuantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getQuantity().orElse(null), 0F));
-        ingredientQuantityColumn.setCellFactory(param -> new IngredientQuantityCell());
+        ingredientQuantityColumn.setCellFactory(param -> new IngredientQuantityCell(() -> ingredientServingsField.getFloat()));
         ingredientQuantityColumn.setEditable(true);
         ingredientQuantityColumn.setOnEditCommit(event -> event.getRowValue().setQuantity(event.getNewValue()));
         ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections
