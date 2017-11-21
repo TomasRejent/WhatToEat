@@ -10,9 +10,10 @@ import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
 import javafx.collections.SetChangeListener;
-import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.ComboBox;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import org.apache.commons.lang3.BooleanUtils;
@@ -117,10 +118,16 @@ public class KeywordField extends GridPane {
                     }
                 }
         );
+
         /**
          * Consumes event after enter key is pressed to add keyword. Without this adding of keyword caused submitting of dialog which use keyword field.
          */
-        keywordField.setOnAction(Event::consume);
+        keywordField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            LOGGER.info("combo EVENT filter key pressed");
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+            }
+        });
 
         refreshKeywords();
     }
