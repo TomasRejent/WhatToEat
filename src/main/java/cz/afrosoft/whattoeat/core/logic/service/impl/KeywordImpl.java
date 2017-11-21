@@ -111,6 +111,28 @@ final class KeywordImpl implements Keyword {
         }
 
         @Override
+        public boolean equals(final Object o) {
+            if (this == o) return true;
+
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Builder builder = (Builder) o;
+
+            return new EqualsBuilder()
+                    .append(id, builder.id)
+                    .append(name, builder.name)
+                    .isEquals();
+        }
+
+        @Override
+        public int hashCode() {
+            return new HashCodeBuilder(17, 37)
+                    .append(id)
+                    .append(name)
+                    .toHashCode();
+        }
+
+        @Override
         public String toString() {
             return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                     .append("id", id)
