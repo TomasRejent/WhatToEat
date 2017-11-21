@@ -23,7 +23,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import java.util.Set;
 
 /**
  * Component for picking keywords.
@@ -138,7 +141,7 @@ public class KeywordField extends GridPane {
     public void refreshKeywords() {
         Set<Keyword> allKeywords = keywordService.getAllKeywords();
         keywordField.getSelectionModel().clearSelection();
-        Set<Keyword> setDifference = new HashSet<>(allKeywords);
+        Set<Keyword> setDifference = new LinkedHashSet<>(allKeywords);
         setDifference.removeAll(this.keywords);
         keywordField.getItems().addAll(setDifference);
     }
