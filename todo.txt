@@ -35,6 +35,7 @@
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
 - Database script is not updated immediately after program close.
+- AddRecipe dialog - clearing of duration fields does not work
 
 Done bugs:
 X - Ingredient keywords overlaps in recipe detail dialog.
