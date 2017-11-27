@@ -12,6 +12,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import org.apache.commons.lang3.Validate;
+import org.hsqldb.DatabaseManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -165,5 +166,7 @@ public class Main extends Application {
     @Override
     public void stop() throws Exception {
         applicationContext.close();
+        /* Explicit DB close so all changes are flushed to database.script after program exit.*/
+        DatabaseManager.closeDatabases(4);
     }
 }
