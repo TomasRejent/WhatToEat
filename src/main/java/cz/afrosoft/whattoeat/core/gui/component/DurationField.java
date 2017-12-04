@@ -20,6 +20,8 @@ public class DurationField extends TextField {
     private static final String VALIDATION_REGEX = "^$|^([1-9])+[0-9]*$";
     private static final Pattern VALIDATION_PATTERN = Pattern.compile(VALIDATION_REGEX);
 
+    private static final String ZERO = "0";
+
     public DurationField() {
         textProperty().addListener(createChangeListener());
         setPromptText(I18n.getText(PLACEHOLDER_KEY));
@@ -32,7 +34,9 @@ public class DurationField extends TextField {
      */
     private ChangeListener<String> createChangeListener() {
         return (observable, oldValue, newValue) -> {
-            if (!VALIDATION_PATTERN.matcher(newValue).matches()) {
+            if (StringUtils.isEmpty(newValue) || ZERO.equals(newValue)) {
+                setText(StringUtils.EMPTY);
+            } else if (!VALIDATION_PATTERN.matcher(newValue).matches()) {
                 setText(oldValue);
             }
         };
