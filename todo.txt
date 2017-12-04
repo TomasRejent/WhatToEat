@@ -10,23 +10,27 @@
 \- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
-
+- add brief toString to entities so logging of convert operation makes sense
+- Measure and optimize loading of tables
 
 - low priority - try to use metamodel in criteria queries
 
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
-- Measure and optimize loading of tables
-- add brief toString to entities so logging of convert operation makes sense
-
 - Add validation errors to UI
 
 - Add suggestion to keyword field
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
+- Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
 - add persisting of last used filter for recipes
+- add filter submit event on enter key pressed in name field
+- add suggestion to name field in filter, but allow to submit non complete words
 - Optimize focus transferring and key events for recipe filter
 - Add name filter to ingredients
+
+- add event to open recipe view on double click on table
+- add side dishes with clickable links which open new view to recipe attribute dialog section
 
 - Add language to config file and use it in program
 - Translate new cz messages to en
