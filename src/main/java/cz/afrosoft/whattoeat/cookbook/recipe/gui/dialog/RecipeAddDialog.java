@@ -248,8 +248,8 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
 
         //listener which enables quantity field only when ingredient is selected
         selectedIngredient.addListener((observable, oldValue, newValue) -> ingredientQuantityField.setDisable(newValue == null));
-
-        ingredientQuantityField.setOnKeyPressed(event -> {
+        //process enter key on quantity field, which adds ingredient to table
+        ingredientQuantityField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 float servings = ingredientServingsField.getFloatOrZero();
                 float divisionCoefficient = servings == 0 ? 1f : servings;
