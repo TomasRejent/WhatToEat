@@ -108,6 +108,7 @@ public class KeywordField extends GridPane {
         //update keyword field, only persisted keywords are returned to options
         if (!keywordField.getItems().contains(removedKeyword) && removedKeyword.getId() != null) {
             keywordField.getItems().add(removedKeyword);
+            Collections.sort(keywordField.getItems());
         }
     }
 
