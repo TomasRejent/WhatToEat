@@ -21,6 +21,16 @@ public interface KeywordService {
     Set<Keyword> getAllKeywords();
 
     /**
+     * @return (NotNull) Set of all keywords which are connected to recipes.
+     */
+    Set<Keyword> getAllRecipeKeywords();
+
+    /**
+     * @return (NotNull) Set of all keywords connected to ingredients.
+     */
+    Set<Keyword> getAllIngredientKeywords();
+
+    /**
      * Gets keyword for specified name. If keyword already exist it is loaded from database and id is filled.
      * If keyword does not exist, instance without id is created. Non existing keyword is not persisted.
      *

@@ -42,6 +42,22 @@ public class KeywordServiceImpl implements KeywordService {
 
     @Override
     @Transactional(readOnly = true)
+    public Set<Keyword> getAllRecipeKeywords() {
+        LOGGER.trace("Getting all recipe keywords.");
+        List<KeywordEntity> allKeywords = repository.findAllRecipeKeywords();
+        return ConverterUtil.convertToSortedSet(allKeywords, this::entityToKeyword);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Keyword> getAllIngredientKeywords() {
+        LOGGER.trace("Getting all ingredient keywords.");
+        List<KeywordEntity> allKeywords = repository.findAllIngredientKeywords();
+        return ConverterUtil.convertToSortedSet(allKeywords, this::entityToKeyword);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Keyword getKeyword(final String keywordName) {
         LOGGER.trace("Getting keyword for: {}.", keywordName);
         Keyword keyword = Optional.ofNullable(repository.findByName(keywordName))

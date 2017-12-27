@@ -104,6 +104,7 @@
                     />
                     <KeywordField
                             fx:id="keywordField"
+                            keywordType="RECIPE_KEYWORDS"
                             GridPane.columnIndex="0"
                             GridPane.rowIndex="5"
                             GridPane.columnSpan="4"

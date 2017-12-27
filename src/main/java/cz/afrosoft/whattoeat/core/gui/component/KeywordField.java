@@ -5,7 +5,9 @@ import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleBooleanProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableSet;
@@ -46,6 +48,8 @@ public class KeywordField extends GridPane {
 
     private BooleanProperty editableProperty = new SimpleBooleanProperty(this, "editable", true);
 
+    private Property<KEYWORD_TYPE> keywordTypeProperty = new SimpleObjectProperty<>(this, "keywordType", KEYWORD_TYPE.ALL_KEYWORDS);
+
     /**
      * Observable set of keywords. Keywords in this set are displayed in keyword container.
      */
@@ -58,6 +62,7 @@ public class KeywordField extends GridPane {
         ComponentUtil.initFxmlComponent(this, FXML_PATH);
         keywords.addListener(createChangeListener());
         editableProperty.addListener(createEditableChangeListener());
+        keywordTypeProperty.addListener(createKeywordTypeChangeListener());
         initKeywordField();
     }
 
@@ -80,6 +85,14 @@ public class KeywordField extends GridPane {
                 }
             } else {
                 getChildren().remove(keywordField);
+            }
+        };
+    }
+
+    private ChangeListener<KEYWORD_TYPE> createKeywordTypeChangeListener(){
+        return (observable, oldValue, newValue) -> {
+            if(oldValue != newValue){
+                refreshKeywords();
             }
         };
     }
@@ -113,7 +126,7 @@ public class KeywordField extends GridPane {
 
     private void initKeywordField() {
         keywordField.setConverter(ComboBoxUtils.createAsymmetricStringConverter(Keyword::getName, keywordService::getKeyword));
-        keywordField.setEditable(true);
+        keywordField.setEditable(true); //to trigger listener
         keywordField.getItems().clear();
         keywordField.valueProperty().addListener((observable, oldValue, newValue) -> {
                     if (newValue != null) {
@@ -131,19 +144,33 @@ public class KeywordField extends GridPane {
                 event.consume();
             }
         });
-
-        refreshKeywords();
     }
 
     /**
-     * Reloads keywords which are persisted.
+     * Reloads keywords which are persisted and sets them to combo box options.
      */
     public void refreshKeywords() {
-        Set<Keyword> allKeywords = keywordService.getAllKeywords();
+        Set<Keyword> allKeywords = getAllKeywords();
         keywordField.getSelectionModel().clearSelection();
         Set<Keyword> setDifference = new LinkedHashSet<>(allKeywords);
         setDifference.removeAll(this.keywords);
         keywordField.getItems().addAll(setDifference);
+    }
+
+    /**
+     * @return Loads keywords based on {@link #keywordTypeProperty}.
+     */
+    private Set<Keyword> getAllKeywords(){
+        switch (keywordTypeProperty.getValue()){
+            case ALL_KEYWORDS:
+                return keywordService.getAllKeywords();
+            case RECIPE_KEYWORDS:
+                return keywordService.getAllRecipeKeywords();
+            case INGREDIENT_KEYWORDS:
+                return keywordService.getAllIngredientKeywords();
+            default:
+                return keywordService.getAllKeywords();
+        }
     }
 
     /**
@@ -181,7 +208,37 @@ public class KeywordField extends GridPane {
         editableProperty.set(editable);
     }
 
-    public BooleanProperty editablePropertyProperty() {
+    public BooleanProperty editableProperty() {
         return editableProperty;
+    }
+
+    public KEYWORD_TYPE getKeywordType() {
+        return keywordTypeProperty.getValue();
+    }
+
+    public void setKeywordType(final KEYWORD_TYPE type){
+        keywordTypeProperty.setValue(type);
+    }
+
+    public Property<KEYWORD_TYPE> keywordTypeProperty(){
+        return keywordTypeProperty;
+    }
+
+    /**
+     * Type of keywords to be loaded as options into combo box.
+     */
+    public enum KEYWORD_TYPE{
+        /**
+         * All existing keywords are loaded.
+         */
+        ALL_KEYWORDS,
+        /**
+         * Only keywords which are assigned to some recipe are loaded.
+         */
+        RECIPE_KEYWORDS,
+        /**
+         * Only keywords which are assigned to some ingredient are loaded.
+         */
+        INGREDIENT_KEYWORDS,
     }
 }

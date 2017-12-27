@@ -30,6 +30,7 @@
                 GridPane.columnIndex="3"
                 GridPane.rowIndex="1"/>
     <KeywordField fx:id="keywordField"
+                  keywordType="INGREDIENT_KEYWORDS"
                   GridPane.columnIndex="0"
                   GridPane.rowIndex="2"
                   GridPane.columnSpan="4"
