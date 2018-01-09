@@ -26,8 +26,10 @@ import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.MouseEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -94,6 +96,7 @@ public class RecipeController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         LOGGER.info("Initializing recipe controller");
         setupColumnCellFactories();
+        setupRowListeners();
         setupFilter();
         disableRecipeActionButtons(true);
         setupSelectionHandler();
@@ -116,6 +119,19 @@ public class RecipeController implements Initializable {
         ratingColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getRating, 0));
         keywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getKeywords, Collections.emptySet()));
         keywordColumn.setCellFactory(column -> new KeywordCell<>());
+    }
+
+    private void setupRowListeners() {
+        recipeTable.setRowFactory(param -> {
+            TableRow<Recipe> row = new TableRow<>();
+            row.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    RecipeViewDialog viewDialog = Main.getApplicationContext().getBean(RecipeViewDialog.class);
+                    viewDialog.showRecipe(row.getItem());
+                }
+            });
+            return row;
+        });
     }
 
     /**
