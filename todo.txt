@@ -13,24 +13,41 @@
 - add brief toString to entities so logging of convert operation makes sense
 - Measure and optimize loading of tables
 
+- Setup logger so it keeps logs for one day
+- Use property from config to set logger level
+
 - low priority - try to use metamodel in criteria queries
 
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
-- Add validation errors to UI
+- Diet feature
+    - create entities for diet
+    - create services for diet
+    - create screen with diets
+    - create screen for creating/generating diets
+    - create diet detail screen
+    - add edit with suggestion to diet detail screen
+    - add feature to generate shopping list
 
-- Add suggestion to keyword field
+- New suggestion component
+    - supports adding of new items, so enter key use suggestion only when selected by arrow keys
+    - supports suggestion provider which could use database
+    - supports static set of possible suggestions
+    - Add suggestion to keyword field
+    - Add suggestion to recipe name filter
+    - Add suggestions to ingredient name filter
+
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
 - add persisting of last used filter for recipes
 - add filter submit event on enter key pressed in name field
-- add suggestion to name field in filter, but allow to submit non complete words
 - Optimize focus transferring and key events for recipe filter
 - Add name filter to ingredients
 
-- add event to open recipe view on double click on table
 - add side dishes with clickable links which open new view to recipe attribute dialog section
+
+- Add validation errors to UI
 
 - Add language to config file and use it in program
 - Translate new cz messages to en
@@ -50,6 +67,7 @@ X - AddRecipe dialog - clearing of duration fields does not work
 X - Author and Cookbook descriptions are not saved as CLOB
 
 Done features:
+X - add event to open recipe view on double click on table
 X - Add possibility to open recipe by double click in recipe view table.
 X - Display error dialog when recipe cannot be displayed because of invalid recipeIngredient info
 X - Show diet view on double click
