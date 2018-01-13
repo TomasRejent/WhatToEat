@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
@@ -42,6 +43,13 @@ public class IngredientServiceImpl implements IngredientService {
     public Set<Ingredient> getAllIngredients() {
         LOGGER.debug("Getting all ingredients.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToIngredient);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<Ingredient> getFilteredIngredients(final IngredientFilter filter) {
+        Validate.notNull(filter);
+        return ConverterUtil.convertToSortedSet(repository.findIngredientsByFilter(filter), this::entityToIngredient);
     }
 
     @Override

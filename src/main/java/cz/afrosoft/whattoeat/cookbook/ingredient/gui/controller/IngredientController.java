@@ -1,18 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.net.URL;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Optional;
-import java.util.ResourceBundle;
-
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
@@ -28,6 +16,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Controller;
+
+import java.net.URL;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Optional;
+import java.util.ResourceBundle;
 
 /**
  * Controller for page {@link cz.afrosoft.whattoeat.core.gui.Page#INGREDIENTS}.
@@ -42,6 +46,9 @@ public class IngredientController implements Initializable {
 
     private static final String DELETE_CONFIRM_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.delete.ingredient.title";
     private static final String DELETE_CONFIRM_MESSAGE_KEY = "cz.afrosoft.whattoeat.dialog.delete.ingredient.messages";
+
+    @FXML
+    private TextField nameFilter;
 
     @FXML
     private TableView<Ingredient> ingredientTable;
@@ -67,6 +74,7 @@ public class IngredientController implements Initializable {
     public void initialize(final URL url, final ResourceBundle rb) {
         LOGGER.debug("Initializing ingredient controller");
         setupColumnCellFactories();
+        setupFilter();
         disableIngredientActionButtons(true);
         setupSelectionHandler();
         ingredientTable.getItems().addAll(ingredientService.getAllIngredients());
@@ -101,6 +109,17 @@ public class IngredientController implements Initializable {
         ingredientTable.getSelectionModel().selectedItemProperty().addListener(
                 (observable, oldValue, newValue) -> disableIngredientActionButtons(newValue == null)
         );
+    }
+
+    /**
+     * Setup filter fields.
+     */
+    private void setupFilter() {
+        nameFilter.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                filterIngredients();
+            }
+        });
     }
 
     /**
@@ -152,5 +171,31 @@ public class IngredientController implements Initializable {
                 ingredientTable.getItems().remove(ingredient);
             }
         });
+    }
+
+    /**
+     * Handler for filter submit button. Gathers filtering properties and search for ingredients.
+     */
+    @FXML
+    private void filterIngredients() {
+        LOGGER.debug("Filtering ingredients action triggered.");
+
+        IngredientFilter filter = new IngredientFilter.Builder()
+                .setName(nameFilter.getText())
+                .build();
+        ingredientTable.getItems().clear();
+        ingredientTable.getItems().addAll(ingredientService.getFilteredIngredients(filter));
+    }
+
+    /**
+     * Handler for filter clear button. Clears filtering properties and load all ingredients.
+     */
+    @FXML
+    private void clearIngredients() {
+        LOGGER.debug("Clear filter action triggered.");
+
+        nameFilter.setText(StringUtils.EMPTY);
+        ingredientTable.getItems().clear();
+        ingredientTable.getItems().addAll(ingredientService.getAllIngredients());
     }
 }

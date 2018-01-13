@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
-<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
-<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
@@ -12,6 +11,20 @@
         stylesheets="@../styles/IngredientList.css"
         styleClass="ingredient-container"
         fx:controller="cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller.IngredientController">
+    <top>
+        <HBox styleClass="filter-bar">
+            <Label text="%cz.afrosoft.whattoeat.common.filter"/>
+            <Label text="%cz.afrosoft.whattoeat.common.name"/>
+            <TextField fx:id="nameFilter"/>
+            <HBox>
+                <SearchButton fx:id="filterSubmitButton"
+                              onAction="#filterIngredients"/>
+                <RemoveButton fx:id="filterClearButton"
+                              onAction="#clearIngredients"/>
+            </HBox>
+
+        </HBox>
+    </top>
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.ingredients.actions.title"/>

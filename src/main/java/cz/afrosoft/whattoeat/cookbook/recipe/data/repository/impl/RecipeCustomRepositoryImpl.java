@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * Implementation of custom recipe repository which provides dynamically constructed query for filtering by recipe filter.
  */
 @Repository
-public class RecipeCustomRepositoryImpl implements RecipeCustomRepository {
+class RecipeCustomRepositoryImpl implements RecipeCustomRepository {
 
     private static final String NAME = "name";
     private static final String RECIPE_TYPE = "recipeTypes";

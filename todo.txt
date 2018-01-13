@@ -11,6 +11,9 @@
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 - Measure and optimize loading of tables
+- Create FieldLable component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
+- Clean up messages.properties so there are no duplicate words. Use common keys instead.
+- Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
 
 - low priority - try to use metamodel in criteria queries
 
@@ -37,7 +40,6 @@
 
 - add persisting of last used filter for recipes
 - Optimize focus transferring and key events for recipe filter
-- Add name filter to ingredients
 
 - add side dishes with clickable links which open new view to recipe attribute dialog section
 
@@ -61,6 +63,7 @@ X - AddRecipe dialog - clearing of duration fields does not work
 X - Author and Cookbook descriptions are not saved as CLOB
 
 Done features:
+X - Add name filter to ingredients
 X - add filter submit event on enter key pressed in name field
 X - add event to open recipe view on double click on table
 X - Add possibility to open recipe by double click in recipe view table.

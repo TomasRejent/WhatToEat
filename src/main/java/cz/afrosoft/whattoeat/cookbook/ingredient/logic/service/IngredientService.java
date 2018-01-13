@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 
@@ -17,6 +18,14 @@ public interface IngredientService {
      * @return (NotNull) Return all ingredients defined in application.
      */
     Set<Ingredient> getAllIngredients();
+
+    /**
+     * Gets ingredients matching specified filter.
+     *
+     * @param filter (NotNull)
+     * @return (NotNull)
+     */
+    Set<Ingredient> getFilteredIngredients(IngredientFilter filter);
 
     /**
      * Check if ingredient with specified name exists. Check is case sensitive.
