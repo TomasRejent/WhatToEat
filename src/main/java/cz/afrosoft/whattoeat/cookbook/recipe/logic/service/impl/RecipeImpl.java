@@ -12,7 +12,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.time.Duration;
 import java.util.Collections;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -47,14 +47,14 @@ final class RecipeImpl implements Recipe {
         this.name = name;
         this.preparation = preparation;
         this.rating = rating;
-        this.recipeTypes = Collections.unmodifiableSet(new HashSet<>(recipeTypes));
+        this.recipeTypes = Collections.unmodifiableSet(new LinkedHashSet<>(recipeTypes));
         this.taste = taste;
         this.ingredientPreparationTime = ingredientPreparationTime;
         this.cookingTime = cookingTime;
-        this.ingredients = Collections.unmodifiableSet(new HashSet<>(ingredients));
-        this.sideDishes = Collections.unmodifiableSet(new HashSet<>(sideDishes));
-        this.keywords = Collections.unmodifiableSet(new HashSet<>(keywords));
-        this.cookbooks = Collections.unmodifiableSet(new HashSet<>(cookbooks));
+        this.ingredients = Collections.unmodifiableSet(new LinkedHashSet<>(ingredients));
+        this.sideDishes = Collections.unmodifiableSet(new LinkedHashSet<>(sideDishes));
+        this.keywords = Collections.unmodifiableSet(new LinkedHashSet<>(keywords));
+        this.cookbooks = Collections.unmodifiableSet(new LinkedHashSet<>(cookbooks));
     }
 
     @Override

@@ -65,7 +65,9 @@ public class RecipeServiceImpl implements RecipeService {
     @Transactional(readOnly = true)
     public Set<Recipe> getAllRecipes() {
         LOGGER.debug("Getting all recipes.");
-        return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToRecipe);
+
+        return ConverterUtil.convertToLinkedSet(repository.findAllByOrderByNameAsc(), this::entityToRecipe);
+
     }
 
     @Override
@@ -179,8 +181,8 @@ public class RecipeServiceImpl implements RecipeService {
                 .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), cookbookRefService::fromEntity))
                 .setSideDishes(ConverterUtil.convertToSortedSet(entity.getSideDishes(), recipeRefService::fromEntity))
                 .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
-
         builder.setExistingIngredients(ConverterUtil.convertToSet(entity.getIngredients(), recipeIngredientRefService::fromEntity));
+
         return builder.build();
     }
 

@@ -26,6 +26,7 @@ public class KeywordCell<S> extends TableCell<S, Collection<Keyword>> {
     @Override
     protected void updateItem(final Collection<Keyword> item, final boolean empty) {
         keywordLabelContainer.getChildren().clear();
+
         if (item != null) {
             item.forEach(keyword -> keywordLabelContainer.getChildren().add(new KeywordLabel(keyword).setRemovable(false)));
         }

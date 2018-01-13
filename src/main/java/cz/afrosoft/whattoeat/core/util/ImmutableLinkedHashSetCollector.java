@@ -2,8 +2,8 @@ package cz.afrosoft.whattoeat.core.util;
 
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
-import java.util.TreeSet;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
@@ -11,31 +11,31 @@ import java.util.function.Supplier;
 import java.util.stream.Collector;
 
 /**
- * Collect immutable set with natural ordering of items.
+ * Collect immutable set which preserves order of items.
  *
  * @author Tomas Rejent
  */
-public class ImmutableOrderedSetCollector<T> implements Collector<T, TreeSet<T>, Set<T>> {
+public class ImmutableLinkedHashSetCollector<T> implements Collector<T, LinkedHashSet<T>, Set<T>> {
 
-    public static <T> ImmutableOrderedSetCollector<T> newInstance() {
-        return new ImmutableOrderedSetCollector<>();
+    public static <T> ImmutableLinkedHashSetCollector<T> newInstance() {
+        return new ImmutableLinkedHashSetCollector<>();
     }
 
-    private ImmutableOrderedSetCollector() {
-    }
-
-    @Override
-    public Supplier<TreeSet<T>> supplier() {
-        return TreeSet::new;
+    private ImmutableLinkedHashSetCollector() {
     }
 
     @Override
-    public BiConsumer<TreeSet<T>, T> accumulator() {
-        return TreeSet::add;
+    public Supplier<LinkedHashSet<T>> supplier() {
+        return LinkedHashSet::new;
     }
 
     @Override
-    public BinaryOperator<TreeSet<T>> combiner() {
+    public BiConsumer<LinkedHashSet<T>, T> accumulator() {
+        return LinkedHashSet::add;
+    }
+
+    @Override
+    public BinaryOperator<LinkedHashSet<T>> combiner() {
         return (firstSet, secondSet) -> {
             firstSet.addAll(secondSet);
             return firstSet;
@@ -43,7 +43,7 @@ public class ImmutableOrderedSetCollector<T> implements Collector<T, TreeSet<T>,
     }
 
     @Override
-    public Function<TreeSet<T>, Set<T>> finisher() {
+    public Function<LinkedHashSet<T>, Set<T>> finisher() {
         return Collections::unmodifiableSet;
     }
 

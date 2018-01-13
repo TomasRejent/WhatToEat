@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.data.repository;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,8 @@ import java.util.List;
 @Repository
 public interface RecipeRepository extends JpaRepository<RecipeEntity, Integer>, RecipeCustomRepository {
 
-    List<RecipeEntity> findAll();
+    @EntityGraph(attributePaths = {"keywords", "recipeIngredients", "sideDishes", "cookbooks"}, type = EntityGraph.EntityGraphType.FETCH)
+    List<RecipeEntity> findAllByOrderByNameAsc();
 
     List<RecipeEntity> findByRecipeTypesContains(RecipeType recipeType);
 

@@ -20,6 +20,7 @@ public class CookbookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    @Access(AccessType.PROPERTY)
     private Integer id;
 
     @Column(name = "NAME")

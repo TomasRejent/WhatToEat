@@ -18,6 +18,7 @@ public class KeywordEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
+    @Access(AccessType.PROPERTY)
     private Integer id;
 
     @Column(name = "NAME", unique = true, nullable = false)
