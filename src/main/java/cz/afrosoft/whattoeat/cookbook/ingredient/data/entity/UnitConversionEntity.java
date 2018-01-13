@@ -1,6 +1,8 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
@@ -85,5 +87,12 @@ public class UnitConversionEntity {
     public UnitConversionEntity setGramsPerSpoon(final Float gramsPerSpoon) {
         this.gramsPerSpoon = gramsPerSpoon;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", id)
+                .toString();
     }
 }

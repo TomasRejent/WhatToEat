@@ -2,6 +2,8 @@ package cz.afrosoft.whattoeat.cookbook.recipe.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 
@@ -62,5 +64,13 @@ public class RecipeIngredientEntity {
     public RecipeIngredientEntity setIngredient(final IngredientEntity ingredient) {
         this.ingredient = ingredient;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", id)
+                .append("quantity", quantity)
+                .toString();
     }
 }

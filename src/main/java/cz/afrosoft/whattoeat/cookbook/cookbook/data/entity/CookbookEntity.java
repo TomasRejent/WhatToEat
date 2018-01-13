@@ -2,6 +2,8 @@ package cz.afrosoft.whattoeat.cookbook.cookbook.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -76,5 +78,13 @@ public class CookbookEntity {
     public CookbookEntity setAuthors(final Set<AuthorEntity> authors) {
         this.authors = authors;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", id)
+                .append("name", name)
+                .toString();
     }
 }

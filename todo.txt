@@ -10,7 +10,6 @@
 \- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
-- add brief toString to entities so logging of convert operation makes sense
 - Measure and optimize loading of tables
 
 - low priority - try to use metamodel in criteria queries
@@ -94,6 +93,7 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - add brief toString to entities so logging of convert operation makes sense
 X - Setup logger so it keeps logs for restricted time and size
 X - Add support to change log level at runtime.
 X - Add UUID to every entity and migrate existing data

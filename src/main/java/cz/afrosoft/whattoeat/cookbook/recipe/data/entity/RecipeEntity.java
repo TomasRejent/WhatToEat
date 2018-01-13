@@ -6,6 +6,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
 import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.Duration;
@@ -170,5 +172,13 @@ public class RecipeEntity {
     public RecipeEntity setCookbooks(final Set<CookbookEntity> cookbooks) {
         this.cookbooks = cookbooks;
         return this;
+    }
+
+    @Override
+    public String toString() {
+        return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
+                .append("id", id)
+                .append("name", name)
+                .toString();
     }
 }
