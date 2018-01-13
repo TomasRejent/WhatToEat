@@ -29,6 +29,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -135,11 +137,16 @@ public class RecipeController implements Initializable {
     }
 
     /**
-     * Setuup filter fields.
+     * Setup filter fields.
      */
     private void setupFilter() {
         cookbookFilter.setConverter(ComboBoxUtils.createStringConverter(cookbookFilter, CookbookRef::getName));
         ComboBoxUtils.initLabeledCheckComboBox(typeFilter);
+        nameFilter.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                filterRecipes();
+            }
+        });
     }
 
     /**

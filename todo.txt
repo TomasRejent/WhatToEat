@@ -37,7 +37,6 @@
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
 - add persisting of last used filter for recipes
-- add filter submit event on enter key pressed in name field
 - Optimize focus transferring and key events for recipe filter
 - Add name filter to ingredients
 
@@ -63,6 +62,7 @@ X - AddRecipe dialog - clearing of duration fields does not work
 X - Author and Cookbook descriptions are not saved as CLOB
 
 Done features:
+X - add filter submit event on enter key pressed in name field
 X - add event to open recipe view on double click on table
 X - Add possibility to open recipe by double click in recipe view table.
 X - Display error dialog when recipe cannot be displayed because of invalid recipeIngredient info
