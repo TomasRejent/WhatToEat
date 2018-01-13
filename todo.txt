@@ -13,11 +13,7 @@
 - add brief toString to entities so logging of convert operation makes sense
 - Measure and optimize loading of tables
 
-- Setup logger so it keeps logs for one day
-- Use property from config to set logger level
-
 - low priority - try to use metamodel in criteria queries
-
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Diet feature
@@ -98,6 +94,8 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - Setup logger so it keeps logs for restricted time and size
+X - Add support to change log level at runtime.
 X - Add UUID to every entity and migrate existing data
 X - Use recipe UUIDs in diets
 X - Create ER diagram and validate each attribute
