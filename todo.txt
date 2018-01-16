@@ -41,7 +41,9 @@
 - add persisting of last used filter for recipes
 - Optimize focus transferring and key events for recipe filter
 
-- add side dishes with clickable links which open new view to recipe attribute dialog section
+- update hiding of side dishes link so they does not take up space in layout when no side dishes are present
+
+- add weight coefficient to config file so weight for one serving can be adjusted globally
 
 - Add validation errors to UI
 
@@ -63,6 +65,7 @@ X - AddRecipe dialog - clearing of duration fields does not work
 X - Author and Cookbook descriptions are not saved as CLOB
 
 Done features:
+X - add side dishes with clickable links which open new view to recipe attribute dialog section
 X - Add name filter to ingredients
 X - add filter submit event on enter key pressed in name field
 X - add event to open recipe view on double click on table

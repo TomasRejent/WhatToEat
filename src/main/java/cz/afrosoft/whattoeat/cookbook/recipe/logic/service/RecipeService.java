@@ -15,6 +15,15 @@ import java.util.Set;
 public interface RecipeService {
 
     /**
+     * Gets recipe by its id.
+     *
+     * @param id (NotNull)
+     * @return (NotNull) Recipe wit specified id.
+     * @throws javax.persistence.EntityNotFoundException When recipe with specified id does not exist.
+     */
+    Recipe getRecipeById(Integer id);
+
+    /**
      * @return (NotNull) Return all recipes defined in application.
      */
     Set<Recipe> getAllRecipes();

@@ -13,6 +13,7 @@ import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
 import cz.afrosoft.whattoeat.core.gui.component.IngredientQuantityTable;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
+import cz.afrosoft.whattoeat.core.gui.component.RecipeLinks;
 import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -73,6 +74,8 @@ public class RecipeViewDialog extends CustomDialog<Void> {
     private Label timeLabel;
     @FXML
     private Label ratingLabel;
+    @FXML
+    private RecipeLinks sideDishesLinks;
     @FXML
     private TextArea preparation;
     @FXML
@@ -174,5 +177,9 @@ public class RecipeViewDialog extends CustomDialog<Void> {
         recipeIngredients = recipeService.loadRecipeIngredients(recipe.getIngredients());
         ingredientQuantityTable.addRecipeIngredients(DEFAULT_SERVINGS, recipeIngredients);
         updatePriceLabel();
+        // pre-fill side dishes links
+        boolean hasSideDishes = !recipe.getSideDishes().isEmpty();
+        sideDishesLinks.setVisible(hasSideDishes);// TODO replace visibility with removal so it does not take space of layout
+        sideDishesLinks.setRecipes(recipe.getSideDishes());
     }
 }

@@ -3,6 +3,7 @@
 <?import cz.afrosoft.whattoeat.core.gui.component.FloatFiled?>
 <?import cz.afrosoft.whattoeat.core.gui.component.IngredientQuantityTable?>
 <?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
+<?import cz.afrosoft.whattoeat.core.gui.component.RecipeLinks?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <VBox
@@ -54,6 +55,11 @@
                           GridPane.columnIndex="0"
                           GridPane.rowIndex="2"
                           GridPane.columnSpan="4"/>
+            <RecipeLinks fx:id="sideDishesLinks"
+                         text="%cz.afrosoft.whattoeat.common.sideDishes"
+                         GridPane.columnIndex="0"
+                         GridPane.rowIndex="3"
+                         GridPane.columnSpan="4"/>
         </GridPane>
     </TitledPane>
 

@@ -60,6 +60,13 @@ public class RecipeServiceImpl implements RecipeService {
     @Autowired
     private KeywordService keywordService;
 
+    @Override
+    @Transactional(readOnly = true)
+    public Recipe getRecipeById(final Integer id) {
+        LOGGER.debug("Getting recipe for id {}.", id);
+        Validate.notNull(id);
+        return entityToRecipe(repository.getOne(id));
+    }
 
     @Override
     @Transactional(readOnly = true)

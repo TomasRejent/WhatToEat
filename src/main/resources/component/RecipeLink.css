@@ -1,0 +1,8 @@
+.recipe-link-component{
+    -fx-text-fill: blue;
+    -fx-cursor: hand;
+}
+
+.recipe-link-component:hover{
+    -fx-underline: true;
+}
