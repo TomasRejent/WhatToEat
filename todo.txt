@@ -14,6 +14,7 @@
 - Create FieldLable component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
+- Devise proper mechanism for FXML custom components
 
 - low priority - try to use metamodel in criteria queries
 
@@ -34,6 +35,12 @@
     - Add suggestion to keyword field
     - Add suggestion to recipe name filter
     - Add suggestions to ingredient name filter
+
+- Cookbooks / Recipes / Ingredients Import export
+    - add UUID to these entities
+    - create export to json
+    - create import from json
+    - create merge tool
 
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
