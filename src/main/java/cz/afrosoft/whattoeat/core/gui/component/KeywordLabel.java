@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -10,6 +11,7 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import java.util.function.Consumer;
 
 /**
@@ -17,17 +19,16 @@ import java.util.function.Consumer;
  *
  * @author Tomas Rejent
  */
+@FXMLComponent(fxmlPath = "/component/KeywordLabel.fxml")
 public class KeywordLabel extends Label {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KeywordLabel.class);
-
-    private static final String FXML_PATH = "/component/KeywordLabel.fxml";
 
     @FXML
     private RemoveButton removeButton;
 
     /**
-     * Controls visibility od remove button.
+     * Controls visibility of remove button.
      */
     private BooleanProperty removable = new SimpleBooleanProperty(true);
 
@@ -35,9 +36,12 @@ public class KeywordLabel extends Label {
 
     public KeywordLabel(final Keyword keyword) {
         Validate.notNull(keyword);
-        ComponentUtil.initFxmlComponent(this, FXML_PATH);
 
         this.keyword = keyword;
+    }
+
+    @PostConstruct
+    private void initialize() {
         setText(keyword.getName());
         removable.addListener(createRemovablePropListener());
         setRemovable(false);

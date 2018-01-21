@@ -38,7 +38,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.util.Collection;
@@ -49,7 +49,7 @@ import java.util.ResourceBundle;
 /**
  * Controller fot page {@link cz.afrosoft.whattoeat.core.gui.Page#RECIPES}.
  */
-@Controller
+@Component
 @Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
 public class RecipeController implements Initializable {
 

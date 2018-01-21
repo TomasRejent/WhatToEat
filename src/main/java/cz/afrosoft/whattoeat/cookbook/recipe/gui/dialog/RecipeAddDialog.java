@@ -17,7 +17,8 @@ import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.*;
-import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
@@ -46,10 +47,8 @@ import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashSet;
@@ -62,13 +61,10 @@ import java.util.Optional;
  *
  * @author Tomas Rejent
  */
-@Controller
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
+@FXMLComponent(fxmlPath = "/fxml/RecipeAddDialog.fxml")
+public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeAddDialog.class);
-
-    private static final String DIALOG_FXML = "/fxml/RecipeAddDialog.fxml";
 
     /**
      * Title message displayed when dialog is in add mode.
@@ -156,7 +152,10 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
      * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
      */
     public RecipeAddDialog() {
-        super(DIALOG_FXML);
+    }
+
+    @PostConstruct
+    private void initialize() {
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
 
@@ -287,7 +286,7 @@ public class RecipeAddDialog extends CustomDialog<RecipeUpdateObject> {
         finishButton = (Button) getDialogPane().lookupButton(ButtonType.FINISH);
         nextButton = (Button) getDialogPane().lookupButton(ButtonType.NEXT);
         previousButton = (Button) getDialogPane().lookupButton(ButtonType.PREVIOUS);
-        translateButtons();
+        DialogUtils.translateButtons(this);
 
         recipeTabs.getSelectionModel().selectedIndexProperty().addListener((observable, oldValue, newValue) -> {
             int selectedIndex = newValue.intValue();

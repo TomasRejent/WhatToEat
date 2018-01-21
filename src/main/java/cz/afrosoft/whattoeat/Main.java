@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat;
 
+import cz.afrosoft.whattoeat.core.gui.FXMLLoaderFactory;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.component.SplashScreen;
@@ -64,8 +65,8 @@ public class Main extends Application {
         Validate.notNull(page);
         Validate.notNull(applicationContext);
 
-        FXMLLoader fxmlLoader = new FXMLLoader(page.toUrlResource(), I18n.getResourceBundle());
-        fxmlLoader.setControllerFactory(applicationContext::getBean);
+        FXMLLoaderFactory fxmlLoaderFactory = applicationContext.getBean(FXMLLoaderFactory.class);
+        FXMLLoader fxmlLoader = fxmlLoaderFactory.createFXMLLoader(page.toUrlResource());
         T pageComponent = fxmlLoader.load();
         if (pageComponent == null) {
             throw new IllegalStateException(String.format("GUI Component loaded for page %s is null.", page));
@@ -149,7 +150,7 @@ public class Main extends Application {
         LOGGER.info("Switching to main window.");
         long time = System.nanoTime();
         Scene scene = new Scene(rootPane);
-        scene.getStylesheets().add("/styles/Menu.css");
+        scene.getStylesheets().add("/styles/Application.css");
 
         stage.setTitle(I18n.getText("cz.afrosoft.whattoeat.title"));
         stage.setScene(scene);

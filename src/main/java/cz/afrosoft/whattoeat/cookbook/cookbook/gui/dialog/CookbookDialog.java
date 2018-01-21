@@ -1,32 +1,26 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
-
-import java.util.HashSet;
-import java.util.Optional;
-
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import javax.annotation.PostConstruct;
+import java.util.HashSet;
+import java.util.Optional;
 
 /**
  * Dialog for adding and editing of cookbooks. This dialog also allows to change relation between cookbook and authors.
@@ -35,11 +29,9 @@ import javafx.stage.Modality;
  *
  * @author Tomas Rejent
  */
-@Controller
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
+@FXMLComponent(fxmlPath = "/fxml/CookbookDialog.fxml")
+public class CookbookDialog extends Dialog<CookbookUpdateObject> {
 
-    private static final String DIALOG_FXML = "/fxml/CookbookDialog.fxml";
 
     /**
      * Title message displayed when dialog is in add mode.
@@ -75,13 +67,17 @@ public class CookbookDialog extends CustomDialog<CookbookUpdateObject> {
      * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
      */
     public CookbookDialog() {
-        super(DIALOG_FXML);
+    }
+
+    @PostConstruct
+    private void initialize() {
         getDialogPane().getButtonTypes().add(ButtonType.FINISH);
         getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
         setupAuthorFields();
         setupResultConverter();
+        DialogUtils.translateButtons(this);
     }
 
     private void setupAuthorFields() {

@@ -1,15 +1,14 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import javafx.scene.control.Button;
+
 /**
  * Button for adding content. Styled with plus icon.
  *
  * @author Tomas Rejent
  */
-public class AddButton extends FxmlButton {
+@FXMLComponent(fxmlPath = "/component/AddButton.fxml")
+public class AddButton extends Button {
 
-    private static final String FXML_PATH = "/component/AddButton.fxml";
-
-    public AddButton() {
-        super(FXML_PATH);
-    }
 }

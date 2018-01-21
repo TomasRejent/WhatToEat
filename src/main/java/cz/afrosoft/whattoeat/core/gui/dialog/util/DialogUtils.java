@@ -2,10 +2,7 @@ package cz.afrosoft.whattoeat.core.gui.dialog.util;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import javafx.application.Platform;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 
@@ -17,6 +14,16 @@ import java.util.Optional;
  * @author Tomas Rejent
  */
 public class DialogUtils {
+
+    private static final String APPLY_KEY = "cz.afrosoft.whattoeat.core.dialog.button.apply";
+    private static final String OK_KEY = "cz.afrosoft.whattoeat.core.dialog.button.ok";
+    private static final String CANCEL_KEY = "cz.afrosoft.whattoeat.core.dialog.button.cancel";
+    private static final String CLOSE_KEY = "cz.afrosoft.whattoeat.core.dialog.button.close";
+    private static final String YES_KEY = "cz.afrosoft.whattoeat.core.dialog.button.yes";
+    private static final String NO_KEY = "cz.afrosoft.whattoeat.core.dialog.button.no";
+    private static final String FINISH_KEY = "cz.afrosoft.whattoeat.core.dialog.button.finish";
+    private static final String NEXT_KEY = "cz.afrosoft.whattoeat.core.dialog.button.next";
+    private static final String PREVIOUS_KEY = "cz.afrosoft.whattoeat.core.dialog.button.previous";
 
     private static final String ERROR_DIALOG_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.error.title";
     private static final String INFO_DIALOG_TITLE_KEY = "cz.afrosoft.whattoeat.dialog.info.title";
@@ -85,5 +92,25 @@ public class DialogUtils {
         }else{
             return false;
         }
+    }
+
+    /**
+     * Translate all existing dialog buttons. Translates any type from {@link ButtonType}. This method must be called
+     * after buttons are added to dialog.
+     */
+    public static void translateButtons(final Dialog<?> dialog) {
+        translateButton(dialog, ButtonType.APPLY, APPLY_KEY);
+        translateButton(dialog, ButtonType.OK, OK_KEY);
+        translateButton(dialog, ButtonType.CANCEL, CANCEL_KEY);
+        translateButton(dialog, ButtonType.CLOSE, CLOSE_KEY);
+        translateButton(dialog, ButtonType.YES, YES_KEY);
+        translateButton(dialog, ButtonType.NO, NO_KEY);
+        translateButton(dialog, ButtonType.FINISH, FINISH_KEY);
+        translateButton(dialog, ButtonType.NEXT, NEXT_KEY);
+        translateButton(dialog, ButtonType.PREVIOUS, PREVIOUS_KEY);
+    }
+
+    private static void translateButton(final Dialog<?> dialog, final ButtonType type, final String messageKey) {
+        Optional.ofNullable(dialog.getDialogPane().lookupButton(type)).ifPresent(node -> ((Button) node).setText(I18n.getText(messageKey)));
     }
 }

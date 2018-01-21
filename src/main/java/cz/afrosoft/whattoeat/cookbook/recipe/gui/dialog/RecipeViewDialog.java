@@ -14,7 +14,8 @@ import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
 import cz.afrosoft.whattoeat.core.gui.component.IngredientQuantityTable;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
 import cz.afrosoft.whattoeat.core.gui.component.RecipeLinks;
-import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
@@ -26,10 +27,8 @@ import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -42,16 +41,11 @@ import java.util.stream.Collectors;
  *
  * @author Tomas Rejent
  */
-@Controller
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class RecipeViewDialog extends CustomDialog<Void> {
+@FXMLComponent(fxmlPath = "/fxml/RecipeViewDialog.fxml")
+public class RecipeViewDialog extends Dialog<Void> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(RecipeViewDialog.class);
-    private static final String DIALOG_FXML = "/fxml/RecipeViewDialog.fxml";
 
-    private static final double TITLED_PANE_HEADER_HEIGHT = 30;
-    private static final double INGREDIENT_TAB_EXPANDED_BASE_HEIGHT = 80;
-    private static final double TABLE_ROW_HEIGHT = 29;
     private static final float DEFAULT_SERVINGS = 1;
 
     @FXML
@@ -96,10 +90,12 @@ public class RecipeViewDialog extends CustomDialog<Void> {
     private Collection<RecipeIngredient> recipeIngredients;
 
     public RecipeViewDialog() {
-        super(DIALOG_FXML);
         setResizable(true);
         initModality(Modality.NONE);
+    }
 
+    @PostConstruct
+    private void initialize() {
         setupButtons();
         setupResultConverter();
         setupServingsField();
@@ -112,7 +108,7 @@ public class RecipeViewDialog extends CustomDialog<Void> {
 
     private void setupButtons() {
         getDialogPane().getButtonTypes().add(ButtonType.CLOSE);
-        translateButtons();
+        DialogUtils.translateButtons(this);
     }
 
     private void setupServingsField() {

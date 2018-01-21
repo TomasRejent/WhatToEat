@@ -1,22 +1,22 @@
 package cz.afrosoft.whattoeat.core.logic.service.impl;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
 import cz.afrosoft.whattoeat.core.data.repository.KeywordRepository;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordLabel;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * Implementation of {@link KeywordService} which uses {@link KeywordImpl} as implementation
@@ -31,6 +31,9 @@ public class KeywordServiceImpl implements KeywordService {
 
     @Autowired
     private KeywordRepository repository;
+
+    @Autowired
+    private ApplicationContext applicationContext;
 
     @Override
     @Transactional(readOnly = true)
@@ -97,6 +100,6 @@ public class KeywordServiceImpl implements KeywordService {
     @Override
     public KeywordLabel createKeywordLabel(final Keyword keyword) {
         Validate.notNull(keyword);
-        return new KeywordLabel(keyword);
+        return applicationContext.getBean(KeywordLabel.class, keyword);
     }
 }

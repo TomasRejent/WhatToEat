@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.core.gui.table;
 
+import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordLabel;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.scene.control.ContentDisplay;
@@ -28,7 +29,9 @@ public class KeywordCell<S> extends TableCell<S, Collection<Keyword>> {
         keywordLabelContainer.getChildren().clear();
 
         if (item != null) {
-            item.forEach(keyword -> keywordLabelContainer.getChildren().add(new KeywordLabel(keyword).setRemovable(false)));
+            item.forEach(keyword -> keywordLabelContainer.getChildren().add(
+                    Main.getApplicationContext().getBean(KeywordLabel.class, keyword).setRemovable(false)
+            ));
         }
     }
 }

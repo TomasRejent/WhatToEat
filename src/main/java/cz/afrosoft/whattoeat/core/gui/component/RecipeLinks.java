@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.beans.value.ChangeListener;
@@ -8,7 +9,10 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.FlowPane;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
@@ -17,6 +21,7 @@ import java.util.stream.Collectors;
  *
  * @author Tomas Rejent
  */
+@FXMLComponent(fxmlPath = "/component/RecipeLinks.fxml")
 public class RecipeLinks extends FlowPane {
 
     private static final String FXML_PATH = "/component/RecipeLinks.fxml";
@@ -25,8 +30,11 @@ public class RecipeLinks extends FlowPane {
 
     private final StringProperty text = new SimpleStringProperty();
 
-    public RecipeLinks() {
-        ComponentUtil.initFxmlComponent(this, FXML_PATH);
+    @Autowired
+    private ApplicationContext applicationContext;
+
+    @PostConstruct
+    private void initialize() {
         text.addListener(createTextChangeListener());
     }
 
@@ -48,7 +56,7 @@ public class RecipeLinks extends FlowPane {
         if (StringUtils.isNoneBlank(text.getValue())) {
             this.getChildren().add(titleLabel);
         }
-        this.getChildren().addAll(recipes.stream().sorted().map(RecipeLink::new).collect(Collectors.toList()));
+        this.getChildren().addAll(recipes.stream().sorted().map(recipeRef -> applicationContext.getBean(RecipeLink.class, recipeRef)).collect(Collectors.toList()));
     }
 
     public String getText() {

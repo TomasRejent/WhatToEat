@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.core.gui.component;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
@@ -12,6 +13,7 @@ import javafx.scene.control.TableView;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.HashMap;
@@ -20,9 +22,8 @@ import java.util.Map;
 /**
  * @author Tomas Rejent
  */
+@FXMLComponent(fxmlPath = "/component/IngredientQuantityTable.fxml")
 public class IngredientQuantityTable extends TableView<IngredientQuantity> {
-
-    private static final String FXML_PATH = "/component/IngredientQuantityTable.fxml";
 
     @FXML
     private TableColumn<IngredientQuantity, Float> quantityColumn;
@@ -39,8 +40,11 @@ public class IngredientQuantityTable extends TableView<IngredientQuantity> {
     private final Map<Ingredient, IngredientQuantity> lookupMap;
 
     public IngredientQuantityTable() {
-        ComponentUtil.initFxmlComponent(this, FXML_PATH);
         lookupMap = new HashMap<>();
+    }
+
+    @PostConstruct
+    private void initialize() {
         setupColumnCellFactories();
     }
 

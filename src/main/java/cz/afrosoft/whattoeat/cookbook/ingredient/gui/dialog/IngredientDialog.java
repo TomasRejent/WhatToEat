@@ -9,23 +9,18 @@ import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
-import cz.afrosoft.whattoeat.core.gui.dialog.CustomDialog;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.titledpane.TitledPaneUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TitledPane;
+import javafx.scene.control.*;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Controller;
 
+import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 /**
@@ -36,13 +31,10 @@ import java.util.Optional;
  *
  * @author Tomas Rejent
  */
-@Controller
-@Scope(value = ConfigurableBeanFactory.SCOPE_PROTOTYPE)
-public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
+@FXMLComponent(fxmlPath = "/fxml/IngredientDialog.fxml")
+public class IngredientDialog extends Dialog<IngredientUpdateObject> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(IngredientDialog.class);
-
-    private static final String DIALOG_FXML = "/fxml/IngredientDialog.fxml";
 
     /**
      * Title message displayed when dialog is in add mode.
@@ -87,7 +79,10 @@ public class IngredientDialog extends CustomDialog<IngredientUpdateObject> {
      * Creates new dialog. This constructor must be used only by Spring, because dependencies must be autowired to created instance.
      */
     public IngredientDialog() {
-        super(DIALOG_FXML);
+    }
+
+    @PostConstruct
+    private void initialize() {
         getDialogPane().getButtonTypes().add(ButtonType.FINISH);
         getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         setResizable(true);

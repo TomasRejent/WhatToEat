@@ -6,7 +6,6 @@
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
 - Decide if cells with complex graphics should be defined in code or in fxml
-- Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
 \- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
@@ -14,7 +13,7 @@
 - Create FieldLable component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
-- Devise proper mechanism for FXML custom components
+- Duration field should extend RegexRestrictedField
 
 - low priority - try to use metamodel in criteria queries
 
@@ -42,11 +41,15 @@
     - create import from json
     - create merge tool
 
+- Add "Ingredient" type of recipe and allows its usage as ingredient for other recipes, this allows composition of recipes
+
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
 - add persisting of last used filter for recipes
 - Optimize focus transferring and key events for recipe filter
+
+- Ingredient add dialog - update keyword suggestions with newly added keywords when adding next ingredient
 
 - update hiding of side dishes link so they does not take up space in layout when no side dishes are present
 
@@ -108,6 +111,8 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
+X - Devise proper mechanism for FXML custom components
 X - add brief toString to entities so logging of convert operation makes sense
 X - Setup logger so it keeps logs for restricted time and size
 X - Add support to change log level at runtime.

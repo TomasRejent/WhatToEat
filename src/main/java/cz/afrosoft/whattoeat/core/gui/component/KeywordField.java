@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import javafx.application.Platform;
@@ -18,6 +19,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
+import javafx.util.Builder;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -25,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import javax.annotation.PostConstruct;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
@@ -35,11 +38,10 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public class KeywordField extends GridPane {
+@FXMLComponent(fxmlPath = "/component/KeywordField.fxml")
+public class KeywordField extends GridPane implements Builder<KeywordField> {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(KeywordField.class);
-
-    private static final String FXML_PATH = "/component/KeywordField.fxml";
 
     @FXML
     private ComboBox<Keyword> keywordField;
@@ -59,11 +61,19 @@ public class KeywordField extends GridPane {
     private KeywordService keywordService;
 
     public KeywordField() {
-        ComponentUtil.initFxmlComponent(this, FXML_PATH);
+    }
+
+    @PostConstruct
+    private void initialize() {
         keywords.addListener(createChangeListener());
         editableProperty.addListener(createEditableChangeListener());
         keywordTypeProperty.addListener(createKeywordTypeChangeListener());
         initKeywordField();
+    }
+
+    @Override
+    public KeywordField build() {
+        return this;
     }
 
     private SetChangeListener<Keyword> createChangeListener() {
