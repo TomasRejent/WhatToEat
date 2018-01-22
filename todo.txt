@@ -52,6 +52,8 @@
 
 - add weight coefficient to config file so weight for one serving can be adjusted globally
 
+- upgrade time measuring to suport phases. Phases are ordered and have time in minutes and utilization in percents.
+
 - Add validation errors to UI
 
 - Add language to config file and use it in program
