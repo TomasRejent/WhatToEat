@@ -47,6 +47,7 @@ import org.controlsfx.control.textfield.TextFields;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -138,6 +139,8 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
     private CookbookService cookbookService;
     @Autowired
     private IngredientService ingredientService;
+    @Autowired
+    private ApplicationContext applicationContext;
 
     private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
 
@@ -334,7 +337,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         ingredientKeywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getKeywords).orElse(Collections
                 .emptySet()), Collections.emptySet()));
         ingredientKeywordColumn.setCellFactory(param -> new KeywordCell<>());
-        ingredientRemoveColumn.setCellFactory(param -> new RemoveCell<>());
+        ingredientRemoveColumn.setCellFactory(param -> new RemoveCell<>(applicationContext.getBean(RemoveButton.class)));
     }
 
     private void setupStaticFieldOptions() {

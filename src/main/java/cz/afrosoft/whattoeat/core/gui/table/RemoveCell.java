@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.core.gui.table;
 
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import javafx.scene.control.TableCell;
+import org.apache.commons.lang3.Validate;
 
 /**
  * Table cell with remove button. Makes table row removable by pressing this button.
@@ -12,8 +13,10 @@ public class RemoveCell<T> extends TableCell<T, Void> {
 
     private final RemoveButton removeButton;
 
-    public RemoveCell() {
-        removeButton = new RemoveButton();
+    public RemoveCell(final RemoveButton removeButton) {
+        Validate.notNull(removeButton);
+
+        this.removeButton = removeButton;
         setGraphic(removeButton);
         initRemoveListener();
     }
