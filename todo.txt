@@ -51,6 +51,8 @@
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
+- Update suggestion sorting of so it first recommend strings that starts with text
+
 - add persisting of last used filter for recipes
 - Optimize focus transferring and key events for recipe filter
 
