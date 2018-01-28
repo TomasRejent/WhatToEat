@@ -41,6 +41,11 @@
     - create import from json
     - create merge tool
 
+- Create phases
+    - phase have name, duration, utilization and "lock to newxt phase" flag
+    - phases prefill preparation field if it is empty
+    - create config property which allows switching from simple duration of recipes to phases
+
 - Add "Ingredient" type of recipe and allows its usage as ingredient for other recipes, this allows composition of recipes
 
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
@@ -65,6 +70,7 @@
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
+- Fix creating of Remove button in RemovableStringCell so it is obtained from application context
 
 Done bugs:
 X - Ingredient keywords overlaps in recipe detail dialog.
