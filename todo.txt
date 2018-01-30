@@ -17,7 +17,8 @@
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Diet feature
-    - create entities for diet
+  X - create entities for diet
+    - create model for diet
     - create services for diet
     - create screen with diets
     - create screen for creating/generating diets
