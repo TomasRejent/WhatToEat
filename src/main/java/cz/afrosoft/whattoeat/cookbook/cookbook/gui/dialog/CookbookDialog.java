@@ -8,8 +8,8 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookUpdateObjec
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
-import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
+import cz.afrosoft.whattoeat.core.gui.list.ListBindingFactory;
+import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestionFactory;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
@@ -57,6 +57,10 @@ public class CookbookDialog extends Dialog<CookbookUpdateObject> {
     private CookbookService cookbookService;
     @Autowired
     private AuthorService authorService;
+    @Autowired
+    private ComboBoxSuggestionFactory comboBoxSuggestionFactory;
+    @Autowired
+    private ListBindingFactory listBindingFactory;
 
     /**
      * Holds createOrUpdate object when creating or editing cookbook.
@@ -81,8 +85,8 @@ public class CookbookDialog extends Dialog<CookbookUpdateObject> {
     }
 
     private void setupAuthorFields() {
-        ComboBoxSuggestion.initSuggestion(authorField, AuthorRef::getName);
-        ListBinding.bindToComboBox(authorList, authorField, AuthorRef::getName);
+        comboBoxSuggestionFactory.initSuggestion(authorField, AuthorRef::getName);
+        listBindingFactory.bindToComboBox(authorList, authorField, AuthorRef::getName);
     }
 
     /**
@@ -151,7 +155,7 @@ public class CookbookDialog extends Dialog<CookbookUpdateObject> {
         Validate.notNull(cookbook);
         nameField.setText(cookbook.getName());
         descriptionArea.setText(cookbook.getDescription());
-        ListBinding.fillBoundedList(authorList, authorField, authorService.getAllAuthorRefs(), cookbook.getAuthors());
+        listBindingFactory.fillBoundedList(authorList, authorField, authorService.getAllAuthorRefs(), cookbook.getAuthors());
     }
 
     /**

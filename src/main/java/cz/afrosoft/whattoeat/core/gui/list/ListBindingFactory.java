@@ -6,6 +6,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.KeyCode;
 import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.function.Consumer;
@@ -14,13 +16,17 @@ import java.util.stream.Collectors;
 
 
 /**
- * Util class for binding list and combo box together. This means that items selected in combo box will be moved from
+ * Factory for binding list and combo box together. This means that items selected in combo box will be moved from
  * combo box to list. If item is removed from list it will be moved back to combo box. This is used for example
  * for picking authors of cookbook.
  *
  * @author Tomas Rejent
  */
-public class ListBinding {
+@Service
+public class ListBindingFactory {
+
+    @Autowired
+    private ListCellFactory listCellFactory;
 
     /**
      * Fill values for list bounded to combo box. All previously set values are cleared from list. Then selected items are set to list and difference between
@@ -32,7 +38,7 @@ public class ListBinding {
      * @param selectedItems (NotNUll) Items which are selected.
      * @param <T>           Type of both list and combo box items.
      */
-    public static <T> void fillBoundedList(final ListView<T> list, final ComboBox<T> comboBox, final Collection<T> allItems, final Collection<T> selectedItems) {
+    public <T> void fillBoundedList(final ListView<T> list, final ComboBox<T> comboBox, final Collection<T> allItems, final Collection<T> selectedItems) {
         Validate.notNull(list);
         Validate.notNull(comboBox);
         Validate.notNull(allItems);
@@ -57,13 +63,13 @@ public class ListBinding {
      * @param mapFunction (NotNull) Function which maps list item to displayed text. This is needed to construct removable list cell factory.
      * @param <T>         Type of both list and combo box items.
      */
-    public static <T> void bindToComboBox(final ListView<T> list, final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
+    public <T> void bindToComboBox(final ListView<T> list, final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
         Validate.notNull(list);
         Validate.notNull(comboBox);
         Validate.notNull(mapFunction);
 
         Consumer<T> listRemoveListener = createListRemoveListener(list, comboBox);
-        list.setCellFactory(ListCellFactory.newRemovableCellFactory(mapFunction, listRemoveListener));
+        list.setCellFactory(listCellFactory.newRemovableCellFactory(mapFunction, listRemoveListener));
         list.setOnKeyPressed(
                 (event) -> {
                     if (event.getCode() == KeyCode.DELETE && !list.getSelectionModel().isEmpty()) {
@@ -87,7 +93,7 @@ public class ListBinding {
      * @param <T>      Type of both list and combo box items.
      * @return (NotNull)
      */
-    private static <T> ChangeListener<T> createComboBoxChangeListener(final ListView<T> list, final ComboBox<T> comboBox) {
+    private <T> ChangeListener<T> createComboBoxChangeListener(final ListView<T> list, final ComboBox<T> comboBox) {
         Validate.notNull(list);
         Validate.notNull(comboBox);
 
@@ -112,15 +118,11 @@ public class ListBinding {
      * @param <T>      Type of both list and combo box items.
      * @return (NotNull)
      */
-    private static <T> Consumer<T> createListRemoveListener(final ListView<T> list, final ComboBox<T> comboBox) {
+    private <T> Consumer<T> createListRemoveListener(final ListView<T> list, final ComboBox<T> comboBox) {
         return (removedItem) -> {
             comboBox.getItems().add(removedItem);
             comboBox.getItems().sort(null);
             list.getItems().remove(removedItem);
         };
-    }
-
-    private ListBinding() {
-        throw new IllegalStateException("This class cannot be instanced.");
     }
 }

@@ -6,7 +6,6 @@
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
 - Decide if cells with complex graphics should be defined in code or in fxml
-\- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 - Measure and optimize loading of tables
@@ -72,9 +71,9 @@
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
-- Fix creating of Remove button in RemovableStringCell so it is obtained from application context
 
 Done bugs:
+X - Fix creating of Remove button in RemovableStringCell so it is obtained from application context.
 X - Ingredient keywords overlaps in recipe detail dialog.
 X - Fix random generator to work even if no recipes are available for some type.
 X - Enable text wrap for text areas in dialogs and in cookbook and author detail
@@ -119,6 +118,7 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 X - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
 X - Devise proper mechanism for FXML custom components
 X - add brief toString to entities so logging of convert operation makes sense

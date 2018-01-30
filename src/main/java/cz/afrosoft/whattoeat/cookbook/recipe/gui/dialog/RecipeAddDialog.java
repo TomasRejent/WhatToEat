@@ -19,8 +19,8 @@ import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import cz.afrosoft.whattoeat.core.gui.list.ListBinding;
-import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestion;
+import cz.afrosoft.whattoeat.core.gui.list.ListBindingFactory;
+import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestionFactory;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
@@ -141,6 +141,10 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
     private IngredientService ingredientService;
     @Autowired
     private ApplicationContext applicationContext;
+    @Autowired
+    private ComboBoxSuggestionFactory comboBoxSuggestionFactory;
+    @Autowired
+    private ListBindingFactory listBindingFactory;
 
     private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
 
@@ -280,8 +284,8 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
             }
         });
         //setup side dish suggestion
-        ComboBoxSuggestion.initSuggestion(sideDishField, RecipeRef::getName);
-        ListBinding.bindToComboBox(sideDishList, sideDishField, RecipeRef::getName);
+        comboBoxSuggestionFactory.initSuggestion(sideDishField, RecipeRef::getName);
+        listBindingFactory.bindToComboBox(sideDishList, sideDishField, RecipeRef::getName);
     }
 
     private void setupButtons() {
@@ -420,7 +424,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         tasteField.getSelectionModel().clearSelection();
         preparationTimeField.setText(StringUtils.EMPTY);
         cookingTimeField.setText(StringUtils.EMPTY);
-        ListBinding.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), Collections.emptySet());
+        listBindingFactory.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), Collections.emptySet());
         ingredientTable.getItems().clear();
         cookbooksField.getCheckModel().clearChecks();
         keywordField.clearSelectedKeywords();
@@ -442,7 +446,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         tasteField.getSelectionModel().select(recipe.getTaste());
         preparationTimeField.setDuration(recipe.getIngredientPreparationTime());
         cookingTimeField.setDuration(recipe.getCookingTime());
-        ListBinding.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), recipe.getSideDishes());
+        listBindingFactory.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), recipe.getSideDishes());
         ingredientTable.getItems().clear();
         ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
         keywordField.setSelectedKeywords(recipe.getKeywords());

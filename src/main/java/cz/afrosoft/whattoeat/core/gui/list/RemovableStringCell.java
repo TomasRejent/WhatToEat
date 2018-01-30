@@ -32,13 +32,15 @@ final class RemovableStringCell<T> extends CustomStringCell<T> {
      *
      * @param mapFunction     (NotNull) Function to map list item to its displayed text representation.
      * @param removeListeners (NotNull) Listeners for action of remove button. May be empty.
+     * @param removeButton (NotNull) remove button for cell. This cannot be created in cell because it is FXML Component, so it must be supplied from application context.
      */
-    RemovableStringCell(final Function<T, String> mapFunction, final Collection<Consumer<T>> removeListeners) {
+    RemovableStringCell(final Function<T, String> mapFunction, final Collection<Consumer<T>> removeListeners, final RemoveButton removeButton) {
         super(mapFunction);
         Validate.notNull(removeListeners);
+        Validate.notNull(removeButton);
 
         this.label = new Label();
-        this.removeButton = new RemoveButton();
+        this.removeButton = removeButton;
         this.layout = new HBox(label, removeButton);
         this.removeListeners = removeListeners;
 
