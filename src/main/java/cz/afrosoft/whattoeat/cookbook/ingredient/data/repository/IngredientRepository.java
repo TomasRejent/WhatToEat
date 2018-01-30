@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -22,4 +23,7 @@ public interface IngredientRepository extends JpaRepository<IngredientEntity, In
     boolean existsByName(String name);
 
     Ingredient findByName(String name);
+
+    @Query("DELETE FROM IngredientEntity WHERE id = :id")
+    void deleteById(Integer id);
 }

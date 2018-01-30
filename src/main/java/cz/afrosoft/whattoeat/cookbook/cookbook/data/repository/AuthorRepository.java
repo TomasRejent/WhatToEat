@@ -32,4 +32,7 @@ public interface AuthorRepository extends JpaRepository<AuthorEntity, Integer> {
      */
     @Query("SELECT a FROM AuthorEntity a LEFT JOIN FETCH a.cookbooks")
     List<AuthorEntity> findAllWithCookbooks();
+
+    @Query("DELETE FROM AuthorEntity WHERE id = :id")
+    void deleteById(Integer id);
 }

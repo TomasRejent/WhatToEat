@@ -31,4 +31,7 @@ public interface CookbookRepository extends JpaRepository<CookbookEntity, Intege
     @Query("SELECT cb FROM CookbookEntity cb LEFT JOIN FETCH cb.authors")
     List<CookbookEntity> findAllWithAuthors();
 
+    @Query("DELETE FROM CookbookEntity WHERE id = :id")
+    void deleteById(Integer id);
+
 }
