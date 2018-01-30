@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * @author Tomas Rejent
  */
-public interface IngredientCustomRepository {
+public interface IngredientRepositoryCustom {
 
     /**
      * Find ingredients matching specified filter. Filter items are used with AND operator.

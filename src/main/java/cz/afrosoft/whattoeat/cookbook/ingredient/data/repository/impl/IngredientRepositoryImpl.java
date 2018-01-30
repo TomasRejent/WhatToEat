@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.impl;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
-import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientCustomRepository;
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepositoryCustom;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Repository;
 
@@ -20,7 +20,7 @@ import java.util.List;
  * @author Tomas Rejent
  */
 @Repository
-class IngredientCustomRepositoryImpl implements IngredientCustomRepository {
+class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
     private static final String NAME = "name";
 

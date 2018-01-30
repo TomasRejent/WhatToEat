@@ -43,4 +43,9 @@ public class FXMLComponentProcessor implements BeanPostProcessor {
         }
         return bean;
     }
+
+    @Override
+    public Object postProcessAfterInitialization(final Object bean, final String beanName) throws BeansException {
+        return bean;
+    }
 }

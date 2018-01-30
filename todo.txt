@@ -10,7 +10,7 @@
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 - Measure and optimize loading of tables
-- Create FieldLable component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
+- Create FieldLabel component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
 - Duration field should extend RegexRestrictedField

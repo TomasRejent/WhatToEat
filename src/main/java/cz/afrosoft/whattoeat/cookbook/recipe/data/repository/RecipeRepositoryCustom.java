@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Provides recipe queries which require specific implementation which cannot be provided by {@link RecipeRepository}.
  */
-public interface RecipeCustomRepository {
+public interface RecipeRepositoryCustom {
 
     /**
      * Find recipes matching specified filter. Filter items are used with AND operator.

@@ -14,7 +14,7 @@ import java.util.List;
  * @author Tomas Rejent
  */
 @Repository
-public interface RecipeRepository extends JpaRepository<RecipeEntity, Integer>, RecipeCustomRepository {
+public interface RecipeRepository extends JpaRepository<RecipeEntity, Integer>, RecipeRepositoryCustom {
 
     @EntityGraph(attributePaths = {"keywords", "recipeIngredients", "sideDishes", "cookbooks"}, type = EntityGraph.EntityGraphType.FETCH)
     List<RecipeEntity> findAllByOrderByNameAsc();

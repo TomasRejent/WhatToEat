@@ -14,7 +14,7 @@ import java.util.List;
  * @author Tomas Rejent
  */
 @Repository
-public interface IngredientRepository extends JpaRepository<IngredientEntity, Integer>, IngredientCustomRepository {
+public interface IngredientRepository extends JpaRepository<IngredientEntity, Integer>, IngredientRepositoryCustom {
 
     @EntityGraph(attributePaths = {"keywords", "unitConversion"}, type = EntityGraph.EntityGraphType.LOAD)
     List<IngredientEntity> findAll();

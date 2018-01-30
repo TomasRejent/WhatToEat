@@ -4,7 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.data.entity.CookbookEntity;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeCustomRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepositoryCustom;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Repository;
@@ -22,7 +22,7 @@ import java.util.stream.Collectors;
  * Implementation of custom recipe repository which provides dynamically constructed query for filtering by recipe filter.
  */
 @Repository
-class RecipeCustomRepositoryImpl implements RecipeCustomRepository {
+class RecipeRepositoryImpl implements RecipeRepositoryCustom {
 
     private static final String NAME = "name";
     private static final String RECIPE_TYPE = "recipeTypes";

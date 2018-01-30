@@ -6,11 +6,7 @@ import javafx.beans.property.BooleanProperty;
 import javafx.collections.ObservableList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.scene.control.Skin;
-import javafx.scene.control.skin.ComboBoxListViewSkin;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -114,7 +110,7 @@ public class MultiSelect<T> extends CheckComboBox<T> {
 
     @SuppressWarnings("unchecked")
     private Optional<ListView<T>> findListView(final ComboBox<T> comboBox) {
-        Optional<Node> listViewOpt = ((ComboBoxListViewSkin<T>) comboBox.getSkin()).getChildren().stream().filter(node -> node instanceof ListView).findFirst();
+        Optional<Node> listViewOpt = ((SkinBase<Control>) comboBox.getSkin()).getChildren().stream().filter(node -> node instanceof ListView).findFirst();
         ListView<T> listView = (ListView<T>) listViewOpt.orElse(null);
         return Optional.ofNullable(listView);
     }
