@@ -6,6 +6,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
 /**
  * Represents diet for certain time interval. This diet defines meals for each day of its duration. Diet can be created
@@ -31,11 +32,14 @@ public class DietEntity {
     @Column(name = "TO_DATE", nullable = false)
     private LocalDate to;
 
-    @Column(name = "GENERATOR")
+    @Column(name = "GENERATOR", nullable = false)
     private GeneratorType generator;
 
     @Column(name = "DESCRIPTION", columnDefinition = "CLOB")
     private String description;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private Set<DayDietEntity> dayDiets;
 
     public Integer getId() {
         return id;
@@ -88,6 +92,15 @@ public class DietEntity {
 
     public DietEntity setDescription(final String description) {
         this.description = description;
+        return this;
+    }
+
+    public Set<DayDietEntity> getDayDiets() {
+        return dayDiets;
+    }
+
+    public DietEntity setDayDiets(final Set<DayDietEntity> dayDiets) {
+        this.dayDiets = dayDiets;
         return this;
     }
 

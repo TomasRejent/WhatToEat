@@ -71,6 +71,7 @@
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
+- If two recipes have same name only one of them is displayed in table
 
 Done bugs:
 X - Fix creating of Remove button in RemovableStringCell so it is obtained from application context.
