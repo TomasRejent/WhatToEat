@@ -1,8 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -11,6 +8,11 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
 
 final class DayDietImpl implements DayDiet{
 
@@ -23,7 +25,8 @@ final class DayDietImpl implements DayDiet{
     private final List<MealRef> dinners;
     private final List<MealRef> others;
 
-    public DayDietImpl(final Integer id, final LocalDate day, final List<MealRef> breakfasts, final List<MealRef> snacks, final List<MealRef> lunch, final List<MealRef> afternoonSnacks, final List<MealRef> dinners, final List<MealRef> others) {
+    private DayDietImpl(final Integer id, final LocalDate day, final List<MealRef> breakfasts, final List<MealRef> snacks, final List<MealRef> lunch, final List<MealRef>
+        afternoonSnacks, final List<MealRef> dinners, final List<MealRef> others) {
         this.id = id;
         this.day = day;
         this.breakfasts = breakfasts;
@@ -107,7 +110,7 @@ final class DayDietImpl implements DayDiet{
                 .toString();
     }
 
-    static final class Builder implements DayDietUpdateObject{
+    static final class Builder implements DayDietUpdateObject {
 
         private final Integer id;
         private LocalDate day;

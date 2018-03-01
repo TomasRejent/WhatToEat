@@ -1,9 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -14,6 +10,11 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietUpdateObject;
 
 /**
  * @author Tomas Rejent
@@ -28,7 +29,8 @@ final class DietImpl implements Diet {
     private final String description;
     private final List<DayDietRef> dayDiets;
 
-    public DietImpl(final Integer id, final String name, final LocalDate from, final LocalDate to, final GeneratorType generator, final String description, final List<DayDietRef> dayDiets) {
+    private DietImpl(final Integer id, final String name, final LocalDate from, final LocalDate to, final GeneratorType generator, final String description, final
+    List<DayDietRef> dayDiets) {
         this.id = id;
         this.name = name;
         this.from = from;

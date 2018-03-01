@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 
 /**
@@ -18,6 +18,6 @@ public interface Meal extends IdEntity, MealRef {
     /**
      * @return (NotNull) Recipe of this meal.
      */
-    Recipe getRecipe();
+    RecipeRef getRecipe();
 
 }

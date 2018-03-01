@@ -1,10 +1,10 @@
-package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
-
-import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
+package cz.afrosoft.whattoeat.diet.list.logic.service;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
 
 public interface DayDietUpdateObject {
 

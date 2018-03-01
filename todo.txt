@@ -12,6 +12,7 @@
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
 - Duration field should extend RegexRestrictedField
+- Create mechanism to properly fill entities from update object without calling get on optional without presence check (is related to validation mechanism)
 
 - low priority - try to use metamodel in criteria queries
 
