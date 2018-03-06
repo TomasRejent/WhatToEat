@@ -61,12 +61,18 @@
             fx:id="descriptionField"
             GridPane.columnIndex="0"
             GridPane.rowIndex="2"
+            GridPane.columnSpan="8"
+    />
+    <Pane fx:id="generatorGuiPane"
+          GridPane.columnIndex="0"
+          GridPane.rowIndex="3"
+          GridPane.columnSpan="8"
     />
     <Button
             fx:id="generateButton"
             onAction="#generateDiet"
             text="%cz.afrosoft.whattoeat.diet.generator.input.generate"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="3"
+            GridPane.rowIndex="4"
     />
 </GridPane>

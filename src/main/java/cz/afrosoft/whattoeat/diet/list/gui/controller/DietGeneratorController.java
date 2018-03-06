@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -40,6 +41,8 @@ public class DietGeneratorController implements Initializable {
     private TextArea descriptionField;
     @FXML
     private ComboBox<GeneratorType> generatorField;
+    @FXML
+    private Pane generatorGuiPane;
 
     private GeneratorGui<?> generatorGui;
 
@@ -60,6 +63,10 @@ public class DietGeneratorController implements Initializable {
         generatorField.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 generatorGui = generatorService.getGuiForGenerator(newValue);
+                generatorGui.getNode().ifPresent(node -> {
+                    generatorGuiPane.getChildren().clear();
+                    generatorGuiPane.getChildren().addAll(node);
+                });
             }
         });
     }
