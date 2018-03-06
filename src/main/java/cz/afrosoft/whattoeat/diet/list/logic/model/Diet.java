@@ -1,7 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
 import java.time.LocalDate;
 import java.util.List;

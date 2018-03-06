@@ -11,8 +11,8 @@ public interface DietService {
 
     Set<Diet> getAllDiets();
 
-    DietUpdateObject getCreateObject();
+    DietCreateObject getCreateObject();
 
-    Diet createOrUpdate(DietUpdateObject dietChanges);
+    Diet create(DietCreateObject dietChanges);
 
 }

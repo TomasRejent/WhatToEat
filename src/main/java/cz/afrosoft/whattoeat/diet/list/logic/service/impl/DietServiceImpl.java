@@ -1,5 +1,15 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DietEntity;
+import cz.afrosoft.whattoeat.diet.list.data.repository.DietRepository;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietRefService;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,14 +17,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Set;
-
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
-import cz.afrosoft.whattoeat.diet.list.data.entity.DietEntity;
-import cz.afrosoft.whattoeat.diet.list.data.repository.DietRepository;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietUpdateObject;
 
 /**
  * @author Tomas Rejent
@@ -26,6 +30,10 @@ public class DietServiceImpl implements DietService {
 
     @Autowired
     private DietRepository repository;
+    @Autowired
+    private GeneratorService generatorService;
+    @Autowired
+    private DayDietRefService dayDietRefService;
 
     @Override
     @Transactional(readOnly = true)
@@ -35,23 +43,25 @@ public class DietServiceImpl implements DietService {
     }
 
     @Override
-    public DietUpdateObject getCreateObject() {
+    public DietCreateObject getCreateObject() {
         return new DietImpl.Builder();
     }
 
     @Override
-    public Diet createOrUpdate(final DietUpdateObject dietChanges) {
-        LOGGER.debug("Updating diet: {}", dietChanges);
+    public Diet create(final DietCreateObject dietChanges) {
+        LOGGER.debug("Creating diet: {}", dietChanges);
+        Validate.notNull(dietChanges);
+
+        GeneratorType generatorType = dietChanges.getGenerator().get();
+        List<DayDietEntity> generatedDiet = generatorService.generate(generatorType, dietChanges.getGeneratorParams().get());
 
         DietEntity entity = new DietEntity();
-        entity.setId(dietChanges.getId().orElse(null))
-                .setName(dietChanges.getName().get())
+        entity.setName(dietChanges.getName().get())
                 .setFrom(dietChanges.getFrom().get())
                 .setTo(dietChanges.getTo().get())
-                .setGenerator(dietChanges.getGenerator().get())
-                .setDescription(dietChanges.getDescription().orElse(null));
-
-        // TODO generate day diets
+                .setGenerator(generatorType)
+                .setDescription(dietChanges.getDescription().orElse(null))
+                .setDayDiets(generatedDiet);
 
         return entityToDiet(repository.save(entity));
     }
@@ -64,8 +74,8 @@ public class DietServiceImpl implements DietService {
                 .setFrom(entity.getFrom())
                 .setTo(entity.getTo())
                 .setGenerator(entity.getGenerator())
-                .setDescription(entity.getDescription());
-        //TODO add day diets
+                .setDescription(entity.getDescription())
+                .setDayDiets(ConverterUtil.convertToList(entity.getDayDiets(), dayDietRefService::fromEntity));
 
         return builder.build();
     }

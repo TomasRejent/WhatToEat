@@ -18,7 +18,9 @@ public enum Page {
     AUTHORS("/fxml/AuthorList.fxml"),
     COOKBOOKS("/fxml/CookbookList.fxml"),
     RECIPES("/fxml/RecipeList.fxml"),
-    INGREDIENTS("/fxml/IngredientList.fxml");
+    INGREDIENTS("/fxml/IngredientList.fxml"),
+    DIETS("/fxml/DietList.fxml"),
+    DIET_GENERATOR("/fxml/DietGenerator.fxml");
 
     final String fxmlPath;
 

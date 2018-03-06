@@ -1,8 +1,8 @@
-package cz.afrosoft.whattoeat.diet.generator.logic;
-
-import java.util.List;
+package cz.afrosoft.whattoeat.diet.generator.model;
 
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+
+import java.util.List;
 
 /**
  * Generator for creating Diets.
@@ -11,8 +11,10 @@ import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
  */
 public interface Generator<T extends GeneratorParameters> {
 
-    List<DayDietEntity> generate(T parameters);
-
     GeneratorType getType();
+
+    GeneratorGui<T> getGui();
+
+    List<DayDietEntity> generate(GeneratorParameters parameters);
 
 }

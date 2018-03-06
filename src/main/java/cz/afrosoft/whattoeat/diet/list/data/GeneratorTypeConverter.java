@@ -1,7 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.data;
 
 import cz.afrosoft.whattoeat.core.data.IdEnumConverter;
-import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
 import javax.persistence.Converter;
 

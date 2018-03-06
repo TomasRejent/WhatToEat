@@ -1,4 +1,4 @@
-package cz.afrosoft.whattoeat.diet.generator.logic;
+package cz.afrosoft.whattoeat.diet.generator.model;
 
 import java.time.LocalDate;
 

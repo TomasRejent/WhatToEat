@@ -1,12 +1,12 @@
 package cz.afrosoft.whattoeat.diet.list.data.entity;
 
-import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Represents diet for certain time interval. This diet defines meals for each day of its duration. Diet can be created
@@ -39,7 +39,7 @@ public class DietEntity {
     private String description;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private Set<DayDietEntity> dayDiets;
+    private List<DayDietEntity> dayDiets;
 
     public Integer getId() {
         return id;
@@ -95,11 +95,11 @@ public class DietEntity {
         return this;
     }
 
-    public Set<DayDietEntity> getDayDiets() {
+    public List<DayDietEntity> getDayDiets() {
         return dayDiets;
     }
 
-    public DietEntity setDayDiets(final Set<DayDietEntity> dayDiets) {
+    public DietEntity setDayDiets(final List<DayDietEntity> dayDiets) {
         this.dayDiets = dayDiets;
         return this;
     }

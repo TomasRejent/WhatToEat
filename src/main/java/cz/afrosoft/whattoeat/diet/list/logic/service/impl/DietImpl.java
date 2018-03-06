@@ -1,5 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -10,11 +15,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
-import cz.afrosoft.whattoeat.diet.generator.logic.GeneratorType;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietUpdateObject;
 
 /**
  * @author Tomas Rejent
@@ -114,13 +114,14 @@ final class DietImpl implements Diet {
                 .toHashCode();
     }
 
-    static final class Builder implements DietUpdateObject {
+    static final class Builder implements DietCreateObject {
 
         private final Integer id;
         private String name;
         private LocalDate from;
         private LocalDate to;
         private GeneratorType generatorType;
+        private GeneratorParameters generatorParams;
         private String description;
         private List<DayDietRef> dayDiets;
 
@@ -133,7 +134,6 @@ final class DietImpl implements Diet {
             this.id = id;
         }
 
-        @Override
         public Optional<Integer> getId() {
             return Optional.ofNullable(id);
         }
@@ -159,46 +159,57 @@ final class DietImpl implements Diet {
         }
 
         @Override
+        public Optional<GeneratorParameters> getGeneratorParams() {
+            return Optional.ofNullable(generatorParams);
+        }
+
+        @Override
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
         }
 
         @Override
-        public DietUpdateObject setName(final String name) {
+        public Builder setName(final String name) {
             Validate.notBlank(name);
             this.name = name;
             return this;
         }
 
         @Override
-        public DietUpdateObject setFrom(final LocalDate from) {
+        public Builder setFrom(final LocalDate from) {
             Validate.notNull(from);
             this.from = from;
             return this;
         }
 
         @Override
-        public DietUpdateObject setTo(final LocalDate to) {
+        public Builder setTo(final LocalDate to) {
             Validate.notNull(to);
             this.to = to;
             return this;
         }
 
         @Override
-        public DietUpdateObject setDescription(final String description) {
+        public Builder setDescription(final String description) {
             this.description = description;
             return this;
         }
 
         @Override
-        public DietUpdateObject setGenerator(final GeneratorType generator) {
+        public Builder setGenerator(final GeneratorType generator) {
             Validate.notNull(generator);
             this.generatorType = generator;
             return this;
         }
 
         @Override
-        public DietUpdateObject setDayDiets(final List<DayDietRef> dayDiets) {
+        public Builder setGeneratorParams(final GeneratorParameters params) {
+            Validate.notNull(params);
+            this.generatorParams = params;
+            return this;
+        }
+
+        public Builder setDayDiets(final List<DayDietRef> dayDiets) {
             Validate.notNull(dayDiets);
             this.dayDiets = dayDiets;
             return this;

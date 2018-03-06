@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.ViewButton?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import org.controlsfx.control.MasterDetailPane?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="dietContainer"
+        stylesheets="@../styles/DietList.css"
+        styleClass="diet-container"
+        fx:controller="cz.afrosoft.whattoeat.diet.list.gui.controller.DietController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.common.actions"/>
+            <ViewButton onAction="#viewDiet"/>
+            <AddButton onAction="#addDiet"/>
+            <DeleteButton fx:id="deleteButton" onAction="#deleteDiet"/>
+        </VBox>
+    </left>
+    <center>
+        <MasterDetailPane fx:id="detailPane" detailSide="RIGHT">
+            <masterNode>
+                <TableView fx:id="dietTable" styleClass="diet-table">
+                    <columns>
+                        <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.common.name"/>
+                        <TableColumn fx:id="fromColumn" text="%cz.afrosoft.whattoeat.common.from"/>
+                        <TableColumn fx:id="toColumn" text="%cz.afrosoft.whattoeat.common.to"/>
+                        <TableColumn fx:id="generatorColumn" text="%cz.afrosoft.whattoeat.dietlist.table.generator"/>
+                    </columns>
+                </TableView>
+            </masterNode>
+            <detailNode>
+                <VBox>
+                    <Label text="%cz.afrosoft.whattoeat.dietview.detail"/>
+                    <TextArea fx:id="detailArea" wrapText="true"/>
+                </VBox>
+            </detailNode>
+        </MasterDetailPane>
+    </center>
+</BorderPane>

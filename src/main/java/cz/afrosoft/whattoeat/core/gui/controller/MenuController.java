@@ -4,7 +4,6 @@ import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.layout.BorderPane;
@@ -39,27 +38,39 @@ public class MenuController implements Initializable {
     }
 
     @FXML
-    private void showAuthorList(final ActionEvent actionEvent) {
+    public void showAuthorList() {
         LOGGER.debug("Switching to Author page.");
         showPage(Page.AUTHORS);
     }
 
     @FXML
-    private void showCookbookList(final ActionEvent actionEvent) {
+    public void showCookbookList() {
         LOGGER.debug("Switching to Cookbook page.");
         showPage(Page.COOKBOOKS);
     }
 
     @FXML
-    private void showRecipeList(final ActionEvent actionEvent) {
+    public void showRecipeList() {
         LOGGER.debug("Switching to Recipes page.");
         showPage(Page.RECIPES);
     }
     
     @FXML
-    private void showIngredientList(final ActionEvent actionEvent) {
+    public void showIngredientList() {
         LOGGER.debug("Switching to Ingredients page.");
         showPage(Page.INGREDIENTS);
+    }
+
+    @FXML
+    public void showDietList() {
+        LOGGER.debug("Switching to Diet page.");
+        showPage(Page.DIETS);
+    }
+
+    @FXML
+    public void showDietGenerator() {
+        LOGGER.debug("Switching to Diet generator page.");
+        showPage(Page.DIET_GENERATOR);
     }
 
     /**
