@@ -1,39 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
-<GridPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="cz.afrosoft.whattoeat.diet.gui.controller.DietViewController">
-  <columnConstraints>
-    <ColumnConstraints fillWidth="false" hgrow="NEVER" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints fillHeight="false" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="NEVER" />
-    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-  </rowConstraints>
-   <children>
-      <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" />
-      <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0" GridPane.rowIndex="1">
-         <children>
-            <Button maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#showRecipe" prefWidth="35.0" text="%cz.afrosoft.whattoeat.dietview.action.show" />
-            <Button maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#editMeal" prefWidth="35.0" text="%cz.afrosoft.whattoeat.dietview.action.edit" />
-            <Button maxWidth="35.0" minWidth="35.0" mnemonicParsing="false" onAction="#showShoppingList" prefWidth="35.0" text="%cz.afrosoft.whattoeat.dietview.action.shopping" />
-         </children></VBox>
-      <TableView fx:id="dietViewTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
-        <columns>
-          <TableColumn fx:id="dayColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.day" />
-          <TableColumn fx:id="breakfastColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.breakfast" />
-            <TableColumn fx:id="morningSnackColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.morningSnack" />
-            <TableColumn fx:id="soupColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.soup" />
-            <TableColumn fx:id="lunchColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.lunch" />
-            <TableColumn fx:id="sideDishColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.sideDish" />
-            <TableColumn fx:id="afternoonSnackColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.afternoonSnack" />
-            <TableColumn fx:id="dinnerColumn" prefWidth="75.0" text="%cz.afrosoft.whattoeat.dietview.table.dinner" />
-        </columns>
-      </TableView>
-   </children>
-</GridPane>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="dietContainer"
+        stylesheets="@../styles/DietList.css"
+        styleClass="diet-container"
+        fx:controller="cz.afrosoft.whattoeat.diet.list.gui.controller.DietViewController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.common.actions"/>
+        </VBox>
+    </left>
+    <center>
+        <TableView fx:id="dayDietTable">
+            <columns>
+                <TableColumn fx:id="dayColumn" text="%cz.afrosoft.whattoeat.dietview.table.day"/>
+                <TableColumn fx:id="breakfastColumn" text="%cz.afrosoft.whattoeat.dietview.table.breakfasts"/>
+                <TableColumn fx:id="snackColumn" text="%cz.afrosoft.whattoeat.dietview.table.morningSnacks"/>
+                <TableColumn fx:id="lunchColumn" text="%cz.afrosoft.whattoeat.dietview.table.lunch"/>
+                <TableColumn fx:id="afternoonSnackColumn" text="%cz.afrosoft.whattoeat.dietview.table.afternoonSnack"/>
+                <TableColumn fx:id="dinnerColumn" text="%cz.afrosoft.whattoeat.dietview.table.dinners"/>
+                <TableColumn fx:id="otherColumn" text="%cz.afrosoft.whattoeat.common.others"/>
+            </columns>
+        </TableView>
+    </center>
+</BorderPane>

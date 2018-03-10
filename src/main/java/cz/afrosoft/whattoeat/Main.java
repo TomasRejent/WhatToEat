@@ -3,11 +3,14 @@ package cz.afrosoft.whattoeat;
 import cz.afrosoft.whattoeat.core.gui.FXMLLoaderFactory;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
+import cz.afrosoft.whattoeat.core.gui.PageHolder;
 import cz.afrosoft.whattoeat.core.gui.component.SplashScreen;
+import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -58,20 +61,24 @@ public class Main extends Application {
      * Loads component for page. Construct FXML Loader which creates controller from Spring context.
      *
      * @param page (NotNull) Page to load.
-     * @return (NotNull) GUI Component loaded by FXML Loader representing specified page.
+     * @return (NotNull) Page holder with GUI Component loaded by FXML Loader representing specified page and its controller.
      * @throws IOException When fxml file specified in page cannot be loaded by FXML Loader.
      */
-    public static <T> T loadPage(final Page page) throws IOException {
+    public static <N extends Node, C> PageHolder<N, C> loadPage(final Page page) throws IOException {
         Validate.notNull(page);
         Validate.notNull(applicationContext);
 
         FXMLLoaderFactory fxmlLoaderFactory = applicationContext.getBean(FXMLLoaderFactory.class);
         FXMLLoader fxmlLoader = fxmlLoaderFactory.createFXMLLoader(page.toUrlResource());
-        T pageComponent = fxmlLoader.load();
+        N pageComponent = fxmlLoader.load();
         if (pageComponent == null) {
             throw new IllegalStateException(String.format("GUI Component loaded for page %s is null.", page));
         }
-        return pageComponent;
+        C controller = fxmlLoader.getController();
+        if (controller == null) {
+            throw new IllegalStateException(String.format("Controller loaded for page %s is null.", page));
+        }
+        return new PageHolder<>(pageComponent, controller);
     }
 
     /**
@@ -134,7 +141,8 @@ public class Main extends Application {
         applicationContext = SpringApplication.run(Main.class);
         try {
             //load main screen
-            rootPane = loadPage(Page.ROOT);
+            PageHolder<BorderPane, MenuController> pageHolder = loadPage(Page.ROOT);
+            rootPane = pageHolder.getPageNode();
         } catch (IOException e) {
             throw new RuntimeException("", e);
         }

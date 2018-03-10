@@ -137,3 +137,7 @@ X - Create number field
 X - check all services if they properly use Transactional annotation
 X - update objects should not extend model interfaces
 X - Create some hack to internationalize buttons in javafx dialogs
+X - Decide how to pass params between page controllers - for example when diet controller wants to show diet, it must switch to diet view page and pass it Diet to show.
+  X - This can be probably done by Spring events/listener (easiest to implement) - When event is handled components are null, so this cannot be used without some synchronization.
+  X - Other solution is to update Main.loadPage to return composite object, which contains loaded component and its controller, controller can be obtained from FXML loader.
+      This is more work and it would require type casting of controller. - Is done and works.

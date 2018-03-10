@@ -1,15 +1,14 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
-
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
-import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 
 final class MealImpl implements Meal {
 
@@ -102,14 +101,14 @@ final class MealImpl implements Meal {
         }
 
         @Override
-        public MealUpdateObject setServings(final int servings) {
+        public Builder setServings(final int servings) {
             Validate.isTrue(servings >= 0, "Number of servings cannot be negative number.");
             this.servings = servings;
             return this;
         }
 
         @Override
-        public MealUpdateObject setRecipe(final RecipeRef recipeRef) {
+        public Builder setRecipe(final RecipeRef recipeRef) {
             Validate.notNull(recipeRef);
             this.recipe = recipe;
             return this;

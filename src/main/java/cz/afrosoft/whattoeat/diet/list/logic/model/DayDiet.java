@@ -15,30 +15,30 @@ public interface DayDiet extends IdEntity, DayDietRef, Comparable<DayDietRef> {
     /**
      * @return (NotNull) List of meals for breakfast. May be empty.
      */
-    List<MealRef> getBreakfasts();
+    List<Meal> getBreakfasts();
 
     /**
      * @return (NotNull) List of meals for snack. May be empty.
      */
-    List<MealRef> getSnacks();
+    List<Meal> getSnacks();
 
     /**
      * @return (NotNull) List of meals for lunch. May be empty.
      */
-    List<MealRef> getLunch();
+    List<Meal> getLunch();
 
     /**
      * @return (NotNull) List of meals for afternoon snack. May be empty.
      */
-    List<MealRef> getAfternoonSnacks();
+    List<Meal> getAfternoonSnacks();
 
     /**
      * @return (NotNull) List of meals for dinner. May be empty.
      */
-    List<MealRef> getDinners();
+    List<Meal> getDinners();
 
     /**
      * @return (NotNull) List of meals which does not fit any predefined category. This allows more flexibility. May be empty.
      */
-    List<MealRef> getOthers();
+    List<Meal> getOthers();
 }

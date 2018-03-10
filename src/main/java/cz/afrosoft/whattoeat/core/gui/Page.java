@@ -12,6 +12,9 @@ public enum Page {
      * Root page of application rendered after startup. This page contains menu which allows switching to other pages.
      */
     ROOT("/fxml/Menu.fxml"),
+
+    /* Recipes pages. */
+
     /**
      * Page with list of authors. Provides crud operations to user.
      */
@@ -19,8 +22,12 @@ public enum Page {
     COOKBOOKS("/fxml/CookbookList.fxml"),
     RECIPES("/fxml/RecipeList.fxml"),
     INGREDIENTS("/fxml/IngredientList.fxml"),
+
+    /* Diet pages. */
+
     DIETS("/fxml/DietList.fxml"),
-    DIET_GENERATOR("/fxml/DietGenerator.fxml");
+    DIET_GENERATOR("/fxml/DietGenerator.fxml"),
+    DIET_VIEW("/fxml/DietView.fxml"),;
 
     final String fxmlPath;
 

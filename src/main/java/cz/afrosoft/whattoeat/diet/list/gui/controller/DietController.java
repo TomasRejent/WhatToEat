@@ -19,6 +19,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -62,11 +63,18 @@ public class DietController implements Initializable {
         generatorColumn.setCellFactory(column -> new LabeledCell<>());
     }
 
+    private Optional<Diet> getSelectedDiet() {
+        return Optional.ofNullable(dietTable.getSelectionModel().getSelectedItem());
+    }
+
     /* Button actions. */
 
     @FXML
     public void viewDiet() {
-
+        LOGGER.debug("View diet action triggered.");
+        getSelectedDiet().ifPresent(diet -> {
+            menuController.showDiet(diet);
+        });
     }
 
     @FXML

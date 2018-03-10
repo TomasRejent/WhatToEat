@@ -3,9 +3,13 @@ package cz.afrosoft.whattoeat.core.gui.controller;
 import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
+import cz.afrosoft.whattoeat.core.gui.PageHolder;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.diet.list.gui.controller.DietViewController;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -14,6 +18,7 @@ import org.springframework.stereotype.Controller;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Optional;
 import java.util.ResourceBundle;
 
 /**
@@ -73,21 +78,30 @@ public class MenuController implements Initializable {
         showPage(Page.DIET_GENERATOR);
     }
 
+    public void showDiet(final Diet diet) {
+        LOGGER.debug("Switching to View Diet page to show diet {}.", diet);
+        Optional<PageHolder<Node, DietViewController>> pageHolderOpt = showPage(Page.DIET_VIEW);
+        pageHolderOpt.ifPresent(pageHolder -> pageHolder.getPageController().showDiet(diet));
+    }
+
     /**
      * Shows specified page in center of root border pane. If page cannot be loaded by
      * FXML Loader, then label with error message is shown instead of page.
      *
      * @param page (NotNull) Page to show in center of root border pane.
      */
-    private void showPage(final Page page) {
+    private <N extends Node, C> Optional<PageHolder<N, C>> showPage(final Page page) {
         Validate.notNull(page);
+        PageHolder<N, C> pageHolder = null;
         try {
-            rootPane.setCenter(Main.loadPage(page));
+            pageHolder = Main.loadPage(page);
+            rootPane.setCenter(pageHolder.getPageNode());
         } catch (IOException ex) {
             LOGGER.error("Cannot show page: {}", page, ex);
             DialogUtils.showExceptionDialog(
                     I18n.getText("cz.afrosoft.whattoeat.menu.error", page.name()),
                     ex);
         }
+        return Optional.ofNullable(pageHolder);
     }
 }

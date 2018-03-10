@@ -1,5 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -9,24 +14,19 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
-
 final class DayDietImpl implements DayDiet{
 
     private final Integer id;
     private final LocalDate day;
-    private final List<MealRef> breakfasts;
-    private final List<MealRef> snacks;
-    private final List<MealRef> lunch;
-    private final List<MealRef> afternoonSnacks;
-    private final List<MealRef> dinners;
-    private final List<MealRef> others;
+    private final List<Meal> breakfasts;
+    private final List<Meal> snacks;
+    private final List<Meal> lunch;
+    private final List<Meal> afternoonSnacks;
+    private final List<Meal> dinners;
+    private final List<Meal> others;
 
-    private DayDietImpl(final Integer id, final LocalDate day, final List<MealRef> breakfasts, final List<MealRef> snacks, final List<MealRef> lunch, final List<MealRef>
-        afternoonSnacks, final List<MealRef> dinners, final List<MealRef> others) {
+    private DayDietImpl(final Integer id, final LocalDate day, final List<Meal> breakfasts, final List<Meal> snacks, final List<Meal> lunch, final List<Meal>
+            afternoonSnacks, final List<Meal> dinners, final List<Meal> others) {
         this.id = id;
         this.day = day;
         this.breakfasts = breakfasts;
@@ -48,32 +48,32 @@ final class DayDietImpl implements DayDiet{
     }
 
     @Override
-    public List<MealRef> getBreakfasts() {
+    public List<Meal> getBreakfasts() {
         return breakfasts;
     }
 
     @Override
-    public List<MealRef> getSnacks() {
+    public List<Meal> getSnacks() {
         return snacks;
     }
 
     @Override
-    public List<MealRef> getLunch() {
+    public List<Meal> getLunch() {
         return lunch;
     }
 
     @Override
-    public List<MealRef> getAfternoonSnacks() {
+    public List<Meal> getAfternoonSnacks() {
         return afternoonSnacks;
     }
 
     @Override
-    public List<MealRef> getDinners() {
+    public List<Meal> getDinners() {
         return dinners;
     }
 
     @Override
-    public List<MealRef> getOthers() {
+    public List<Meal> getOthers() {
         return others;
     }
 
@@ -110,7 +110,71 @@ final class DayDietImpl implements DayDiet{
                 .toString();
     }
 
-    static final class Builder implements DayDietUpdateObject {
+    static final class Builder {
+
+        private Integer id;
+        private LocalDate day;
+        private List<Meal> breakfasts;
+        private List<Meal> snacks;
+        private List<Meal> lunch;
+        private List<Meal> afternoonSnacks;
+        private List<Meal> dinners;
+        private List<Meal> others;
+
+        public Builder(final Integer id) {
+            Validate.notNull(id);
+            this.id = id;
+        }
+
+        public Builder setDay(final LocalDate day) {
+            this.day = day;
+            return this;
+        }
+
+        public Builder setBreakfasts(final List<Meal> breakfasts) {
+            this.breakfasts = breakfasts;
+            return this;
+        }
+
+        public Builder setSnacks(final List<Meal> snacks) {
+            this.snacks = snacks;
+            return this;
+        }
+
+        public Builder setLunch(final List<Meal> lunch) {
+            this.lunch = lunch;
+            return this;
+        }
+
+        public Builder setAfternoonSnacks(final List<Meal> afternoonSnacks) {
+            this.afternoonSnacks = afternoonSnacks;
+            return this;
+        }
+
+        public Builder setDinners(final List<Meal> dinners) {
+            this.dinners = dinners;
+            return this;
+        }
+
+        public Builder setOthers(final List<Meal> others) {
+            this.others = others;
+            return this;
+        }
+
+        DayDiet build() {
+            Validate.notNull(id);
+            Validate.notNull(breakfasts);
+            Validate.notNull(snacks);
+            Validate.notNull(lunch);
+            Validate.notNull(afternoonSnacks);
+            Validate.notNull(dinners);
+            Validate.notNull(others);
+
+            return new DayDietImpl(id, day, breakfasts, snacks, lunch, afternoonSnacks, dinners, others);
+        }
+    }
+
+    static final class DayDietUpdateObjectImpl implements DayDietUpdateObject {
 
         private final Integer id;
         private LocalDate day;
@@ -121,11 +185,11 @@ final class DayDietImpl implements DayDiet{
         private List<MealRef> dinners;
         private List<MealRef> others;
 
-        public Builder() {
+        public DayDietUpdateObjectImpl() {
             this.id = null;
         }
 
-        public Builder(final Integer id) {
+        public DayDietUpdateObjectImpl(final Integer id) {
             Validate.notNull(id);
             this.id = id;
         }
@@ -171,58 +235,45 @@ final class DayDietImpl implements DayDiet{
         }
 
         @Override
-        public Builder setDay(final LocalDate day) {
+        public DayDietUpdateObjectImpl setDay(final LocalDate day) {
             this.day = day;
             return this;
         }
 
         @Override
-        public Builder setBreakfasts(final List<MealRef> breakfasts) {
+        public DayDietUpdateObjectImpl setBreakfasts(final List<MealRef> breakfasts) {
             this.breakfasts = breakfasts;
             return this;
         }
 
         @Override
-        public Builder setSnacks(final List<MealRef> snacks) {
+        public DayDietUpdateObjectImpl setSnacks(final List<MealRef> snacks) {
             this.snacks = snacks;
             return this;
         }
 
         @Override
-        public Builder setLunch(final List<MealRef> lunch) {
+        public DayDietUpdateObjectImpl setLunch(final List<MealRef> lunch) {
             this.lunch = lunch;
             return this;
         }
 
         @Override
-        public Builder setAfternoonSnacks(final List<MealRef> afternoonSnacks) {
+        public DayDietUpdateObjectImpl setAfternoonSnacks(final List<MealRef> afternoonSnacks) {
             this.afternoonSnacks = afternoonSnacks;
             return this;
         }
 
         @Override
-        public Builder setDinners(final List<MealRef> dinners) {
+        public DayDietUpdateObjectImpl setDinners(final List<MealRef> dinners) {
             this.dinners = dinners;
             return this;
         }
 
         @Override
-        public Builder setOthers(final List<MealRef> others) {
+        public DayDietUpdateObjectImpl setOthers(final List<MealRef> others) {
             this.others = others;
             return this;
-        }
-
-        DayDiet build(){
-            Validate.notNull(id);
-            Validate.notNull(day);
-            Validate.notNull(breakfasts);
-            Validate.notNull(snacks);
-            Validate.notNull(lunch);
-            Validate.notNull(afternoonSnacks);
-            Validate.notNull(dinners);
-            Validate.notNull(others);
-
-            return new DayDietImpl(id, day, breakfasts, snacks, lunch, afternoonSnacks, dinners, others);
         }
 
         @Override
