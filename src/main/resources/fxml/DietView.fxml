@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.ViewButton?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,6 +15,8 @@
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.common.actions"/>
+            <ViewButton onAction="#viewRecipes"/>
+            <EditButton onAction="#editMeals"/>
         </VBox>
     </left>
     <center>

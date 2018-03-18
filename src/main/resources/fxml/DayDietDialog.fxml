@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
+<?import cz.afrosoft.whattoeat.core.gui.component.IntegerField?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root
+        type="javafx.scene.control.Dialog"
+        xmlns:fx="http://javafx.com/fxml">
+    <dialogPane>
+        <DialogPane>
+            <content>
+                <GridPane
+                        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+                        fx:id="dialogContainer"
+                        styleClass="recipe-add-dialog"
+                        stylesheets="@../styles/RecipeAddDialog.css"
+                >
+                    <FieldLabel text="%cz.afrosoft.whattoeat.common.recipe"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="0"
+                    />
+                    <TextField fx:id="recipeField"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="0"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.common.servings"
+                                GridPane.columnIndex="2"
+                                GridPane.rowIndex="0"
+                    />
+                    <IntegerField fx:id="servingsField"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="0"
+                    />
+                    <TableView fx:id="mealTable"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="1"
+                               GridPane.columnSpan="4"
+                    >
+                        <columns>
+                            <TableColumn fx:id="recipeColumn" text="%cz.afrosoft.whattoeat.common.recipe"/>
+                            <TableColumn fx:id="servingsColumn" text="%cz.afrosoft.whattoeat.common.servings"/>
+                            <TableColumn fx:id="removeColumn"/>
+                        </columns>
+                    </TableView>
+                </GridPane>
+            </content>
+        </DialogPane>
+    </dialogPane>
+</fx:root>
