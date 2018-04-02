@@ -1,6 +1,17 @@
 package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.annotation.PostConstruct;
+
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
@@ -12,27 +23,22 @@ import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.RemoveCell;
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.util.StringConverter;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-
-import javax.annotation.PostConstruct;
-import java.util.List;
-import java.util.Optional;
 
 /**
  * @author Tomas Rejent
@@ -140,15 +146,21 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     private void clearDialog(){
         recipeField.setText(StringUtils.EMPTY);
         servingsField.setText(StringUtils.EMPTY);
+        mealTable.getItems().clear();
+    }
+
+    private void prefillDialog(final List<Meal> meals) {
+        mealTable.getItems().addAll(ConverterUtil.convertToList(meals, mealService::getMealUpdateObject));
     }
 
     private void setupDynamicFieldOptions(){
         recipeSuggestionProvider.setPossibleSuggestions(recipeService.getAllRecipes());
     }
 
-    public Optional<List<MealUpdateObject>> editMeals(List<Meal> meals) {
+    public Optional<List<MealUpdateObject>> editMeals(final List<Meal> meals) {
         clearDialog();
         setupDynamicFieldOptions();
+        prefillDialog(meals);
         return showAndWait();
     }
 }

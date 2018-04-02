@@ -1,12 +1,5 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Component which displays link for one recipe. Link displays name of recipe and when clicked it opens recipe view dialog.
@@ -43,17 +44,23 @@ public class RecipeLink extends Label {
 
     @PostConstruct
     private void initialize() {
-        setText(recipe.getName());
+        setText(getLinkText());
         initOnClickListener();
     }
 
     private void initOnClickListener() {
-        this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            LOGGER.debug("Recipe link clicked. Recipe {}", recipe);
-            RecipeViewDialog dialog = applicationContext.getBean(RecipeViewDialog.class);
-            Recipe loadedRecipe = recipeService.getRecipeById(recipe.getId());
-            dialog.showRecipe(loadedRecipe);
-        });
+        this.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleOnClick);
+    }
+
+    protected void handleOnClick(final MouseEvent mouseEvent) {
+        LOGGER.debug("Recipe link clicked. Recipe {}", recipe);
+        RecipeViewDialog dialog = applicationContext.getBean(RecipeViewDialog.class);
+        Recipe loadedRecipe = recipeService.getRecipeById(recipe.getId());
+        dialog.showRecipe(loadedRecipe);
+    }
+
+    protected String getLinkText() {
+        return recipe.getName();
     }
 
 }

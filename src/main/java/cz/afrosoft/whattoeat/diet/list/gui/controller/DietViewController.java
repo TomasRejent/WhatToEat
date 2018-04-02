@@ -157,7 +157,7 @@ public class DietViewController implements Initializable {
         private List<Meal> selectedMeals;
         private BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> updateSetter;
 
-        public EditSelection(final int rowIndex, final DayDiet dayDiet, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>,
+        EditSelection(final int rowIndex, final DayDiet dayDiet, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>,
             DayDietUpdateObject> updateSetter) {
             Validate.notNull(dayDiet);
             Validate.notNull(selectedMeals);
@@ -169,19 +169,19 @@ public class DietViewController implements Initializable {
             this.updateSetter = updateSetter;
         }
 
-        public int getRowIndex() {
+        int getRowIndex() {
             return rowIndex;
         }
 
-        public DayDiet getDayDiet() {
+        DayDiet getDayDiet() {
             return dayDiet;
         }
 
-        public List<Meal> getSelectedMeals() {
+        List<Meal> getSelectedMeals() {
             return selectedMeals;
         }
 
-        public BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> getUpdateSetter() {
+        BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> getUpdateSetter() {
             return updateSetter;
         }
 
