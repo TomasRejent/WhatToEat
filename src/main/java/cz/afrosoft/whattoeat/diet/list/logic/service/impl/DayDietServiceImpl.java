@@ -56,12 +56,12 @@ class DayDietServiceImpl implements DayDietService {
             throw new IllegalArgumentException("Cannot update non existing day diet.");
         }else {
             DayDietEntity dayDietEntity = repository.getOne(dayDietChanges.getId().get())
-                .setBreakfast(ConverterUtil.convertToList(dayDietChanges.getBreakfasts().get(), mealService::mealToEntity))
-                .setSnack(ConverterUtil.convertToList(dayDietChanges.getSnacks().get(), mealService::mealToEntity))
-                .setLunch(ConverterUtil.convertToList(dayDietChanges.getLunch().get(), mealService::mealToEntity))
-                .setAfternoonSnack(ConverterUtil.convertToList(dayDietChanges.getAfternoonSnacks().get(), mealService::mealToEntity))
-                .setDinner(ConverterUtil.convertToList(dayDietChanges.getDinners().get(), mealService::mealToEntity))
-                .setOther(ConverterUtil.convertToList(dayDietChanges.getOthers().get(), mealService::mealToEntity));
+                .setBreakfast(ConverterUtil.convertToMutableList(dayDietChanges.getBreakfasts().get(), mealService::mealToEntity))
+                .setSnack(ConverterUtil.convertToMutableList(dayDietChanges.getSnacks().get(), mealService::mealToEntity))
+                .setLunch(ConverterUtil.convertToMutableList(dayDietChanges.getLunch().get(), mealService::mealToEntity))
+                .setAfternoonSnack(ConverterUtil.convertToMutableList(dayDietChanges.getAfternoonSnacks().get(), mealService::mealToEntity))
+                .setDinner(ConverterUtil.convertToMutableList(dayDietChanges.getDinners().get(), mealService::mealToEntity))
+                .setOther(ConverterUtil.convertToMutableList(dayDietChanges.getOthers().get(), mealService::mealToEntity));
 
             return entityToDayDiet(repository.save(dayDietEntity));
         }

@@ -4,6 +4,7 @@ import org.apache.commons.lang3.Validate;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.function.Function;
@@ -97,6 +98,15 @@ public final class ConverterUtil {
             return Collections.unmodifiableList(
                     source.stream().map(mapFunction).collect(Collectors.toList())
             );
+        }
+    }
+
+    public static <S, T> List<T> convertToMutableList(final Collection<S> source, final Function<S, T> mapFunction) {
+        Validate.notNull(mapFunction);
+        if (source == null || source.isEmpty()) {
+            return new LinkedList<>();
+        } else {
+            return new LinkedList<>(source.stream().map(mapFunction).collect(Collectors.toList()));//TODO optimize this
         }
     }
 
