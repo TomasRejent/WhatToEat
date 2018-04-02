@@ -21,6 +21,7 @@ import java.util.function.BiFunction;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DayDietDialog;
+import cz.afrosoft.whattoeat.diet.list.gui.table.MealsCell;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
@@ -86,6 +87,13 @@ public class DietViewController implements Initializable {
         dinnerColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(DayDiet::getDinners));
         otherColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(DayDiet::getOthers));
         dayDietTable.getSelectionModel().setCellSelectionEnabled(true);
+
+        breakfastColumn.setCellFactory(param -> new MealsCell());
+        snackColumn.setCellFactory(param -> new MealsCell());
+        lunchColumn.setCellFactory(param -> new MealsCell());
+        afternoonSnackColumn.setCellFactory(param -> new MealsCell());
+        dinnerColumn.setCellFactory(param -> new MealsCell());
+        otherColumn.setCellFactory(param -> new MealsCell());
 
         // each meal column has associated setter method which is used for edit
         columnEditSetterMap.put(breakfastColumn, DayDietUpdateObject::setBreakfasts);
