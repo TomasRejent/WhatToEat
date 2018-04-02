@@ -28,6 +28,7 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -119,7 +120,8 @@ public class DietViewController implements Initializable {
                 TableColumn<DayDiet, List<Meal>> tableColumn = firstSelected.getTableColumn();
                 List<Meal> cellData = tableColumn.getCellData(firstSelected.getRow());
                 if (cellData != null) {
-                    return Optional.of(new EditSelection(dayDietTable.getSelectionModel().getSelectedItem(), cellData, columnEditSetterMap.get(tableColumn)));
+                    return Optional.of(new EditSelection(firstSelected.getRow(), dayDietTable.getSelectionModel().getSelectedItem(), cellData, columnEditSetterMap.get
+                        (tableColumn)));
                 }
             }
         }
@@ -142,27 +144,33 @@ public class DietViewController implements Initializable {
             dayDietDialog.editMeals(editSelection.getSelectedMeals()).ifPresent(updatedMeals -> {
                 final DayDietUpdateObject updateObject = dayDietService.getUpdateObject(editSelection.getDayDiet());
                 editSelection.getUpdateSetter().apply(updateObject, updatedMeals);
-                dayDietService.update(updateObject);
+                final DayDiet updatedDiet = dayDietService.update(updateObject);
+                Platform.runLater(() -> dayDietTable.getItems().set(editSelection.getRowIndex(), updatedDiet));
             });
         });
     }
 
     private static class EditSelection {
 
+        private int rowIndex;
         private DayDiet dayDiet;
-
         private List<Meal> selectedMeals;
-
         private BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> updateSetter;
 
-        public EditSelection(final DayDiet dayDiet, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> updateSetter) {
+        public EditSelection(final int rowIndex, final DayDiet dayDiet, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>,
+            DayDietUpdateObject> updateSetter) {
             Validate.notNull(dayDiet);
             Validate.notNull(selectedMeals);
             Validate.notNull(updateSetter);
 
+            this.rowIndex = rowIndex;
             this.dayDiet = dayDiet;
             this.selectedMeals = selectedMeals;
             this.updateSetter = updateSetter;
+        }
+
+        public int getRowIndex() {
+            return rowIndex;
         }
 
         public DayDiet getDayDiet() {

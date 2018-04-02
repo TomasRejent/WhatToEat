@@ -26,6 +26,7 @@
     - create diet detail screen
     - add edit with suggestion to diet detail screen
     - add feature to generate shopping list
+    - restore previous selection of cell after edit of of meals in day diet (now first cell in edited row is selected after dialog submit)
 
 - New suggestion component
     - supports adding of new items, so enter key use suggestion only when selected by arrow keys

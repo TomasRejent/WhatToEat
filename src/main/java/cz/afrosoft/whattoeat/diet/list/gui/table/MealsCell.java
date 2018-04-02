@@ -27,6 +27,7 @@ public class MealsCell extends TableCell<DayDiet, List<Meal>> {
 
     @Override
     protected void updateItem(final List<Meal> item, final boolean empty) {
+        super.updateItem(item, empty);
         layout.getChildren().clear();
 
         if (item != null) {
