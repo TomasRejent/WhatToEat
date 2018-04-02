@@ -110,7 +110,7 @@ final class MealImpl implements Meal {
         @Override
         public Builder setRecipe(final RecipeRef recipeRef) {
             Validate.notNull(recipeRef);
-            this.recipe = recipe;
+            this.recipe = recipeRef;
             return this;
         }
 

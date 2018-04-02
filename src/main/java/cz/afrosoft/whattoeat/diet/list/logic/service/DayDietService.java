@@ -10,4 +10,8 @@ public interface DayDietService {
 
     DayDiet loadDayDiet(DayDietRef reference);
 
+    DayDietUpdateObject getUpdateObject(DayDietRef dayDiet);
+
+    DayDiet update(DayDietUpdateObject dayDietChanges);
 }
+

@@ -109,7 +109,9 @@ public class DietViewController implements Initializable {
         LOGGER.info("Edit meals action triggerd.");
 
         getSelectedMeals().ifPresent(meals -> {
-            dayDietDialog.editMeals(meals);//TODO add saving
+            dayDietDialog.editMeals(meals).ifPresent(updatedMeals -> {
+                //TODO
+            });
         });
     }
 }

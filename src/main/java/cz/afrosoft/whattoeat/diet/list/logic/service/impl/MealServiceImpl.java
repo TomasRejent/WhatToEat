@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.diet.list.data.entity.MealEntity;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealService;
+import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,15 @@ class MealServiceImpl implements MealService {
                 .setServings(entity.getServings())
                 .setRecipe(recipeRefService.fromEntity(entity.getRecipe()))
                 .build();
+    }
+
+    @Override
+    public MealEntity mealToEntity(final Meal meal) {
+        return null;
+    }
+
+    @Override
+    public MealUpdateObject getMealCreateObject() {
+        return new MealImpl.Builder();
     }
 }

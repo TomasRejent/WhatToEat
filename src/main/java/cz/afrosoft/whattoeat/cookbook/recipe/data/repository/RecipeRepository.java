@@ -21,4 +21,6 @@ public interface RecipeRepository extends JpaRepository<RecipeEntity, Integer>, 
 
     List<RecipeEntity> findByRecipeTypesContains(RecipeType recipeType);
 
+    RecipeEntity findByName(String name);
+
 }
