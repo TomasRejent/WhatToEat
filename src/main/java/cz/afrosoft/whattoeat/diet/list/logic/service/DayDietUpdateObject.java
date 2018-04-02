@@ -4,38 +4,36 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
-
 public interface DayDietUpdateObject {
 
     Optional<Integer> getId();
 
     Optional<LocalDate> getDay();
 
-    Optional<List<MealRef>> getBreakfasts();
+    Optional<List<MealUpdateObject>> getBreakfasts();
 
-    Optional<List<MealRef>> getSnacks();
+    Optional<List<MealUpdateObject>> getSnacks();
 
-    Optional<List<MealRef>> getLunch();
+    Optional<List<MealUpdateObject>> getLunch();
 
-    Optional<List<MealRef>> getAfternoonSnacks();
+    Optional<List<MealUpdateObject>> getAfternoonSnacks();
 
-    Optional<List<MealRef>> getDinners();
+    Optional<List<MealUpdateObject>> getDinners();
 
-    Optional<List<MealRef>> getOthers();
+    Optional<List<MealUpdateObject>> getOthers();
 
     DayDietUpdateObject setDay(LocalDate day);
 
-    DayDietUpdateObject setBreakfasts(List<MealRef> breakfasts);
+    DayDietUpdateObject setBreakfasts(List<MealUpdateObject> breakfasts);
 
-    DayDietUpdateObject setSnacks(List<MealRef> snacks);
+    DayDietUpdateObject setSnacks(List<MealUpdateObject> snacks);
 
-    DayDietUpdateObject setLunch(List<MealRef> lunch);
+    DayDietUpdateObject setLunch(List<MealUpdateObject> lunch);
 
-    DayDietUpdateObject setAfternoonSnacks(List<MealRef> afternoonSnacks);
+    DayDietUpdateObject setAfternoonSnacks(List<MealUpdateObject> afternoonSnacks);
 
-    DayDietUpdateObject setDinners(List<MealRef> dinners);
+    DayDietUpdateObject setDinners(List<MealUpdateObject> dinners);
 
-    DayDietUpdateObject setOthers(List<MealRef> others);
+    DayDietUpdateObject setOthers(List<MealUpdateObject> others);
 
 }

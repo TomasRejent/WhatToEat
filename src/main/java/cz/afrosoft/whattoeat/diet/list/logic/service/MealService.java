@@ -12,6 +12,12 @@ public interface MealService {
 
     MealEntity mealToEntity(Meal meal);
 
+    MealEntity mealToEntity(MealUpdateObject mealUpdateObject);
+
     MealUpdateObject getMealCreateObject();
+
+    MealUpdateObject getMealUpdateObject(Meal meal);
+
+    MealUpdateObject getMealUpdateObject(MealEntity mealEntity);
 
 }

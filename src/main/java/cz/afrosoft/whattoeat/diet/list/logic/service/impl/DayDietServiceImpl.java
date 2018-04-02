@@ -1,5 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.data.repository.DayDietRepository;
@@ -8,10 +13,6 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealService;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 /**
  * @author Tomas Rejent
@@ -37,27 +38,33 @@ class DayDietServiceImpl implements DayDietService {
     public DayDietUpdateObject getUpdateObject(final DayDietRef dayDiet) {
         Validate.notNull(dayDiet);
         DayDietEntity dayDietEntity = repository.getOne(dayDiet.getId());
-        return new DayDietImpl.DayDietUpdateObjectImpl(dayDietEntity.getId())
+
+        return new DayDietUpdateObjectImpl(dayDietEntity.getId())
                 .setDay(dayDiet.getDay())
-                .setBreakfasts(ConverterUtil.convertToList(dayDietEntity.getBreakfast(), mealService::entityToMeal))
-                .setSnacks(ConverterUtil.convertToList(dayDietEntity.getSnack(), mealService::entityToMeal))
-                .setLunch(ConverterUtil.convertToList(dayDietEntity.getLunch(), mealService::entityToMeal))
-                .setAfternoonSnacks(ConverterUtil.convertToList(dayDietEntity.getAfternoonSnack(), mealService::entityToMeal))
-                .setDinners(ConverterUtil.convertToList(dayDietEntity.getDinner(), mealService::entityToMeal))
-                .setOthers(ConverterUtil.convertToList(dayDietEntity.getOther(), mealService::entityToMeal));
+            .setBreakfasts(ConverterUtil.convertToList(dayDietEntity.getBreakfast(), mealService::getMealUpdateObject))
+            .setSnacks(ConverterUtil.convertToList(dayDietEntity.getSnack(), mealService::getMealUpdateObject))
+            .setLunch(ConverterUtil.convertToList(dayDietEntity.getLunch(), mealService::getMealUpdateObject))
+            .setAfternoonSnacks(ConverterUtil.convertToList(dayDietEntity.getAfternoonSnack(), mealService::getMealUpdateObject))
+            .setDinners(ConverterUtil.convertToList(dayDietEntity.getDinner(), mealService::getMealUpdateObject))
+            .setOthers(ConverterUtil.convertToList(dayDietEntity.getOther(), mealService::getMealUpdateObject));
     }
 
     @Override
+    @Transactional
     public DayDiet update(final DayDietUpdateObject dayDietChanges) {
         if(!dayDietChanges.getId().isPresent()){
             throw new IllegalArgumentException("Cannot update non existing day diet.");
         }else {
-            DayDietEntity dayDietEntity = repository.getOne(dayDietChanges.getId().get());
-            //TODO
+            DayDietEntity dayDietEntity = repository.getOne(dayDietChanges.getId().get())
+                .setBreakfast(ConverterUtil.convertToList(dayDietChanges.getBreakfasts().get(), mealService::mealToEntity))
+                .setSnack(ConverterUtil.convertToList(dayDietChanges.getSnacks().get(), mealService::mealToEntity))
+                .setLunch(ConverterUtil.convertToList(dayDietChanges.getLunch().get(), mealService::mealToEntity))
+                .setAfternoonSnack(ConverterUtil.convertToList(dayDietChanges.getAfternoonSnacks().get(), mealService::mealToEntity))
+                .setDinner(ConverterUtil.convertToList(dayDietChanges.getDinners().get(), mealService::mealToEntity))
+                .setOther(ConverterUtil.convertToList(dayDietChanges.getOthers().get(), mealService::mealToEntity));
+
+            return entityToDayDiet(repository.save(dayDietEntity));
         }
-
-
-        return null;
     }
 
     private DayDiet entityToDayDiet(final DayDietEntity entity) {

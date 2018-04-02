@@ -1,10 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
-import cz.afrosoft.whattoeat.diet.list.logic.model.MealRef;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -12,7 +7,10 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 
 final class DayDietImpl implements DayDiet{
 
@@ -174,120 +172,4 @@ final class DayDietImpl implements DayDiet{
         }
     }
 
-    static final class DayDietUpdateObjectImpl implements DayDietUpdateObject {
-
-        private final Integer id;
-        private LocalDate day;
-        private List<MealRef> breakfasts;
-        private List<MealRef> snacks;
-        private List<MealRef> lunch;
-        private List<MealRef> afternoonSnacks;
-        private List<MealRef> dinners;
-        private List<MealRef> others;
-
-        public DayDietUpdateObjectImpl() {
-            this.id = null;
-        }
-
-        public DayDietUpdateObjectImpl(final Integer id) {
-            Validate.notNull(id);
-            this.id = id;
-        }
-
-        @Override
-        public Optional<Integer> getId() {
-            return Optional.ofNullable(id);
-        }
-
-        @Override
-        public Optional<LocalDate> getDay() {
-            return Optional.ofNullable(day);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getBreakfasts() {
-            return Optional.ofNullable(breakfasts);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getSnacks() {
-            return Optional.ofNullable(snacks);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getLunch() {
-            return Optional.ofNullable(lunch);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getAfternoonSnacks() {
-            return Optional.ofNullable(afternoonSnacks);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getDinners() {
-            return Optional.ofNullable(dinners);
-        }
-
-        @Override
-        public Optional<List<MealRef>> getOthers() {
-            return Optional.ofNullable(others);
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setDay(final LocalDate day) {
-            this.day = day;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setBreakfasts(final List<MealRef> breakfasts) {
-            this.breakfasts = breakfasts;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setSnacks(final List<MealRef> snacks) {
-            this.snacks = snacks;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setLunch(final List<MealRef> lunch) {
-            this.lunch = lunch;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setAfternoonSnacks(final List<MealRef> afternoonSnacks) {
-            this.afternoonSnacks = afternoonSnacks;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setDinners(final List<MealRef> dinners) {
-            this.dinners = dinners;
-            return this;
-        }
-
-        @Override
-        public DayDietUpdateObjectImpl setOthers(final List<MealRef> others) {
-            this.others = others;
-            return this;
-        }
-
-        @Override
-        public String toString() {
-            return new ToStringBuilder(this)
-                    .append("id", id)
-                    .append("day", day)
-                    .append("breakfasts", breakfasts)
-                    .append("snacks", snacks)
-                    .append("lunch", lunch)
-                    .append("afternoonSnacks", afternoonSnacks)
-                    .append("dinners", dinners)
-                    .append("others", others)
-                    .toString();
-        }
-    }
 }
