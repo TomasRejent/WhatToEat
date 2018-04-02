@@ -1,3 +1,11 @@
 /* Contain application wide styles. These styles are applied to all components.
  * There should be as few rules as possible. Styles should be preferably part of components.
 */
+
+/* Sets size of icon buttons across application. These are typically used for actions in toolbars. */
+.icon-button {
+    -fx-min-height: 25px;
+    -fx-max-height: 25px;
+    -fx-min-width: 34px;
+    -fx-max-width: 34px;
+}

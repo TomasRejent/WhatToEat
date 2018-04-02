@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
 <?import org.controlsfx.glyphfont.Glyph?>
-<fx:root type="javafx.scene.control.Button" xmlns:fx="http://javafx.com/fxml" xmlns="http://javafx.com/javafx/8.0.121">
+<?import javafx.scene.control.Button?>
+<fx:root type="javafx.scene.control.Button"
+         xmlns:fx="http://javafx.com/fxml"
+         xmlns="http://javafx.com/javafx/8.0.121"
+         styleClass="icon-button">
     <graphic>
         <Glyph fontFamily="FontAwesome" icon="EYE"/>
     </graphic>
-    <maxHeight>25</maxHeight>
-    <minHeight>25</minHeight>
-    <maxWidth>30</maxWidth>
-    <minWidth>30</minWidth>
 </fx:root>
