@@ -13,6 +13,8 @@
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
 - Duration field should extend RegexRestrictedField
 - Create mechanism to properly fill entities from update object without calling get on optional without presence check (is related to validation mechanism)
+- Decide if servings in diets should support float values or integers only
+- Remove deleteById from repositories in x86 branch. Since spring boot update to 2.0 it is no longer necessary.
 
 - low priority - try to use metamodel in criteria queries
 

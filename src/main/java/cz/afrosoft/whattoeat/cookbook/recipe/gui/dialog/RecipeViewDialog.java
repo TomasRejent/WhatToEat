@@ -155,12 +155,24 @@ public class RecipeViewDialog extends Dialog<Void> {
     public void showRecipe(final Recipe recipe) {
         Validate.notNull(recipe);
 
+        showRecipe(recipe, DEFAULT_SERVINGS);
+    }
+
+    /**
+     * Shows dialog with specified recipe.
+     *
+     * @param recipe   (NotNull) Recipe to show.
+     * @param servings Number of servings to pre-fill.
+     */
+    public void showRecipe(final Recipe recipe, float servings) {
+        Validate.notNull(recipe);
+
         setTitle(recipe.getName());
-        prefillDialog(recipe);
+        prefillDialog(recipe, servings);
         showAndWait();
     }
 
-    private void prefillDialog(final Recipe recipe) {
+    private void prefillDialog(final Recipe recipe, final float servings) {
         Validate.notNull(recipe);
 
         typeLabel.setText(StringUtils.join(recipe.getRecipeTypes().stream().map(recipeType -> I18n.getText(recipeType.getLabelKey())).collect(Collectors.toSet()), ", "));
@@ -169,9 +181,9 @@ public class RecipeViewDialog extends Dialog<Void> {
         ratingLabel.setText(String.valueOf(recipe.getRating()));
         keywordField.setSelectedKeywords(recipe.getKeywords());
         preparation.setText(recipe.getPreparation());
-        servingsField.setFloat(DEFAULT_SERVINGS);
+        servingsField.setFloat(servings);
         recipeIngredients = recipeService.loadRecipeIngredients(recipe.getIngredients());
-        ingredientQuantityTable.addRecipeIngredients(DEFAULT_SERVINGS, recipeIngredients);
+        ingredientQuantityTable.addRecipeIngredients(servings, recipeIngredients);
         updatePriceLabel();
         // pre-fill side dishes links
         boolean hasSideDishes = !recipe.getSideDishes().isEmpty();

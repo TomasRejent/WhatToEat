@@ -1,23 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
-import java.util.function.BiFunction;
-
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DayDietDialog;
@@ -34,6 +16,19 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TablePosition;
 import javafx.scene.control.TableView;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.function.BiFunction;
 
 /**
  * @author Tomas Rejent
@@ -67,6 +62,9 @@ public class DietViewController implements Initializable {
     @Autowired
     private DayDietDialog dayDietDialog;
 
+    @Autowired
+    private ApplicationContext applicationContext;
+
     /**
      * Map which holds appropriate setter method of {@link DayDietUpdateObject} for meal columns, so when meals are edited setter can be easily retrieved for edited
      * column.
@@ -89,12 +87,12 @@ public class DietViewController implements Initializable {
         otherColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(DayDiet::getOthers));
         dayDietTable.getSelectionModel().setCellSelectionEnabled(true);
 
-        breakfastColumn.setCellFactory(param -> new MealsCell());
-        snackColumn.setCellFactory(param -> new MealsCell());
-        lunchColumn.setCellFactory(param -> new MealsCell());
-        afternoonSnackColumn.setCellFactory(param -> new MealsCell());
-        dinnerColumn.setCellFactory(param -> new MealsCell());
-        otherColumn.setCellFactory(param -> new MealsCell());
+        breakfastColumn.setCellFactory(param -> new MealsCell(applicationContext));
+        snackColumn.setCellFactory(param -> new MealsCell(applicationContext));
+        lunchColumn.setCellFactory(param -> new MealsCell(applicationContext));
+        afternoonSnackColumn.setCellFactory(param -> new MealsCell(applicationContext));
+        dinnerColumn.setCellFactory(param -> new MealsCell(applicationContext));
+        otherColumn.setCellFactory(param -> new MealsCell(applicationContext));
 
         // each meal column has associated setter method which is used for edit
         columnEditSetterMap.put(breakfastColumn, DayDietUpdateObject::setBreakfasts);
