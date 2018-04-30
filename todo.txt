@@ -51,6 +51,8 @@
 
 - Add "Ingredient" type of recipe and allows its usage as ingredient for other recipes, this allows composition of recipes
 
+- Add button add next to recipe add dialog which preserves selected cookbook (and maybe keywords)
+
 - Ingredient quantity formatting use unit conversion. (IngredientQuantityServiceImpl)
 - Ingredient quantities are smart formatted (bigger amounts do not use decimal points, small does - for example spices)
 
