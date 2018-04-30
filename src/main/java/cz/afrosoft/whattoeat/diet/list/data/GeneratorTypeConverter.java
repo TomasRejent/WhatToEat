@@ -1,9 +1,9 @@
 package cz.afrosoft.whattoeat.diet.list.data;
 
+import javax.persistence.Converter;
+
 import cz.afrosoft.whattoeat.core.data.IdEnumConverter;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-
-import javax.persistence.Converter;
 
 /**
  * Converter for {@link GeneratorType}. Allows persisting this enum only as its id in database.

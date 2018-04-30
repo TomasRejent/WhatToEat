@@ -1,13 +1,14 @@
 package cz.afrosoft.whattoeat.core.gui.table;
 
-import javafx.beans.property.ReadOnlyObjectWrapper;
-import javafx.beans.value.ObservableValue;
-import javafx.scene.control.TableColumn;
-import javafx.util.Callback;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.util.function.Function;
+
+import javafx.beans.property.ReadOnlyObjectWrapper;
+import javafx.beans.value.ObservableValue;
+import javafx.scene.control.TableColumn;
+import javafx.util.Callback;
 
 /**
  * Constructs cell value factories for java fx table columns {@link TableColumn#setCellValueFactory(Callback)}.

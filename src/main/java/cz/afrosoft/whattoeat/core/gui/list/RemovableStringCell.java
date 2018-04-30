@@ -1,5 +1,11 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
+import org.apache.commons.lang3.Validate;
+
+import java.util.Collection;
+import java.util.function.Consumer;
+import java.util.function.Function;
+
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -7,11 +13,6 @@ import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
-import org.apache.commons.lang3.Validate;
-
-import java.util.Collection;
-import java.util.function.Consumer;
-import java.util.function.Function;
 
 /**
  * Cell which renders remove button aligned to right side of cell. This button allows to remove item

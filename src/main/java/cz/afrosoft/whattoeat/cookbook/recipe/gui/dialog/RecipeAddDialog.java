@@ -1,5 +1,22 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.controlsfx.control.Rating;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Optional;
+
+import javax.annotation.PostConstruct;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
@@ -16,7 +33,12 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.FillUtils;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.*;
+import cz.afrosoft.whattoeat.core.gui.component.AddButton;
+import cz.afrosoft.whattoeat.core.gui.component.DurationField;
+import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
+import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
+import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
+import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListBindingFactory;
@@ -33,27 +55,23 @@ import javafx.collections.ListChangeListener;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
+import javafx.scene.control.Tab;
+import javafx.scene.control.TabPane;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.util.StringConverter;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.Rating;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-
-import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.Optional;
 
 /**
  * Dialog for adding and editing of recipes. This dialog also allows to change relation between recipe and cookbooks.

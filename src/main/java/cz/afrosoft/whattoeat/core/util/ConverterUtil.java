@@ -96,7 +96,7 @@ public final class ConverterUtil {
             return Collections.emptyList();
         } else {
             return Collections.unmodifiableList(
-                    source.stream().map(mapFunction).collect(Collectors.toList())
+                source.stream().map(mapFunction).collect(Collectors.toList())
             );
         }
     }

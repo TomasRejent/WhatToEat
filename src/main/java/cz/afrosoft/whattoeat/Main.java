@@ -1,5 +1,16 @@
 package cz.afrosoft.whattoeat;
 
+import org.apache.commons.lang3.Validate;
+import org.hsqldb.DatabaseManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ConfigurableApplicationContext;
+
+import java.io.IOException;
+
 import cz.afrosoft.whattoeat.core.gui.FXMLLoaderFactory;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.Page;
@@ -15,16 +26,6 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import org.apache.commons.lang3.Validate;
-import org.hsqldb.DatabaseManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.ConfigurableApplicationContext;
-
-import java.io.IOException;
 
 /**
  * Entry point of application. Extends {@link Application} to be able to use JavaFX. Also set up Spring for dependency injection

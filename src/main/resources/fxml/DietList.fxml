@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import org.controlsfx.control.MasterDetailPane?>
 <?import cz.afrosoft.whattoeat.core.gui.component.AddButton?>
 <?import cz.afrosoft.whattoeat.core.gui.component.DeleteButton?>
 <?import cz.afrosoft.whattoeat.core.gui.component.ViewButton?>
-<?import javafx.scene.control.*?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
-<?import org.controlsfx.control.MasterDetailPane?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1"
         xmlns="http://javafx.com/javafx/8.0.121"

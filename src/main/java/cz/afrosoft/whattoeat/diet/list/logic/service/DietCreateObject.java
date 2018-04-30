@@ -1,10 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service;
 
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-
 import java.time.LocalDate;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
 /**
  * @author Tomas Rejent

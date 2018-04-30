@@ -1,9 +1,9 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import java.util.Comparator;
+
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-
-import java.util.Comparator;
 
 /**
  * @author Tomas Rejent

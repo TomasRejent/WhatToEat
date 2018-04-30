@@ -1,10 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -15,6 +10,12 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 
 /**
  * @author Tomas Rejent
@@ -83,11 +84,11 @@ final class DietImpl implements Diet {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
-                .append("name", name)
-                .append("from", from)
-                .append("to", to)
-                .toString();
+            .append("id", id)
+            .append("name", name)
+            .append("from", from)
+            .append("to", to)
+            .toString();
     }
 
     @Override
@@ -103,15 +104,15 @@ final class DietImpl implements Diet {
         DietImpl diet = (DietImpl) o;
 
         return new EqualsBuilder()
-                .append(id, diet.id)
-                .isEquals();
+            .append(id, diet.id)
+            .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
+            .append(id)
+            .toHashCode();
     }
 
     static final class Builder implements DietCreateObject {
@@ -229,14 +230,14 @@ final class DietImpl implements Diet {
         @Override
         public String toString() {
             return new ToStringBuilder(this)
-                    .append("id", id)
-                    .append("name", name)
-                    .append("from", from)
-                    .append("to", to)
-                    .append("generatorType", generatorType)
-                    .append("description", description)
-                    .append("dayDiets", dayDiets)
-                    .toString();
+                .append("id", id)
+                .append("name", name)
+                .append("from", from)
+                .append("to", to)
+                .append("generatorType", generatorType)
+                .append("description", description)
+                .append("dayDiets", dayDiets)
+                .toString();
         }
     }
 }

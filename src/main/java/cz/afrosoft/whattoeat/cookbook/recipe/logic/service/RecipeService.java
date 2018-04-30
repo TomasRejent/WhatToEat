@@ -1,14 +1,14 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service;
 
+import java.util.Collection;
+import java.util.Optional;
+import java.util.Set;
+
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-
-import java.util.Collection;
-import java.util.Optional;
-import java.util.Set;
 
 /**
  * @author Tomas Rejent
@@ -26,6 +26,7 @@ public interface RecipeService {
 
     /**
      * Finds recipe by name.
+     *
      * @param name (NotNull) Name to search.
      * @return (NotNull) Optional with recipe or empty optional if recipe with such name does not exist.
      */

@@ -1,15 +1,5 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
-import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
-import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +11,17 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
+
+import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
+import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
+import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 
 /**
  * @author Tomas Rejent

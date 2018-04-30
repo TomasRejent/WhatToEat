@@ -1,12 +1,5 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
-import javafx.scene.control.Label;
-import javafx.scene.input.MouseEvent;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,6 +8,14 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Primary;
 
 import javax.annotation.PostConstruct;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 
 /**
  * Component which displays link for one recipe. Link displays name of recipe and when clicked it opens recipe view dialog.

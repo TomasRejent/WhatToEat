@@ -1,9 +1,10 @@
 package cz.afrosoft.whattoeat.core.data;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
 import java.sql.Date;
 import java.time.LocalDate;
+
+import javax.persistence.AttributeConverter;
+import javax.persistence.Converter;
 
 /**
  * Converter for persisting {@link LocalDate}.

@@ -1,12 +1,12 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 
+import java.time.Duration;
+import java.util.Set;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
 import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
-
-import java.time.Duration;
-import java.util.Set;
 
 /**
  * Represents recipe and defines all its properties. Recipe must belong to at least

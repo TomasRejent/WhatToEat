@@ -1,5 +1,15 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.Set;
+
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
@@ -10,15 +20,6 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietRefService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * @author Tomas Rejent
@@ -57,11 +58,11 @@ public class DietServiceImpl implements DietService {
 
         DietEntity entity = new DietEntity();
         entity.setName(dietChanges.getName().get())
-                .setFrom(dietChanges.getFrom().get())
-                .setTo(dietChanges.getTo().get())
-                .setGenerator(generatorType)
-                .setDescription(dietChanges.getDescription().orElse(null))
-                .setDayDiets(generatedDiet);
+            .setFrom(dietChanges.getFrom().get())
+            .setTo(dietChanges.getTo().get())
+            .setGenerator(generatorType)
+            .setDescription(dietChanges.getDescription().orElse(null))
+            .setDayDiets(generatedDiet);
 
         return entityToDiet(repository.save(entity));
     }
@@ -71,11 +72,11 @@ public class DietServiceImpl implements DietService {
 
         DietImpl.Builder builder = new DietImpl.Builder(entity.getId());
         builder.setName(entity.getName())
-                .setFrom(entity.getFrom())
-                .setTo(entity.getTo())
-                .setGenerator(entity.getGenerator())
-                .setDescription(entity.getDescription())
-                .setDayDiets(ConverterUtil.convertToList(entity.getDayDiets(), dayDietRefService::fromEntity));
+            .setFrom(entity.getFrom())
+            .setTo(entity.getTo())
+            .setGenerator(entity.getGenerator())
+            .setDescription(entity.getDescription())
+            .setDayDiets(ConverterUtil.convertToList(entity.getDayDiets(), dayDietRefService::fromEntity));
 
         return builder.build();
     }

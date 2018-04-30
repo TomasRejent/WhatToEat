@@ -1,10 +1,11 @@
 package cz.afrosoft.whattoeat.diet.generator.model;
 
+import org.apache.commons.lang3.Validate;
+import org.apache.commons.lang3.builder.ToStringBuilder;
+
 import cz.afrosoft.whattoeat.core.data.IdEnum;
 import cz.afrosoft.whattoeat.core.gui.Labeled;
 import cz.afrosoft.whattoeat.diet.generator.impl.none.NoneGenerator;
-import org.apache.commons.lang3.Validate;
-import org.apache.commons.lang3.builder.ToStringBuilder;
 
 /**
  * Identifies generator of diets. Every generator has one unique entry in this enum.
@@ -12,8 +13,7 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
  * @author Tomas Rejent
  */
 public enum GeneratorType implements IdEnum, Labeled {
-    NONE(0, "cz.afrosoft.whattoeat.common.none", NoneGenerator.class)
-    ;
+    NONE(0, "cz.afrosoft.whattoeat.common.none", NoneGenerator.class);
 
     private final int id;
     private final String labelKey;
@@ -47,9 +47,9 @@ public enum GeneratorType implements IdEnum, Labeled {
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
-                .append("labelKey", labelKey)
-                .append("generatorClass", generatorClass)
-                .toString();
+            .append("id", id)
+            .append("labelKey", labelKey)
+            .append("generatorClass", generatorClass)
+            .toString();
     }
 }

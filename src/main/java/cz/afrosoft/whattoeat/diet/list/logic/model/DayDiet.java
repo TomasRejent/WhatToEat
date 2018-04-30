@@ -1,8 +1,8 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
-import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-
 import java.util.List;
+
+import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 
 /**
  * Represents diet for one day. It contains list of meals for usual meal times, like breakfast. However ot does not restrict type of meal,

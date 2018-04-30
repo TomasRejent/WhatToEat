@@ -1,7 +1,8 @@
 package cz.afrosoft.whattoeat.core.gui;
 
-import javafx.scene.Node;
 import org.apache.commons.lang3.Validate;
+
+import javafx.scene.Node;
 
 /**
  * @author Tomas Rejent

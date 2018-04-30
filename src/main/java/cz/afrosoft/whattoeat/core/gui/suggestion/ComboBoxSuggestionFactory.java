@@ -1,15 +1,16 @@
 package cz.afrosoft.whattoeat.core.gui.suggestion;
 
-import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.list.ListCellFactory;
-import javafx.scene.control.ComboBox;
-import javafx.util.StringConverter;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
+
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
+import cz.afrosoft.whattoeat.core.gui.list.ListCellFactory;
+import javafx.scene.control.ComboBox;
+import javafx.util.StringConverter;
 
 /**
  * Factory for initializing suggestion for combo boxes. This way user can quickly search through many items

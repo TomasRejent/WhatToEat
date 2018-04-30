@@ -6,6 +6,17 @@
 
 package cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.Collection;
+import java.util.stream.Collectors;
+
+import javax.annotation.PostConstruct;
+
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
@@ -17,20 +28,16 @@ import cz.afrosoft.whattoeat.core.gui.component.RecipeLinks;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.control.SplitPane;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TitledPane;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.stream.Collectors;
 
 /**
  *  Dialog for viewing of recipes. This dialog is not modal, so multiple recipes can be viewed at once. This is useful

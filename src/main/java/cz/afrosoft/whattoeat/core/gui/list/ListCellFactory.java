@@ -1,16 +1,17 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
-import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
-import cz.afrosoft.whattoeat.core.util.VarargsUtil;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
-import javafx.util.Callback;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.function.Consumer;
 import java.util.function.Function;
+
+import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
+import cz.afrosoft.whattoeat.core.util.VarargsUtil;
+import javafx.scene.control.ListCell;
+import javafx.scene.control.ListView;
+import javafx.util.Callback;
 
 /**
  * Factory for creating cell factories for {@link ListView}.

@@ -1,10 +1,10 @@
 package cz.afrosoft.whattoeat.diet.generator.impl;
 
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
-import javafx.scene.Node;
-
 import java.time.LocalDate;
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
+import javafx.scene.Node;
 
 /**
  * @author Tomas Rejent

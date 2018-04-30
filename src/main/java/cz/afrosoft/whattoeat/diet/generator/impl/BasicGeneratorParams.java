@@ -1,9 +1,10 @@
 package cz.afrosoft.whattoeat.diet.generator.impl;
 
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 import org.apache.commons.lang3.Validate;
 
 import java.time.LocalDate;
+
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 
 /**
  * @author Tomas Rejent

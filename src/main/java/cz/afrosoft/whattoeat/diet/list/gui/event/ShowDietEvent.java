@@ -1,7 +1,8 @@
 package cz.afrosoft.whattoeat.diet.list.gui.event;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import org.apache.commons.lang3.Validate;
+
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 
 /**
  * @author Tomas Rejent

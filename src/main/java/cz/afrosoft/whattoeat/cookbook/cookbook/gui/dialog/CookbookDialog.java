@@ -1,5 +1,14 @@
 package cz.afrosoft.whattoeat.cookbook.cookbook.gui.dialog;
 
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.HashSet;
+import java.util.Optional;
+
+import javax.annotation.PostConstruct;
+
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.AuthorService;
@@ -11,16 +20,14 @@ import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListBindingFactory;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestionFactory;
 import javafx.fxml.FXML;
-import javafx.scene.control.*;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.ListView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-
-import javax.annotation.PostConstruct;
-import java.util.HashSet;
-import java.util.Optional;
 
 /**
  * Dialog for adding and editing of cookbooks. This dialog also allows to change relation between cookbook and authors.

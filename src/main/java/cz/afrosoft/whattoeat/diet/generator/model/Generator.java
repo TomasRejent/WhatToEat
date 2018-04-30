@@ -1,8 +1,8 @@
 package cz.afrosoft.whattoeat.diet.generator.model;
 
-import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
-
 import java.util.List;
+
+import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 
 /**
  * Generator for creating Diets.

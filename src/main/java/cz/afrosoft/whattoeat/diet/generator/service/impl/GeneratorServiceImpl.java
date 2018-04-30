@@ -1,17 +1,18 @@
 package cz.afrosoft.whattoeat.diet.generator.service.impl;
 
-import cz.afrosoft.whattoeat.diet.generator.model.Generator;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
-import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
+import cz.afrosoft.whattoeat.diet.generator.model.Generator;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 
 /**
  * @author Tomas Rejent

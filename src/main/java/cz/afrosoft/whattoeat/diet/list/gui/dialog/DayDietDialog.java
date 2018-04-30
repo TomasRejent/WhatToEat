@@ -101,26 +101,26 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         removeColumn.setCellFactory(param -> new RemoveCell<>(applicationContext.getBean(RemoveButton.class)));
     }
 
-    private void setupFields(){
+    private void setupFields() {
         StringConverter<Recipe> recipeConverter = ComboBoxUtils.createAsymmetricStringConverter(Recipe::getName, string -> null);
         AutoCompletionBinding<Recipe> recipeBinding = TextFields.bindAutoCompletion(recipeField, recipeSuggestionProvider, recipeConverter);
         recipeBinding.setOnAutoCompleted(event -> pickRecipe(event.getCompletion()));
 
         recipeField.setOnKeyPressed(event -> {
-            if(event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER) {
                 String recipeName = recipeField.getText();
                 recipeService.findRecipeByName(recipeName).ifPresent(
-                        this::pickRecipe
+                    this::pickRecipe
                 );
             }
         });
 
         servingsField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
-            if(event.getCode() == KeyCode.ENTER){
+            if (event.getCode() == KeyCode.ENTER) {
                 int servings = servingsField.getIntOrZero();
 
                 mealTable.getItems().add(
-                        mealService.getMealCreateObject()
+                    mealService.getMealCreateObject()
                         .setRecipe(selectedRecipe.getValue())
                         .setServings(servings)
                 );
@@ -133,7 +133,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         });
     }
 
-    private void pickRecipe(final Recipe recipe){
+    private void pickRecipe(final Recipe recipe) {
         Validate.notNull(recipe);
         selectedRecipe.setValue(recipe);
         servingsField.requestFocus();
@@ -143,7 +143,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         return mealTable.getItems();
     }
 
-    private void clearDialog(){
+    private void clearDialog() {
         recipeField.setText(StringUtils.EMPTY);
         servingsField.setText(StringUtils.EMPTY);
         mealTable.getItems().clear();
@@ -153,7 +153,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         mealTable.getItems().addAll(ConverterUtil.convertToList(meals, mealService::getMealUpdateObject));
     }
 
-    private void setupDynamicFieldOptions(){
+    private void setupDynamicFieldOptions() {
         recipeSuggestionProvider.setPossibleSuggestions(recipeService.getAllRecipes());
     }
 

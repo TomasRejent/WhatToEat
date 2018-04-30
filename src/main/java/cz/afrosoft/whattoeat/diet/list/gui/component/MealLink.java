@@ -1,13 +1,14 @@
 package cz.afrosoft.whattoeat.diet.list.gui.component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.dialog.RecipeViewDialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.core.gui.component.RecipeLink;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import javafx.scene.input.MouseEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  * @author tomas.rejent

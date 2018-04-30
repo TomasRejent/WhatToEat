@@ -1,8 +1,8 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
-import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-
 import java.time.LocalDate;
+
+import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 
 /**
  * Represents reference to {@link DayDiet} which can be used in related entities.

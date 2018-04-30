@@ -8,4 +8,5 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
  * @author Tomas Rejent
  */
 public interface DayDietRefService extends RefService<DayDietRef, DayDietEntity> {
+
 }

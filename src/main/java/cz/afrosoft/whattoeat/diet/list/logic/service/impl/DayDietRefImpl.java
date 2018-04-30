@@ -1,9 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
 import org.apache.commons.lang3.Validate;
 
 import java.time.LocalDate;
+
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
 
 /**
  * @author Tomas Rejent

@@ -1,18 +1,5 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
-import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.*;
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.*;
-import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
-import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,6 +12,28 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
+
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeIngredientRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepository;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientRefService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeUpdateObject;
+import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
+import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 
 /**
  * Implementation of {@link RecipeService} which uses {@link cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl.RecipeImpl} as implementation of
@@ -75,9 +84,9 @@ public class RecipeServiceImpl implements RecipeService {
         Validate.notNull(name);
 
         RecipeEntity recipe = repository.findByName(name);
-        if(recipe == null){
+        if (recipe == null) {
             return Optional.empty();
-        }else {
+        } else {
             return Optional.of(entityToRecipe(recipe));
         }
     }

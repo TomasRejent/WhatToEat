@@ -1,7 +1,8 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
-import javafx.scene.control.Label;
 import org.apache.commons.lang3.StringUtils;
+
+import javafx.scene.control.Label;
 
 /**
  * Label which adds colon to end of text when text is not empty and does not already end with colon.
@@ -16,10 +17,10 @@ public class FieldLabel extends Label {
 
     public FieldLabel() {
         textProperty().addListener((observable, oldValue, newValue) -> {
-                    if (StringUtils.isNotBlank(newValue) && !newValue.endsWith(COLON)) {
-                        setText(newValue + COLON);
-                    }
+                if (StringUtils.isNotBlank(newValue) && !newValue.endsWith(COLON)) {
+                    setText(newValue + COLON);
                 }
+            }
         );
     }
 }

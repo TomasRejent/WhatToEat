@@ -1,14 +1,15 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
-import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 
 final class MealImpl implements Meal {
 

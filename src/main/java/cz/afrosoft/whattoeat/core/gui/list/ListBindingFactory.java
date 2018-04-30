@@ -1,10 +1,5 @@
 package cz.afrosoft.whattoeat.core.gui.list;
 
-import javafx.application.Platform;
-import javafx.beans.value.ChangeListener;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.input.KeyCode;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +8,12 @@ import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.stream.Collectors;
+
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
+import javafx.scene.input.KeyCode;
 
 
 /**

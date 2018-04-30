@@ -40,7 +40,7 @@ class DayDietServiceImpl implements DayDietService {
         DayDietEntity dayDietEntity = repository.getOne(dayDiet.getId());
 
         return new DayDietUpdateObjectImpl(dayDietEntity.getId())
-                .setDay(dayDiet.getDay())
+            .setDay(dayDiet.getDay())
             .setBreakfasts(ConverterUtil.convertToList(dayDietEntity.getBreakfast(), mealService::getMealUpdateObject))
             .setSnacks(ConverterUtil.convertToList(dayDietEntity.getSnack(), mealService::getMealUpdateObject))
             .setLunch(ConverterUtil.convertToList(dayDietEntity.getLunch(), mealService::getMealUpdateObject))
@@ -52,9 +52,9 @@ class DayDietServiceImpl implements DayDietService {
     @Override
     @Transactional
     public DayDiet update(final DayDietUpdateObject dayDietChanges) {
-        if(!dayDietChanges.getId().isPresent()){
+        if (!dayDietChanges.getId().isPresent()) {
             throw new IllegalArgumentException("Cannot update non existing day diet.");
-        }else {
+        } else {
             DayDietEntity dayDietEntity = repository.getOne(dayDietChanges.getId().get())
                 .setBreakfast(ConverterUtil.convertToMutableList(dayDietChanges.getBreakfasts().get(), mealService::mealToEntity))
                 .setSnack(ConverterUtil.convertToMutableList(dayDietChanges.getSnacks().get(), mealService::mealToEntity))
@@ -71,13 +71,13 @@ class DayDietServiceImpl implements DayDietService {
         Validate.notNull(entity);
 
         return new DayDietImpl.Builder(entity.getId())
-                .setDay(entity.getDay())
-                .setBreakfasts(ConverterUtil.convertToList(entity.getBreakfast(), mealService::entityToMeal))
-                .setSnacks(ConverterUtil.convertToList(entity.getSnack(), mealService::entityToMeal))
-                .setLunch(ConverterUtil.convertToList(entity.getLunch(), mealService::entityToMeal))
-                .setAfternoonSnacks(ConverterUtil.convertToList(entity.getAfternoonSnack(), mealService::entityToMeal))
-                .setDinners(ConverterUtil.convertToList(entity.getDinner(), mealService::entityToMeal))
-                .setOthers(ConverterUtil.convertToList(entity.getOther(), mealService::entityToMeal))
-                .build();
+            .setDay(entity.getDay())
+            .setBreakfasts(ConverterUtil.convertToList(entity.getBreakfast(), mealService::entityToMeal))
+            .setSnacks(ConverterUtil.convertToList(entity.getSnack(), mealService::entityToMeal))
+            .setLunch(ConverterUtil.convertToList(entity.getLunch(), mealService::entityToMeal))
+            .setAfternoonSnacks(ConverterUtil.convertToList(entity.getAfternoonSnack(), mealService::entityToMeal))
+            .setDinners(ConverterUtil.convertToList(entity.getDinner(), mealService::entityToMeal))
+            .setOthers(ConverterUtil.convertToList(entity.getOther(), mealService::entityToMeal))
+            .build();
     }
 }

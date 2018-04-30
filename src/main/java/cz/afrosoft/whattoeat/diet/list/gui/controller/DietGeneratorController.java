@@ -1,5 +1,15 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import org.apache.commons.lang3.Validate;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.config.ConfigurableBeanFactory;
+import org.springframework.context.annotation.Scope;
+import org.springframework.stereotype.Component;
+
+import java.net.URL;
+import java.time.LocalDate;
+import java.util.ResourceBundle;
+
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
@@ -14,15 +24,6 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
-import org.apache.commons.lang3.Validate;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.config.ConfigurableBeanFactory;
-import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Component;
-
-import java.net.URL;
-import java.time.LocalDate;
-import java.util.ResourceBundle;
 
 /**
  * @author Tomas Rejent
@@ -85,12 +86,12 @@ public class DietGeneratorController implements Initializable {
 
         generatorGui.setInterval(from, to);
         createObject
-                .setName(nameField.getText())
-                .setFrom(from)
-                .setTo(to)
-                .setDescription(descriptionField.getText())
-                .setGenerator(generatorField.getValue())
-                .setGeneratorParams(generatorGui.getParameters());
+            .setName(nameField.getText())
+            .setFrom(from)
+            .setTo(to)
+            .setDescription(descriptionField.getText())
+            .setGenerator(generatorField.getValue())
+            .setGeneratorParams(generatorGui.getParameters());
         return createObject;
     }
 }

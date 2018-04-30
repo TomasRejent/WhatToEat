@@ -12,7 +12,7 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DayDietRef;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 
-final class DayDietImpl implements DayDiet{
+final class DayDietImpl implements DayDiet {
 
     private final Integer id;
     private final LocalDate day;
@@ -24,7 +24,7 @@ final class DayDietImpl implements DayDiet{
     private final List<Meal> others;
 
     private DayDietImpl(final Integer id, final LocalDate day, final List<Meal> breakfasts, final List<Meal> snacks, final List<Meal> lunch, final List<Meal>
-            afternoonSnacks, final List<Meal> dinners, final List<Meal> others) {
+        afternoonSnacks, final List<Meal> dinners, final List<Meal> others) {
         this.id = id;
         this.day = day;
         this.breakfasts = breakfasts;
@@ -89,23 +89,23 @@ final class DayDietImpl implements DayDiet{
         DayDietImpl dayDiet = (DayDietImpl) o;
 
         return new EqualsBuilder()
-                .append(id, dayDiet.id)
-                .isEquals();
+            .append(id, dayDiet.id)
+            .isEquals();
     }
 
     @Override
     public int hashCode() {
         return new HashCodeBuilder(17, 37)
-                .append(id)
-                .toHashCode();
+            .append(id)
+            .toHashCode();
     }
 
     @Override
     public String toString() {
         return new ToStringBuilder(this)
-                .append("id", id)
-                .append("day", day)
-                .toString();
+            .append("id", id)
+            .append("day", day)
+            .toString();
     }
 
     static final class Builder {

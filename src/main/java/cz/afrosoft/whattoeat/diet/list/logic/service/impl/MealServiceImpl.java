@@ -33,9 +33,9 @@ class MealServiceImpl implements MealService {
         Validate.notNull(entity);
 
         return new MealImpl.Builder(entity.getId())
-                .setServings(entity.getServings())
-                .setRecipe(recipeRefService.fromEntity(entity.getRecipe()))
-                .build();
+            .setServings(entity.getServings())
+            .setRecipe(recipeRefService.fromEntity(entity.getRecipe()))
+            .build();
     }
 
     @Override

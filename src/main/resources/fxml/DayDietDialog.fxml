@@ -2,8 +2,12 @@
 
 <?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
 <?import cz.afrosoft.whattoeat.core.gui.component.IntegerField?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Dialog?>
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.GridPane?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">

@@ -1,11 +1,11 @@
 package cz.afrosoft.whattoeat.diet.generator.impl.none;
 
+import java.util.Optional;
+
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorGui;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
-
-import java.util.Optional;
 
 public class NoneGeneratorGui extends BasicGeneratorGui {
 
