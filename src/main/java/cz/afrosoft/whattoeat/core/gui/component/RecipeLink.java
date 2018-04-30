@@ -12,6 +12,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.Primary;
 
 import javax.annotation.PostConstruct;
 
@@ -22,6 +23,7 @@ import javax.annotation.PostConstruct;
  *
  * @author Tomas Rejent
  */
+@Primary
 @FXMLComponent(fxmlPath = "/component/RecipeLink.fxml")
 public class RecipeLink extends Label {
 
@@ -30,10 +32,10 @@ public class RecipeLink extends Label {
     private final RecipeRef recipe;
 
     @Autowired
-    private ApplicationContext applicationContext;
+    protected ApplicationContext applicationContext;
 
     @Autowired
-    private RecipeService recipeService;
+    protected RecipeService recipeService;
 
     public RecipeLink(final RecipeRef recipe) {
         Validate.notNull(recipe);
@@ -43,17 +45,23 @@ public class RecipeLink extends Label {
 
     @PostConstruct
     private void initialize() {
-        setText(recipe.getName());
+        setText(getLinkText());
         initOnClickListener();
     }
 
     private void initOnClickListener() {
-        this.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
-            LOGGER.debug("Recipe link clicked. Recipe {}", recipe);
-            RecipeViewDialog dialog = applicationContext.getBean(RecipeViewDialog.class);
-            Recipe loadedRecipe = recipeService.getRecipeById(recipe.getId());
-            dialog.showRecipe(loadedRecipe);
-        });
+        this.addEventHandler(MouseEvent.MOUSE_CLICKED, this::handleOnClick);
+    }
+
+    protected void handleOnClick(final MouseEvent mouseEvent) {
+        LOGGER.debug("Recipe link clicked. Recipe {}", recipe);
+        RecipeViewDialog dialog = applicationContext.getBean(RecipeViewDialog.class);
+        Recipe loadedRecipe = recipeService.getRecipeById(recipe.getId());
+        dialog.showRecipe(loadedRecipe);
+    }
+
+    protected String getLinkText() {
+        return recipe.getName();
     }
 
 }

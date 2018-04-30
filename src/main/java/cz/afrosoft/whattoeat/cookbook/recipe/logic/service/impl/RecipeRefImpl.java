@@ -1,11 +1,12 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
+
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 
 /**
  * Immutable implementation of {@link RecipeRef} used to represent related recipes in other entities.
@@ -17,7 +18,7 @@ final class RecipeRefImpl implements RecipeRef {
     private final Integer id;
     private final String name;
 
-    public RecipeRefImpl(final Integer id, final String name) {
+    RecipeRefImpl(final Integer id, final String name) {
         Validate.notNull(id);
         Validate.notBlank(name);
 

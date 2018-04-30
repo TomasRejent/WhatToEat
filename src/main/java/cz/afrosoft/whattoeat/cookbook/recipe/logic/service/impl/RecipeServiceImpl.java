@@ -22,6 +22,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -66,6 +67,19 @@ public class RecipeServiceImpl implements RecipeService {
         LOGGER.debug("Getting recipe for id {}.", id);
         Validate.notNull(id);
         return entityToRecipe(repository.getOne(id));
+    }
+
+    @Override
+    public Optional<Recipe> findRecipeByName(final String name) {
+        LOGGER.debug("Getting recipe by name {}", name);
+        Validate.notNull(name);
+
+        RecipeEntity recipe = repository.findByName(name);
+        if(recipe == null){
+            return Optional.empty();
+        }else {
+            return Optional.of(entityToRecipe(recipe));
+        }
     }
 
     @Override

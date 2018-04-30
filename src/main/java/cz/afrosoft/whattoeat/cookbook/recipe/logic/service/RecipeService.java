@@ -7,6 +7,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 
 import java.util.Collection;
+import java.util.Optional;
 import java.util.Set;
 
 /**
@@ -22,6 +23,13 @@ public interface RecipeService {
      * @throws javax.persistence.EntityNotFoundException When recipe with specified id does not exist.
      */
     Recipe getRecipeById(Integer id);
+
+    /**
+     * Finds recipe by name.
+     * @param name (NotNull) Name to search.
+     * @return (NotNull) Optional with recipe or empty optional if recipe with such name does not exist.
+     */
+    Optional<Recipe> findRecipeByName(String name);
 
     /**
      * @return (NotNull) Return all recipes defined in application.

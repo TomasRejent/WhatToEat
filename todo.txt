@@ -6,26 +6,29 @@
 - Use config property loading from Spring instead of ConfigService
 - Use property from config to set language of application
 - Decide if cells with complex graphics should be defined in code or in fxml
-\- Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 - Create custom component for MultiSelect, so MultiSelect does not need to hack underlying CheckComboBox
 - Decide if IngredientQuantityTable should be in core components or in ingredient package and thus ComponentUtil has to provide public access
 - Measure and optimize loading of tables
-- Create FieldLabel component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
 - Duration field should extend RegexRestrictedField
+- Create mechanism to properly fill entities from update object without calling get on optional without presence check (is related to validation mechanism)
+- Decide if servings in diets should support float values or integers only
+- Remove deleteById from repositories in x86 branch. Since spring boot update to 2.0 it is no longer necessary.
 
 - low priority - try to use metamodel in criteria queries
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
 - Diet feature
-    - create entities for diet
+  X - create entities for diet
+    - create model for diet
     - create services for diet
     - create screen with diets
     - create screen for creating/generating diets
     - create diet detail screen
     - add edit with suggestion to diet detail screen
     - add feature to generate shopping list
+    - restore previous selection of cell after edit of of meals in day diet (now first cell in edited row is selected after dialog submit)
 
 - New suggestion component
     - supports adding of new items, so enter key use suggestion only when selected by arrow keys
@@ -72,9 +75,10 @@
 
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
-- Fix creating of Remove button in RemovableStringCell so it is obtained from application context
+- If two recipes have same name only one of them is displayed in table
 
 Done bugs:
+X - Fix creating of Remove button in RemovableStringCell so it is obtained from application context.
 X - Ingredient keywords overlaps in recipe detail dialog.
 X - Fix random generator to work even if no recipes are available for some type.
 X - Enable text wrap for text areas in dialogs and in cookbook and author detail
@@ -119,6 +123,8 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - Create FieldLabel component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
+X - Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 X - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
 X - Devise proper mechanism for FXML custom components
 X - add brief toString to entities so logging of convert operation makes sense
@@ -134,3 +140,7 @@ X - Create number field
 X - check all services if they properly use Transactional annotation
 X - update objects should not extend model interfaces
 X - Create some hack to internationalize buttons in javafx dialogs
+X - Decide how to pass params between page controllers - for example when diet controller wants to show diet, it must switch to diet view page and pass it Diet to show.
+  X - This can be probably done by Spring events/listener (easiest to implement) - When event is handled components are null, so this cannot be used without some synchronization.
+  X - Other solution is to update Main.loadPage to return composite object, which contains loaded component and its controller, controller can be obtained from FXML loader.
+      This is more work and it would require type casting of controller. - Is done and works.

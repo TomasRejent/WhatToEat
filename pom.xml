@@ -18,10 +18,10 @@
         <logback.version>1.2.3</logback.version>
         <xmlbind.version>2.3.0</xmlbind.version>
         <!-- jdk9 profile specific properties -->
-        <jdk9.spring.boot.version>2.0.0.M7</jdk9.spring.boot.version>
+        <jdk9.spring.boot.version>2.0.0.RELEASE</jdk9.spring.boot.version>
         <jdk9.controlsfx.version>9.0.0</jdk9.controlsfx.version>
         <!-- jdk8 profile specific properties -->
-        <jdk8.spring.boot.version>1.5.9.RELEASE</jdk8.spring.boot.version>
+        <jdk8.spring.boot.version>2.0.0.RELEASE</jdk8.spring.boot.version>
         <jdk8.controlsfx.version>8.40.14</jdk8.controlsfx.version>
     </properties>
 
@@ -65,7 +65,6 @@
                     <artifactId>jaxb-api</artifactId>
                     <version>${xmlbind.version}</version>
                 </dependency>
-
                 <!-- Additional GUI components -->
                 <dependency>
                     <groupId>org.controlsfx</groupId>

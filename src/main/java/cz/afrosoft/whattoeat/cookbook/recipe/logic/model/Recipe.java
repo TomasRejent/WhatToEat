@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.logic.model;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
+import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
 
 import java.time.Duration;
 import java.util.Set;
@@ -13,7 +14,7 @@ import java.util.Set;
  *
  * @author Tomas Rejent
  */
-public interface Recipe extends RecipeRef, IdEntity, KeywordableEntity, Comparable<RecipeRef> {
+public interface Recipe extends RecipeRef, IdEntity, NamedEntity, KeywordableEntity, Comparable<RecipeRef> {
 
     /**
      * @return (NotNull) Gets description on how to prepare recipe ingredients

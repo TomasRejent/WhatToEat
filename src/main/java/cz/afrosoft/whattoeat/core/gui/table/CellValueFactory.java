@@ -31,6 +31,20 @@ public class CellValueFactory {
     }
 
     /**
+     * Construct cell value factory for custom type. Use null for empty value. See {@link #newReadOnlyWrapper(Function, Object)}.
+     *
+     * @param mapFunction (NotNull) Function which maps table row item to its cell representation.
+     * @param <S>         Type of item in table.
+     * @param <T>         Type of cell value.
+     * @return (NotNull) Cell value factory which constructs cell value from {@link ReadOnlyObjectWrapper} with value
+     * provided by mapping function. In case cell or row value is null, provided <code>emptyValue</code> is used instead of result of mapping function.
+     */
+    public static <S, T> Callback<TableColumn.CellDataFeatures<S, T>, ObservableValue<T>> newReadOnlyWrapper(final Function<S, T> mapFunction) {
+        Validate.notNull(mapFunction, "Map function cannot be null.");
+        return newReadOnlyWrapper(mapFunction, null);
+    }
+
+    /**
      * Construct cell value factory for custom type.
      *
      * @param mapFunction (NotNull) Function which maps table row item to its cell representation.

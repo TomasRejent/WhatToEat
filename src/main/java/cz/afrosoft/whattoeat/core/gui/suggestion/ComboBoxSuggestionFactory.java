@@ -6,17 +6,23 @@ import javafx.scene.control.ComboBox;
 import javafx.util.StringConverter;
 import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.function.Function;
 
 /**
- * Util class for initializing suggestion for combo boxes. This way user can quickly search through many items
+ * Factory for initializing suggestion for combo boxes. This way user can quickly search through many items
  * if he knows at least part of what he is looking for. If he does not know then he can view items in combo box
  * and pick one.
  *
  * @author Tomas Rejent
  */
-public final class ComboBoxSuggestion {
+@Service
+public final class ComboBoxSuggestionFactory {
+
+    @Autowired
+    private ListCellFactory listCellFactory;
 
     /**
      * When width of suggestion popup is determined this value is subtracted from width of combo box because
@@ -34,12 +40,12 @@ public final class ComboBoxSuggestion {
      * @param mapFunction (NotNull)
      * @param <T>         Type of items in combo box.
      */
-    public static <T> void initSuggestion(final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
+    public <T> void initSuggestion(final ComboBox<T> comboBox, final Function<T, String> mapFunction) {
         StringConverter<T> stringConverter = ComboBoxUtils.createStringConverter(comboBox, mapFunction);
         ComboBoxSuggestionProvider<T> suggestionProvider = new ComboBoxSuggestionProvider<>(comboBox, mapFunction);
         comboBox.setEditable(true);
         comboBox.setConverter(stringConverter);
-        comboBox.setCellFactory(ListCellFactory.newCellFactory(mapFunction));
+        comboBox.setCellFactory(listCellFactory.newCellFactory(mapFunction));
         AutoCompletionBinding<T> suggestionBinding = TextFields.bindAutoCompletion(comboBox.getEditor(), suggestionProvider, stringConverter);
         //finishing auto complete sets value to combo box
         suggestionBinding.setOnAutoCompleted(
@@ -49,9 +55,5 @@ public final class ComboBoxSuggestion {
         comboBox.widthProperty().addListener(
                 (observable, oldValue, newValue) -> suggestionBinding.setPrefWidth(newValue.doubleValue() - BORDER_OFFSET)
         );
-    }
-
-    private ComboBoxSuggestion() {
-        throw new IllegalStateException("This class cannot be instanced");
     }
 }
