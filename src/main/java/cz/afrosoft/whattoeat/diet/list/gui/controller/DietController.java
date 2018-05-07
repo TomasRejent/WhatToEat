@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +33,9 @@ import javafx.scene.control.TableView;
 public class DietController implements Initializable {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DietController.class);
+
+    private static final String DELETE_CONFIRM_HEADER = "cz.afrosoft.whattoeat.common.confirm.delete";
+    private static final String DELETE_CONFIRM_TEXT = "cz.afrosoft.whattoeat.dietview.delete.confirm";
 
     @FXML
     private TableView<Diet> dietTable;
@@ -86,6 +91,12 @@ public class DietController implements Initializable {
 
     @FXML
     public void deleteDiet() {
-
+        LOGGER.debug("Delete diet action triggered.");
+        getSelectedDiet().ifPresent(diet -> {
+            if(DialogUtils.showConfirmDialog(I18n.getText(DELETE_CONFIRM_HEADER), I18n.getText(DELETE_CONFIRM_TEXT, diet.getName()))){
+                dietService.delete(diet);
+                dietTable.getItems().remove(diet);
+            }
+        });
     }
 }

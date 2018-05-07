@@ -67,6 +67,14 @@ public class DietServiceImpl implements DietService {
         return entityToDiet(repository.save(entity));
     }
 
+    @Override
+    public void delete(final Diet diet) {
+        LOGGER.debug("Deleting diet: {}", diet);
+        Validate.notNull(diet, "Cannot delete null diet.");
+
+        repository.deleteById(diet.getId());
+    }
+
     private Diet entityToDiet(final DietEntity entity) {
         Validate.notNull(entity);
 

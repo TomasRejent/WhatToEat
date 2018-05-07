@@ -15,4 +15,6 @@ public interface DietService {
 
     Diet create(DietCreateObject dietChanges);
 
+    void delete(Diet diet);
+
 }
