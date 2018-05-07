@@ -150,7 +150,7 @@ public class Main extends Application {
         //setup exception handler
         Thread.setDefaultUncaughtExceptionHandler((thread, throwable) -> {
             LOGGER.error("Unhandled exception occurred.", throwable);
-            DialogUtils.showExceptionDialog(I18n.getText("cz.afrosoft.whattoeat.common.exception"), throwable);
+            Platform.runLater(() -> DialogUtils.showExceptionDialog(I18n.getText("cz.afrosoft.whattoeat.common.exception"), throwable));
         });
         LOGGER.info("Spring initialized in {}ms", (System.nanoTime() - time) * 0.000001);
     }
