@@ -1,7 +1,21 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
+import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
+import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import org.apache.commons.lang3.StringUtils;
+import org.controlsfx.control.MasterDetailPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,17 +27,6 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
-
-import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
-import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
 
 /**
  * @author Tomas Rejent
@@ -47,6 +50,10 @@ public class DietController implements Initializable {
     private TableColumn<Diet, LocalDate> toColumn;
     @FXML
     private TableColumn<Diet, GeneratorType> generatorColumn;
+    @FXML
+    private MasterDetailPane detailPane;
+    @FXML
+    private TextArea detailArea;
 
     @Autowired
     private MenuController menuController;
@@ -59,6 +66,7 @@ public class DietController implements Initializable {
         setupColumns();
 
         dietTable.getItems().addAll(dietService.getAllDiets());
+        DetailBinding.bindDetail(detailPane, dietTable, detailArea, diet -> diet.getDescription().orElse(StringUtils.EMPTY));
     }
 
     private void setupColumns() {
