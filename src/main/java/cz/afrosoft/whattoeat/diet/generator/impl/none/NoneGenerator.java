@@ -30,7 +30,7 @@ public class NoneGenerator implements Generator<BasicGeneratorParams> {
         Validate.notNull(parameters);
 
         List<DayDietEntity> dayDiets = new LinkedList<>();
-        for (LocalDate day = parameters.getFrom(); parameters.getTo().isAfter(day); day = day.plusDays(1)) {
+        for (LocalDate day = parameters.getFrom(); !day.isAfter(parameters.getTo()); day = day.plusDays(1)) {
             DayDietEntity dayDiet = new DayDietEntity();
             dayDiet.setDay(day);
             dayDiets.add(dayDiet);
