@@ -36,6 +36,7 @@ public class DialogUtils {
 
     public static void showErrorDialog(final String message){
         Alert errorDialog = new Alert(Alert.AlertType.ERROR);
+        translateButtons(errorDialog);
         errorDialog.setTitle(I18n.getText(ERROR_DIALOG_TITLE_KEY));
         errorDialog.setContentText(message);
         errorDialog.showAndWait();
@@ -65,6 +66,7 @@ public class DialogUtils {
         );
 
         Alert errorDialog = new Alert(Alert.AlertType.ERROR);
+        translateButtons(errorDialog);
         errorDialog.setTitle(I18n.getText(ERROR_DIALOG_TITLE_KEY));
         errorDialog.setHeaderText(message);
         errorDialog.getDialogPane().setPrefWidth(650);
@@ -74,6 +76,7 @@ public class DialogUtils {
 
     public static void showInfoDialog(final String header, final String message){
         Alert infoDialog = new Alert(Alert.AlertType.INFORMATION);
+        translateButtons(infoDialog);
         infoDialog.setResizable(true);
         infoDialog.setTitle(I18n.getText(INFO_DIALOG_TITLE_KEY));
         infoDialog.setHeaderText(header);
@@ -83,6 +86,7 @@ public class DialogUtils {
 
     public static boolean showConfirmDialog(final String header, final String message){
         final Alert confirmDialog = new Alert(Alert.AlertType.CONFIRMATION, message, ButtonType.YES, ButtonType.NO);
+        translateButtons(confirmDialog);
         confirmDialog.setTitle(I18n.getText(CONFIRM_DIALOG_TITLE_KEY));
         confirmDialog.setResizable(true);
         confirmDialog.setHeaderText(header);
