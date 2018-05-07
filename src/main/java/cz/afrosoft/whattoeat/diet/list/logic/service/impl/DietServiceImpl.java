@@ -1,5 +1,18 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DietEntity;
+import cz.afrosoft.whattoeat.diet.list.data.repository.DietRepository;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietRefService;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietService;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,19 +20,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
-
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
-import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
-import cz.afrosoft.whattoeat.diet.list.data.entity.DietEntity;
-import cz.afrosoft.whattoeat.diet.list.data.repository.DietRepository;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietRefService;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 
 /**
  * @author Tomas Rejent
@@ -35,6 +39,8 @@ public class DietServiceImpl implements DietService {
     private GeneratorService generatorService;
     @Autowired
     private DayDietRefService dayDietRefService;
+    @Autowired
+    private DayDietService dayDietService;
 
     @Override
     @Transactional(readOnly = true)
@@ -73,6 +79,24 @@ public class DietServiceImpl implements DietService {
         Validate.notNull(diet, "Cannot delete null diet.");
 
         repository.deleteById(diet.getId());
+    }
+
+    @Override
+    public Collection<Meal> getDietMeals(final Diet diet) {
+        Validate.notNull(diet);
+
+        List<Meal> meals = new LinkedList<>();
+        List<DayDiet> dayDiets = ConverterUtil.convertToList(diet.getDayDiets(), dayDietService::loadDayDiet);
+        for (DayDiet dayDiet : dayDiets) {
+            meals.addAll(dayDiet.getBreakfasts());
+            meals.addAll(dayDiet.getSnacks());
+            meals.addAll(dayDiet.getLunch());
+            meals.addAll(dayDiet.getAfternoonSnacks());
+            meals.addAll(dayDiet.getDinners());
+            meals.addAll(dayDiet.getOthers());
+        }
+
+        return meals;
     }
 
     private Diet entityToDiet(final DietEntity entity) {

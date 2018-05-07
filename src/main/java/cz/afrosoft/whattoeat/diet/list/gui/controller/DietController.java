@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.component.IconButton;
 import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
@@ -9,6 +10,9 @@ import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
+import cz.afrosoft.whattoeat.diet.shopping.gui.dialog.ShoppingListDialog;
+import cz.afrosoft.whattoeat.diet.shopping.logic.model.ShoppingItems;
+import cz.afrosoft.whattoeat.diet.shopping.logic.service.ShoppingListService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -54,11 +58,17 @@ public class DietController implements Initializable {
     private MasterDetailPane detailPane;
     @FXML
     private TextArea detailArea;
+    @FXML
+    private IconButton shoppingListButton;
 
+    @Autowired
+    private ShoppingListDialog shoppingListDialog;
     @Autowired
     private MenuController menuController;
     @Autowired
     private DietService dietService;
+    @Autowired
+    private ShoppingListService shoppingListService;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -105,6 +115,16 @@ public class DietController implements Initializable {
                 dietService.delete(diet);
                 dietTable.getItems().remove(diet);
             }
+        });
+    }
+
+    @FXML
+    public void exportShoppingList() {
+        LOGGER.debug("Export shopping list action triggered.");
+        getSelectedDiet().ifPresent(diet -> {
+            ShoppingItems shoppingItems = shoppingListService.createShoppingItems(dietService.getDietMeals(diet));
+            String shopingListText = shoppingListService.formatToSimpleText(shoppingItems);
+            shoppingListDialog.showShoppingList(shopingListText);
         });
     }
 }
