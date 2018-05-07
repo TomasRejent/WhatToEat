@@ -13,7 +13,7 @@ public interface Meal extends IdEntity, MealRef {
     /**
      * @return Number of servings. Should be 1 or greater.
      */
-    int getServings();
+    float getServings();
 
     /**
      * @return (NotNull) Recipe of this meal.

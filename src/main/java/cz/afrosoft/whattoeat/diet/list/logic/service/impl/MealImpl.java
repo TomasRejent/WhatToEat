@@ -1,5 +1,8 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -7,17 +10,13 @@ import org.apache.commons.lang3.builder.ToStringBuilder;
 
 import java.util.Optional;
 
-import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
-import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
-
 final class MealImpl implements Meal {
 
     private final Integer id;
-    private final int servings;
+    private final float servings;
     private final RecipeRef recipe;
 
-    private MealImpl(final Integer id, final int servings, final RecipeRef recipe) {
+    private MealImpl(final Integer id, final float servings, final RecipeRef recipe) {
         this.id = id;
         this.servings = servings;
         this.recipe = recipe;
@@ -29,7 +28,7 @@ final class MealImpl implements Meal {
     }
 
     @Override
-    public int getServings() {
+    public float getServings() {
         return servings;
     }
 
@@ -74,7 +73,7 @@ final class MealImpl implements Meal {
     static class Builder implements MealUpdateObject {
 
         private final Integer id;
-        private Integer servings;
+        private Float servings;
         private RecipeRef recipe;
 
         public Builder() {
@@ -92,7 +91,7 @@ final class MealImpl implements Meal {
         }
 
         @Override
-        public Optional<Integer> getServings() {
+        public Optional<Float> getServings() {
             return Optional.ofNullable(servings);
         }
 
@@ -102,7 +101,7 @@ final class MealImpl implements Meal {
         }
 
         @Override
-        public Builder setServings(final int servings) {
+        public Builder setServings(final float servings) {
             Validate.isTrue(servings >= 0, "Number of servings cannot be negative number.");
             this.servings = servings;
             return this;

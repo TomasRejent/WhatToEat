@@ -137,7 +137,7 @@
                                             text="%cz.afrosoft.whattoeat.recipes.add.ingredient.servings"
                                             GridPane.columnIndex="3"
                                             GridPane.rowIndex="0"/>
-                                    <FloatFiled
+                                    <FloatField
                                             styleClass="ingredient-float-field"
                                             type="NON_NEGATIVE"
                                             fx:id="ingredientServingsField"
@@ -160,7 +160,7 @@
                                             text="%cz.afrosoft.whattoeat.recipes.add.ingredient.quantity"
                                             GridPane.columnIndex="3"
                                             GridPane.rowIndex="1"/>
-                                    <FloatFiled
+                                    <FloatField
                                             styleClass="ingredient-float-field"
                                             type="NON_NEGATIVE"
                                             fx:id="ingredientQuantityField"

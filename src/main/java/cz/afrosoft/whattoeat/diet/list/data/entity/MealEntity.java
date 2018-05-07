@@ -1,17 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.data.entity;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-
-import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
+import javax.persistence.*;
 
 /**
  * Represents one meal in diet. This adds number of servings (quantity) property to recipe. Quantity is needed for
@@ -29,7 +22,7 @@ public class MealEntity {
     private Integer id;
 
     @Column(name = "SERVINGS", nullable = false)
-    private Integer servings;
+    private Float servings;
 
     @ManyToOne(optional = false)
     private RecipeEntity recipe;
@@ -43,11 +36,11 @@ public class MealEntity {
         return this;
     }
 
-    public Integer getServings() {
+    public Float getServings() {
         return servings;
     }
 
-    public MealEntity setServings(final Integer servings) {
+    public MealEntity setServings(final Float servings) {
         this.servings = servings;
         return this;
     }

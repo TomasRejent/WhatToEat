@@ -7,7 +7,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
+import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.titledpane.TitledPaneUtils;
@@ -51,21 +51,21 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
     @FXML
     private ComboBox<IngredientUnit> unitField;
     @FXML
-    private FloatFiled priceField;
+    private FloatField priceField;
     @FXML
     private KeywordField keywordField;
     @FXML
     private TitledPane unitConversionPane;
     @FXML
-    private FloatFiled gramsPerPieceField;
+    private FloatField gramsPerPieceField;
     @FXML
-    private FloatFiled milliliterPerGramField;
+    private FloatField milliliterPerGramField;
     @FXML
-    private FloatFiled gramsPerPinchField;
+    private FloatField gramsPerPinchField;
     @FXML
-    private FloatFiled gramsPerCoffeeSpoonField;
+    private FloatField gramsPerCoffeeSpoonField;
     @FXML
-    private FloatFiled gramsPerSpoonField;
+    private FloatField gramsPerSpoonField;
 
     @Autowired
     private IngredientService ingredientService;

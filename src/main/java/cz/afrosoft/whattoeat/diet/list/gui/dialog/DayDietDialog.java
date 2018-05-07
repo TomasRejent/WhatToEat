@@ -1,22 +1,10 @@
 package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 
-import org.apache.commons.lang3.StringUtils;
-import org.apache.commons.lang3.Validate;
-import org.controlsfx.control.textfield.AutoCompletionBinding;
-import org.controlsfx.control.textfield.TextFields;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-
-import java.util.List;
-import java.util.Optional;
-
-import javax.annotation.PostConstruct;
-
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.IntegerField;
+import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
@@ -30,15 +18,21 @@ import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.util.StringConverter;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.Validate;
+import org.controlsfx.control.textfield.AutoCompletionBinding;
+import org.controlsfx.control.textfield.TextFields;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+
+import javax.annotation.PostConstruct;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * @author Tomas Rejent
@@ -49,13 +43,13 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     @FXML
     private TextField recipeField;
     @FXML
-    private IntegerField servingsField;
+    private FloatField servingsField;
     @FXML
     private TableView<MealUpdateObject> mealTable;
     @FXML
     private TableColumn<MealUpdateObject, String> recipeColumn;
     @FXML
-    private TableColumn<MealUpdateObject, Integer> servingsColumn;
+    private TableColumn<MealUpdateObject, Float> servingsColumn;
     @FXML
     private TableColumn<MealUpdateObject, Void> removeColumn;
 
@@ -97,7 +91,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
     private void setupTableColumns() {
         recipeColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(StringUtils.EMPTY)));
-        servingsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getServings().orElse(0)));
+        servingsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getServings().orElse(0f)));
         removeColumn.setCellFactory(param -> new RemoveCell<>(applicationContext.getBean(RemoveButton.class)));
     }
 
@@ -117,7 +111,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
         servingsField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                int servings = servingsField.getIntOrZero();
+                float servings = servingsField.getFloatOrZero();
 
                 mealTable.getItems().add(
                     mealService.getMealCreateObject()

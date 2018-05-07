@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import cz.afrosoft.whattoeat.core.gui.component.FloatFiled?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FloatField?>
 <?import cz.afrosoft.whattoeat.core.gui.component.IngredientQuantityTable?>
 <?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
 <?import cz.afrosoft.whattoeat.core.gui.component.RecipeLinks?>
@@ -91,7 +91,7 @@
                                        styleClass="first-label"
                                        GridPane.columnIndex="0"
                                        GridPane.rowIndex="0"/>
-                                <FloatFiled fx:id="servingsField"
+                                <FloatField fx:id="servingsField"
                                             GridPane.columnIndex="1"
                                             GridPane.rowIndex="0"/>
                                 <Label text="%cz.afrosoft.whattoeat.recipes.view.ingredients.price"

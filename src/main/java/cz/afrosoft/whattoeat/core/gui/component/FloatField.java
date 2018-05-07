@@ -10,12 +10,12 @@ import java.util.regex.Pattern;
  * Text field allowing only input of float values. Accepts both "." and "," for decimal part separation.
  * Empty value is also allowed.
  */
-public class FloatFiled extends RegexRestrictedField {
+public class FloatField extends RegexRestrictedField {
 
     /**
      * Creates new field and attaches change listener which validates user input. Default type of field is {@link TYPE#ALL}.
      */
-    public FloatFiled() {
+    public FloatField() {
         this(TYPE.ALL);
     }
 
@@ -24,7 +24,7 @@ public class FloatFiled extends RegexRestrictedField {
      *
      * @param type (NotNull) Type of validation for field.
      */
-    public FloatFiled(@NamedArg("type") final TYPE type) {
+    public FloatField(@NamedArg("type") final TYPE type) {
         super(type.getPattern());
     }
 

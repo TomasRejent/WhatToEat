@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.gui.table;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeIngredientUpdateObject;
 import cz.afrosoft.whattoeat.core.gui.I18n;
-import cz.afrosoft.whattoeat.core.gui.component.FloatFiled;
+import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
 import javafx.scene.input.KeyCode;
@@ -27,7 +27,7 @@ public class IngredientQuantityCell extends TableCell<RecipeIngredientUpdateObje
     /**
      * Field used for user input when in edit mode.
      */
-    private final FloatFiled editField;
+    private final FloatField editField;
     /**
      * Supplier for division value. Used to divide user input before committing edit.
      */
@@ -48,7 +48,7 @@ public class IngredientQuantityCell extends TableCell<RecipeIngredientUpdateObje
     public IngredientQuantityCell(final Supplier<Float> servingsSupplier) {
         Validate.notNull(servingsSupplier);
 
-        this.editField = new FloatFiled(FloatFiled.TYPE.NON_NEGATIVE);
+        this.editField = new FloatField(FloatField.TYPE.NON_NEGATIVE);
         this.servingsSupplier = servingsSupplier;
         setGraphic(editField);
         setContentDisplay(ContentDisplay.TEXT_ONLY);
