@@ -11,7 +11,6 @@
 - Measure and optimize loading of tables
 - Clean up messages.properties so there are no duplicate words. Use common keys instead.
 - Optimize filtering so items from database are already sorted. Optimize converting of entities to sorted set.
-- Duration field should extend RegexRestrictedField
 - Create mechanism to properly fill entities from update object without calling get on optional without presence check (is related to validation mechanism)
 - Decide if servings in diets should support float values or integers only
 - Remove deleteById from repositories in x86 branch. Since spring boot update to 2.0 it is no longer necessary.
@@ -125,6 +124,7 @@ X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
 
 Done Arch:
+X - Duration field should extend RegexRestrictedField
 X - Create FieldLabel component which adds ':' automatically after internationalized text, so there can be only one variant in message properties.
 X - Create application wide css file used by all FXML loaders, so some styles can be easily changed for whole app (like buttons size)
 X - Create method for creating fxml loader with resource bundle in Main and use it in all places which creates FXML loader
