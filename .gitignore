@@ -3,6 +3,7 @@ nb-configuration.xml
 nbactions-release-profile.xml
 target
 log.txt
+logs
 diets.txt
 .idea
 /WhatToEat.iml
