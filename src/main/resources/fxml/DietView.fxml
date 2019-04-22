@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
+<?import cz.afrosoft.whattoeat.core.gui.component.IconButton?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1"
         xmlns="http://javafx.com/javafx/8.0.121"
@@ -19,6 +20,7 @@
             <Label text="%cz.afrosoft.whattoeat.common.actions"/>
             <ViewButton onAction="#viewRecipes"/>
             <EditButton onAction="#editMeals"/>
+            <IconButton fx:id="regenerateButton" icon="recycle" onAction="#regenerate" />
         </VBox>
     </left>
     <center>

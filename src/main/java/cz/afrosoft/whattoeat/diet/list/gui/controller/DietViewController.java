@@ -1,5 +1,12 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.core.gui.component.IconButton;
+import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
+import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +68,11 @@ public class DietViewController implements Initializable {
     private TableColumn<DayDiet, List<Meal>> dinnerColumn;
     @FXML
     private TableColumn<DayDiet, List<Meal>> otherColumn;
+    @FXML
+    private IconButton regenerateButton;
+
+    @Autowired
+    private DietService dietService;
 
     @Autowired
     private DayDietService dayDietService;
@@ -71,11 +83,19 @@ public class DietViewController implements Initializable {
     @Autowired
     private ApplicationContext applicationContext;
 
+    @Autowired
+    private GeneratorService generatorService;
+
     /**
      * Map which holds appropriate setter method of {@link DayDietUpdateObject} for meal columns, so when meals are edited setter can be easily retrieved for edited
      * column.
      */
     private Map<TableColumn<DayDiet, List<Meal>>, BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject>> columnEditSetterMap = new HashMap<>();
+
+    /**
+     * Currently displayed diet.
+     */
+    private Diet diet;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -112,8 +132,11 @@ public class DietViewController implements Initializable {
     public void showDiet(final Diet diet) {
         Validate.notNull(diet);
 
+        this.diet = diet;
         dayDietTable.getItems().clear();
         dayDietTable.getItems().addAll(ConverterUtil.convertToList(diet.getDayDiets(), dayDietService::loadDayDiet));
+
+        regenerateButton.setDisable(diet.getGeneratorType() != GeneratorType.RANDOM);
     }
 
     private Optional<EditSelection> getSelectedMeals() {
@@ -152,6 +175,20 @@ public class DietViewController implements Initializable {
                 Platform.runLater(() -> dayDietTable.getItems().set(editSelection.getRowIndex(), updatedDiet));
             });
         });
+    }
+
+    @FXML
+    public void regenerate(){
+        LOGGER.info("Regenerate diet action triggered.");
+
+        if(diet == null){
+            return;
+        }
+
+        GeneratorParameters params = new BasicGeneratorParams(diet.getFrom(), diet.getTo());
+        List<DayDietEntity> newDayDiets = generatorService.generate(diet.getGeneratorType(), params);
+        dietService.replaceDayDiets(diet, newDayDiets);
+        showDiet(dietService.getById(diet.getId()));
     }
 
     private static class EditSelection {

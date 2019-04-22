@@ -44,6 +44,14 @@ public class DietServiceImpl implements DietService {
 
     @Override
     @Transactional(readOnly = true)
+    public Diet getById(final Integer id) {
+        LOGGER.debug("Getting diet by id {}", id);
+        Validate.notNull(id);
+        return entityToDiet(repository.getOne(id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Set<Diet> getAllDiets() {
         LOGGER.debug("Getting all diets.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToDiet);
@@ -97,6 +105,17 @@ public class DietServiceImpl implements DietService {
         }
 
         return meals;
+    }
+
+    @Override
+    @Transactional
+    public void replaceDayDiets(final Diet diet, final List<DayDietEntity> dayDiets) {
+        LOGGER.debug("Replacing day diets for diet {}", diet);
+        Validate.notNull(diet);
+
+        DietEntity entity = repository.getOne(diet.getId());
+        entity.setDayDiets(dayDiets);
+        repository.save(entity);
     }
 
     private Diet entityToDiet(final DietEntity entity) {
