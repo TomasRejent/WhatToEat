@@ -6,6 +6,7 @@ import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+import cz.afrosoft.whattoeat.diet.list.gui.table.DateCell;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -113,6 +114,7 @@ public class DietViewController implements Initializable {
         otherColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(DayDiet::getOthers));
         dayDietTable.getSelectionModel().setCellSelectionEnabled(true);
 
+        dayColumn.setCellFactory(param -> new DateCell());
         breakfastColumn.setCellFactory(param -> new MealsCell(applicationContext));
         snackColumn.setCellFactory(param -> new MealsCell(applicationContext));
         lunchColumn.setCellFactory(param -> new MealsCell(applicationContext));
