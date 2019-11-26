@@ -8,6 +8,8 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import cz.afrosoft.whattoeat.core.gui.component.MultiSelect?>
 <GridPane xmlns:fx="http://javafx.com/fxml/1"
           xmlns="http://javafx.com/javafx/8.0.121"
           fx:controller="cz.afrosoft.whattoeat.diet.list.gui.controller.DietGeneratorController">
@@ -57,20 +59,46 @@
             GridPane.rowIndex="0"
     />
     <FieldLabel
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="1"
+            text="%cz.afrosoft.whattoeat.common.filter"/>
+    <FieldLabel
+            text="%cz.afrosoft.whattoeat.common.cookbook"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+    />
+    <MultiSelect
+            fx:id="cookbookFilter"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="2"
+    />
+    <FieldLabel
+            text="%cz.afrosoft.whattoeat.diet.generator.input.dishes"
+            GridPane.columnIndex="2"
+            GridPane.rowIndex="2"
+            GridPane.columnSpan="3"
+    />
+    <MultiSelect
+            fx:id="dishesFilter"
+            GridPane.columnIndex="5"
+            GridPane.rowIndex="2"
+    />
+
+    <FieldLabel
             fx:id="descriptionLabel"
             text="%cz.afrosoft.whattoeat.dietview.detail"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="1"
+            GridPane.rowIndex="3"
     />
     <TextArea
             fx:id="descriptionField"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="2"
+            GridPane.rowIndex="4"
             GridPane.columnSpan="8"
     />
     <Pane fx:id="generatorGuiPane"
           GridPane.columnIndex="0"
-          GridPane.rowIndex="3"
+          GridPane.rowIndex="5"
           GridPane.columnSpan="8"
     />
     <Button
@@ -78,6 +106,6 @@
             onAction="#generateDiet"
             text="%cz.afrosoft.whattoeat.diet.generator.input.generate"
             GridPane.columnIndex="0"
-            GridPane.rowIndex="4"
+            GridPane.rowIndex="6"
     />
 </GridPane>

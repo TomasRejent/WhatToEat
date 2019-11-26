@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
 import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
@@ -7,6 +8,7 @@ import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.gui.table.DateCell;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
@@ -19,12 +21,7 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
 import java.util.function.BiFunction;
 
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
@@ -187,7 +184,7 @@ public class DietViewController implements Initializable {
             return;
         }
 
-        GeneratorParameters params = new BasicGeneratorParams(diet.getFrom(), diet.getTo());
+        GeneratorParameters params = new BasicGeneratorParams(diet.getFrom(), diet.getTo(), new RecipeFilter.Builder().build(), Set.of(MealTime.LUNCH));
         List<DayDietEntity> newDayDiets = generatorService.generate(diet.getGeneratorType(), params);
         dietService.replaceDayDiets(diet, newDayDiets);
         showDiet(dietService.getById(diet.getId()));

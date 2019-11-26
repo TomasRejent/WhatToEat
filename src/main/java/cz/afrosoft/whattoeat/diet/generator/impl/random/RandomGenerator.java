@@ -13,6 +13,7 @@ import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.data.entity.MealEntity;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -33,11 +34,19 @@ public class RandomGenerator implements Generator<BasicGeneratorParams> {
     @Autowired
     private RecipeRefService recipeRefService;
 
-    private List<Recipe> recipes = List.of();
     private boolean subsequentDay = false;
     private Random random;
     private Recipe recipe;
     private Optional<Recipe> sideDish;
+
+    private GeneratorParameters parameters;
+    private List<Recipe> breakfastRecipes;
+    private List<Recipe> snackRecipes;
+    private List<Recipe> mainDishRecipes;
+
+    private List<Recipe> remainingUniqueBreakfastRecipes;
+    private List<Recipe> remainingUniqueSnackRecipes;
+    private List<Recipe> remainingUniqueMainDishRecipes;
 
     @Override
     public GeneratorType getType() {
@@ -52,23 +61,67 @@ public class RandomGenerator implements Generator<BasicGeneratorParams> {
     @Override
     public List<DayDietEntity> generate(final GeneratorParameters parameters) {
         Validate.notNull(parameters);
+        this.parameters = parameters;
 
-        initGeneration();
+        initGeneration(parameters);
 
         List<DayDietEntity> dayDiets = new LinkedList<>();
         for (LocalDate day = parameters.getFrom(); !day.isAfter(parameters.getTo()); day = day.plusDays(1)) {
             DayDietEntity dayDiet = new DayDietEntity();
             dayDiet.setDay(day);
+            dayDiet.setBreakfast(generateBreakfast());
+            dayDiet.setSnack(generateMorningSnack());
             dayDiet.setLunch(generateLunch());
+            dayDiet.setAfternoonSnack(generateAfternoonSnack());
+            dayDiet.setDinner(generateDinner());
             dayDiets.add(dayDiet);
         }
 
         return dayDiets;
     }
 
+    private List<MealEntity> generateBreakfast(){
+        return generateOneServingMeal(MealTime.BREAKFAST, breakfastRecipes, remainingUniqueBreakfastRecipes);
+    }
+
+    private List<MealEntity> generateMorningSnack(){
+        return generateOneServingMeal(MealTime.MORNING_SNACK, snackRecipes, remainingUniqueSnackRecipes);
+    }
+
+    private List<MealEntity> generateAfternoonSnack(){
+        return generateOneServingMeal(MealTime.AFTERNOON_SNACK, snackRecipes, remainingUniqueSnackRecipes);
+    }
+
+    private List<MealEntity> generateDinner(){
+        return generateOneServingMeal(MealTime.DINNER, mainDishRecipes, remainingUniqueMainDishRecipes);
+    }
+
+    private List<MealEntity> generateOneServingMeal(MealTime dish, List<Recipe> availableRecipes, List<Recipe> remainingUniqueRecipes){
+        if(!parameters.getDishes().contains(dish) || availableRecipes.isEmpty()){
+            return Collections.emptyList();
+        }
+        Recipe selectedRecipe = remainingUniqueRecipes.get(random.nextInt(remainingUniqueRecipes.size()));
+        List<MealEntity> meals = new ArrayList<>(1);
+        MealEntity lunchMeal = new MealEntity();
+        lunchMeal.setServings(1f);
+        lunchMeal.setRecipe(recipeRefService.toEntity(selectedRecipe));
+        meals.add(lunchMeal);
+
+        remainingUniqueRecipes.remove(selectedRecipe);
+        if(remainingUniqueRecipes.isEmpty()){
+            remainingUniqueRecipes.addAll(availableRecipes);
+        }
+
+        return meals;
+    }
+
     private List<MealEntity> generateLunch(){
+        if(!parameters.getDishes().contains(MealTime.LUNCH)){
+            return Collections.emptyList();
+        }
+
         if(!subsequentDay){
-            recipe = recipes.get(random.nextInt(recipes.size()));
+            recipe = remainingUniqueMainDishRecipes.get(random.nextInt(remainingUniqueMainDishRecipes.size()));
             List<RecipeRef> sideDishes = new ArrayList<>(recipe.getSideDishes());
             if(sideDishes.isEmpty()){
                 sideDish = Optional.empty();
@@ -77,6 +130,10 @@ public class RandomGenerator implements Generator<BasicGeneratorParams> {
             }else{
                 RecipeRef sideDishRef = sideDishes.get(random.nextInt(sideDishes.size()));
                 sideDish = Optional.of(recipeService.getRecipeById(sideDishRef.getId()));
+            }
+            remainingUniqueMainDishRecipes.remove(recipe);
+            if(remainingUniqueMainDishRecipes.isEmpty()){
+                remainingUniqueMainDishRecipes.addAll(mainDishRecipes);
             }
         }
         subsequentDay = !subsequentDay;
@@ -98,10 +155,44 @@ public class RandomGenerator implements Generator<BasicGeneratorParams> {
         return meals;
     }
 
-    private void initGeneration(){
-        RecipeFilter mainDishFilter = new RecipeFilter.Builder().setType(Set.of(RecipeType.MAIN_DISH)).build();
-        recipes = new ArrayList<>(recipeService.getFilteredRecipes(mainDishFilter));
+    private boolean containsAny(Set<MealTime> dishes, MealTime... checkedDishes){
+        for(MealTime checkedDish : checkedDishes){
+            if(dishes.contains(checkedDish)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private void initGeneration(final GeneratorParameters parameters){
         subsequentDay = false;
         random = new Random();
+        // filter recipes for main dishes if necessary
+        if(containsAny(parameters.getDishes(), MealTime.LUNCH, MealTime.DINNER)){
+            RecipeFilter mainDishFilter = new RecipeFilter.Builder()
+                    .setType(Set.of(RecipeType.MAIN_DISH))
+                    .setCookbooks(parameters.getFilter().getCookbooks().orElse(null))
+                    .build();
+            mainDishRecipes = new ArrayList<>(recipeService.getFilteredRecipes(mainDishFilter));
+            remainingUniqueMainDishRecipes = new ArrayList<>(mainDishRecipes);
+        }
+        // filter recipes for snacks if necessary
+        if(containsAny(parameters.getDishes(), MealTime.MORNING_SNACK, MealTime.AFTERNOON_SNACK)){
+            RecipeFilter snackDishFilter = new RecipeFilter.Builder()
+                    .setType(Set.of(RecipeType.SNACK))
+                    .setCookbooks(parameters.getFilter().getCookbooks().orElse(null))
+                    .build();
+            snackRecipes = new ArrayList<>(recipeService.getFilteredRecipes(snackDishFilter));
+            remainingUniqueSnackRecipes = new ArrayList<>(snackRecipes);
+        }
+        // filter recipes for breakfast if necessary
+        if(containsAny(parameters.getDishes(), MealTime.BREAKFAST)){
+            RecipeFilter breakfastDishFilter = new RecipeFilter.Builder()
+                    .setType(Set.of(RecipeType.BREAKFAST))
+                    .setCookbooks(parameters.getFilter().getCookbooks().orElse(null))
+                    .build();
+            breakfastRecipes = new ArrayList<>(recipeService.getFilteredRecipes(breakfastDishFilter));
+            remainingUniqueBreakfastRecipes = new ArrayList<>(breakfastRecipes);
+        }
     }
 }

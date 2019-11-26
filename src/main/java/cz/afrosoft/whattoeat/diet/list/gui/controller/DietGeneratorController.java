@@ -1,5 +1,11 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.config.ConfigurableBeanFactory;
@@ -39,6 +45,10 @@ public class DietGeneratorController implements Initializable {
     @FXML
     private DatePicker toField;
     @FXML
+    private MultiSelect<CookbookRef> cookbookFilter;
+    @FXML
+    private MultiSelect<MealTime> dishesFilter;
+    @FXML
     private TextArea descriptionField;
     @FXML
     private ComboBox<GeneratorType> generatorField;
@@ -53,10 +63,17 @@ public class DietGeneratorController implements Initializable {
     private GeneratorService generatorService;
     @Autowired
     private MenuController menuController;
+    @Autowired
+    private CookbookService cookbookService;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
         setupGeneratorComboBox();
+        cookbookFilter.getItems().addAll(cookbookService.getAllCookbookRefs());
+        cookbookFilter.setConverter(ComboBoxUtils.createStringConverter(cookbookFilter, CookbookRef::getName));
+        dishesFilter.getItems().addAll(MealTime.values());
+        ComboBoxUtils.initLabeledCheckComboBox(dishesFilter);
+        dishesFilter.getCheckModel().check(MealTime.LUNCH);
     }
 
     private void setupGeneratorComboBox() {
@@ -79,12 +96,20 @@ public class DietGeneratorController implements Initializable {
         menuController.showDietList();
     }
 
+    private RecipeFilter createAndFillFilter(){
+        return new RecipeFilter.Builder()
+                .setCookbooks(cookbookFilter.getValues())
+                .build();
+    }
+
     private DietCreateObject fillCreateObject(final DietCreateObject createObject) {
         Validate.notNull(createObject);
         LocalDate from = fromField.getValue();
         LocalDate to = toField.getValue();
 
         generatorGui.setInterval(from, to);
+        generatorGui.setFilter(createAndFillFilter());
+        generatorGui.setDishes(dishesFilter.getValues());
         createObject
             .setName(nameField.getText())
             .setFrom(from)
