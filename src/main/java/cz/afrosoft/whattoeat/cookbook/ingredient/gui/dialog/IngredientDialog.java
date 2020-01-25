@@ -2,9 +2,11 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
@@ -66,9 +68,29 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
     private FloatField gramsPerCoffeeSpoonField;
     @FXML
     private FloatField gramsPerSpoonField;
+    @FXML
+    private TitledPane nutritionFactsPane;
+    @FXML
+    private FloatField energyField;
+    @FXML
+    private FloatField fatField;
+    @FXML
+    private FloatField saturatedFatField;
+    @FXML
+    private FloatField carbohydrateField;
+    @FXML
+    private FloatField sugarField;
+    @FXML
+    private FloatField proteinField;
+    @FXML
+    private FloatField saltField;
+    @FXML
+    private FloatField fiberField;
 
     @Autowired
     private IngredientService ingredientService;
+    @Autowired
+    private NutritionFactsService nutritionFactsService;
 
     /**
      * Holds createOrUpdate object when creating or editing ingredient.
@@ -127,6 +149,15 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
                 gramsPerCoffeeSpoonField.getFloat(),
                 gramsPerSpoonField.getFloat()
         );
+        ingredientUpdateObject.getNutritionFacts()
+            .setEnergy(nutritionFactsService.energyToBase(energyField.getFloat()))
+            .setFat(nutritionFactsService.nutritionToBase(fatField.getFloat()))
+            .setSaturatedFat(nutritionFactsService.nutritionToBase(saturatedFatField.getFloat()))
+            .setCarbohydrate(nutritionFactsService.nutritionToBase(carbohydrateField.getFloat()))
+            .setSugar(nutritionFactsService.nutritionToBase(sugarField.getFloat()))
+            .setProtein(nutritionFactsService.nutritionToBase(proteinField.getFloat()))
+            .setSalt(nutritionFactsService.nutritionToBase(saltField.getFloat()))
+            .setFiber(nutritionFactsService.nutritionToBase(fiberField.getFloat()));
 
         LOGGER.trace("Update object filled to: {}", ingredientUpdateObject);
         return ingredientUpdateObject;
@@ -197,6 +228,20 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         } else {
             clearUnitConversionFields();
         }
+        Optional<NutritionFacts> nutritionFactsOpt = ingredient.getNutritionFacts();
+        if(nutritionFactsOpt.isPresent()){
+            NutritionFacts nutritionFacts = nutritionFactsOpt.get();
+            energyField.setFloat(nutritionFactsService.energyToHumanReadable(nutritionFacts.getEnergy()));
+            fatField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getFat()));
+            saturatedFatField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getSaturatedFat()));
+            carbohydrateField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getCarbohydrate()));
+            sugarField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getSugar()));
+            proteinField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getProtein()));
+            saltField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getSalt()));
+            fiberField.setFloat(nutritionFactsService.nutritionToHumanReadable(nutritionFacts.getFiber()));
+        } else {
+            clearNutritionFactsFields();
+        }
     }
 
     /**
@@ -224,4 +269,15 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         TitledPaneUtils.setExpandedWithoutAnimation(unitConversionPane, false);
     }
 
+    private void clearNutritionFactsFields(){
+        energyField.setFloat(null);
+        fatField.setFloat(null);
+        saturatedFatField.setFloat(null);
+        carbohydrateField.setFloat(null);
+        sugarField.setFloat(null);
+        proteinField.setFloat(null);
+        saltField.setFloat(null);
+        fiberField.setFloat(null);
+        TitledPaneUtils.setExpandedWithoutAnimation(nutritionFactsPane, false);
+    }
 }

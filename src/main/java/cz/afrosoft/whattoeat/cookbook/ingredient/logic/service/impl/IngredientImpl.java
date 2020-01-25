@@ -2,9 +2,11 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.Validate;
@@ -32,14 +34,16 @@ final class IngredientImpl implements Ingredient {
     private final IngredientUnit ingredientUnit;
     private final float price;
     private final UnitConversion unitConversion;
+    private final NutritionFacts nutritionFacts;
     private final Set<Keyword> keywords;
 
-    private IngredientImpl(final Integer id, final String name, final IngredientUnit ingredientUnit, final float price, final UnitConversion unitConversion, final Set<Keyword> keywords) {
+    private IngredientImpl(final Integer id, final String name, final IngredientUnit ingredientUnit, final float price, final UnitConversion unitConversion, final NutritionFacts nutritionFacts, final Set<Keyword> keywords) {
         this.id = id;
         this.name = name;
         this.ingredientUnit = ingredientUnit;
         this.price = price;
         this.unitConversion = unitConversion;
+        this.nutritionFacts = nutritionFacts;
         this.keywords = Collections.unmodifiableSet(keywords);
     }
 
@@ -66,6 +70,11 @@ final class IngredientImpl implements Ingredient {
     @Override
     public Optional<UnitConversion> getUnitConversion() {
         return Optional.ofNullable(unitConversion);
+    }
+
+    @Override
+    public Optional<NutritionFacts> getNutritionFacts() {
+        return Optional.ofNullable(nutritionFacts);
     }
 
     @Override
@@ -118,6 +127,8 @@ final class IngredientImpl implements Ingredient {
         private Float price;
         private UnitConversionUpdateObject unitConversion;
         private UnitConversion existingUnitConversion;
+        private NutritionFactsUpdateObject nutritionFacts;
+        private NutritionFacts existingNutritionFacts;
         private Set<Keyword> keywords;
 
         public Builder() {
@@ -189,6 +200,18 @@ final class IngredientImpl implements Ingredient {
         }
 
         @Override
+        public NutritionFactsUpdateObject getNutritionFacts() {
+            return nutritionFacts;
+        }
+
+        @Override
+        public IngredientUpdateObject setNutritionFacts(final NutritionFactsUpdateObject nutritionFacts) {
+            Validate.notNull(nutritionFacts);
+            this.nutritionFacts = nutritionFacts;
+            return this;
+        }
+
+        @Override
         public IngredientUpdateObject setUnitConversion(final Float gramsPerPiece, final Float milliliterPerGram, final Float gramsPerPinch, final Float gramsPerCoffeeSpoon, final Float gramsPerSpoon) {
             setUnitConversionIfUseful(new UnitConversionImpl.Builder()
                     .setGramsPerPiece(gramsPerPiece)
@@ -228,6 +251,12 @@ final class IngredientImpl implements Ingredient {
             return this;
         }
 
+        public Builder setExistingNutritionFacts(final NutritionFacts existingNutritionFacts){
+            Validate.notNull(existingNutritionFacts);
+            this.existingNutritionFacts = existingNutritionFacts;
+            return this;
+        }
+
         Ingredient build() {
             Validate.notNull(id);
             Validate.notBlank(name);
@@ -235,7 +264,7 @@ final class IngredientImpl implements Ingredient {
             Validate.notNull(price);
             Validate.isTrue(price >= 0, "Price cannot be negative.");
 
-            return new IngredientImpl(id, name, ingredientUnit, price, existingUnitConversion, keywords);
+            return new IngredientImpl(id, name, ingredientUnit, price, existingUnitConversion, existingNutritionFacts, keywords);
         }
 
         @Override

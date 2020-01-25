@@ -80,6 +80,63 @@
                                         GridPane.rowIndex="4"/>
                         </GridPane>
                     </TitledPane>
+                    <TitledPane fx:id="nutritionFactsPane"
+                                text="%cz.afrosoft.whattoeat.nutritionFacts"
+                                expanded="false"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="4"
+                                GridPane.columnSpan="4">
+                        <GridPane>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.energy"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="0"/>
+                            <FloatField fx:id="energyField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="0"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.fat"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="1"/>
+                            <FloatField fx:id="fatField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="1"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.saturatedFat"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="2"/>
+                            <FloatField fx:id="saturatedFatField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="2"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.carbohydrate"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="3"/>
+                            <FloatField fx:id="carbohydrateField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="3"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.sugar"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="4"/>
+                            <FloatField fx:id="sugarField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="4"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.protein"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="5"/>
+                            <FloatField fx:id="proteinField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="5"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.salt"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="6"/>
+                            <FloatField fx:id="saltField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="6"/>
+                            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.fiber"
+                                   GridPane.columnIndex="0"
+                                   GridPane.rowIndex="7"/>
+                            <FloatField fx:id="fiberField"
+                                        GridPane.columnIndex="1"
+                                        GridPane.rowIndex="7"/>
+                        </GridPane>
+                    </TitledPane>
                 </GridPane>
             </content>
         </DialogPane>

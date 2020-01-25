@@ -100,6 +100,15 @@ public interface IngredientUpdateObject {
     IngredientUpdateObject setUnitConversion(Float gramsPerPiece, Float milliliterPerGram, Float gramsPerPinch, Float gramsPerCoffeeSpoon, Float gramsPerSpoon);
 
     /**
+     * Changes nutrition facts about ingredient.
+     * @param nutritionFacts (Nullable)
+     * @return (NotNull) This createOrUpdate object so setter calls can be chained.
+     */
+    IngredientUpdateObject setNutritionFacts(NutritionFactsUpdateObject nutritionFacts);
+
+    NutritionFactsUpdateObject getNutritionFacts();
+
+    /**
      * Changes keywords of ingredient. If called multiple times only value from last call is used.
      *
      * @param keywords (NotNull) Keywords to associate with ingredient.
