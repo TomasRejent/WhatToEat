@@ -35,6 +35,9 @@ public class IngredientEntity {
     @OneToOne(cascade = CascadeType.ALL)
     private UnitConversionEntity unitConversion;
 
+    @OneToOne(cascade = CascadeType.ALL)
+    private NutritionFactsEntity nutritionFacts;
+
     @ManyToMany
     @JoinTable(name = "INGREDIENT_KEYWORDS")
     private Set<KeywordEntity> keywords;
@@ -81,6 +84,15 @@ public class IngredientEntity {
 
     public IngredientEntity setUnitConversion(final UnitConversionEntity unitConversion) {
         this.unitConversion = unitConversion;
+        return this;
+    }
+
+    public NutritionFactsEntity getNutritionFacts(){
+        return nutritionFacts;
+    }
+
+    public IngredientEntity setNutritionFacts(final NutritionFactsEntity nutritionFacts) {
+        this.nutritionFacts = nutritionFacts;
         return this;
     }
 

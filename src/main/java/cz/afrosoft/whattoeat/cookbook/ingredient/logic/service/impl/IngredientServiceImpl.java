@@ -5,9 +5,11 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
@@ -34,6 +36,8 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Autowired
     private KeywordService keywordService;
+    @Autowired
+    private NutritionFactsService nutritionFactsService;
 
     @Autowired
     private IngredientRepository repository;
@@ -77,7 +81,7 @@ public class IngredientServiceImpl implements IngredientService {
     @Override
     public IngredientUpdateObject getCreateObject() {
         LOGGER.debug("Creating update object for new ingredient.");
-        return new IngredientImpl.Builder();
+        return new IngredientImpl.Builder().setNutritionFacts(nutritionFactsService.getCreateObject());
     }
 
     @Override
@@ -91,6 +95,12 @@ public class IngredientServiceImpl implements IngredientService {
                 .setPrice(ingredient.getPrice())
                 .setKeywords(ingredient.getKeywords());
         ingredient.getUnitConversion().ifPresent(unitConversion -> builder.setUnitConversion(toUpdateObject(unitConversion)));
+        Optional<NutritionFacts> nutritionFacts = ingredient.getNutritionFacts();
+        if(nutritionFacts.isPresent()){
+            builder.setNutritionFacts(nutritionFactsService.getUpdateObject(nutritionFacts.get()));
+        } else {
+            builder.setNutritionFacts(nutritionFactsService.getCreateObject());
+        }
         return builder;
     }
 
@@ -106,6 +116,7 @@ public class IngredientServiceImpl implements IngredientService {
                 .setIngredientUnit(ingredientChanges.getIngredientUnit().get())
                 .setPrice(ingredientChanges.getPrice().get())
                 .setUnitConversion(unitConversionToEntity(ingredientChanges.getUnitConversion().orElse(null)))
+                .setNutritionFacts(nutritionFactsService.toEntity(ingredientChanges.getNutritionFacts()))
                 .setKeywords(ConverterUtil.convertToSet(ingredientChanges.getKeywords(), keywordService::keywordToEntity));
         return entityToIngredient(repository.save(entity));
     }
@@ -120,6 +131,7 @@ public class IngredientServiceImpl implements IngredientService {
                 .setPrice(entity.getPrice())
                 .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
         entityToUnitConversion(entity.getUnitConversion()).ifPresent(builder::setExistingUnitConversion);
+        nutritionFactsService.toNutritionFacts(entity.getNutritionFacts()).ifPresent(builder::setExistingNutritionFacts);
         return builder.build();
     }
 

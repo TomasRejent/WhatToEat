@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+<?import cz.afrosoft.whattoeat.core.gui.component.EditButton?>
+<?import javafx.scene.control.SplitPane?>
+<?import cz.afrosoft.whattoeat.core.gui.component.IconButton?>
+<BorderPane
+        xmlns:fx="http://javafx.com/fxml/1"
+        xmlns="http://javafx.com/javafx/8.0.121"
+        fx:id="dietContainer"
+        stylesheets="@../styles/DietList.css"
+        styleClass="diet-container"
+        fx:controller="cz.afrosoft.whattoeat.diet.list.gui.controller.DietNutritionPlanController">
+    <left>
+        <VBox styleClass="toolbar-button-container">
+            <Label text="%cz.afrosoft.whattoeat.common.actions"/>
+            <EditButton onAction="#editMeals"/>
+            <IconButton fx:id="previousDayButton" icon="ARROW_LEFT" onAction="#previousDay" />
+            <IconButton fx:id="nextDayButton" icon="ARROW_RIGHT" onAction="#nextDay" />
+        </VBox>
+    </left>
+    <center>
+        <SplitPane fx:id="splitPane" orientation="VERTICAL" maxHeight="100000" VBox.vgrow="ALWAYS">
+            <TableView fx:id="dayDietTable">
+                <columns>
+                    <TableColumn fx:id="dayColumn" text="%cz.afrosoft.whattoeat.dietview.table.day"/>
+                    <TableColumn fx:id="breakfastColumn" text="%cz.afrosoft.whattoeat.dietview.table.breakfasts"/>
+                    <TableColumn fx:id="snackColumn" text="%cz.afrosoft.whattoeat.dietview.table.morningSnacks"/>
+                    <TableColumn fx:id="lunchColumn" text="%cz.afrosoft.whattoeat.dietview.table.lunch"/>
+                    <TableColumn fx:id="afternoonSnackColumn" text="%cz.afrosoft.whattoeat.dietview.table.afternoonSnack"/>
+                    <TableColumn fx:id="dinnerColumn" text="%cz.afrosoft.whattoeat.dietview.table.dinners"/>
+                    <TableColumn fx:id="otherColumn" text="%cz.afrosoft.whattoeat.common.others"/>
+                </columns>
+            </TableView>
+            <TableView fx:id="nutritionTable">
+                <columns>
+                    <TableColumn fx:id="mealColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.meal"/>
+                    <TableColumn fx:id="energyColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.energy"/>
+                    <TableColumn fx:id="fatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.fat"/>
+                    <TableColumn fx:id="saturatedFatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.saturatedFat"/>
+                    <TableColumn fx:id="carbohydrateColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.carbohydrate"/>
+                    <TableColumn fx:id="sugarColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.sugar"/>
+                    <TableColumn fx:id="proteinColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.protein"/>
+                    <TableColumn fx:id="saltColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.salt"/>
+                    <TableColumn fx:id="fibreColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.fibre"/>
+                </columns>
+            </TableView>
+        </SplitPane>
+    </center>
+</BorderPane>

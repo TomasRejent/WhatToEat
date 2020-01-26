@@ -38,4 +38,10 @@ public interface Ingredient extends IngredientRef, IdEntity, NamedEntity, Keywor
      * if ingredient does not have any conversion defined.
      */
     Optional<UnitConversion> getUnitConversion();
+
+    /**
+     * @return (NotNull) Gets optional with nutrition facts defined for this ingredient. May be empty optional
+     * if ingredient does not have any nutrition facts defined.
+     */
+    Optional<NutritionFacts> getNutritionFacts();
 }
