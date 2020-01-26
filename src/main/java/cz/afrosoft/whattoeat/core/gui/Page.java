@@ -27,7 +27,9 @@ public enum Page {
 
     DIETS("/fxml/DietList.fxml"),
     DIET_GENERATOR("/fxml/DietGenerator.fxml"),
-    DIET_VIEW("/fxml/DietView.fxml"),;
+    DIET_VIEW("/fxml/DietView.fxml"),
+    DIET_NUTRITION_PLAN("/fxml/DietNutritionPlan.fxml"),
+    ;
 
     final String fxmlPath;
 

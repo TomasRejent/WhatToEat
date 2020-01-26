@@ -21,6 +21,7 @@
             <ViewButton onAction="#viewRecipes"/>
             <EditButton onAction="#editMeals"/>
             <IconButton fx:id="regenerateButton" icon="recycle" onAction="#regenerate" />
+            <IconButton fx:id="planNutritionFactsButton" icon="BOOK" onAction="#planNutritionFacts" />
         </VBox>
     </left>
     <center>

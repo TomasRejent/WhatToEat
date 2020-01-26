@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.core.gui.controller;
 
+import cz.afrosoft.whattoeat.diet.list.gui.controller.DietNutritionPlanController;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -83,6 +85,11 @@ public class MenuController implements Initializable {
         LOGGER.debug("Switching to View Diet page to show diet {}.", diet);
         Optional<PageHolder<Node, DietViewController>> pageHolderOpt = showPage(Page.DIET_VIEW);
         pageHolderOpt.ifPresent(pageHolder -> pageHolder.getPageController().showDiet(diet));
+    }
+
+    public void showNutritionFactsPlan(final Diet diet, final DayDiet dayDiet) {
+        Optional<PageHolder<Node, DietNutritionPlanController>> pageHolderOpt = showPage(Page.DIET_NUTRITION_PLAN);
+        pageHolderOpt.ifPresent((pageHolder -> pageHolder.getPageController().planDay(diet, dayDiet)));
     }
 
     /**
