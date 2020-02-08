@@ -255,7 +255,7 @@ public final class NutritionFactsImpl implements NutritionFacts {
         }
 
         private boolean isValidSubsetValue(Float value, Float whole){
-            return isValid(value) && whole != null && whole >= value;
+            return isValid(value) && ((whole != null && whole >= value) || whole == null && value == null);
         }
 
         public NutritionFacts build(){
