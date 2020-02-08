@@ -15,6 +15,7 @@ import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.titledpane.TitledPaneUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
@@ -108,9 +109,34 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         getDialogPane().getButtonTypes().add(ButtonType.FINISH);
         getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
         setResizable(true);
+        setHeight(650);
         initModality(Modality.APPLICATION_MODAL);
         setupResultConverter();
         ComboBoxUtils.initLabeledComboBox(unitField, IngredientUnit.values());
+        setupKeyNavigation();
+    }
+
+    private void setupKeyNavigation(){
+        setupFieldKeyVerticalNavigation(energyField, null, fatField);
+        setupFieldKeyVerticalNavigation(fatField, energyField, saturatedFatField);
+        setupFieldKeyVerticalNavigation(saturatedFatField, fatField, carbohydrateField);
+        setupFieldKeyVerticalNavigation(carbohydrateField, saturatedFatField, sugarField);
+        setupFieldKeyVerticalNavigation(sugarField, carbohydrateField, proteinField);
+        setupFieldKeyVerticalNavigation(proteinField, sugarField, saltField);
+        setupFieldKeyVerticalNavigation(saltField, proteinField, fiberField);
+        setupFieldKeyVerticalNavigation(fiberField, saltField, null);
+
+    }
+
+    private void setupFieldKeyVerticalNavigation(final Control field, final Control upField, final Control downField){
+        field.setOnKeyPressed(event -> {
+            if(upField != null && event.getCode() == KeyCode.UP){
+                upField.requestFocus();
+            }
+            if(downField != null && event.getCode() == KeyCode.DOWN){
+                downField.requestFocus();
+            }
+        });
     }
 
     /**
@@ -267,7 +293,7 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         gramsPerPinchField.setFloat(null);
         gramsPerCoffeeSpoonField.setFloat(null);
         gramsPerSpoonField.setFloat(null);
-        TitledPaneUtils.setExpandedWithoutAnimation(unitConversionPane, false);
+        TitledPaneUtils.setExpandedWithoutAnimation(unitConversionPane, true);
     }
 
     private void clearNutritionFactsFields(){
@@ -279,6 +305,6 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         proteinField.setFloat(null);
         saltField.setFloat(null);
         fiberField.setFloat(null);
-        TitledPaneUtils.setExpandedWithoutAnimation(nutritionFactsPane, false);
+        TitledPaneUtils.setExpandedWithoutAnimation(nutritionFactsPane, true);
     }
 }

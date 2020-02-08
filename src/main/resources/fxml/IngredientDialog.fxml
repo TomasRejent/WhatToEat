@@ -43,7 +43,7 @@
                     />
                     <TitledPane fx:id="unitConversionPane"
                                 text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion"
-                                expanded="false"
+                                expanded="true"
                                 GridPane.columnIndex="0"
                                 GridPane.rowIndex="3"
                                 GridPane.columnSpan="4">
@@ -82,7 +82,7 @@
                     </TitledPane>
                     <TitledPane fx:id="nutritionFactsPane"
                                 text="%cz.afrosoft.whattoeat.nutritionFacts"
-                                expanded="false"
+                                expanded="true"
                                 GridPane.columnIndex="0"
                                 GridPane.rowIndex="4"
                                 GridPane.columnSpan="4">
