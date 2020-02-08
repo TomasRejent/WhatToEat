@@ -254,6 +254,7 @@ public class IngredientDialog extends Dialog<IngredientUpdateObject> {
         priceField.setFloat(null);
         keywordField.clearSelectedKeywords();
         clearUnitConversionFields();
+        clearNutritionFactsFields();
     }
 
     /**
