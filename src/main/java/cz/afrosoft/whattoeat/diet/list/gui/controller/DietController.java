@@ -7,7 +7,6 @@ import cz.afrosoft.whattoeat.core.gui.component.ViewButton;
 import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DietCopyDialog;
@@ -21,11 +20,8 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.SelectionMode;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextArea;
-import org.apache.commons.lang3.StringUtils;
+import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import org.controlsfx.control.MasterDetailPane;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -91,6 +87,7 @@ public class DietController implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
         LOGGER.info("Initializing diet controller");
         setupColumns();
+        setupRowListeners();
 
         dietTable.getItems().addAll(dietService.getAllDiets());
         viewButton.setDisable(true);
@@ -124,8 +121,19 @@ public class DietController implements Initializable {
                 }
             }
         }));
-        DetailBinding.bindDetail(detailPane, dietTable, detailArea, diet -> diet.getDescription().orElse(StringUtils.EMPTY));
         dietTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+    }
+
+    private void setupRowListeners() {
+        dietTable.setRowFactory(param -> {
+            TableRow<Diet> row = new TableRow<>();
+            row.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    menuController.showDiet(row.getItem());
+                }
+            });
+            return row;
+        });
     }
 
     private void setupColumns() {
@@ -135,7 +143,6 @@ public class DietController implements Initializable {
         generatorColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getGeneratorType, null));
         generatorColumn.setCellFactory(column -> new LabeledCell<>());
         dietTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-
     }
 
     private Optional<Diet> getSelectedDiet() {

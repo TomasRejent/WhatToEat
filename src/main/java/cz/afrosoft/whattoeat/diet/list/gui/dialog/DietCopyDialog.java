@@ -92,6 +92,7 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
 
     public Optional<DietCopyParams> getDietCopyParams(){
         clearDialog();
+        newDietNameField.requestFocus();
         return showAndWait();
     }
 
