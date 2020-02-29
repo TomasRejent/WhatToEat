@@ -21,6 +21,7 @@
             <ViewButton onAction="#viewDiet"/>
             <AddButton onAction="#addDiet"/>
             <DeleteButton fx:id="deleteButton" onAction="#deleteDiet"/>
+            <IconButton fx:id="copyButton" icon="COPY" onAction="#showCopyDialog"/>
             <IconButton fx:id="shoppingListButton" icon="FILE_TEXT_ALT" onAction="#exportShoppingList"/>
         </VBox>
     </left>

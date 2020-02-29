@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FloatField?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<fx:root
+        type="javafx.scene.control.Dialog"
+        xmlns:fx="http://javafx.com/fxml">
+    <dialogPane>
+        <DialogPane>
+            <content>
+                <GridPane
+                        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+                        fx:id="dialogContainer"
+                        stylesheets="@../styles/DietCopyDialog.css"
+                >
+                    <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.newName"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="0"
+                    />
+                    <TextField fx:id="newDietNameField"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="0"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.breakfasts"
+                                GridPane.columnIndex="1"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.morningSnacks"
+                                GridPane.columnIndex="2"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.lunch"
+                                GridPane.columnIndex="3"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.afternoonSnack"
+                                GridPane.columnIndex="4"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.dinners"
+                                GridPane.columnIndex="5"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.others"
+                                GridPane.columnIndex="6"
+                                GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.common.copy"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyBreakfastsField"
+                              GridPane.columnIndex="1"
+                              GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyMorningSnacksField"
+                              GridPane.columnIndex="2"
+                              GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyLunchField"
+                              GridPane.columnIndex="3"
+                              GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyAfternoonSnacksField"
+                              GridPane.columnIndex="4"
+                              GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyDinnersField"
+                              GridPane.columnIndex="5"
+                              GridPane.rowIndex="2"
+                    />
+                    <CheckBox fx:id="copyOthersField"
+                              GridPane.columnIndex="6"
+                              GridPane.rowIndex="2"
+                    />
+
+                    <FieldLabel text="%cz.afrosoft.whattoeat.common.servings"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="breakfastsServingsField"
+                                GridPane.columnIndex="1"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="morningSnacksServingsField"
+                                GridPane.columnIndex="2"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="lunchServingsField"
+                                GridPane.columnIndex="3"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="afternoonSnacksServingsField"
+                                GridPane.columnIndex="4"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="dinnersServingsField"
+                                GridPane.columnIndex="5"
+                                GridPane.rowIndex="3"
+                    />
+                    <FloatField fx:id="othersServingsField"
+                                GridPane.columnIndex="6"
+                                GridPane.rowIndex="3"
+                    />
+                </GridPane>
+            </content>
+        </DialogPane>
+    </dialogPane>
+</fx:root>

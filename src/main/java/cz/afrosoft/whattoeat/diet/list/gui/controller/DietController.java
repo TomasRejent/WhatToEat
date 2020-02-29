@@ -8,6 +8,7 @@ import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.DetailBinding;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
+import cz.afrosoft.whattoeat.diet.list.gui.dialog.DietCopyDialog;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.shopping.gui.dialog.ShoppingListDialog;
@@ -59,6 +60,8 @@ public class DietController implements Initializable {
     @FXML
     private TextArea detailArea;
     @FXML
+    private IconButton copyButton;
+    @FXML
     private IconButton shoppingListButton;
 
     @Autowired
@@ -69,6 +72,8 @@ public class DietController implements Initializable {
     private DietService dietService;
     @Autowired
     private ShoppingListService shoppingListService;
+    @Autowired
+    private DietCopyDialog dietCopyDialog;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -115,6 +120,16 @@ public class DietController implements Initializable {
                 dietService.delete(diet);
                 dietTable.getItems().remove(diet);
             }
+        });
+    }
+
+    @FXML
+    public void showCopyDialog() {
+        getSelectedDiet().ifPresent((diet) -> {
+            dietCopyDialog.getDietCopyParams().ifPresent((dietCopyParams -> {
+                dietService.copy(diet, dietCopyParams);
+                dietTable.getItems().setAll(dietService.getAllDiets());
+            }));
         });
     }
 

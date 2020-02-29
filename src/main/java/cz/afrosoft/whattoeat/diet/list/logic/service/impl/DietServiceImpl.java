@@ -5,10 +5,9 @@ import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DietEntity;
+import cz.afrosoft.whattoeat.diet.list.data.entity.MealEntity;
 import cz.afrosoft.whattoeat.diet.list.data.repository.DietRepository;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.model.*;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietRefService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
@@ -20,10 +19,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -79,6 +76,46 @@ public class DietServiceImpl implements DietService {
             .setDayDiets(generatedDiet);
 
         return entityToDiet(repository.save(entity));
+    }
+
+    @Override
+    @Transactional
+    public Diet copy(final Diet source, final DietCopyParams params) {
+        DietEntity entity = new DietEntity();
+
+        entity.setName(params.getDietName());
+        entity.setFrom(source.getFrom());
+        entity.setTo(source.getTo());
+        entity.setGenerator(source.getGeneratorType());
+        List<DayDietEntity> dayDiets = new LinkedList<>();
+        source.getDayDiets().forEach(dayDietRef -> {
+            DayDietEntity dayDietEntity = dayDietRefService.toEntity(dayDietRef);
+            DayDietEntity dayDietCopy = new DayDietEntity();
+            dayDietCopy.setDay(dayDietEntity.getDay());
+            dayDietCopy.setBreakfast(copyMeals(dayDietEntity.getBreakfast(), params.getBreakfastsParams()));
+            dayDietCopy.setSnack(copyMeals(dayDietEntity.getSnack(), params.getSnacksParams()));
+            dayDietCopy.setLunch(copyMeals(dayDietEntity.getLunch(), params.getLunchParams()));
+            dayDietCopy.setAfternoonSnack(copyMeals(dayDietEntity.getAfternoonSnack(), params.getAfternoonSnacksParams()));
+            dayDietCopy.setDinner(copyMeals(dayDietEntity.getDinner(), params.getDinnersParams()));
+            dayDietCopy.setOther(copyMeals(dayDietEntity.getOther(), params.getOthersParams()));
+            dayDiets.add(dayDietCopy);
+        });
+
+        entity.setDayDiets(dayDiets);
+        return entityToDiet(repository.save(entity));
+    }
+
+    private List<MealEntity> copyMeals(List<MealEntity> source, MealCopyParams params){
+        if(source != null && params.isCopyEnabled()){
+            return source.stream().map(mealEntity -> {
+                MealEntity mealCopy = new MealEntity();
+                mealCopy.setRecipe(mealEntity.getRecipe());
+                mealCopy.setServings(params.getServings());
+                return mealCopy;
+            }).collect(Collectors.toList());
+        }else{
+            return Collections.emptyList();
+        }
     }
 
     @Override

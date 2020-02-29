@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.diet.list.logic.service;
 
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DietCopyParams;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 
 import java.util.Collection;
@@ -20,6 +21,8 @@ public interface DietService {
     DietCreateObject getCreateObject();
 
     Diet create(DietCreateObject dietChanges);
+
+    Diet copy(Diet source, DietCopyParams params);
 
     void delete(Diet diet);
 
