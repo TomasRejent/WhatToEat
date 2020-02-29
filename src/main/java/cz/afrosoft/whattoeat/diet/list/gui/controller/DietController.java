@@ -1,7 +1,9 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
+import cz.afrosoft.whattoeat.core.gui.component.ViewButton;
 import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
@@ -10,12 +12,16 @@ import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DietCopyDialog;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.shopping.gui.dialog.ShoppingListDialog;
 import cz.afrosoft.whattoeat.diet.shopping.logic.model.ShoppingItems;
 import cz.afrosoft.whattoeat.diet.shopping.logic.service.ShoppingListService;
+import javafx.collections.ListChangeListener;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
@@ -30,8 +36,10 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -60,6 +68,10 @@ public class DietController implements Initializable {
     @FXML
     private TextArea detailArea;
     @FXML
+    private ViewButton viewButton;
+    @FXML
+    private DeleteButton deleteButton;
+    @FXML
     private IconButton copyButton;
     @FXML
     private IconButton shoppingListButton;
@@ -81,7 +93,39 @@ public class DietController implements Initializable {
         setupColumns();
 
         dietTable.getItems().addAll(dietService.getAllDiets());
+        viewButton.setDisable(true);
+        deleteButton.setDisable(true);
+        copyButton.setDisable(true);
+        shoppingListButton.setDisable(true);
+        getSelectedDiets().ifPresent(observableDietList -> observableDietList.addListener(new ListChangeListener<Diet>() {
+            @Override
+            public void onChanged(final Change<? extends Diet> change) {
+                int selectionSize = change.getList().size();
+                if(selectionSize == 0){
+                    detailArea.setText("");
+                    viewButton.setDisable(true);
+                    deleteButton.setDisable(true);
+                    copyButton.setDisable(true);
+                    shoppingListButton.setDisable(true);
+                } else if (selectionSize == 1){
+                    getSelectedDiet().ifPresent(diet -> {
+                        detailArea.setText(diet.getDescription().orElse(""));
+                    });
+                    viewButton.setDisable(false);
+                    deleteButton.setDisable(false);
+                    copyButton.setDisable(false);
+                    shoppingListButton.setDisable(false);
+                } else {
+                    detailArea.setText("");
+                    viewButton.setDisable(true);
+                    deleteButton.setDisable(true);
+                    copyButton.setDisable(true);
+                    shoppingListButton.setDisable(false);
+                }
+            }
+        }));
         DetailBinding.bindDetail(detailPane, dietTable, detailArea, diet -> diet.getDescription().orElse(StringUtils.EMPTY));
+        dietTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
     }
 
     private void setupColumns() {
@@ -90,10 +134,16 @@ public class DietController implements Initializable {
         toColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getTo, null));
         generatorColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getGeneratorType, null));
         generatorColumn.setCellFactory(column -> new LabeledCell<>());
+        dietTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+
     }
 
     private Optional<Diet> getSelectedDiet() {
         return Optional.ofNullable(dietTable.getSelectionModel().getSelectedItem());
+    }
+
+    private Optional<ObservableList<Diet>> getSelectedDiets() {
+        return Optional.ofNullable(dietTable.getSelectionModel().getSelectedItems());
     }
 
     /* Button actions. */
@@ -136,10 +186,11 @@ public class DietController implements Initializable {
     @FXML
     public void exportShoppingList() {
         LOGGER.debug("Export shopping list action triggered.");
-        getSelectedDiet().ifPresent(diet -> {
-            ShoppingItems shoppingItems = shoppingListService.createShoppingItems(dietService.getDietMeals(diet));
-            String shopingListText = shoppingListService.formatToSimpleText(shoppingItems);
-            shoppingListDialog.showShoppingList(shopingListText);
+        getSelectedDiets().ifPresent(diets -> {
+            List<Meal> meals = diets.stream().flatMap(diet -> dietService.getDietMeals(diet).stream()).collect(Collectors.toList());
+            ShoppingItems shoppingItems = shoppingListService.createShoppingItems(meals);
+            String shoppingListText = shoppingListService.formatToSimpleText(shoppingItems);
+            shoppingListDialog.showShoppingList(shoppingListText);
         });
     }
 }

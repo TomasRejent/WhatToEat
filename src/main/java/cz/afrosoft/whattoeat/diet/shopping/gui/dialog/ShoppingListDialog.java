@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.shopping.gui.dialog;
 
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import javafx.fxml.FXML;
@@ -22,6 +23,7 @@ public class ShoppingListDialog extends Dialog<Void> {
     public ShoppingListDialog() {
         setResizable(true);
         initModality(Modality.NONE);
+        setTitle(I18n.getText("cz.afrosoft.whattoeat.dietview.dialog.shopping.title"));
     }
 
     @PostConstruct

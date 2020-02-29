@@ -18,7 +18,7 @@
     <left>
         <VBox styleClass="toolbar-button-container">
             <Label text="%cz.afrosoft.whattoeat.common.actions"/>
-            <ViewButton onAction="#viewDiet"/>
+            <ViewButton fx:id="viewButton" onAction="#viewDiet"/>
             <AddButton onAction="#addDiet"/>
             <DeleteButton fx:id="deleteButton" onAction="#deleteDiet"/>
             <IconButton fx:id="copyButton" icon="COPY" onAction="#showCopyDialog"/>
@@ -28,7 +28,7 @@
     <center>
         <MasterDetailPane fx:id="detailPane" detailSide="RIGHT">
             <masterNode>
-                <TableView fx:id="dietTable" styleClass="diet-table">
+                <TableView fx:id="dietTable" styleClass="diet-table" >
                     <columns>
                         <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.common.name"/>
                         <TableColumn fx:id="fromColumn" text="%cz.afrosoft.whattoeat.common.from"/>
