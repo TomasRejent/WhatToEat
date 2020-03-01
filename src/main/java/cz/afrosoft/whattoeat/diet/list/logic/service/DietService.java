@@ -5,6 +5,7 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DietCopyParams;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 
+import java.time.LocalDate;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -27,6 +28,8 @@ public interface DietService {
     void delete(Diet diet);
 
     Collection<Meal> getDietMeals(Diet diet);
+
+    Collection<Meal> getDietMealsInInterval(Diet diet, LocalDate from, LocalDate to);
 
     /**
      * Replaces existing day diets with specified ones.

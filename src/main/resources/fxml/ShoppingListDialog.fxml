@@ -3,13 +3,58 @@
 <?import javafx.scene.control.Dialog?>
 <?import javafx.scene.control.DialogPane?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.GridPane?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">
     <dialogPane>
         <DialogPane>
             <content>
-                <TextArea fx:id="contentTextArea"/>
+                <GridPane
+                        xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.121"
+                >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER"/>
+                        <ColumnConstraints hgrow="NEVER"/>
+                        <ColumnConstraints hgrow="NEVER"/>
+                        <ColumnConstraints hgrow="NEVER"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="ALWAYS"/>
+                    </rowConstraints>
+                    <FieldLabel
+                            text="%cz.afrosoft.whattoeat.common.from"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="0"
+                    />
+                    <DatePicker
+                            fx:id="fromDatePicker"
+                            GridPane.columnIndex="1"
+                            GridPane.rowIndex="0"
+                    />
+                    <FieldLabel
+                            text="%cz.afrosoft.whattoeat.common.to"
+                            GridPane.columnIndex="2"
+                            GridPane.rowIndex="0"
+                    />
+                    <DatePicker
+                            fx:id="toDatePicker"
+                            GridPane.columnIndex="3"
+                            GridPane.rowIndex="0"
+                    />
+                    <TextArea fx:id="contentTextArea"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="1"
+                            GridPane.columnSpan="5"
+                            GridPane.fillHeight="true"
+                    />
+                </GridPane>
             </content>
         </DialogPane>
     </dialogPane>

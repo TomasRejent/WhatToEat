@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -133,6 +134,31 @@ public class DietServiceImpl implements DietService {
         List<Meal> meals = new LinkedList<>();
         List<DayDiet> dayDiets = ConverterUtil.convertToList(diet.getDayDiets(), dayDietService::loadDayDiet);
         for (DayDiet dayDiet : dayDiets) {
+            meals.addAll(dayDiet.getBreakfasts());
+            meals.addAll(dayDiet.getSnacks());
+            meals.addAll(dayDiet.getLunch());
+            meals.addAll(dayDiet.getAfternoonSnacks());
+            meals.addAll(dayDiet.getDinners());
+            meals.addAll(dayDiet.getOthers());
+        }
+
+        return meals;
+    }
+
+    @Override
+    public Collection<Meal> getDietMealsInInterval(final Diet diet, final LocalDate from, final LocalDate to) {
+        Validate.notNull(diet);
+
+        List<Meal> meals = new LinkedList<>();
+        List<DayDiet> dayDiets = ConverterUtil.convertToList(diet.getDayDiets(), dayDietService::loadDayDiet);
+        for (DayDiet dayDiet : dayDiets) {
+            if(from != null && to != null){
+                LocalDate day = dayDiet.getDay();
+                if(day.isBefore(from) || day.isAfter(to)){
+                    continue;
+                }
+            }
+
             meals.addAll(dayDiet.getBreakfasts());
             meals.addAll(dayDiet.getSnacks());
             meals.addAll(dayDiet.getLunch());

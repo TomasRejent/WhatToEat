@@ -79,8 +79,6 @@ public class DietController implements Initializable {
     @Autowired
     private DietService dietService;
     @Autowired
-    private ShoppingListService shoppingListService;
-    @Autowired
     private DietCopyDialog dietCopyDialog;
 
     @Override
@@ -193,11 +191,6 @@ public class DietController implements Initializable {
     @FXML
     public void exportShoppingList() {
         LOGGER.debug("Export shopping list action triggered.");
-        getSelectedDiets().ifPresent(diets -> {
-            List<Meal> meals = diets.stream().flatMap(diet -> dietService.getDietMeals(diet).stream()).collect(Collectors.toList());
-            ShoppingItems shoppingItems = shoppingListService.createShoppingItems(meals);
-            String shoppingListText = shoppingListService.formatToSimpleText(shoppingItems);
-            shoppingListDialog.showShoppingList(shoppingListText);
-        });
+        getSelectedDiets().ifPresent(diets -> shoppingListDialog.showShoppingList(diets));
     }
 }
