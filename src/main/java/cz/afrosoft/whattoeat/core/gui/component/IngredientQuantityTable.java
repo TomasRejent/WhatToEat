@@ -1,11 +1,13 @@
 package cz.afrosoft.whattoeat.core.gui.component;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientQuantityService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
+import cz.afrosoft.whattoeat.core.gui.table.NutritionFactsIconCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableColumn;
@@ -14,10 +16,7 @@ import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @author Tomas Rejent
@@ -31,6 +30,8 @@ public class IngredientQuantityTable extends TableView<IngredientQuantity> {
     private TableColumn<IngredientQuantity, String> nameColumn;
     @FXML
     private TableColumn<IngredientQuantity, Float> priceColumn;
+    @FXML
+    private TableColumn<IngredientQuantity, Optional<NutritionFacts>> nutritionFactsColumn;
     @FXML
     private TableColumn<IngredientQuantity, Collection<Keyword>> keywordColumn;
 
@@ -53,6 +54,8 @@ public class IngredientQuantityTable extends TableView<IngredientQuantity> {
         quantityColumn.setCellFactory(param -> new IngredientQuantityCell(quantityService));
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(IngredientQuantity::getName));
         priceColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getPrice, 0f));
+        nutritionFactsColumn.setCellFactory(column -> new NutritionFactsIconCell<>());
+        nutritionFactsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper((ingredientQuantity) -> ingredientQuantity.getIngredient().getNutritionFacts(), null));
         keywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getKeywords, Collections.emptySet()));
         keywordColumn.setCellFactory(param -> new KeywordCell<>());
     }

@@ -13,6 +13,7 @@
         <TableColumn fx:id="quantityColumn" text="%cz.afrosoft.whattoeat.common.quantity"/>
         <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.name"/>
         <TableColumn fx:id="priceColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.price"/>
+        <TableColumn fx:id="nutritionFactsColumn" minWidth="25" maxWidth="25" resizable="false"/>
         <TableColumn fx:id="keywordColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords"/>
     </columns>
 </fx:root>
