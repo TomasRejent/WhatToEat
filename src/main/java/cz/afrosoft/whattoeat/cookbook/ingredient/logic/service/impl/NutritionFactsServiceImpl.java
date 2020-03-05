@@ -54,7 +54,7 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
 
     @Override
     public NutritionFactsEntity toEntity(final NutritionFactsUpdateObject nutritionFacts) {
-        if(nutritionFacts == null){
+        if(nutritionFacts == null || !nutritionFacts.hasAnyUsefulValue()){
             return null;
         } else {
             NutritionFactsEntity entity = new NutritionFactsEntity();
