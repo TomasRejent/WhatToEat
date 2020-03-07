@@ -105,6 +105,15 @@ public class DietViewController implements Initializable {
     public void initialize(final URL location, final ResourceBundle resources) {
         LOGGER.info("Switching to day diet page.");
         setupTableColumns();
+        initListeners();
+    }
+
+    private void initListeners(){
+        dayDietTable.setOnMouseClicked(event -> {
+            if(event.getClickCount() > 1){
+                editMeals();
+            }
+        });
     }
 
     private void setupTableColumns() {

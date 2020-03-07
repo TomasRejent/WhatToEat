@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
+import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
@@ -67,6 +68,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     private void initialize() {
         setResizable(true);
         initModality(Modality.APPLICATION_MODAL);
+        setTitle(I18n.getText("cz.afrosoft.whattoeat.dietview.dialog.meal.title"));
 
         setupButtons();
         setupResultConverter();
