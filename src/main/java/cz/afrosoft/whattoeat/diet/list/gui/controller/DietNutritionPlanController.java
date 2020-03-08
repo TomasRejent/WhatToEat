@@ -193,8 +193,7 @@ public class DietNutritionPlanController implements Initializable {
     }
 
     private void updateNutritionTable(DayDiet dayDiet){
-        nutritionTable.getItems().clear();
-        nutritionTable.getItems().addAll(nutritionFactsService.getDayDietNutritionFacts(dayDiet));
+        nutritionTable.getItems().setAll(nutritionFactsService.getDayDietNutritionFacts(dayDiet));
     }
 
     private Optional<DietNutritionPlanController.EditSelection> getSelectedMeals() {

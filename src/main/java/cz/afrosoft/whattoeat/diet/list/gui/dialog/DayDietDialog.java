@@ -1,19 +1,28 @@
 package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
+import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
+import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
-import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.gui.table.RemoveCell;
+import cz.afrosoft.whattoeat.core.gui.table.*;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
+import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
+import cz.afrosoft.whattoeat.diet.list.gui.table.RecipeLinkCell;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.model.RecipeDataForDayDietDialog;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import javafx.beans.property.Property;
@@ -32,6 +41,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 
 import javax.annotation.PostConstruct;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,12 +65,47 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     @FXML
     private TableColumn<MealUpdateObject, Void> removeColumn;
 
+    @FXML
+    private TextField nameFilter;
+    @FXML
+    private MultiSelect<CookbookRef> cookbookFilter;
+    @FXML
+    private MultiSelect<RecipeType> typeFilter;
+    @FXML
+    private TableView<RecipeDataForDayDietDialog> recipeTable;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, RecipeRef> nameColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, MealNutritionFacts> nutritionFactsColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> energyColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> fatColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> saturatedFatColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> carbohydrateColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> sugarColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> proteinColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> saltColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Float> fibreColumn;
+    @FXML
+    private TableColumn<RecipeDataForDayDietDialog, Collection<Keyword>> keywordColumn;
+
     @Autowired
     private ApplicationContext applicationContext;
     @Autowired
     private MealService mealService;
     @Autowired
     private RecipeService recipeService;
+    @Autowired
+    private CookbookService cookbookService;
+    @Autowired
+    private NutritionFactsService nutritionFactsService;
 
     private final NamedEntitySuggestionProvider<Recipe> recipeSuggestionProvider = new NamedEntitySuggestionProvider<>();
     private final Property<Recipe> selectedRecipe = new SimpleObjectProperty<>();
@@ -74,6 +120,47 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         setupResultConverter();
         setupTableColumns();
         setupFields();
+        setupFilter();
+        setupListeners();
+    }
+
+    private void setupListeners(){
+        recipeTable.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if(event.getCode() == KeyCode.ENTER){
+                pickRecipeFromTable();
+                event.consume();
+            }
+        });
+        recipeTable.setOnMouseClicked(event -> {
+            if(event.getClickCount() > 1){
+                pickRecipeFromTable();
+            }
+        });
+    }
+
+    private void pickRecipeFromTable(){
+        RecipeDataForDayDietDialog selectedRecipe = recipeTable.getSelectionModel().getSelectedItem();
+        if(selectedRecipe != null){
+            Recipe recipe = selectedRecipe.getRecipe();
+            pickRecipe(recipe);
+            recipeField.setText(recipe.getName());
+        }
+    }
+
+    /**
+     * Setup filter fields.
+     */
+    private void setupFilter() {
+        cookbookFilter.getItems().addAll(cookbookService.getAllCookbookRefs());
+        typeFilter.getItems().addAll(RecipeType.values());
+        cookbookFilter.setConverter(ComboBoxUtils.createStringConverter(cookbookFilter, CookbookRef::getName));
+        ComboBoxUtils.initLabeledCheckComboBox(typeFilter);
+        nameFilter.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                event.consume();
+                filterRecipes();
+            }
+        });
     }
 
     private void setupButtons() {
@@ -95,6 +182,30 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         recipeColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(StringUtils.EMPTY)));
         servingsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getServings().orElse(0f)));
         removeColumn.setCellFactory(param -> new RemoveCell<>(applicationContext.getBean(RemoveButton.class)));
+
+        nameColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(RecipeDataForDayDietDialog::getRecipe));
+        nutritionFactsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(RecipeDataForDayDietDialog::getNutritionFacts));
+        energyColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getEnergy()));
+        fatColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getFat()));
+        saturatedFatColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getSaturatedFat()));
+        carbohydrateColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getCarbohydrate()));
+        sugarColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getSugar()));
+        proteinColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getProtein()));
+        saltColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getSalt()));
+        fibreColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getNutritionFacts().getFibre()));
+        keywordColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(recipeDataForDayDietDialog -> recipeDataForDayDietDialog.getRecipe().getKeywords(), Collections.emptySet()));
+
+        nameColumn.setCellFactory(param -> new RecipeLinkCell<>(applicationContext));
+        nutritionFactsColumn.setCellFactory(param -> new MealNutritionFactsIconCell<>());
+        energyColumn.setCellFactory(param -> new FloatCell<>(0));
+        fatColumn.setCellFactory(param -> new FloatCell<>(1));
+        saturatedFatColumn.setCellFactory(param -> new FloatCell<>(1));
+        carbohydrateColumn.setCellFactory(param -> new FloatCell<>(1));
+        sugarColumn.setCellFactory(param -> new FloatCell<>(1));
+        proteinColumn.setCellFactory(param -> new FloatCell<>(1));
+        saltColumn.setCellFactory(param -> new FloatCell<>(3));
+        fibreColumn.setCellFactory(param -> new FloatCell<>(3));
+        keywordColumn.setCellFactory(column -> new KeywordCell<>());
     }
 
     private void setupFields() {
@@ -158,5 +269,25 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
         setupDynamicFieldOptions();
         prefillDialog(meals);
         return showAndWait();
+    }
+
+    @FXML
+    public void filterRecipes() {
+        RecipeFilter filter = new RecipeFilter.Builder()
+                .setName(nameFilter.getText())
+                .setType(typeFilter.getValues())
+                .setCookbooks(cookbookFilter.getValues())
+                .build();
+        recipeTable.getItems().clear();
+        recipeTable.getItems().addAll(nutritionFactsService.toDayDietView(recipeService.getFilteredRecipes(filter)));
+    }
+
+    @FXML
+    public void clearRecipe() {
+        nameFilter.setText(StringUtils.EMPTY);
+        typeFilter.getCheckModel().clearChecks();
+        cookbookFilter.getCheckModel().clearChecks();
+        recipeTable.getItems().clear();
+        recipeTable.getItems().addAll(nutritionFactsService.toDayDietView(recipeService.getAllRecipes()));
     }
 }

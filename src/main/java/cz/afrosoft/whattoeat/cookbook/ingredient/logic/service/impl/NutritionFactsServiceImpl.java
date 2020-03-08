@@ -8,17 +8,21 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsUpd
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.model.RecipeDataForDayDietDialog;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -123,6 +127,10 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
 
     @Override
     public MealNutritionFacts getMealNutritionFacts(final Meal meal) {
+        return getMealNutritionFacts(meal.getRecipe(), meal.getServings());
+    }
+
+    private MealNutritionFacts getMealNutritionFacts(final RecipeRef recipeRef, final float servings) {
         boolean nutritionMissing = false;
         float energy = 0;
         float fat = 0;
@@ -132,13 +140,13 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
         float protein = 0;
         float salt = 0;
         float fibre = 0;
-        Recipe recipe = recipeService.getRecipeById(meal.getRecipe().getId());
+        Recipe recipe = recipeService.getRecipeById(recipeRef.getId());
         Collection<RecipeIngredient> recipeIngredients = recipeService.loadRecipeIngredients(recipe.getIngredients());
         for(RecipeIngredient recipeIngredient : recipeIngredients){
             Optional<NutritionFacts> nutritionFactsOpt = recipeIngredient.getIngredient().getNutritionFacts();
             if(nutritionFactsOpt.isPresent()){
                 NutritionFacts nutritionFacts = nutritionFactsOpt.get();
-                float amountCoefficient = meal.getServings()*recipeIngredient.getQuantity();
+                float amountCoefficient = servings*recipeIngredient.getQuantity();
                 energy += safeComputeNutrition(amountCoefficient, nutritionFacts.getEnergy());
                 fat += safeComputeNutrition(amountCoefficient, nutritionFacts.getFat());
                 saturatedFat += safeComputeNutrition(amountCoefficient, nutritionFacts.getSaturatedFat());
@@ -151,7 +159,7 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
                 nutritionMissing = true;
             }
         }
-        String name = meal.getRecipe().getName() + (nutritionMissing ? "(!)" : "");
+        String name = recipeRef.getName() + (nutritionMissing ? "(!)" : "");
         return new MealNutritionFacts()
                 .setMealName(name)
                 .setEnergy(energy/1000) // conversion to kJ
@@ -161,7 +169,8 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
                 .setSugar(sugar)
                 .setProtein(protein)
                 .setSalt(salt)
-                .setFibre(fibre);
+                .setFibre(fibre)
+                .setNutritionFactMissing(nutritionMissing);
     }
 
     private float safeComputeNutrition(float amountCoefficient, Float nutritionValue){
@@ -182,6 +191,20 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
         }
         result.add(0, createTotalItem(result));
         return result;
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Collection<RecipeDataForDayDietDialog> toDayDietView(final Collection<Recipe> recipes) {
+        if(recipes == null || recipes.isEmpty()){
+            return Collections.emptyList();
+        }
+        return recipes.stream().map(recipe -> {
+            MealNutritionFacts mealNutritionFacts = getMealNutritionFacts(recipe, 1);
+            return new RecipeDataForDayDietDialog()
+                    .setRecipe(recipe)
+                    .setNutritionFacts(mealNutritionFacts);
+        }).collect(Collectors.toList());
     }
 
     private MealNutritionFacts createTotalItem(List<MealNutritionFacts> allMealNutritionFacts){

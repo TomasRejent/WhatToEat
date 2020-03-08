@@ -9,6 +9,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.RecipeDataForDayDietDialog;
 
 /**
  * @author Tomas Rejent

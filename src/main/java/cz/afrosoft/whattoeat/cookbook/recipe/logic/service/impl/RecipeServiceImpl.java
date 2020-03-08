@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.cookbook.recipe.logic.service.impl;
 
+import cz.afrosoft.whattoeat.diet.list.logic.model.RecipeDataForDayDietDialog;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -7,10 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookRefService;

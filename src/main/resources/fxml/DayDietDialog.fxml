@@ -4,6 +4,9 @@
 <?import cz.afrosoft.whattoeat.core.gui.component.FloatField?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import cz.afrosoft.whattoeat.core.gui.component.MultiSelect?>
+<?import cz.afrosoft.whattoeat.core.gui.component.SearchButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.RemoveButton?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">
@@ -16,6 +19,18 @@
                         styleClass="recipe-add-dialog"
                         stylesheets="@../styles/RecipeAddDialog.css"
                 >
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="NEVER" minWidth="50" />
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="50" />
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="ALWAYS"/>
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints vgrow="NEVER"/>
+                        <RowConstraints vgrow="ALWAYS"/>
+                    </rowConstraints>
+
                     <FieldLabel text="%cz.afrosoft.whattoeat.common.recipe"
                                 GridPane.columnIndex="0"
                                 GridPane.rowIndex="0"
@@ -41,6 +56,42 @@
                             <TableColumn fx:id="recipeColumn" text="%cz.afrosoft.whattoeat.common.recipe"/>
                             <TableColumn fx:id="servingsColumn" text="%cz.afrosoft.whattoeat.common.servings"/>
                             <TableColumn fx:id="removeColumn"/>
+                        </columns>
+                    </TableView>
+                    <HBox styleClass="filter-bar"
+                          GridPane.columnIndex="4"
+                          GridPane.rowIndex="0"
+                    >
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.filter"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.name"/>
+                        <TextField fx:id="nameFilter"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook"/>
+                        <MultiSelect fx:id="cookbookFilter"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.type"/>
+                        <MultiSelect fx:id="typeFilter"/>
+                        <HBox>
+                            <SearchButton fx:id="filterSubmitButton"
+                                          onAction="#filterRecipes"/>
+                            <RemoveButton fx:id="filterClearButton"
+                                          onAction="#clearRecipe"/>
+                        </HBox>
+                    </HBox>
+                    <TableView fx:id="recipeTable"
+                               GridPane.columnIndex="4"
+                               GridPane.rowIndex="1"
+                    >
+                        <columns>
+                            <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.name" prefWidth="200" />
+                            <TableColumn fx:id="nutritionFactsColumn" minWidth="26" maxWidth="26"/>
+                            <TableColumn fx:id="energyColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.energy.short" prefWidth="40"/>
+                            <TableColumn fx:id="fatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.fat.short" prefWidth="40"/>
+                            <TableColumn fx:id="saturatedFatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.saturatedFat.short" prefWidth="40"/>
+                            <TableColumn fx:id="carbohydrateColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.carbohydrate.short" prefWidth="40"/>
+                            <TableColumn fx:id="sugarColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.sugar.short" prefWidth="40"/>
+                            <TableColumn fx:id="proteinColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.protein.short" prefWidth="40"/>
+                            <TableColumn fx:id="saltColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.salt.short" prefWidth="50"/>
+                            <TableColumn fx:id="fibreColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.fibre.short" prefWidth="50"/>
+                            <TableColumn fx:id="keywordColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.keywords" prefWidth="250" sortable="false"/>
                         </columns>
                     </TableView>
                 </GridPane>

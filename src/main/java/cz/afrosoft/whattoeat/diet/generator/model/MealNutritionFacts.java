@@ -14,6 +14,7 @@ public class MealNutritionFacts {
     private Float protein;
     private Float salt;
     private Float fibre;
+    private boolean nutritionFactMissing;
 
     public String getMealName() {
         return mealName;
@@ -93,6 +94,15 @@ public class MealNutritionFacts {
 
     public MealNutritionFacts setFibre(final Float fibre) {
         this.fibre = fibre;
+        return this;
+    }
+
+    public boolean isNutritionFactMissing() {
+        return nutritionFactMissing;
+    }
+
+    public MealNutritionFacts setNutritionFactMissing(final boolean nutritionFactMissing) {
+        this.nutritionFactMissing = nutritionFactMissing;
         return this;
     }
 }
