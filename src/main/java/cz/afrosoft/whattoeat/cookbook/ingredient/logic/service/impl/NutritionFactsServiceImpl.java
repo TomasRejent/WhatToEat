@@ -159,9 +159,8 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
                 nutritionMissing = true;
             }
         }
-        String name = recipeRef.getName() + (nutritionMissing ? "(!)" : "");
         return new MealNutritionFacts()
-                .setMealName(name)
+                .setMealName(recipeRef.getName())
                 .setEnergy(energy/1000) // conversion to kJ
                 .setFat(fat)
                 .setSaturatedFat(saturatedFat)
@@ -217,6 +216,7 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
         float salt = 0;
         float fibre = 0;
 
+        boolean isNutritionFactMissing = false;
         for(MealNutritionFacts mealNutritionFacts : allMealNutritionFacts){
             energy += mealNutritionFacts.getEnergy();
             fat += mealNutritionFacts.getFat();
@@ -226,10 +226,12 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
             protein += mealNutritionFacts.getProtein();
             salt += mealNutritionFacts.getSalt();
             fibre += mealNutritionFacts.getFibre();
+            isNutritionFactMissing = isNutritionFactMissing || mealNutritionFacts.isNutritionFactMissing();
         }
 
         return new MealNutritionFacts()
                 .setMealName(I18n.getText(TOTAL_KEY))
+                .setNutritionFactMissing(isNutritionFactMissing)
                 .setEnergy(energy)
                 .setFat(fat)
                 .setSaturatedFat(saturatedFat)

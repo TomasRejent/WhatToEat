@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsSer
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.FloatCell;
+import cz.afrosoft.whattoeat.core.gui.table.MealNutritionFactsIconCell;
 import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DayDietDialog;
 import cz.afrosoft.whattoeat.diet.list.gui.table.DateCell;
@@ -62,6 +63,8 @@ public class DietNutritionPlanController implements Initializable {
     private TableView<MealNutritionFacts> nutritionTable;
     @FXML
     private TableColumn<MealNutritionFacts, String> mealColumn;
+    @FXML
+    private TableColumn<MealNutritionFacts, MealNutritionFacts> isCompleteColumn;
     @FXML
     private TableColumn<MealNutritionFacts, Float> energyColumn;
     @FXML
@@ -145,6 +148,7 @@ public class DietNutritionPlanController implements Initializable {
         columnEditSetterMap.put(otherColumn, DayDietUpdateObject::setOthers);
 
         mealColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getMealName));
+        isCompleteColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealNutritionFacts -> mealNutritionFacts));
         energyColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getEnergy));
         fatColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getFat));
         saturatedFatColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getSaturatedFat));
@@ -154,6 +158,7 @@ public class DietNutritionPlanController implements Initializable {
         saltColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getSalt));
         fibreColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(MealNutritionFacts::getFibre));
 
+        isCompleteColumn.setCellFactory(param -> new MealNutritionFactsIconCell<>());
         energyColumn.setCellFactory(param -> new FloatCell<>(0));
         fatColumn.setCellFactory(param -> new FloatCell<>(1));
         saturatedFatColumn.setCellFactory(param -> new FloatCell<>(1));

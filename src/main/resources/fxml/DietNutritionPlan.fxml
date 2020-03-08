@@ -38,7 +38,8 @@
             </TableView>
             <TableView fx:id="nutritionTable">
                 <columns>
-                    <TableColumn fx:id="mealColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.meal"/>
+                    <TableColumn fx:id="mealColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.meal" prefWidth="250"/>
+                    <TableColumn fx:id="isCompleteColumn" minWidth="26" maxWidth="26" />
                     <TableColumn fx:id="energyColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.energy"/>
                     <TableColumn fx:id="fatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.fat"/>
                     <TableColumn fx:id="saturatedFatColumn" text="%cz.afrosoft.whattoeat.dietview.nutritionFacts.saturatedFat"/>
