@@ -181,7 +181,7 @@ public class DietController implements Initializable {
     @FXML
     public void showCopyDialog() {
         getSelectedDiet().ifPresent((diet) -> {
-            dietCopyDialog.getDietCopyParams().ifPresent((dietCopyParams -> {
+            dietCopyDialog.getDietCopyParams(diet).ifPresent((dietCopyParams -> {
                 dietService.copy(diet, dietCopyParams);
                 dietTable.getItems().setAll(dietService.getAllDiets());
             }));

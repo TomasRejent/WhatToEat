@@ -1,11 +1,14 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
+import java.time.LocalDate;
+
 /**
  * @author Tomas Rejent
  */
 public class DietCopyParams {
 
     private String dietName;
+    private LocalDate startDate;
     private MealCopyParams breakfastsParams;
     private MealCopyParams snacksParams;
     private MealCopyParams lunchParams;
@@ -73,6 +76,15 @@ public class DietCopyParams {
 
     public DietCopyParams setOthersParams(final MealCopyParams othersParams) {
         this.othersParams = othersParams;
+        return this;
+    }
+
+    public LocalDate getStartDate() {
+        return startDate;
+    }
+
+    public DietCopyParams setStartDate(final LocalDate startDate) {
+        this.startDate = startDate;
         return this;
     }
 }

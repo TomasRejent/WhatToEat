@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DietCopyParams;
 import cz.afrosoft.whattoeat.diet.list.logic.model.MealCopyParams;
 import javafx.fxml.FXML;
@@ -21,6 +22,8 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
 
     @FXML
     private TextField newDietNameField;
+    @FXML
+    private DatePicker startDate;
     @FXML
     private CheckBox copyBreakfastsField;
     @FXML
@@ -57,7 +60,6 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
 
     private void setupFields(){
         Button finishButton = (Button) this.getDialogPane().lookupButton(ButtonType.FINISH);
-        finishButton.setDisable(true);
         newDietNameField.setOnKeyTyped(event -> {
             finishButton.setDisable(newDietNameField.getText().length() == 0);
         });
@@ -81,6 +83,7 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
     private DietCopyParams getDataFromFields(){
         DietCopyParams params = new DietCopyParams();
         params.setDietName(newDietNameField.getText());
+        params.setStartDate(startDate.getValue());
         params.setBreakfastsParams(new MealCopyParams(copyBreakfastsField.isSelected(), breakfastsServingsField.getFloatOrZero()));
         params.setSnacksParams(new MealCopyParams(copyMorningSnacksField.isSelected(), morningSnacksServingsField.getFloatOrZero()));
         params.setLunchParams(new MealCopyParams(copyLunchField.isSelected(), lunchServingsField.getFloatOrZero()));
@@ -90,14 +93,15 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
         return params;
     }
 
-    public Optional<DietCopyParams> getDietCopyParams(){
-        clearDialog();
+    public Optional<DietCopyParams> getDietCopyParams(Diet sourceDiet){
+        clearDialog(sourceDiet);
         newDietNameField.requestFocus();
         return showAndWait();
     }
 
-    private void clearDialog(){
-        newDietNameField.setText("");
+    private void clearDialog(Diet sourceDiet){
+        newDietNameField.setText(sourceDiet.getName() + " (2)");
+        startDate.setValue(sourceDiet.getFrom());
         copyBreakfastsField.setSelected(false);
         copyMorningSnacksField.setSelected(false);
         copyLunchField.setSelected(true);

@@ -23,7 +23,7 @@
         styleClass="recipe-container"
         fx:controller="cz.afrosoft.whattoeat.cookbook.recipe.gui.controller.RecipeController">
     <top>
-        <HBox fx:id="filterBar" styleClass="filter-bar" >
+        <HBox fx:id="filterBar" styleClass="filter-bar" alignment="CENTER_LEFT" >
             <FieldLabel text="%cz.afrosoft.whattoeat.common.filter" minWidth="30" HBox.hgrow="NEVER"/>
             <FieldLabel text="%cz.afrosoft.whattoeat.common.name" minWidth="40" HBox.hgrow="NEVER"/>
             <TextField fx:id="nameFilter" HBox.hgrow="SOMETIMES"/>

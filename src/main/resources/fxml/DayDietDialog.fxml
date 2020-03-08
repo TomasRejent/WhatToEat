@@ -62,6 +62,7 @@
                     <HBox styleClass="filter-bar"
                           GridPane.columnIndex="4"
                           GridPane.rowIndex="0"
+                          alignment="CENTER_LEFT"
                     >
                         <FieldLabel text="%cz.afrosoft.whattoeat.common.name" minWidth="40" HBox.hgrow="NEVER"/>
                         <TextField fx:id="nameFilter" HBox.hgrow="SOMETIMES"/>

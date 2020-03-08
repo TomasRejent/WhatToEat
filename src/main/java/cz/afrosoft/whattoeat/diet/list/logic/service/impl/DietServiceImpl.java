@@ -20,6 +20,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -85,14 +87,16 @@ public class DietServiceImpl implements DietService {
         DietEntity entity = new DietEntity();
 
         entity.setName(params.getDietName());
-        entity.setFrom(source.getFrom());
-        entity.setTo(source.getTo());
+        entity.setFrom(params.getStartDate());
+        entity.setTo(params.getStartDate().plusDays(source.getFrom().until(source.getTo(), ChronoUnit.DAYS)));
         entity.setGenerator(source.getGeneratorType());
         List<DayDietEntity> dayDiets = new LinkedList<>();
-        source.getDayDiets().forEach(dayDietRef -> {
+        LocalDate currentDay = params.getStartDate();
+        for(DayDietRef dayDietRef : source.getDayDiets()){
             DayDietEntity dayDietEntity = dayDietRefService.toEntity(dayDietRef);
             DayDietEntity dayDietCopy = new DayDietEntity();
-            dayDietCopy.setDay(dayDietEntity.getDay());
+            dayDietCopy.setDay(currentDay);
+            currentDay = currentDay.plusDays(1);
             dayDietCopy.setBreakfast(copyMeals(dayDietEntity.getBreakfast(), params.getBreakfastsParams()));
             dayDietCopy.setSnack(copyMeals(dayDietEntity.getSnack(), params.getSnacksParams()));
             dayDietCopy.setLunch(copyMeals(dayDietEntity.getLunch(), params.getLunchParams()));
@@ -100,7 +104,7 @@ public class DietServiceImpl implements DietService {
             dayDietCopy.setDinner(copyMeals(dayDietEntity.getDinner(), params.getDinnersParams()));
             dayDietCopy.setOther(copyMeals(dayDietEntity.getOther(), params.getOthersParams()));
             dayDiets.add(dayDietCopy);
-        });
+        }
 
         entity.setDayDiets(dayDiets);
         return entityToDiet(repository.save(entity));

@@ -15,14 +15,17 @@
                         fx:id="dialogContainer"
                         stylesheets="@../styles/DietCopyDialog.css"
                 >
-                    <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.newName"
-                                GridPane.columnIndex="0"
-                                GridPane.rowIndex="0"
-                    />
-                    <TextField fx:id="newDietNameField"
-                               GridPane.columnIndex="1"
-                               GridPane.rowIndex="0"
-                    />
+                    <HBox   alignment="CENTER_LEFT"
+                            GridPane.columnIndex="0"
+                            GridPane.rowIndex="0"
+                            GridPane.columnSpan="7"
+                            spacing="5"
+                    >
+                        <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.newName"/>
+                        <TextField fx:id="newDietNameField" prefWidth="250"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.startDate"/>
+                        <DatePicker fx:id="startDate"/>
+                    </HBox>
                     <FieldLabel text="%cz.afrosoft.whattoeat.dietview.table.breakfasts"
                                 GridPane.columnIndex="1"
                                 GridPane.rowIndex="1"
