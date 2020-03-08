@@ -15,6 +15,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
 <BorderPane
         xmlns:fx="http://javafx.com/fxml/1"
         fx:id="recipeContainer"
@@ -22,14 +23,15 @@
         styleClass="recipe-container"
         fx:controller="cz.afrosoft.whattoeat.cookbook.recipe.gui.controller.RecipeController">
     <top>
-        <HBox styleClass="filter-bar">
-            <FieldLabel text="%cz.afrosoft.whattoeat.common.filter"/>
-            <FieldLabel text="%cz.afrosoft.whattoeat.common.name"/>
-            <TextField fx:id="nameFilter"/>
-            <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook"/>
-            <MultiSelect fx:id="cookbookFilter"/>
-            <FieldLabel text="%cz.afrosoft.whattoeat.common.type"/>
+        <HBox fx:id="filterBar" styleClass="filter-bar" >
+            <FieldLabel text="%cz.afrosoft.whattoeat.common.filter" minWidth="30" HBox.hgrow="NEVER"/>
+            <FieldLabel text="%cz.afrosoft.whattoeat.common.name" minWidth="40" HBox.hgrow="NEVER"/>
+            <TextField fx:id="nameFilter" HBox.hgrow="SOMETIMES"/>
+            <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook" minWidth="60" HBox.hgrow="NEVER"/>
+            <MultiSelect fx:id="cookbookFilter" HBox.hgrow="SOMETIMES"/>
+            <FieldLabel text="%cz.afrosoft.whattoeat.common.type" minWidth="40" HBox.hgrow="NEVER"/>
             <MultiSelect fx:id="typeFilter"/>
+            <KeywordField fx:id="keywordFilter" keywordType="RECIPE_KEYWORDS" HBox.hgrow="ALWAYS"/>
             <HBox>
                 <SearchButton fx:id="filterSubmitButton"
                               onAction="#filterRecipes"/>

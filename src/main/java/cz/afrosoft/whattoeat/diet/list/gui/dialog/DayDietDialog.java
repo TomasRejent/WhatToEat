@@ -11,6 +11,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
+import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
 import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
 import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
@@ -39,6 +40,7 @@ import org.controlsfx.control.textfield.AutoCompletionBinding;
 import org.controlsfx.control.textfield.TextFields;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.util.comparator.BooleanComparator;
 
 import javax.annotation.PostConstruct;
 import java.util.Collection;
@@ -71,6 +73,9 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     private MultiSelect<CookbookRef> cookbookFilter;
     @FXML
     private MultiSelect<RecipeType> typeFilter;
+    @FXML
+    private KeywordField keywordFilter;
+
     @FXML
     private TableView<RecipeDataForDayDietDialog> recipeTable;
     @FXML
@@ -197,6 +202,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
         nameColumn.setCellFactory(param -> new RecipeLinkCell<>(applicationContext));
         nutritionFactsColumn.setCellFactory(param -> new MealNutritionFactsIconCell<>());
+        nutritionFactsColumn.setComparator((firstNutritionFact, secondNutritionFact) -> BooleanComparator.TRUE_LOW.compare(firstNutritionFact.isNutritionFactMissing(), secondNutritionFact.isNutritionFactMissing()));
         energyColumn.setCellFactory(param -> new FloatCell<>(0));
         fatColumn.setCellFactory(param -> new FloatCell<>(1));
         saturatedFatColumn.setCellFactory(param -> new FloatCell<>(1));
@@ -277,6 +283,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
                 .setName(nameFilter.getText())
                 .setType(typeFilter.getValues())
                 .setCookbooks(cookbookFilter.getValues())
+                .setKeywords(keywordFilter.getSelectedKeywords())
                 .build();
         recipeTable.getItems().clear();
         recipeTable.getItems().addAll(nutritionFactsService.toDayDietView(recipeService.getFilteredRecipes(filter)));

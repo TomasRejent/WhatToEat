@@ -69,6 +69,7 @@ public class KeywordField extends GridPane implements Builder<KeywordField> {
         editableProperty.addListener(createEditableChangeListener());
         keywordTypeProperty.addListener(createKeywordTypeChangeListener());
         initKeywordField();
+        refreshKeywords();
     }
 
     @Override

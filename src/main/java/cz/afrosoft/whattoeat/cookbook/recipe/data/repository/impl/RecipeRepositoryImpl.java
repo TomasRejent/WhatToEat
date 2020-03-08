@@ -6,6 +6,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.repository.RecipeRepositoryCustom;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Repository;
 
@@ -28,6 +30,8 @@ class RecipeRepositoryImpl implements RecipeRepositoryCustom {
     private static final String RECIPE_TYPE = "recipeTypes";
     private static final String COOKBOOKS = "cookbooks";
     private static final String COOKBOOKS_ID = "id";
+    private static final String KEYWORDS = "keywords";
+    private static final String KEYWORDS_ID = "id";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -47,6 +51,8 @@ class RecipeRepositoryImpl implements RecipeRepositoryCustom {
         filter.getType().ifPresent(recipeTypes -> queryPredicates.add(filterByType(recipeTypes, builder, queryRoot)));
         //filtering by cookbooks
         filter.getCookbooks().ifPresent(cookbooks -> queryPredicates.add(filterByCookbooks(cookbooks, queryRoot)));
+        //filtering by keywords
+        filter.getKeywords().ifPresent(keywords -> queryPredicates.add(filterByKeywords(keywords, builder, queryRoot)));
 
         query.where(queryPredicates.toArray(new Predicate[queryPredicates.size()]));
         TypedQuery<RecipeEntity> typedQuery = entityManager.createQuery(query);
@@ -72,4 +78,11 @@ class RecipeRepositoryImpl implements RecipeRepositoryCustom {
         return join.get(COOKBOOKS_ID).in(cookbooks.stream().map(CookbookRef::getId).collect(Collectors.toList()));
     }
 
+    private Predicate filterByKeywords(final Set<Keyword> keywords, final CriteriaBuilder builder, final Root<RecipeEntity> queryRoot){
+        return builder.and(
+                keywords.stream().map(keyword ->
+                        queryRoot.join(KEYWORDS).get(KEYWORDS_ID).in(keyword.getId())
+                ).toArray(Predicate[]::new)
+        );
+    }
 }

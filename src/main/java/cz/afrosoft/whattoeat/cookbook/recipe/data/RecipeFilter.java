@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.recipe.data;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
+import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -17,11 +18,13 @@ public final class RecipeFilter {
     private final String name;
     private final Set<CookbookRef> cookbooks;
     private final Set<RecipeType> type;
+    private final Set<Keyword> keywords;
 
-    private RecipeFilter(final String name, final Set<CookbookRef> cookbooks, final Set<RecipeType> type) {
+    private RecipeFilter(final String name, final Set<CookbookRef> cookbooks, final Set<RecipeType> type, final Set<Keyword> keywords) {
         this.name = name;
         this.cookbooks = cookbooks;
         this.type = type;
+        this.keywords = keywords;
     }
 
     /**
@@ -45,6 +48,10 @@ public final class RecipeFilter {
         return Optional.ofNullable(type);
     }
 
+    public Optional<Set<Keyword>> getKeywords() {
+        return Optional.ofNullable(keywords);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
@@ -62,6 +69,7 @@ public final class RecipeFilter {
         private String name;
         private Set<CookbookRef> cookbooks;
         private Set<RecipeType> type;
+        private Set<Keyword> keywords;
 
         /**
          * @param name (Nullable) Name to filter by. If null, empty or blank value is specified, then recipes are not filtered by name.
@@ -94,6 +102,11 @@ public final class RecipeFilter {
             return this;
         }
 
+        public Builder setKeywords(final Set<Keyword> keywords){
+            this.keywords = emptyToNull(keywords);
+            return this;
+        }
+
         private <T> Set<T> emptyToNull(final Set<T> set) {
             if (set == null || set.isEmpty()) {
                 return null;
@@ -107,7 +120,7 @@ public final class RecipeFilter {
          * @return (NotNull)
          */
         public RecipeFilter build() {
-            return new RecipeFilter(name, cookbooks, type);
+            return new RecipeFilter(name, cookbooks, type, keywords);
         }
     }
 }

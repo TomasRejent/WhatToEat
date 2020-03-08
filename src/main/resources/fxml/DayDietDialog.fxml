@@ -7,6 +7,7 @@
 <?import cz.afrosoft.whattoeat.core.gui.component.MultiSelect?>
 <?import cz.afrosoft.whattoeat.core.gui.component.SearchButton?>
 <?import cz.afrosoft.whattoeat.core.gui.component.RemoveButton?>
+<?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">
@@ -23,7 +24,7 @@
                         <ColumnConstraints hgrow="NEVER" minWidth="50" />
                         <ColumnConstraints hgrow="ALWAYS"/>
                         <ColumnConstraints hgrow="NEVER" minWidth="50" />
-                        <ColumnConstraints hgrow="ALWAYS"/>
+                        <ColumnConstraints hgrow="NEVER" maxWidth="100" />
                         <ColumnConstraints hgrow="ALWAYS"/>
                     </columnConstraints>
                     <rowConstraints>
@@ -62,13 +63,13 @@
                           GridPane.columnIndex="4"
                           GridPane.rowIndex="0"
                     >
-                        <FieldLabel text="%cz.afrosoft.whattoeat.common.filter"/>
-                        <FieldLabel text="%cz.afrosoft.whattoeat.common.name"/>
-                        <TextField fx:id="nameFilter"/>
-                        <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook"/>
-                        <MultiSelect fx:id="cookbookFilter"/>
-                        <FieldLabel text="%cz.afrosoft.whattoeat.common.type"/>
-                        <MultiSelect fx:id="typeFilter"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.name" minWidth="40" HBox.hgrow="NEVER"/>
+                        <TextField fx:id="nameFilter" HBox.hgrow="SOMETIMES"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook" minWidth="60" HBox.hgrow="NEVER"/>
+                        <MultiSelect fx:id="cookbookFilter" maxWidth="100" HBox.hgrow="SOMETIMES"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.common.type" minWidth="40" HBox.hgrow="NEVER"/>
+                        <MultiSelect fx:id="typeFilter" maxWidth="100" HBox.hgrow="SOMETIMES" />
+                        <KeywordField fx:id="keywordFilter" keywordType="RECIPE_KEYWORDS" HBox.hgrow="ALWAYS"/>
                         <HBox>
                             <SearchButton fx:id="filterSubmitButton"
                                           onAction="#filterRecipes"/>

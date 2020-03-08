@@ -13,10 +13,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Taste;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
-import cz.afrosoft.whattoeat.core.gui.component.EditButton;
-import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
-import cz.afrosoft.whattoeat.core.gui.component.ViewButton;
+import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
@@ -32,6 +29,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -64,6 +62,8 @@ public class RecipeController implements Initializable {
     private MultiSelect<CookbookRef> cookbookFilter;
     @FXML
     private MultiSelect<RecipeType> typeFilter;
+    @FXML
+    private KeywordField keywordFilter;
 
     @FXML
     private TableView<Recipe> recipeTable;
@@ -187,9 +187,9 @@ public class RecipeController implements Initializable {
                 .setName(nameFilter.getText())
                 .setType(typeFilter.getValues())
                 .setCookbooks(cookbookFilter.getValues())
+                .setKeywords(keywordFilter.getSelectedKeywords())
                 .build();
-        recipeTable.getItems().clear();
-        recipeTable.getItems().addAll(recipeService.getFilteredRecipes(filter));
+        recipeTable.getItems().setAll(recipeService.getFilteredRecipes(filter));
     }
 
     @FXML
@@ -199,8 +199,7 @@ public class RecipeController implements Initializable {
         nameFilter.setText(StringUtils.EMPTY);
         typeFilter.getCheckModel().clearChecks();
         cookbookFilter.getCheckModel().clearChecks();
-        recipeTable.getItems().clear();
-        recipeTable.getItems().addAll(recipeService.getAllRecipes());
+        recipeTable.getItems().setAll(recipeService.getAllRecipes());
     }
 
     @FXML
