@@ -54,7 +54,7 @@ public class RecipeEntity {
     @JoinTable(name = "RECIPE_SIDE_DISHES")
     private Set<RecipeEntity> sideDishes;
 
-    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "recipe", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<RecipeIngredientEntity> recipeIngredients;
 
     @ManyToMany

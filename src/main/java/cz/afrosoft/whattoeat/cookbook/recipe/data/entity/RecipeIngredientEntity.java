@@ -72,6 +72,8 @@ public class RecipeIngredientEntity {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("id", id)
                 .append("quantity", quantity)
+                .append("ingredient", "[" + ingredient.getId() + "]" + ingredient.getName())
+                .append("recipe", "[" + recipe.getId() + "]" + recipe.getName())
                 .toString();
     }
 }

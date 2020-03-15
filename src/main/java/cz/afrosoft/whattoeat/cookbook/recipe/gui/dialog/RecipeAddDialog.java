@@ -447,8 +447,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         preparationTimeField.setDuration(recipe.getIngredientPreparationTime());
         cookingTimeField.setDuration(recipe.getCookingTime());
         listBindingFactory.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), recipe.getSideDishes());
-        ingredientTable.getItems().clear();
-        ingredientTable.getItems().addAll(recipeService.toUpdateObjects(recipe.getIngredients()));
+        ingredientTable.getItems().setAll(recipeService.toUpdateObjects(recipe.getIngredients()));
         keywordField.setSelectedKeywords(recipe.getKeywords());
     }
 
