@@ -166,7 +166,7 @@ public class KeywordField extends GridPane implements Builder<KeywordField> {
         keywordField.getSelectionModel().clearSelection();
         Set<Keyword> setDifference = new LinkedHashSet<>(allKeywords);
         setDifference.removeAll(this.keywords);
-        keywordField.getItems().addAll(setDifference);
+        keywordField.getItems().setAll(setDifference);
     }
 
     /**
