@@ -1,3 +1,11 @@
+----- TODO BY PRIORITIES -----------------------------------------------------------------------------------------------
+X - Add default weight of serving to recipes to allow migration of recipe ingredient amounts to per gram ratio instead of per serving ratio.
+- Add manufacturer to Ingredient (is going to simplify names of particular ingredient). Sufficient to be string only at this time.
+- Add inheritance to Ingredient (is going to allow substitution of general ingredients with particular ones during planning phase based on various criteria)
+- Add shop (seller) to Ingredient. This will allow minimization of number of required shops to visit. Shop must be entity, because it will be also used by Price entity.
+- Create first basic variant of generator which works with nutrition facts.
+- Design and create concept of "Eatable", which will be used in Meal instead of recipe to allow adding edible ingredients into diet without need to create recipe for them.
+
 ----- QUESTIONS --------------------------------------------------------------------------------------------------------
 
 
@@ -18,16 +26,14 @@
 - low priority - try to use metamodel in criteria queries
 
 ----- FEATURES ---------------------------------------------------------------------------------------------------------
-- Diet feature
-  X - create entities for diet
-    - create model for diet
-    - create services for diet
-    - create screen with diets
-    - create screen for creating/generating diets
-    - create diet detail screen
-    - add edit with suggestion to diet detail screen
-    - add feature to generate shopping list
-    - restore previous selection of cell after edit of of meals in day diet (now first cell in edited row is selected after dialog submit)
+** Recipe model update **
+
+
+** Ingredient model update **
+
+
+** Meal model update **
+
 
 - New suggestion component
     - supports adding of new items, so enter key use suggestion only when selected by arrow keys
@@ -43,8 +49,8 @@
     - create import from json
     - create merge tool
 
-- Create phases
-    - phase have name, duration, utilization and "lock to newxt phase" flag
+- Create phases of preparation for recipes
+    - phase have name, duration, utilization and "lock to next phase" flag
     - phases prefill preparation field if it is empty
     - create config property which allows switching from simple duration of recipes to phases
 
@@ -66,7 +72,6 @@
 
 - add weight coefficient to config file so weight for one serving can be adjusted globally
 
-- upgrade time measuring to suport phases. Phases are ordered and have time in minutes and utilization in percents.
 
 - Add validation errors to UI
 
@@ -77,6 +82,7 @@
 ----- BUGS -------------------------------------------------------------------------------------------------------------
 - Combo Box bound to list - navigating by arrows in combo box select values immediately
 - If two recipes have same name only one of them is displayed in table
+- To check: Diets> restore previous selection of cells after edit of of meals in day diet (now first cell in edited row is selected after dialog submit)
 
 Done bugs:
 X - Fix creating of Remove button in RemovableStringCell so it is obtained from application context.
@@ -122,6 +128,16 @@ X - Add dialg for creating new recipes and ingredients.
     X - Suggestions should stay open even for exact match
 X - Basic recipe filter
 X - wrap actions in try catch and show error dialog on error, so user has feedback that some shit happened
+
+X - Diet feature
+  X - create entities for diet
+  X - create model for diet
+  X - create services for diet
+  X - create screen with diets
+  X - create screen for creating/generating diets
+  X - create diet detail screen
+  X - add edit with suggestion to diet detail screen
+  X - add feature to generate shopping list
 
 Done Arch:
 X - Duration field should extend RegexRestrictedField

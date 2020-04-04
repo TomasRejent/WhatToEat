@@ -95,6 +95,8 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
     @FXML
     private Rating ratingField;
     @FXML
+    private FloatField defaultServingWeightField;
+    @FXML
     private FloatField ingredientServingsField;
     @FXML
     private TextField ingredientNameField;
@@ -378,6 +380,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         recipeUpdateObject.setSideDishes(new HashSet<>(sideDishList.getItems()));
         recipeUpdateObject.setCookbooks(new HashSet<>(cookbooksField.getCheckModel().getCheckedItems()));
         recipeUpdateObject.setKeywords(keywordField.getSelectedKeywords());
+        recipeUpdateObject.setDefaultServingWeight(defaultServingWeightField.getFloat());
 
         return recipeUpdateObject;
     }
@@ -428,6 +431,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         ingredientTable.getItems().clear();
         cookbooksField.getCheckModel().clearChecks();
         keywordField.clearSelectedKeywords();
+        defaultServingWeightField.setFloat(null);
     }
 
     /**
@@ -449,6 +453,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
         listBindingFactory.fillBoundedList(sideDishList, sideDishField, recipeService.getAllSideDishRefs(), recipe.getSideDishes());
         ingredientTable.getItems().setAll(recipeService.toUpdateObjects(recipe.getIngredients()));
         keywordField.setSelectedKeywords(recipe.getKeywords());
+        defaultServingWeightField.setFloat(recipe.getDefaultServingWeight());
     }
 
     /**

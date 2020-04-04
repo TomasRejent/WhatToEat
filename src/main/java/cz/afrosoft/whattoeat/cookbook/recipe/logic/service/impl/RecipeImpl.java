@@ -38,11 +38,12 @@ final class RecipeImpl implements Recipe {
     private final Set<RecipeRef> sideDishes;
     private final Set<Keyword> keywords;
     private final Set<CookbookRef> cookbooks;
+    private final Float defaultServingWeight;
 
     private RecipeImpl(final Integer id, final String name, final String preparation, final Integer rating, final Set<RecipeType> recipeTypes,
                        final Taste taste, final Duration ingredientPreparationTime, final Duration cookingTime,
                        final Set<RecipeIngredientRef> ingredients, final Set<RecipeRef> sideDishes, final Set<Keyword> keywords,
-                       final Set<CookbookRef> cookbooks) {
+                       final Set<CookbookRef> cookbooks, final Float defaultServingWeight) {
         this.id = id;
         this.name = name;
         this.preparation = preparation;
@@ -55,6 +56,7 @@ final class RecipeImpl implements Recipe {
         this.sideDishes = Collections.unmodifiableSet(new LinkedHashSet<>(sideDishes));
         this.keywords = Collections.unmodifiableSet(new LinkedHashSet<>(keywords));
         this.cookbooks = Collections.unmodifiableSet(new LinkedHashSet<>(cookbooks));
+        this.defaultServingWeight = defaultServingWeight;
     }
 
     @Override
@@ -124,6 +126,11 @@ final class RecipeImpl implements Recipe {
     }
 
     @Override
+    public Float getDefaultServingWeight() {
+        return defaultServingWeight;
+    }
+
+    @Override
     public int compareTo(final RecipeRef otherRecipe) {
         return RecipeComparator.INSTANCE.compare(this, otherRecipe);
     }
@@ -175,6 +182,7 @@ final class RecipeImpl implements Recipe {
         private Set<RecipeRef> sideDishes;
         private Set<Keyword> keywords;
         private Set<CookbookRef> cookbooks;
+        private Float defaultServingWeight;
 
         public Builder() {
             this.id = null;
@@ -243,6 +251,11 @@ final class RecipeImpl implements Recipe {
         @Override
         public Set<Keyword> getKeywords() {
             return Optional.ofNullable(keywords).orElse(Collections.emptySet());
+        }
+
+        @Override
+        public Float getDefaultServingWeight() {
+            return defaultServingWeight;
         }
 
         @Override
@@ -339,6 +352,12 @@ final class RecipeImpl implements Recipe {
             return this;
         }
 
+        @Override
+        public RecipeUpdateObject setDefaultServingWeight(final Float defaultServingWeight) {
+            this.defaultServingWeight = defaultServingWeight;
+            return this;
+        }
+
         private boolean validateRating(final Integer rating) {
             return rating != null && rating > 0 && rating <= 10;
         }
@@ -360,7 +379,7 @@ final class RecipeImpl implements Recipe {
             Validate.noNullElements(cookbooks);
             Validate.notEmpty(cookbooks);
 
-            return new RecipeImpl(id, name, preparation, rating, recipeTypes, taste, ingredientPreparationTime, cookingTime, existingIngredients, sideDishes, keywords, cookbooks);
+            return new RecipeImpl(id, name, preparation, rating, recipeTypes, taste, ingredientPreparationTime, cookingTime, existingIngredients, sideDishes, keywords, cookbooks, defaultServingWeight);
         }
 
         @Override

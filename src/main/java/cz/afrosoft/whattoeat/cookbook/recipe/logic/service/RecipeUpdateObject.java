@@ -102,6 +102,11 @@ public interface RecipeUpdateObject {
     Set<Keyword> getKeywords();
 
     /**
+     * @return Gets default serving weight in grams or null if not defined.
+     */
+    Float getDefaultServingWeight();
+
+    /**
      * Changes name of recipe.
      *
      * @param name (NotBlank) Name of recipe to set.
@@ -188,4 +193,11 @@ public interface RecipeUpdateObject {
      * @return (NotNull) This createOrUpdate object so setter calls can be chained.
      */
     RecipeUpdateObject setKeywords(Set<Keyword> keywords);
+
+    /**
+     * Sets default serving weight.
+     * @param defaultServingWeight Default serving weight in grams.
+     * @return (NotNull) This createOrUpdate object so setter calls can be chained.
+     */
+    RecipeUpdateObject setDefaultServingWeight(Float defaultServingWeight);
 }

@@ -81,4 +81,9 @@ public interface Recipe extends RecipeRef, IdEntity, NamedEntity, KeywordableEnt
      * @return (NotEmpty) Gets all cookbooks to which recipe belongs. Recipe must belong to at least one cookbook.
      */
     Set<CookbookRef> getCookbooks();
+
+    /**
+     * @return Gets default weight in grams for serving.
+     */
+    Float getDefaultServingWeight();
 }

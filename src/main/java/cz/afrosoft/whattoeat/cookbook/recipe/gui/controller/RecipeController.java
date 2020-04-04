@@ -15,10 +15,7 @@ import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
-import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.gui.table.CollectionCell;
-import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
-import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
+import cz.afrosoft.whattoeat.core.gui.table.*;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -30,7 +27,10 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.scene.paint.Color;
 import org.apache.commons.lang3.StringUtils;
+import org.controlsfx.glyphfont.FontAwesome;
+import org.controlsfx.glyphfont.Glyph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,6 +71,8 @@ public class RecipeController implements Initializable {
     private TableColumn<Recipe, String> nameColumn;
     @FXML
     private TableColumn<Recipe, Collection<RecipeType>> recipeTypeColumn;
+    @FXML
+    private TableColumn<Recipe, Float> defaultServingWeightColumn;
     @FXML
     private TableColumn<Recipe, PreparationTime> preparationTimeColumn;
     @FXML
@@ -114,6 +116,11 @@ public class RecipeController implements Initializable {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Recipe::getName));
         recipeTypeColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getRecipeTypes, Collections.emptySet()));
         recipeTypeColumn.setCellFactory(column -> CollectionCell.newInstance(recipeType -> I18n.getText(recipeType.getLabelKey())));
+        defaultServingWeightColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getDefaultServingWeight, null));
+        defaultServingWeightColumn.setCellFactory(column -> new ColorIconCell<>(
+                ((recipe, defaultServingWeight) -> recipe.getKeywords().stream().anyMatch((keyword -> "váženo".equals(keyword.getName()))) ? FontAwesome.Glyph.BELL : null),
+                ((recipe, defaultServingWeight) -> defaultServingWeight == null ? Color.RED : Color.GREEN)
+        ));
         preparationTimeColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getTotalPreparationTime, null));
         preparationTimeColumn.setCellFactory(param -> new LabeledCell<>());
         tasteColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Recipe::getTaste, null));

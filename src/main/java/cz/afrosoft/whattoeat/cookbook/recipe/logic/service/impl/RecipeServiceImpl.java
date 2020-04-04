@@ -141,7 +141,8 @@ public class RecipeServiceImpl implements RecipeService {
                 .setIngredients(ConverterUtil.convertToSet(recipe.getIngredients(), this::toUpdateObject))
                 .setSideDishes(recipe.getSideDishes())
                 .setCookbooks(recipe.getCookbooks())
-                .setKeywords(recipe.getKeywords());
+                .setKeywords(recipe.getKeywords())
+                .setDefaultServingWeight(recipe.getDefaultServingWeight());
     }
 
     @Override
@@ -163,7 +164,8 @@ public class RecipeServiceImpl implements RecipeService {
                 .setIngredients(ConverterUtil.convertToSet(recipeChanges.getIngredients(), this::fromUpdateObject))
                 .setSideDishes(ConverterUtil.convertToSet(recipeChanges.getSideDishes(), recipeRefService::toEntity))
                 .setKeywords(ConverterUtil.convertToSet(recipeChanges.getKeywords(), keywordService::keywordToEntity))
-                .setCookbooks(ConverterUtil.convertToSet(recipeChanges.getCookbooks(), cookbookRefService::toEntity));
+                .setCookbooks(ConverterUtil.convertToSet(recipeChanges.getCookbooks(), cookbookRefService::toEntity))
+                .setDefaultServingWeight(recipeChanges.getDefaultServingWeight());
 
         return entityToRecipe(repository.save(entity));
     }
@@ -208,7 +210,8 @@ public class RecipeServiceImpl implements RecipeService {
                 .setCookingTime(entity.getCookingTime())
                 .setCookbooks(ConverterUtil.convertToSortedSet(entity.getCookbooks(), cookbookRefService::fromEntity))
                 .setSideDishes(ConverterUtil.convertToSortedSet(entity.getSideDishes(), recipeRefService::fromEntity))
-                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
+                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword))
+                .setDefaultServingWeight(entity.getDefaultServingWeight());
         builder.setExistingIngredients(ConverterUtil.convertToSet(entity.getIngredients(), recipeIngredientRefService::fromEntity));
 
         return builder.build();

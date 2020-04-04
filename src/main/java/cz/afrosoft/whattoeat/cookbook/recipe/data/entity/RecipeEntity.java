@@ -65,6 +65,9 @@ public class RecipeEntity {
     @JoinTable(name = "COOKBOOK_RECIPES")
     private Set<CookbookEntity> cookbooks;
 
+    @Column(name = "DEFAULT_SERVING_WEIGHT")
+    private Float defaultServingWeight;
+
     public Integer getId() {
         return id;
     }
@@ -172,6 +175,15 @@ public class RecipeEntity {
 
     public RecipeEntity setCookbooks(final Set<CookbookEntity> cookbooks) {
         this.cookbooks = cookbooks;
+        return this;
+    }
+
+    public Float getDefaultServingWeight() {
+        return defaultServingWeight;
+    }
+
+    public RecipeEntity setDefaultServingWeight(final Float defaultServingWeight) {
+        this.defaultServingWeight = defaultServingWeight;
         return this;
     }
 

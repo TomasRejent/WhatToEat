@@ -134,6 +134,17 @@
                                         <RowConstraints vgrow="ALWAYS"/>
                                     </rowConstraints>
                                     <Label
+                                            text="%cz.afrosoft.whattoeat.recipes.add.ingredient.defaultServingWeight"
+                                            GridPane.columnIndex="0"
+                                            GridPane.rowIndex="0"
+                                    />
+                                    <FloatField
+                                            styleClass="ingredient-float-field"
+                                            type="NON_NEGATIVE"
+                                            fx:id="defaultServingWeightField"
+                                            GridPane.columnIndex="1"
+                                            GridPane.rowIndex="0"/>
+                                    <Label
                                             text="%cz.afrosoft.whattoeat.recipes.add.ingredient.servings"
                                             GridPane.columnIndex="3"
                                             GridPane.rowIndex="0"/>

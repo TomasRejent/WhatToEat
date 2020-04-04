@@ -55,6 +55,7 @@
             <columns>
                 <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.name"/>
                 <TableColumn fx:id="recipeTypeColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.recipeType"/>
+                <TableColumn fx:id="defaultServingWeightColumn" />
                 <TableColumn fx:id="preparationTimeColumn"
                              text="%cz.afrosoft.whattoeat.recipes.table.header.preparationTime"/>
                 <TableColumn fx:id="tasteColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.taste"/>
