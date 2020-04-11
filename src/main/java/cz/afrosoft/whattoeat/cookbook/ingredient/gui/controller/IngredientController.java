@@ -57,6 +57,8 @@ public class IngredientController implements Initializable {
     @FXML
     private TableColumn<Ingredient, String> nameColumn;
     @FXML
+    private TableColumn<Ingredient, String> manufacturerColumn;
+    @FXML
     private TableColumn<Ingredient, IngredientUnit> unitColumn;
     @FXML
     private TableColumn<Ingredient, Float> priceColumn;
@@ -89,6 +91,7 @@ public class IngredientController implements Initializable {
      */
     private void setupColumnCellFactories() {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Ingredient::getName));
+        manufacturerColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Ingredient::getManufacturer));
         unitColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Ingredient::getIngredientUnit, null));
         unitColumn.setCellFactory(column -> new LabeledCell<>());
         priceColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Ingredient::getPrice, null));

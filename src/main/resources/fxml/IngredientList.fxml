@@ -37,6 +37,7 @@
         <TableView fx:id="ingredientTable" styleClass="ingredient-table">
             <columns>
                 <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.name"/>
+                <TableColumn fx:id="manufacturerColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.manufacturer"/>
                 <TableColumn fx:id="unitColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.unit"/>
                 <TableColumn fx:id="priceColumn" text="%cz.afrosoft.whattoeat.ingredients.table.header.price"/>
                 <TableColumn fx:id="nutritionFactsColumn"/>
