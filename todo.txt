@@ -1,8 +1,8 @@
 ----- TODO BY PRIORITIES -----------------------------------------------------------------------------------------------
 X - Add default weight of serving to recipes to allow migration of recipe ingredient amounts to per gram ratio instead of per serving ratio.
-- Add manufacturer to Ingredient (is going to simplify names of particular ingredient). Sufficient to be string only at this time.
-- Add inheritance to Ingredient (is going to allow substitution of general ingredients with particular ones during planning phase based on various criteria)
-- Add shop (seller) to Ingredient. This will allow minimization of number of required shops to visit. Shop must be entity, because it will be also used by Price entity.
+X - Add manufacturer to Ingredient (is going to simplify names of particular ingredient). Sufficient to be string only at this time.
+X - Add inheritance to Ingredient (is going to allow substitution of general ingredients with particular ones during planning phase based on various criteria)
+X - Add shop (seller) to Ingredient. This will allow minimization of number of required shops to visit. Shop must be entity, because it will be also used by Price entity.
 - Create first basic variant of generator which works with nutrition facts.
 - Design and create concept of "Eatable", which will be used in Meal instead of recipe to allow adding edible ingredients into diet without need to create recipe for them.
 

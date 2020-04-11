@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.RemoveButton?>
+<?import javafx.scene.control.Label?>
+<fx:root
+        type="javafx.scene.control.Label"
+        xmlns:fx="http://javafx.com/fxml"
+        styleClass="shop-label-component"
+        stylesheets="@ShopLabel.css"
+        contentDisplay="RIGHT">
+    <graphic>
+        <RemoveButton fx:id="removeButton" styleClass="shop-remove-button"/>
+    </graphic>
+</fx:root>

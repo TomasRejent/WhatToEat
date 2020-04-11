@@ -40,7 +40,15 @@ public enum RecipeType implements IdEnum, Labeled {
     /**
      * Recipes which can be used to prepare salads. These can typically consist of vegetables or fruits.
      */
-    SALAD(7, "cz.afrosoft.whattoeat.recipeType.salad");
+    SALAD(7, "cz.afrosoft.whattoeat.recipeType.salad"),
+    /**
+     * Recipe for creating of ingredient. This allows composition of recipes.
+     */
+    INGREDIENT(8, "cz.afrosoft.whattoeat.recipeType.ingredient"),
+    /**
+     * Recipe for meal which is typically eaten in evening.
+     */
+    DINNER(9, "cz.afrosoft.whattoeat.recipeType.dinner");
 
     private final int id;
     private final String labelKey;

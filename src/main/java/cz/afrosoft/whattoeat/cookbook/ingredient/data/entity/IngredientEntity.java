@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.data.entity;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import cz.afrosoft.whattoeat.core.data.entity.KeywordEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -41,6 +42,32 @@ public class IngredientEntity {
     @ManyToMany
     @JoinTable(name = "INGREDIENT_KEYWORDS")
     private Set<KeywordEntity> keywords;
+
+    @Column(name = "GENERAL", columnDefinition = "boolean default false")
+    private boolean general;
+
+    @Column(name = "EDIBLE", columnDefinition = "boolean default false")
+    private boolean edible;
+
+    @Column(name = "PURCHASABLE", columnDefinition = "boolean default true")
+    private boolean purchasable;
+
+    @Column(name = "MANUFACTURER")
+    private String manufacturer;
+
+    @ManyToMany
+    @JoinTable(name = "INGREDIENT_SHOPS")
+    private Set<ShopEntity> shops;
+
+    @OneToOne
+    private RecipeEntity recipe;
+
+    @ManyToOne
+    @JoinColumn(name = "PARENT")
+    private IngredientEntity parent;
+
+    @OneToMany(mappedBy = "parent")
+    private Set<IngredientEntity> children;
 
     public Integer getId() {
         return id;
@@ -103,6 +130,73 @@ public class IngredientEntity {
     public IngredientEntity setKeywords(final Set<KeywordEntity> keywords) {
         this.keywords = keywords;
         return this;
+    }
+
+    public boolean isGeneral() {
+        return general;
+    }
+
+    public IngredientEntity setGeneral(final boolean general) {
+        this.general = general;
+        return this;
+    }
+
+    public boolean isEdible() {
+        return edible;
+    }
+
+    public IngredientEntity setEdible(final boolean edible) {
+        this.edible = edible;
+        return this;
+    }
+
+    public boolean isPurchasable() {
+        return purchasable;
+    }
+
+    public IngredientEntity setPurchasable(final boolean purchasable) {
+        this.purchasable = purchasable;
+        return this;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    public IngredientEntity setManufacturer(final String manufacturer) {
+        this.manufacturer = manufacturer;
+        return this;
+    }
+
+    public Set<ShopEntity> getShops() {
+        return shops;
+    }
+
+    public IngredientEntity setShops(final Set<ShopEntity> shops) {
+        this.shops = shops;
+        return this;
+    }
+
+    public RecipeEntity getRecipe() {
+        return recipe;
+    }
+
+    public IngredientEntity setRecipe(final RecipeEntity recipe) {
+        this.recipe = recipe;
+        return this;
+    }
+
+    public IngredientEntity getParent() {
+        return parent;
+    }
+
+    public IngredientEntity setParent(final IngredientEntity parent) {
+        this.parent = parent;
+        return this;
+    }
+
+    public Set<IngredientEntity> getChildren() {
+        return children;
     }
 
     @Override

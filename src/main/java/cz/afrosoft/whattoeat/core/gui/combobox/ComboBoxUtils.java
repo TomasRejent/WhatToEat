@@ -7,6 +7,8 @@ import javafx.util.StringConverter;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.controlsfx.control.CheckComboBox;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Objects;
 import java.util.function.Function;
@@ -16,6 +18,8 @@ import java.util.function.Function;
  * for creating general string converters.
  */
 public final class ComboBoxUtils {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(ComboBoxUtils.class);
 
     /**
      * Initializes combo box so it displays message defined by key of {@link Labeled} items instead of default toString

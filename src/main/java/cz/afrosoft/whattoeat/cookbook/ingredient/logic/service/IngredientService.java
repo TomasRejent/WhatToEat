@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 
 import java.util.Optional;
 import java.util.Set;
@@ -83,5 +84,7 @@ public interface IngredientService {
      * @return (NotNull)
      */
     Ingredient entityToIngredient(final IngredientEntity entity);
+
+    Set<IngredientRef> getAllChildren(final IngredientRef ingredient);
 
 }

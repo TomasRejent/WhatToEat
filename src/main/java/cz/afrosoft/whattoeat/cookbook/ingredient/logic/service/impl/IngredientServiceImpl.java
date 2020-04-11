@@ -5,12 +5,11 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.UnitConversionEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepository;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.*;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.core.logic.service.KeywordService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import org.apache.commons.lang3.Validate;
@@ -20,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -36,6 +36,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Autowired
     private KeywordService keywordService;
+    @Autowired
+    private RecipeRefService recipeRefService;
+    @Autowired
+    private IngredientRefService ingredientRefService;
+    @Autowired
+    private ShopService shopService;
+
     @Autowired
     private NutritionFactsService nutritionFactsService;
 
@@ -93,8 +100,15 @@ public class IngredientServiceImpl implements IngredientService {
                 .setName(ingredient.getName())
                 .setIngredientUnit(ingredient.getIngredientUnit())
                 .setPrice(ingredient.getPrice())
-                .setKeywords(ingredient.getKeywords());
+                .setKeywords(ingredient.getKeywords())
+                .setGeneral(ingredient.isGeneral())
+                .setPurchasable(ingredient.isPurchasable())
+                .setEdible(ingredient.isEdible())
+                .setManufacturer(ingredient.getManufacturer())
+                .setShops(ingredient.getShops());
         ingredient.getUnitConversion().ifPresent(unitConversion -> builder.setUnitConversion(toUpdateObject(unitConversion)));
+        ingredient.getParent().ifPresent(builder::setParent);
+        ingredient.getRecipe().ifPresent(builder::setRecipe);
         Optional<NutritionFacts> nutritionFacts = ingredient.getNutritionFacts();
         if(nutritionFacts.isPresent()){
             builder.setNutritionFacts(nutritionFactsService.getUpdateObject(nutritionFacts.get()));
@@ -117,7 +131,20 @@ public class IngredientServiceImpl implements IngredientService {
                 .setPrice(ingredientChanges.getPrice().get())
                 .setUnitConversion(unitConversionToEntity(ingredientChanges.getUnitConversion().orElse(null)))
                 .setNutritionFacts(nutritionFactsService.toEntity(ingredientChanges.getNutritionFacts()))
-                .setKeywords(ConverterUtil.convertToSet(ingredientChanges.getKeywords(), keywordService::keywordToEntity));
+                .setKeywords(ConverterUtil.convertToSet(ingredientChanges.getKeywords(), keywordService::keywordToEntity))
+                .setGeneral(ingredientChanges.isGeneral())
+                .setPurchasable(ingredientChanges.isPurchasable())
+                .setEdible(ingredientChanges.isEdible())
+                .setManufacturer(ingredientChanges.getManufacturer())
+                .setRecipe(ingredientChanges.getRecipe().isPresent() ? recipeRefService.toEntity(ingredientChanges.getRecipe().get()) : null)
+                .setShops(ConverterUtil.convertToSet(ingredientChanges.getShops(), shopService::shopToEntity));
+
+        if(ingredientChanges.getParent().isPresent()){
+            entity.setParent(ingredientRefService.toEntity(ingredientChanges.getParent().get()));
+        } else {
+            entity.setParent(null);
+        }
+
         return entityToIngredient(repository.save(entity));
     }
 
@@ -129,10 +156,32 @@ public class IngredientServiceImpl implements IngredientService {
                 .setName(entity.getName())
                 .setIngredientUnit(entity.getIngredientUnit())
                 .setPrice(entity.getPrice())
-                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword));
+                .setKeywords(ConverterUtil.convertToSortedSet(entity.getKeywords(), keywordService::entityToKeyword))
+                .setGeneral(entity.isGeneral())
+                .setPurchasable(entity.isPurchasable())
+                .setEdible(entity.isEdible())
+                .setManufacturer(entity.getManufacturer())
+                .setRecipe(Optional.ofNullable(entity.getRecipe()).map(recipeRefService::fromEntity).orElse(null))
+                .setShops(ConverterUtil.convertToSet(entity.getShops(), shopService::entityToShop))
+                .setParent(Optional.ofNullable(entity.getParent()).map(ingredientRefService::fromEntity).orElse(null))
+                .setChildren(ConverterUtil.convertToSet(entity.getChildren(), ingredientRefService::fromEntity));
         entityToUnitConversion(entity.getUnitConversion()).ifPresent(builder::setExistingUnitConversion);
         nutritionFactsService.toNutritionFacts(entity.getNutritionFacts()).ifPresent(builder::setExistingNutritionFacts);
         return builder.build();
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public Set<IngredientRef> getAllChildren(final IngredientRef ingredient) {
+        IngredientEntity rootIngredient = repository.getOne(ingredient.getId());
+        Set<IngredientRef> allChildren = new HashSet<>();
+        rootIngredient.getChildren().forEach(child -> {
+            IngredientRef childRef = ingredientRefService.fromEntity(child);
+            allChildren.add(childRef);
+            allChildren.addAll(getAllChildren(childRef));
+        });
+
+        return allChildren;
     }
 
     private Optional<UnitConversion> entityToUnitConversion(final UnitConversionEntity entity) {

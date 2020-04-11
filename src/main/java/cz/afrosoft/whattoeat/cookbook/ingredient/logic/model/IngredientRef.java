@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
+import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
 
 /**
  * Represents reference to {@link Ingredient} which can be used in related entities.
@@ -9,6 +10,6 @@ import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
  *
  * @author Tomas Rejent
  */
-public interface IngredientRef extends IdEntity {
+public interface IngredientRef extends IdEntity, NamedEntity {
 
 }

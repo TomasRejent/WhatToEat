@@ -4,7 +4,10 @@ import java.util.Optional;
 import java.util.Set;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Shop;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 
 /**
@@ -53,6 +56,36 @@ public interface IngredientUpdateObject {
      * keywords of ingredient.
      */
     Set<Keyword> getKeywords();
+
+    boolean isGeneral();
+
+    boolean isPurchasable();
+
+    boolean isEdible();
+
+    String getManufacturer();
+
+    Set<Shop> getShops();
+
+    Optional<RecipeRef> getRecipe();
+
+    Optional<IngredientRef> getParent();
+
+    Set<IngredientRef> getChildren();
+
+    IngredientUpdateObject setGeneral(boolean general);
+
+    IngredientUpdateObject setPurchasable(boolean purchasable);
+
+    IngredientUpdateObject setEdible(boolean edible);
+
+    IngredientUpdateObject setManufacturer(String manufacturer);
+
+    IngredientUpdateObject setShops(Set<Shop> shops);
+
+    IngredientUpdateObject setRecipe(RecipeRef recipe);
+
+    IngredientUpdateObject setParent(IngredientRef parent);
 
     /**
      * Changes name of ingredient. If called multiple times only value from last call is used.

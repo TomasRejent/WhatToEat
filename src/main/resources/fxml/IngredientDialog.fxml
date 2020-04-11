@@ -3,6 +3,7 @@
 <?import cz.afrosoft.whattoeat.core.gui.component.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import cz.afrosoft.whattoeat.cookbook.ingredient.gui.component.ShopField?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">
@@ -22,31 +23,87 @@
                     <TextField fx:id="nameField"
                                GridPane.columnIndex="1"
                                GridPane.rowIndex="0"
-                               GridPane.columnSpan="3"/>
+                               GridPane.columnSpan="5"/>
+                    <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.general"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="1"
+                    />
+                    <CheckBox fx:id="generalField"
+                              GridPane.columnIndex="1"
+                              GridPane.rowIndex="1"
+                    />
+                    <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.purchasable"
+                           GridPane.columnIndex="2"
+                           GridPane.rowIndex="1"
+                    />
+                    <CheckBox fx:id="purchasableField"
+                              GridPane.columnIndex="3"
+                              GridPane.rowIndex="1"
+                    />
+                    <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.edible"
+                           GridPane.columnIndex="4"
+                           GridPane.rowIndex="1"
+                    />
+                    <CheckBox fx:id="edibleField"
+                              GridPane.columnIndex="5"
+                              GridPane.rowIndex="1"
+                    />
+                    <Label
+                        text="%cz.afrosoft.whattoeat.ingredient.dialog.manufacturer"
+                        GridPane.columnIndex="0"
+                        GridPane.rowIndex="2"
+                    />
+                    <TextField fx:id="manufacturerField"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="2"
+                               GridPane.columnSpan="5"/>
+
                     <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.unit"
                            GridPane.columnIndex="0"
-                           GridPane.rowIndex="1"/>
+                           GridPane.rowIndex="3"/>
                     <ComboBox fx:id="unitField"
                               GridPane.columnIndex="1"
-                              GridPane.rowIndex="1"/>
+                              GridPane.rowIndex="3"/>
                     <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.price"
                            GridPane.columnIndex="2"
-                           GridPane.rowIndex="1"/>
+                           GridPane.rowIndex="3"/>
                     <FloatField fx:id="priceField"
                                 GridPane.columnIndex="3"
-                                GridPane.rowIndex="1"/>
+                                GridPane.rowIndex="3"
+                                GridPane.columnSpan="3"/>
+                    <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.parent"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="4"/>
+                    <ComboBox fx:id="parentField"
+                              prefWidth="263"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="4"
+                               GridPane.columnSpan="5"/>
+                    <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.recipe"
+                           GridPane.columnIndex="0"
+                           GridPane.rowIndex="5"/>
+                    <ComboBox fx:id="recipeField"
+                              prefWidth="263"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="5"
+                               GridPane.columnSpan="5"/>
+                    <ShopField fx:id="shopField"
+                               GridPane.columnIndex="0"
+                               GridPane.rowIndex="6"
+                               GridPane.columnSpan="6"
+                    />
                     <KeywordField fx:id="keywordField"
                                   keywordType="INGREDIENT_KEYWORDS"
                                   GridPane.columnIndex="0"
-                                  GridPane.rowIndex="2"
-                                  GridPane.columnSpan="4"
+                                  GridPane.rowIndex="7"
+                                  GridPane.columnSpan="6"
                     />
                     <TitledPane fx:id="unitConversionPane"
                                 text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion"
                                 expanded="true"
                                 GridPane.columnIndex="0"
-                                GridPane.rowIndex="3"
-                                GridPane.columnSpan="4">
+                                GridPane.rowIndex="8"
+                                GridPane.columnSpan="6">
                         <GridPane>
                             <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.conversion.piece"
                                    GridPane.columnIndex="0"
@@ -84,8 +141,8 @@
                                 text="%cz.afrosoft.whattoeat.nutritionFacts"
                                 expanded="true"
                                 GridPane.columnIndex="0"
-                                GridPane.rowIndex="4"
-                                GridPane.columnSpan="4">
+                                GridPane.rowIndex="9"
+                                GridPane.columnSpan="6">
                         <GridPane>
                             <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.nutritionFacts.energy"
                                    GridPane.columnIndex="0"

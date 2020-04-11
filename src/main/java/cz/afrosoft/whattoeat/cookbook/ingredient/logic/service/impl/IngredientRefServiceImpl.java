@@ -32,7 +32,7 @@ public class IngredientRefServiceImpl implements IngredientRefService {
         Validate.notNull(entity);
         Validate.notNull(entity.getId(), "Only persisted entities can be used as reference.");
 
-        return new IngredientRefImpl(entity.getId());
+        return new IngredientRefImpl(entity.getId(), entity.getName());
     }
 
     @Override

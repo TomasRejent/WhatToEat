@@ -15,6 +15,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author Tomas Rejent
@@ -22,7 +23,9 @@ import java.util.List;
 @Repository
 class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
+    private static final String ID = "id";
     private static final String NAME = "name";
+    private static final String GENERAL = "general";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -38,6 +41,10 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
         //filtering by name
         filter.getName().ifPresent(name -> queryPredicates.add(filterByName(name, builder, queryRoot)));
+        //filtering by flag if ingredient is general or particular
+        filter.getGeneral().ifPresent(general -> queryPredicates.add(filterByGeneral(general, builder, queryRoot)));
+        //filtering by exclusion of ids
+        filter.getExcludedIds().ifPresent(excludedIds -> queryPredicates.add(filterOutExcludedIds(excludedIds, builder, queryRoot)));
 
         query.where(queryPredicates.toArray(new Predicate[queryPredicates.size()]));
         TypedQuery<IngredientEntity> typedQuery = entityManager.createQuery(query);
@@ -49,5 +56,17 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
                 builder.lower(
                         queryRoot.get(NAME)),
                 "%" + name.toLowerCase() + "%");
+    }
+
+    private Predicate filterByGeneral(final Boolean general, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
+        if(general){
+            return builder.isTrue(queryRoot.get(GENERAL));
+        } else {
+            return builder.isFalse(queryRoot.get(GENERAL));
+        }
+    }
+
+    private Predicate filterOutExcludedIds(final Set<Integer> excludedIds, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
+        return queryRoot.get(ID).in(excludedIds).not();
     }
 }

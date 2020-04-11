@@ -1,7 +1,9 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.model;
 
 import java.util.Optional;
+import java.util.Set;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 import cz.afrosoft.whattoeat.core.logic.model.KeywordableEntity;
 import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
@@ -44,4 +46,20 @@ public interface Ingredient extends IngredientRef, IdEntity, NamedEntity, Keywor
      * if ingredient does not have any nutrition facts defined.
      */
     Optional<NutritionFacts> getNutritionFacts();
+
+    Set<Shop> getShops();
+
+    boolean isGeneral();
+
+    boolean isEdible();
+
+    boolean isPurchasable();
+
+    String getManufacturer();
+
+    Optional<RecipeRef> getRecipe();
+
+    Optional<IngredientRef> getParent();
+
+    Set<IngredientRef> getChildren();
 }

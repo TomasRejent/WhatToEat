@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<fx:root
+        type="javafx.scene.layout.GridPane"
+        xmlns:fx="http://javafx.com/fxml"
+        styleClass="keyword-component"
+        stylesheets="@KeywordField.css">
+    <columnConstraints>
+        <ColumnConstraints hgrow="NEVER" minWidth="130" maxWidth="130"/>
+        <ColumnConstraints hgrow="ALWAYS"/>
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints vgrow="NEVER"/>
+        <RowConstraints vgrow="ALWAYS"/>
+    </rowConstraints>
+    <Label
+            text="%cz.afrosoft.whattoeat.component.shopField.label"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="0"/>
+    <ComboBox fx:id="shopField"
+              prefWidth="200"
+              GridPane.columnIndex="1"
+              GridPane.rowIndex="0"/>
+    <FlowPane fx:id="shopContainer"
+              GridPane.columnIndex="0"
+              GridPane.rowIndex="1"
+              GridPane.columnSpan="2"/>
+</fx:root>

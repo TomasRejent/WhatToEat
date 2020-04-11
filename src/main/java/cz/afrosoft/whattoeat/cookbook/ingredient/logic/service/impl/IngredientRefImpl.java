@@ -15,10 +15,13 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 public class IngredientRefImpl implements IngredientRef {
 
     private final Integer id;
+    private final String name;
 
-    public IngredientRefImpl(final Integer id) {
+    public IngredientRefImpl(final Integer id, final String name) {
         Validate.notNull(id);
+        Validate.notEmpty(name);
         this.id = id;
+        this.name = name;
     }
 
     @Override
@@ -27,19 +30,24 @@ public class IngredientRefImpl implements IngredientRef {
     }
 
     @Override
+    public String getName() {
+        return name;
+    }
+
+    @Override
     public boolean equals(final Object o) {
         if (this == o) {
             return true;
         }
 
-        if (o == null || getClass() != o.getClass()) {
+        if (o == null || !(o instanceof IngredientRef)) {
             return false;
         }
 
-        IngredientRefImpl that = (IngredientRefImpl) o;
+        IngredientRef that = (IngredientRef) o;
 
         return new EqualsBuilder()
-                .append(id, that.id)
+                .append(id, that.getId())
                 .isEquals();
     }
 
@@ -54,6 +62,7 @@ public class IngredientRefImpl implements IngredientRef {
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("id", id)
+                .append("name", name)
                 .toString();
     }
 }

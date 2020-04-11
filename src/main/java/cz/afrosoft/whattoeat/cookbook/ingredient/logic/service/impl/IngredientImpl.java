@@ -1,13 +1,11 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
-import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.*;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
@@ -36,8 +34,16 @@ final class IngredientImpl implements Ingredient {
     private final UnitConversion unitConversion;
     private final NutritionFacts nutritionFacts;
     private final Set<Keyword> keywords;
+    private final boolean general;
+    private final boolean purchasable;
+    private final boolean edible;
+    private final String manufacturer;
+    private final Set<Shop> shops;
+    private final RecipeRef recipe;
+    private final IngredientRef parent;
+    private final Set<IngredientRef> children;
 
-    private IngredientImpl(final Integer id, final String name, final IngredientUnit ingredientUnit, final float price, final UnitConversion unitConversion, final NutritionFacts nutritionFacts, final Set<Keyword> keywords) {
+    private IngredientImpl(final Integer id, final String name, final IngredientUnit ingredientUnit, final float price, final UnitConversion unitConversion, final NutritionFacts nutritionFacts, final Set<Keyword> keywords, final boolean general, final boolean purchasable, final boolean edible, final String manufacturer, final Set<Shop> shops, final RecipeRef recipe, final IngredientRef parent, final Set<IngredientRef> children) {
         this.id = id;
         this.name = name;
         this.ingredientUnit = ingredientUnit;
@@ -45,6 +51,14 @@ final class IngredientImpl implements Ingredient {
         this.unitConversion = unitConversion;
         this.nutritionFacts = nutritionFacts;
         this.keywords = Collections.unmodifiableSet(keywords);
+        this.general = general;
+        this.purchasable = purchasable;
+        this.edible = edible;
+        this.manufacturer = manufacturer;
+        this.shops = Collections.unmodifiableSet(shops);
+        this.recipe = recipe;
+        this.parent = parent;
+        this.children = Collections.unmodifiableSet(children);
     }
 
     @Override
@@ -83,6 +97,46 @@ final class IngredientImpl implements Ingredient {
     }
 
     @Override
+    public Set<Shop> getShops() {
+        return shops;
+    }
+
+    @Override
+    public boolean isGeneral() {
+        return general;
+    }
+
+    @Override
+    public boolean isEdible() {
+        return edible;
+    }
+
+    @Override
+    public boolean isPurchasable() {
+        return purchasable;
+    }
+
+    @Override
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    @Override
+    public Optional<RecipeRef> getRecipe() {
+        return Optional.ofNullable(recipe);
+    }
+
+    @Override
+    public Optional<IngredientRef> getParent() {
+        return Optional.ofNullable(parent);
+    }
+
+    @Override
+    public Set<IngredientRef> getChildren() {
+        return null;
+    }
+
+    @Override
     public int compareTo(final Ingredient otherIngredient) {
         return IngredientComparator.INSTANCE.compare(this, otherIngredient);
     }
@@ -93,11 +147,11 @@ final class IngredientImpl implements Ingredient {
             return true;
         }
 
-        if (o == null || !(o instanceof Ingredient)) {
+        if (o == null || !(o instanceof IngredientRef)) {
             return false;
         }
 
-        Ingredient that = (Ingredient) o;
+        IngredientRef that = (IngredientRef) o;
 
         return new EqualsBuilder()
                 .append(id, that.getId())
@@ -130,6 +184,14 @@ final class IngredientImpl implements Ingredient {
         private NutritionFactsUpdateObject nutritionFacts;
         private NutritionFacts existingNutritionFacts;
         private Set<Keyword> keywords;
+        private boolean general = false;
+        private boolean purchasable = true;
+        private boolean edible = true;
+        private String manufacturer;
+        private Set<Shop> shops = Collections.emptySet();
+        private RecipeRef recipe;
+        private IngredientRef parent;
+        private Set<IngredientRef> children = Collections.emptySet();
 
         public Builder() {
             this.id = null;
@@ -257,6 +319,94 @@ final class IngredientImpl implements Ingredient {
             return this;
         }
 
+        public Builder setChildren(final Set<IngredientRef> children){
+            this.children = children;
+            return this;
+        }
+
+        @Override
+        public boolean isGeneral() {
+            return general;
+        }
+
+        @Override
+        public boolean isPurchasable() {
+            return purchasable;
+        }
+
+        @Override
+        public boolean isEdible() {
+            return edible;
+        }
+
+        @Override
+        public String getManufacturer() {
+            return manufacturer;
+        }
+
+        @Override
+        public Set<Shop> getShops() {
+            return shops;
+        }
+
+        @Override
+        public Optional<RecipeRef> getRecipe() {
+            return Optional.ofNullable(recipe);
+        }
+
+        @Override
+        public Optional<IngredientRef> getParent() {
+            return Optional.ofNullable(parent);
+        }
+
+        @Override
+        public Set<IngredientRef> getChildren() {
+            return children;
+        }
+
+        @Override
+        public Builder setGeneral(final boolean general) {
+            this.general = general;
+            return this;
+        }
+
+        @Override
+        public Builder setPurchasable(final boolean purchasable) {
+            this.purchasable = purchasable;
+            return this;
+        }
+
+        @Override
+        public Builder setEdible(final boolean edible) {
+            this.edible = edible;
+            return this;
+        }
+
+        @Override
+        public Builder setManufacturer(final String manufacturer) {
+            this.manufacturer = manufacturer;
+            return this;
+        }
+
+        @Override
+        public Builder setShops(final Set<Shop> shops) {
+            Validate.notNull(shops);
+            this.shops = shops;
+            return this;
+        }
+
+        @Override
+        public Builder setRecipe(final RecipeRef recipe) {
+            this.recipe = recipe;
+            return this;
+        }
+
+        @Override
+        public Builder setParent(final IngredientRef parent) {
+            this.parent = parent;
+            return this;
+        }
+
         Ingredient build() {
             Validate.notNull(id);
             Validate.notBlank(name);
@@ -264,7 +414,7 @@ final class IngredientImpl implements Ingredient {
             Validate.notNull(price);
             Validate.isTrue(price >= 0, "Price cannot be negative.");
 
-            return new IngredientImpl(id, name, ingredientUnit, price, existingUnitConversion, existingNutritionFacts, keywords);
+            return new IngredientImpl(id, name, ingredientUnit, price, existingUnitConversion, existingNutritionFacts, keywords, general, purchasable, edible, manufacturer, shops, recipe, parent, children);
         }
 
         @Override
