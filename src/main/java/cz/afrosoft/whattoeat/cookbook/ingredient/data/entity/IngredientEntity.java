@@ -16,7 +16,9 @@ import java.util.Set;
  * @author Tomas Rejent
  */
 @Entity
-@Table(name = "INGREDIENT")
+@Table(name = "INGREDIENT", uniqueConstraints = {
+        @UniqueConstraint(columnNames = {"NAME", "MANUFACTURER"})
+})
 public class IngredientEntity {
 
     @Id
@@ -24,7 +26,7 @@ public class IngredientEntity {
     @Column(name = "ID")
     private Integer id;
 
-    @Column(name = "NAME", unique = true, nullable = false)
+    @Column(name = "NAME", nullable = false)
     private String name;
 
     @Column(name = "UNIT", nullable = false)
