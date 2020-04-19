@@ -130,7 +130,8 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
         return getMealNutritionFacts(meal.getRecipe(), meal.getServings());
     }
 
-    private MealNutritionFacts getMealNutritionFacts(final RecipeRef recipeRef, final float servings) {
+    @Override
+    public MealNutritionFacts getMealNutritionFacts(final RecipeRef recipeRef, final float servings) {
         boolean nutritionMissing = false;
         float energy = 0;
         float fat = 0;

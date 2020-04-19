@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.service.UserService;
 import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
@@ -41,6 +42,8 @@ public class DietServiceImpl implements DietService {
     private DayDietRefService dayDietRefService;
     @Autowired
     private DayDietService dayDietService;
+    @Autowired
+    private UserService userService;
 
     @Override
     @Transactional(readOnly = true)
@@ -76,6 +79,7 @@ public class DietServiceImpl implements DietService {
             .setTo(dietChanges.getTo().get())
             .setGenerator(generatorType)
             .setDescription(dietChanges.getDescription().orElse(null))
+            .setUser(userService.userToEntity(dietChanges.getUser().get()))
             .setDayDiets(generatedDiet);
 
         return entityToDiet(repository.save(entity));
@@ -89,6 +93,7 @@ public class DietServiceImpl implements DietService {
         entity.setName(params.getDietName());
         entity.setFrom(params.getStartDate());
         entity.setTo(params.getStartDate().plusDays(source.getFrom().until(source.getTo(), ChronoUnit.DAYS)));
+        entity.setUser(userService.userToEntity(params.getUser()));
         entity.setGenerator(source.getGeneratorType());
         List<DayDietEntity> dayDiets = new LinkedList<>();
         LocalDate currentDay = params.getStartDate();
@@ -192,6 +197,7 @@ public class DietServiceImpl implements DietService {
         builder.setName(entity.getName())
             .setFrom(entity.getFrom())
             .setTo(entity.getTo())
+            .setUser(userService.entityToUser(entity.getUser()))
             .setGenerator(entity.getGenerator())
             .setDescription(entity.getDescription())
             .setDayDiets(ConverterUtil.convertToList(entity.getDayDiets(), dayDietRefService::fromEntity));

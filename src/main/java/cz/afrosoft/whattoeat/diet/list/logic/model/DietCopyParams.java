@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
+
 import java.time.LocalDate;
 
 /**
@@ -8,6 +10,7 @@ import java.time.LocalDate;
 public class DietCopyParams {
 
     private String dietName;
+    private User user;
     private LocalDate startDate;
     private MealCopyParams breakfastsParams;
     private MealCopyParams snacksParams;
@@ -85,6 +88,15 @@ public class DietCopyParams {
 
     public DietCopyParams setStartDate(final LocalDate startDate) {
         this.startDate = startDate;
+        return this;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public DietCopyParams setUser(final User user) {
+        this.user = user;
         return this;
     }
 }

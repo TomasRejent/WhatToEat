@@ -199,7 +199,7 @@ public class DietViewController implements Initializable {
             return;
         }
 
-        GeneratorParameters params = new BasicGeneratorParams(diet.getFrom(), diet.getTo(), new RecipeFilter.Builder().build(), Set.of(MealTime.LUNCH));
+        GeneratorParameters params = new BasicGeneratorParams(diet.getFrom(), diet.getTo(), new RecipeFilter.Builder().build(), Set.of(MealTime.LUNCH), diet.getUser());
         List<DayDietEntity> newDayDiets = generatorService.generate(diet.getGeneratorType(), params);
         dietService.replaceDayDiets(diet, newDayDiets);
         showDiet(dietService.getById(diet.getId()));

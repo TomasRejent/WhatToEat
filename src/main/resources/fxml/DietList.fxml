@@ -33,6 +33,7 @@
                         <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.common.name"/>
                         <TableColumn fx:id="fromColumn" text="%cz.afrosoft.whattoeat.common.from"/>
                         <TableColumn fx:id="toColumn" text="%cz.afrosoft.whattoeat.common.to"/>
+                        <TableColumn fx:id="userColumn" text="%cz.afrosoft.whattoeat.common.user"/>
                         <TableColumn fx:id="generatorColumn" text="%cz.afrosoft.whattoeat.dietlist.table.generator"/>
                     </columns>
                 </TableView>

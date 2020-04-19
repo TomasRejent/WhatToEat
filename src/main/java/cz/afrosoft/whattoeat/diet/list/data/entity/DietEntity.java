@@ -1,19 +1,13 @@
 package cz.afrosoft.whattoeat.diet.list.data.entity;
 
+import cz.afrosoft.whattoeat.cookbook.user.data.entity.UserEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
@@ -46,6 +40,10 @@ public class DietEntity {
 
     @Column(name = "DESCRIPTION", columnDefinition = "CLOB")
     private String description;
+
+    @ManyToOne
+    @JoinColumn(name = "USER_ID")
+    private UserEntity user;
 
     @OneToMany(cascade = CascadeType.ALL)
     private List<DayDietEntity> dayDiets;
@@ -110,6 +108,15 @@ public class DietEntity {
 
     public DietEntity setDayDiets(final List<DayDietEntity> dayDiets) {
         this.dayDiets = dayDiets;
+        return this;
+    }
+
+    public UserEntity getUser() {
+        return user;
+    }
+
+    public DietEntity setUser(final UserEntity user) {
+        this.user = user;
         return this;
     }
 

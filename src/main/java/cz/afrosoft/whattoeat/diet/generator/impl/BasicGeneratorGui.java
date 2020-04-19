@@ -5,6 +5,7 @@ import java.util.Optional;
 import java.util.Set;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
 import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 import javafx.scene.Node;
@@ -18,6 +19,7 @@ public class BasicGeneratorGui implements GeneratorGui<BasicGeneratorParams> {
     private LocalDate to;
     private Set<MealTime> dishes;
     private RecipeFilter filter;
+    private User user;
 
     @Override
     public void setInterval(final LocalDate from, final LocalDate to) {
@@ -36,8 +38,13 @@ public class BasicGeneratorGui implements GeneratorGui<BasicGeneratorParams> {
     }
 
     @Override
+    public void setUser(final User user) {
+        this.user = user;
+    }
+
+    @Override
     public BasicGeneratorParams getParameters() {
-        return new BasicGeneratorParams(from, to, filter, dishes);
+        return new BasicGeneratorParams(from, to, filter, dishes, user);
     }
 
     @Override

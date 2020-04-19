@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -28,9 +29,10 @@ final class DietImpl implements Diet {
     private final LocalDate to;
     private final GeneratorType generatorType;
     private final String description;
+    private final User user;
     private final List<DayDietRef> dayDiets;
 
-    private DietImpl(final Integer id, final String name, final LocalDate from, final LocalDate to, final GeneratorType generator, final String description, final
+    private DietImpl(final Integer id, final String name, final LocalDate from, final LocalDate to, final GeneratorType generator, final String description, final User user, final
     List<DayDietRef> dayDiets) {
         this.id = id;
         this.name = name;
@@ -38,6 +40,7 @@ final class DietImpl implements Diet {
         this.to = to;
         this.generatorType = generator;
         this.description = description;
+        this.user = user;
         this.dayDiets = Collections.unmodifiableList(new ArrayList<>(dayDiets));
     }
 
@@ -69,6 +72,11 @@ final class DietImpl implements Diet {
     @Override
     public Optional<String> getDescription() {
         return Optional.ofNullable(description);
+    }
+
+    @Override
+    public User getUser() {
+        return user;
     }
 
     @Override
@@ -124,6 +132,7 @@ final class DietImpl implements Diet {
         private GeneratorType generatorType;
         private GeneratorParameters generatorParams;
         private String description;
+        private User user;
         private List<DayDietRef> dayDiets;
 
         public Builder() {
@@ -167,6 +176,17 @@ final class DietImpl implements Diet {
         @Override
         public Optional<String> getDescription() {
             return Optional.ofNullable(description);
+        }
+
+        @Override
+        public Optional<User> getUser() {
+            return Optional.ofNullable(user);
+        }
+
+        @Override
+        public Builder setUser(final User user) {
+            this.user = user;
+            return this;
         }
 
         @Override
@@ -224,7 +244,7 @@ final class DietImpl implements Diet {
             Validate.notNull(generatorType);
             Validate.notNull(dayDiets);
 
-            return new DietImpl(id, name, from, to, generatorType, description, dayDiets);
+            return new DietImpl(id, name, from, to, generatorType, description, user, dayDiets);
         }
 
         @Override
@@ -236,6 +256,7 @@ final class DietImpl implements Diet {
                 .append("to", to)
                 .append("generatorType", generatorType)
                 .append("description", description)
+                .append("user", user)
                 .append("dayDiets", dayDiets)
                 .toString();
         }

@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.diet.generator.model;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 
 import java.time.LocalDate;
@@ -18,4 +19,6 @@ public interface GeneratorParameters {
     RecipeFilter getFilter();
 
     Set<MealTime> getDishes();
+
+    User getUser();
 }

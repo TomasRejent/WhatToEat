@@ -23,6 +23,8 @@
                     >
                         <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.newName"/>
                         <TextField fx:id="newDietNameField" prefWidth="250"/>
+                        <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.user" />
+                        <ComboBox fx:id="userField" />
                         <FieldLabel text="%cz.afrosoft.whattoeat.copyDietDialog.startDate"/>
                         <DatePicker fx:id="startDate"/>
                     </HBox>

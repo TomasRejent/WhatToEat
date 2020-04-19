@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.generator.model;
 
+import cz.afrosoft.whattoeat.diet.generator.impl.nutrition.NutritionGenerator;
 import cz.afrosoft.whattoeat.diet.generator.impl.random.RandomGenerator;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -15,7 +16,8 @@ import cz.afrosoft.whattoeat.diet.generator.impl.none.NoneGenerator;
  */
 public enum GeneratorType implements IdEnum, Labeled {
     NONE(0, "cz.afrosoft.whattoeat.common.none", NoneGenerator.class),
-    RANDOM(1, "cz.afrosoft.whattoeat.diet.generator.random.name", RandomGenerator.class);
+    RANDOM(1, "cz.afrosoft.whattoeat.diet.generator.random.name", RandomGenerator.class),
+    NUTRITION_SALVATION(2, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.name", NutritionGenerator.class);
 
     private final int id;
     private final String labelKey;

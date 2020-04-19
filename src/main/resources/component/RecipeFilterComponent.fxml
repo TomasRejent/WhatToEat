@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.*?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
+<?import javafx.scene.control.TextField?>
+<?import cz.afrosoft.whattoeat.core.gui.component.MultiSelect?>
+<?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
+<fx:root
+        type="javafx.scene.layout.GridPane"
+        xmlns:fx="http://javafx.com/fxml">
+    <HBox>
+        <FieldLabel fx:id="nameFilterLabel" text="%cz.afrosoft.whattoeat.common.name" minWidth="40"/>
+        <TextField fx:id="nameFilter" HBox.hgrow="SOMETIMES"/>
+        <FieldLabel text="%cz.afrosoft.whattoeat.common.cookbook" minWidth="60"/>
+        <MultiSelect fx:id="cookbookFilter" HBox.hgrow="SOMETIMES"/>
+        <FieldLabel text="%cz.afrosoft.whattoeat.common.type" minWidth="40"/>
+        <MultiSelect fx:id="typeFilter"/>
+        <KeywordField fx:id="keywordField" keywordType="RECIPE_KEYWORDS"/>
+    </HBox>
+</fx:root>

@@ -59,7 +59,7 @@ public class RandomGenerator implements Generator<BasicGeneratorParams> {
     }
 
     @Override
-    public List<DayDietEntity> generate(final GeneratorParameters parameters) {
+    public List<DayDietEntity> generate(final BasicGeneratorParams parameters) {
         Validate.notNull(parameters);
         this.parameters = parameters;
 

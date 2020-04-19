@@ -15,6 +15,6 @@ public interface Generator<T extends GeneratorParameters> {
 
     GeneratorGui<T> getGui();
 
-    List<DayDietEntity> generate(GeneratorParameters parameters);
+    List<DayDietEntity> generate(T parameters);
 
 }

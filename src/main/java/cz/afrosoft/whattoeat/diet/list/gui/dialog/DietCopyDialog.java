@@ -1,6 +1,9 @@
 package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
+import cz.afrosoft.whattoeat.cookbook.user.lodic.service.UserService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.FloatField;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
@@ -10,6 +13,7 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.MealCopyParams;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.stage.Modality;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.PostConstruct;
 import java.util.Optional;
@@ -22,6 +26,8 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
 
     @FXML
     private TextField newDietNameField;
+    @FXML
+    private ComboBox<User> userField;
     @FXML
     private DatePicker startDate;
     @FXML
@@ -48,6 +54,8 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
     private FloatField dinnersServingsField;
     @FXML
     private FloatField othersServingsField;
+    @Autowired
+    private UserService userService;
 
     @PostConstruct
     private void initialize(){
@@ -63,6 +71,8 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
         newDietNameField.setOnKeyTyped(event -> {
             finishButton.setDisable(newDietNameField.getText().length() == 0);
         });
+        userField.getItems().setAll(userService.getAllUsers());
+        userField.setConverter(ComboBoxUtils.createStringConverter(userField, User::getName));
     }
 
     private void setupButtons() {

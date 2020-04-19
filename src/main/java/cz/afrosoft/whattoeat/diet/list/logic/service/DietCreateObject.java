@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.diet.list.logic.service;
 import java.time.LocalDate;
 import java.util.Optional;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
@@ -23,6 +24,8 @@ public interface DietCreateObject {
 
     Optional<GeneratorParameters> getGeneratorParams();
 
+    Optional<User> getUser();
+
     DietCreateObject setName(String name);
 
     DietCreateObject setFrom(LocalDate from);
@@ -34,4 +37,6 @@ public interface DietCreateObject {
     DietCreateObject setGenerator(GeneratorType generator);
 
     DietCreateObject setGeneratorParams(GeneratorParameters params);
+
+    DietCreateObject setUser(User user);
 }

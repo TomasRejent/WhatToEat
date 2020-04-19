@@ -42,8 +42,8 @@ class GeneratorServiceImpl implements GeneratorService {
      * @param generatorType (NotNull) Type of generator to get.
      * @return (NotNull) Generator of specified type.
      */
-    private Generator<?> getGeneratorByType(final GeneratorType generatorType) {
+    private <T extends GeneratorParameters> Generator<T> getGeneratorByType(final GeneratorType generatorType) {
         Validate.notNull(generatorType);
-        return applicationContext.getBean(generatorType.getGeneratorClass());
+        return (Generator<T>) applicationContext.getBean(generatorType.getGeneratorClass());
     }
 }

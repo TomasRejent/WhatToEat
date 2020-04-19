@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Label?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FieldLabel?>
+<?import cz.afrosoft.whattoeat.core.gui.component.FloatField?>
+<fx:root
+        type="javafx.scene.layout.GridPane"
+        xmlns:fx="http://javafx.com/fxml"
+        stylesheets="@NutritionCriteriaField.css"
+>
+    <Label
+        fx:id="fieldLabel"
+        GridPane.columnIndex="0"
+        GridPane.rowIndex="0"
+        GridPane.columnSpan="2"
+    />
+    <FieldLabel
+        fx:id="targetAmountLabel"
+        text="%cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.targetAmount"
+        GridPane.columnIndex="0"
+        GridPane.rowIndex="1"
+    />
+    <FloatField
+        fx:id="targetAmountField"
+        GridPane.columnIndex="1"
+        GridPane.rowIndex="1"
+    />
+    <FieldLabel
+            fx:id="priorityLabel"
+            text="%cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.priority"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="2"
+    />
+    <FloatField
+            fx:id="priorityField"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="2"
+    />
+    <FieldLabel
+            fx:id="belowToleranceLabel"
+            text="%cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.belowTolerance"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="3"
+    />
+    <FloatField
+            fx:id="belowToleranceField"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="3"
+    />
+    <FieldLabel
+            fx:id="aboveToleranceLabel"
+            text="%cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.aboveTolerance"
+            GridPane.columnIndex="0"
+            GridPane.rowIndex="4"
+    />
+    <FloatField
+            fx:id="aboveToleranceField"
+            GridPane.columnIndex="1"
+            GridPane.rowIndex="4"
+    />
+</fx:root>

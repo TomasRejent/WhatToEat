@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
@@ -57,6 +58,8 @@ public class DietController implements Initializable {
     private TableColumn<Diet, LocalDate> fromColumn;
     @FXML
     private TableColumn<Diet, LocalDate> toColumn;
+    @FXML
+    private TableColumn<Diet, String> userColumn;
     @FXML
     private TableColumn<Diet, GeneratorType> generatorColumn;
     @FXML
@@ -138,6 +141,7 @@ public class DietController implements Initializable {
         nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(Diet::getName));
         fromColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getFrom, null));
         toColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getTo, null));
+        userColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper((diet -> diet.getUser() != null ? diet.getUser().getName() : " - ")));
         generatorColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(Diet::getGeneratorType, null));
         generatorColumn.setCellFactory(column -> new LabeledCell<>());
         dietTable.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);

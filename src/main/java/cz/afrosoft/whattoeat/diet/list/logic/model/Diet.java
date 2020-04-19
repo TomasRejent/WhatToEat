@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 
@@ -48,6 +49,8 @@ public interface Diet extends IdEntity, Comparable<Diet> {
      * @return (NotNull)
      */
     Optional<String> getDescription();
+
+    User getUser();
 
     /**
      * Gets all day diets for this diet. Number of items in set should match duration in days between from and to.

@@ -48,14 +48,25 @@
             GridPane.rowIndex="0"
     />
     <FieldLabel
-            fx:id="generatorLabel"
-            text="%cz.afrosoft.whattoeat.diet.generator.input.generator"
+            fx:id="userLabel"
+            text="%cz.afrosoft.whattoeat.diet.generator.input.user"
             GridPane.columnIndex="6"
             GridPane.rowIndex="0"
     />
     <ComboBox
-            fx:id="generatorField"
+            fx:id="userField"
             GridPane.columnIndex="7"
+            GridPane.rowIndex="0"
+    />
+    <FieldLabel
+            fx:id="generatorLabel"
+            text="%cz.afrosoft.whattoeat.diet.generator.input.generator"
+            GridPane.columnIndex="8"
+            GridPane.rowIndex="0"
+    />
+    <ComboBox
+            fx:id="generatorField"
+            GridPane.columnIndex="9"
             GridPane.rowIndex="0"
     />
     <FieldLabel

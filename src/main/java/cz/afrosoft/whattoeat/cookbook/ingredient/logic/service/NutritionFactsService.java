@@ -3,6 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service;
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.NutritionFactsEntity;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
@@ -54,6 +55,8 @@ public interface NutritionFactsService {
     Float nutritionToBase(Float humanReadableNutrition);
 
     MealNutritionFacts getMealNutritionFacts(Meal meal);
+
+    MealNutritionFacts getMealNutritionFacts(final RecipeRef recipeRef, final float servings);
 
     List<MealNutritionFacts> getDayDietNutritionFacts(DayDiet dayDiet);
 
