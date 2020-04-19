@@ -55,6 +55,7 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
     private boolean generateAfternoonSnack;
     private boolean generateDinner;
     private boolean subsequentDay = false;
+    private Random random = new Random();
 
     @Autowired
     private NutritionFactsService nutritionFactsService;
@@ -101,6 +102,20 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                 .setRecipe(mealEntity.getRecipe());
     }
 
+    private Optional<RecipeRef> getSideDishIfDefined(Recipe recipe){
+        List<RecipeRef> sideDishes = new ArrayList<>(recipe.getSideDishes());
+        Optional<RecipeRef> sideDish;
+        if(sideDishes.isEmpty()){
+            sideDish = Optional.empty();
+        }else if(sideDishes.size() == 1){
+            sideDish = Optional.of(recipeService.getRecipeById(sideDishes.get(0).getId()));
+        }else{
+            RecipeRef sideDishRef = sideDishes.get(random.nextInt(sideDishes.size()));
+            sideDish = Optional.of(recipeService.getRecipeById(sideDishRef.getId()));
+        }
+        return sideDish;
+    }
+
     private void generateDay(DayDietEntity dayDiet, List<DayDietEntity> allGeneratedDays){
         if(this.generateLunch && (!this.lunchPool.isEmpty() || this.subsequentDay)){
             if(this.subsequentDay){
@@ -108,7 +123,12 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                         allGeneratedDays.get(allGeneratedDays.size() - 1).getLunch().stream().map(this::copyMealEntity).collect(Collectors.toList())
                 );
             } else {
-                dayDiet.setLunch(List.of(createMealEntity(lunchPool.takeRandom())));
+                Recipe recipe = lunchPool.takeRandom();
+                Optional<RecipeRef> sideDish = getSideDishIfDefined(recipe);
+                List<RecipeRef> lunchRecipes = new ArrayList<>();
+                lunchRecipes.add(recipe);
+                sideDish.ifPresent(lunchRecipes::add);
+                dayDiet.setLunch(lunchRecipes.stream().map(this::createMealEntity).collect(Collectors.toList()));
             }
         }
 
@@ -138,13 +158,14 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
     }
 
     private void initGeneration(){
+        this.subsequentDay = false;
         Set<Recipe> recipesFromPreviousDiets = getRecipesFromPreviousDiets();
         this.breakfastPool = createPool(parameters.getBreakfastFilter(), recipesFromPreviousDiets);
         this.snackPool = createPool(parameters.getSnackFilter(), recipesFromPreviousDiets);
         this.lunchPool = createPool(parameters.getLunchFilter(), recipesFromPreviousDiets);
         this.afternoonSnackPool = createPool(parameters.getAfternoonSnackFilter(), recipesFromPreviousDiets);
         this.dinnerPool = createPool(parameters.getDinnerFilter(), recipesFromPreviousDiets);
-        this.nutritionFactsMap = getNutritionFactsForRecipes();
+        // TODO - enable when nutrition facts are used. Commented for performance now. this.nutritionFactsMap = getNutritionFactsForRecipes();
 
         this.generateBreakfast = parameters.getDishes().contains(MealTime.BREAKFAST);
         this.generateSnack = parameters.getDishes().contains(MealTime.MORNING_SNACK);
