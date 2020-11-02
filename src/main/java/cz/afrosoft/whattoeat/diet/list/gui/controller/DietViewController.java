@@ -3,14 +3,28 @@ package cz.afrosoft.whattoeat.diet.list.gui.controller;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
 import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
+import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
+import cz.afrosoft.whattoeat.core.util.ConverterUtil;
 import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.generator.service.GeneratorService;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
+import cz.afrosoft.whattoeat.diet.list.gui.dialog.DayDietDialog;
 import cz.afrosoft.whattoeat.diet.list.gui.table.DateCell;
+import cz.afrosoft.whattoeat.diet.list.gui.table.MealsCell;
+import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
+import cz.afrosoft.whattoeat.diet.list.logic.service.*;
+import javafx.application.Platform;
+import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TablePosition;
+import javafx.scene.control.TableView;
+import javafx.scene.input.KeyCode;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,23 +38,7 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.function.BiFunction;
-
-import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
-import cz.afrosoft.whattoeat.core.util.ConverterUtil;
-import cz.afrosoft.whattoeat.diet.list.gui.dialog.DayDietDialog;
-import cz.afrosoft.whattoeat.diet.list.gui.table.MealsCell;
-import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietService;
-import cz.afrosoft.whattoeat.diet.list.logic.service.DayDietUpdateObject;
-import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
-import javafx.application.Platform;
-import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -90,6 +88,9 @@ public class DietViewController implements Initializable {
     @Autowired
     private MenuController menuController;
 
+    @Autowired
+    private MealService mealService;
+
     /**
      * Map which holds appropriate setter method of {@link DayDietUpdateObject} for meal columns, so when meals are edited setter can be easily retrieved for edited
      * column.
@@ -100,6 +101,11 @@ public class DietViewController implements Initializable {
      * Currently displayed diet.
      */
     private Diet diet;
+
+    /**
+     * Stores meals copied to "clipboard" on ctrl+c key.
+     */
+    private List<Meal> clipboardContent;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -114,6 +120,37 @@ public class DietViewController implements Initializable {
                 editMeals();
             }
         });
+        dayDietTable.setOnKeyPressed(event -> {
+            if(event.isControlDown()){
+                if(event.getCode() == KeyCode.C){
+                    copySelectedMeals();
+                } else if(event.getCode() == KeyCode.V){
+                    pasteToSelectedMeals();
+                }
+            }
+        });
+    }
+
+    private void copySelectedMeals(){
+        getSelectedMeals().ifPresent(editSelection -> {
+            this.clipboardContent = editSelection.selectedMeals;
+        });
+    }
+
+    private void pasteToSelectedMeals(){
+        Optional<EditSelection> selectedMeals = getSelectedMeals();
+        if(this.clipboardContent != null && selectedMeals.isPresent()){
+            EditSelection editSelection = selectedMeals.get();
+            final List<MealUpdateObject> copyOfMeals = clipboardContent.stream().map(mealService::copyMeal).collect(Collectors.toList());
+            final DayDietUpdateObject updateObject = dayDietService.getUpdateObject(editSelection.getDayDiet());
+            editSelection.getUpdateSetter().apply(updateObject, copyOfMeals);
+            final DayDiet updatedDiet = dayDietService.update(updateObject);
+            Platform.runLater(() -> {
+                dayDietTable.getItems().set(editSelection.getRowIndex(), updatedDiet);
+                // restore selection after table update
+                dayDietTable.getSelectionModel().select(editSelection.rowIndex, editSelection.getSelectedColumn());
+            });
+        }
     }
 
     private void setupTableColumns() {
@@ -161,7 +198,7 @@ public class DietViewController implements Initializable {
                 TableColumn<DayDiet, List<Meal>> tableColumn = firstSelected.getTableColumn();
                 List<Meal> cellData = tableColumn.getCellData(firstSelected.getRow());
                 if (cellData != null) {
-                    return Optional.of(new EditSelection(firstSelected.getRow(), dayDietTable.getSelectionModel().getSelectedItem(), cellData, columnEditSetterMap.get
+                    return Optional.of(new EditSelection(firstSelected.getRow(), dayDietTable.getSelectionModel().getSelectedItem(), tableColumn, cellData, columnEditSetterMap.get
                         (tableColumn)));
                 }
             }
@@ -217,18 +254,21 @@ public class DietViewController implements Initializable {
     private static class EditSelection {
 
         private int rowIndex;
+        private TableColumn<DayDiet, List<Meal>> selectedColumn;
         private DayDiet dayDiet;
         private List<Meal> selectedMeals;
         private BiFunction<DayDietUpdateObject, List<MealUpdateObject>, DayDietUpdateObject> updateSetter;
 
-        EditSelection(final int rowIndex, final DayDiet dayDiet, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>,
+        EditSelection(final int rowIndex, final DayDiet dayDiet, final TableColumn<DayDiet, List<Meal>> selectedColumn, final List<Meal> selectedMeals, final BiFunction<DayDietUpdateObject, List<MealUpdateObject>,
             DayDietUpdateObject> updateSetter) {
             Validate.notNull(dayDiet);
+            Validate.notNull(selectedColumn);
             Validate.notNull(selectedMeals);
             Validate.notNull(updateSetter);
 
             this.rowIndex = rowIndex;
             this.dayDiet = dayDiet;
+            this.selectedColumn = selectedColumn;
             this.selectedMeals = selectedMeals;
             this.updateSetter = updateSetter;
         }
@@ -239,6 +279,10 @@ public class DietViewController implements Initializable {
 
         DayDiet getDayDiet() {
             return dayDiet;
+        }
+
+        TableColumn<DayDiet, List<Meal>> getSelectedColumn() {
+            return selectedColumn;
         }
 
         List<Meal> getSelectedMeals() {

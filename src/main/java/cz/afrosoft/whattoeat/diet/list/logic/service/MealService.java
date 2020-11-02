@@ -20,4 +20,10 @@ public interface MealService {
 
     MealUpdateObject getMealUpdateObject(MealEntity mealEntity);
 
+    /**
+     * Creates copy of meal with all attributes except id. Created update object is not persisted.
+     * @param meal Meal to copy.
+     * @return MealUpdateObject with filled attributes.
+     */
+    MealUpdateObject copyMeal(Meal meal);
 }

@@ -59,6 +59,15 @@ class MealServiceImpl implements MealService {
     }
 
     @Override
+    public MealUpdateObject copyMeal(final Meal meal) {
+        Validate.notNull(meal);
+
+        return new MealImpl.Builder()
+                .setServings(meal.getServings())
+                .setRecipe(meal.getRecipe());
+    }
+
+    @Override
     public MealUpdateObject getMealUpdateObject(final MealEntity mealEntity) {
         LOGGER.debug("Getting update object for meal entity {}.", mealEntity);
         Validate.notNull(mealEntity);
