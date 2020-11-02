@@ -23,6 +23,7 @@
             <DeleteButton fx:id="deleteButton" onAction="#deleteDiet"/>
             <IconButton fx:id="copyButton" icon="COPY" onAction="#showCopyDialog"/>
             <IconButton fx:id="shoppingListButton" icon="FILE_TEXT_ALT" onAction="#exportShoppingList"/>
+            <IconButton fx:id="quickCreateButton" icon="FAST_FORWARD" onAction="#quickCreate"/>
         </VBox>
     </left>
     <center>

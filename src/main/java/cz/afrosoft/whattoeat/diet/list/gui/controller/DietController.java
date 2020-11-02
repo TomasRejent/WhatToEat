@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
 import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
+import cz.afrosoft.whattoeat.cookbook.user.lodic.service.UserService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.component.DeleteButton;
 import cz.afrosoft.whattoeat.core.gui.component.IconButton;
@@ -9,14 +10,13 @@ import cz.afrosoft.whattoeat.core.gui.controller.MenuController;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
+import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DietCopyDialog;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
-import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
+import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.shopping.gui.dialog.ShoppingListDialog;
-import cz.afrosoft.whattoeat.diet.shopping.logic.model.ShoppingItems;
-import cz.afrosoft.whattoeat.diet.shopping.logic.service.ShoppingListService;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -33,10 +33,11 @@ import org.springframework.stereotype.Component;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.List;
+import java.time.temporal.WeekFields;
+import java.util.Comparator;
+import java.util.Locale;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -83,6 +84,8 @@ public class DietController implements Initializable {
     private DietService dietService;
     @Autowired
     private DietCopyDialog dietCopyDialog;
+    @Autowired
+    private UserService userService;
 
     @Override
     public void initialize(final URL location, final ResourceBundle resources) {
@@ -169,6 +172,35 @@ public class DietController implements Initializable {
     public void addDiet() {
         LOGGER.debug("Add diet action triggered.");
         menuController.showDietGenerator();
+    }
+
+    @FXML
+    public void quickCreate(){
+        DietCreateObject dietCreateObject = dietService.getCreateObject();
+
+        // this is only for specific usage, it may be generalized in future by using settings for quick button
+        Optional<User> user = userService.getAllUsers().stream().filter((user1 -> "Alex".equals(user1.getName()))).findFirst();
+        user.ifPresent(alex -> {
+            Optional<Diet> lastDiet = dietService.getAllDiets()
+                    .stream()
+                    .filter(diet -> diet.getUser().getId().equals(alex.getId()))
+                    .max(Comparator.comparing(Diet::getTo));
+            lastDiet.ifPresent(diet -> {
+                LocalDate from = diet.getTo().plusDays(1);
+                LocalDate to = from.plusDays(6);
+
+                dietCreateObject
+                        .setName(from.get(WeekFields.of(Locale.getDefault()).weekOfYear()) + ". týden " + alex.getName())
+                        .setFrom(from)
+                        .setTo(to)
+                        .setUser(alex)
+                        .setGeneratorParams(new BasicGeneratorParams(from, to, null, null, alex))
+                        .setGenerator(GeneratorType.NONE);
+
+                dietService.create(dietCreateObject);
+                dietTable.getItems().addAll(dietService.getAllDiets());
+            });
+        });
     }
 
     @FXML
