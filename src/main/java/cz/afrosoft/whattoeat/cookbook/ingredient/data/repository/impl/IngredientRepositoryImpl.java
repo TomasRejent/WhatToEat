@@ -26,6 +26,8 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
     private static final String ID = "id";
     private static final String NAME = "name";
     private static final String GENERAL = "general";
+    private static final String EDIBLE = "edible";
+    private static final String PURCHASABLE = "purchasable";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -45,6 +47,10 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
         filter.getGeneral().ifPresent(general -> queryPredicates.add(filterByGeneral(general, builder, queryRoot)));
         //filtering by exclusion of ids
         filter.getExcludedIds().ifPresent(excludedIds -> queryPredicates.add(filterOutExcludedIds(excludedIds, builder, queryRoot)));
+        //filtering by flag if ingredient is edible as it is or if it requires preparation
+        filter.getIsEdible().ifPresent(edible -> queryPredicates.add(filterByEdible(edible, builder, queryRoot)));
+        //filtering by flag if ingredient is purchasable in shop or not
+        filter.getIsPurchasable().ifPresent(purchasable -> queryPredicates.add(filterByPurchasable(purchasable, builder, queryRoot)));
 
         query.where(queryPredicates.toArray(new Predicate[queryPredicates.size()]));
         TypedQuery<IngredientEntity> typedQuery = entityManager.createQuery(query);
@@ -68,5 +74,21 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
     private Predicate filterOutExcludedIds(final Set<Integer> excludedIds, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
         return queryRoot.get(ID).in(excludedIds).not();
+    }
+
+    private Predicate filterByEdible(final Boolean edible, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
+        if(edible){
+            return builder.isTrue(queryRoot.get(EDIBLE));
+        } else {
+            return builder.isFalse(queryRoot.get(EDIBLE));
+        }
+    }
+
+    private Predicate filterByPurchasable(final Boolean purchasable, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
+        if(purchasable){
+            return builder.isTrue(queryRoot.get(PURCHASABLE));
+        } else {
+            return builder.isFalse(queryRoot.get(PURCHASABLE));
+        }
     }
 }

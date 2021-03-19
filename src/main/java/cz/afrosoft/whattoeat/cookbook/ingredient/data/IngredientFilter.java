@@ -18,11 +18,15 @@ public final class IngredientFilter {
     private final String name;
     private final Boolean general;
     private final Set<Integer> excludedIds;
+    private final Boolean isEdible;
+    private final Boolean isPurchasable;
 
-    private IngredientFilter(final String name, final Boolean general, final Set<Integer> excludedIds) {
+    private IngredientFilter(final String name, final Boolean general, final Set<Integer> excludedIds, final Boolean isEdible, final Boolean isPurchasable) {
         this.name = name;
         this.general = general;
         this.excludedIds = excludedIds;
+        this.isEdible = isEdible;
+        this.isPurchasable = isPurchasable;
     }
 
     /**
@@ -44,6 +48,14 @@ public final class IngredientFilter {
         }
     }
 
+    public Optional<Boolean> getIsEdible(){
+        return Optional.ofNullable(isEdible);
+    }
+
+    public Optional<Boolean> getIsPurchasable(){
+        return Optional.ofNullable(isPurchasable);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
@@ -57,6 +69,8 @@ public final class IngredientFilter {
         private String name;
         private Boolean general;
         private Set<Integer> excludedIds;
+        private Boolean isEdible;
+        private Boolean isPurchasable;
 
         /**
          * @param name (Nullable) Name to filter by. If null, empty or blank value is specified, then ingredients are not filtered by name.
@@ -82,13 +96,23 @@ public final class IngredientFilter {
             return this;
         }
 
+        public Builder setEdible(final Boolean edible) {
+            isEdible = edible;
+            return this;
+        }
+
+        public Builder setPurchasable(final Boolean purchasable) {
+            isPurchasable = purchasable;
+            return this;
+        }
+
         /**
          * Builds filter from this builder with previously specified filtering criteria.
          *
          * @return (NotNull)
          */
         public IngredientFilter build() {
-            return new IngredientFilter(name, general, excludedIds);
+            return new IngredientFilter(name, general, excludedIds, isEdible, isPurchasable);
         }
     }
 }

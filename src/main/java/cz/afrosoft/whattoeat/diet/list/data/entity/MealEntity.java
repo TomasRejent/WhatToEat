@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.data.entity;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.IngredientEntity;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
@@ -21,11 +22,17 @@ public class MealEntity {
     @Column(name = "ID", nullable = false)
     private Integer id;
 
-    @Column(name = "SERVINGS", nullable = false)
+    @Column(name = "SERVINGS")
     private Float servings;
 
-    @ManyToOne(optional = false)
+    @Column(name = "AMOUNT")
+    private Integer amount;
+
+    @ManyToOne
     private RecipeEntity recipe;
+
+    @ManyToOne
+    private IngredientEntity ingredient;
 
     public Integer getId() {
         return id;
@@ -51,6 +58,24 @@ public class MealEntity {
 
     public MealEntity setRecipe(final RecipeEntity recipe) {
         this.recipe = recipe;
+        return this;
+    }
+
+    public Integer getAmount() {
+        return amount;
+    }
+
+    public MealEntity setAmount(final Integer amount) {
+        this.amount = amount;
+        return this;
+    }
+
+    public IngredientEntity getIngredient() {
+        return ingredient;
+    }
+
+    public MealEntity setIngredient(final IngredientEntity ingredient) {
+        this.ingredient = ingredient;
         return this;
     }
 

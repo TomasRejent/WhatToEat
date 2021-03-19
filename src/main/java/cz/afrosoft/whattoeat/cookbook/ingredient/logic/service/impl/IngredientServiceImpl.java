@@ -51,6 +51,13 @@ public class IngredientServiceImpl implements IngredientService {
 
     @Override
     @Transactional(readOnly = true)
+    public Ingredient getById(final Integer id) {
+        Validate.notNull(id);
+        return entityToIngredient(repository.getOne(id));
+    }
+
+    @Override
+    @Transactional(readOnly = true)
     public Set<Ingredient> getAllIngredients() {
         LOGGER.debug("Getting all ingredients.");
         return ConverterUtil.convertToSortedSet(repository.findAll(), this::entityToIngredient);

@@ -120,7 +120,11 @@ public class DietServiceImpl implements DietService {
             return source.stream().map(mealEntity -> {
                 MealEntity mealCopy = new MealEntity();
                 mealCopy.setRecipe(mealEntity.getRecipe());
-                mealCopy.setServings(params.getServings());
+                if(mealEntity.getRecipe() != null){ // servings parameter is applied only for recipes, it is skipped for ingredients
+                    mealCopy.setServings(params.getServings());
+                }
+                mealCopy.setAmount(mealEntity.getAmount());
+                mealCopy.setIngredient(mealEntity.getIngredient());
                 return mealCopy;
             }).collect(Collectors.toList());
         }else{

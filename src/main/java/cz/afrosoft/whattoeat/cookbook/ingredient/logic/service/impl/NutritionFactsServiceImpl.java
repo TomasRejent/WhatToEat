@@ -1,7 +1,10 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.data.entity.NutritionFactsEntity;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsUpdateObject;
@@ -127,8 +130,53 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
 
     @Override
     public MealNutritionFacts getMealNutritionFacts(final Meal meal) {
-        return getMealNutritionFacts(meal.getRecipe(), meal.getServings());
+        if( meal.getRecipe() != null){
+            return getMealNutritionFacts(meal.getRecipe(), meal.getServings());
+        } else {
+            return getMealNutritionFacts(meal.getIngredient(), meal.getAmount());
+        }
     }
+
+    private MealNutritionFacts getMealNutritionFacts(final IngredientRef ingredientRef, final int amount){
+        boolean nutritionMissing = false;
+        float energy = 0;
+        float fat = 0;
+        float saturatedFat = 0;
+        float carbohydrate = 0;
+        float sugar = 0;
+        float protein = 0;
+        float salt = 0;
+        float fibre = 0;
+
+        Ingredient ingredient = ingredientService.getById(ingredientRef.getId());
+        Optional<NutritionFacts> nutritionFacts = ingredient.getNutritionFacts();
+        if(amount <= 0 || !nutritionFacts.isPresent()){
+            nutritionMissing = true;
+        } else {
+            NutritionFacts existingNutritionFacts = nutritionFacts.get();
+            energy += existingNutritionFacts.getEnergy()*amount;
+            fat += existingNutritionFacts.getFat()*amount;
+            saturatedFat += existingNutritionFacts.getSaturatedFat()*amount;
+            carbohydrate += existingNutritionFacts.getCarbohydrate()*amount;
+            sugar += existingNutritionFacts.getSugar()*amount;
+            protein += existingNutritionFacts.getProtein()*amount;
+            salt += existingNutritionFacts.getProtein()*amount;
+            fibre += existingNutritionFacts.getFiber()*amount;
+        }
+
+        return new MealNutritionFacts()
+            .setMealName(ingredientRef.getName())
+            .setEnergy(energy/1000) // conversion to kJ
+            .setFat(fat)
+            .setSaturatedFat(saturatedFat)
+            .setCarbohydrate(carbohydrate)
+            .setSugar(sugar)
+            .setProtein(protein)
+            .setSalt(salt)
+            .setFibre(fibre)
+            .setNutritionFactMissing(nutritionMissing);
+    }
+
 
     @Override
     public MealNutritionFacts getMealNutritionFacts(final RecipeRef recipeRef, final float servings) {

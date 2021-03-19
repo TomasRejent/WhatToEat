@@ -8,6 +8,8 @@
 <?import cz.afrosoft.whattoeat.core.gui.component.SearchButton?>
 <?import cz.afrosoft.whattoeat.core.gui.component.RemoveButton?>
 <?import cz.afrosoft.whattoeat.core.gui.component.KeywordField?>
+
+<?import cz.afrosoft.whattoeat.core.gui.component.IntegerField?>
 <fx:root
         type="javafx.scene.control.Dialog"
         xmlns:fx="http://javafx.com/fxml">
@@ -48,14 +50,33 @@
                                 GridPane.columnIndex="3"
                                 GridPane.rowIndex="0"
                     />
+
+                    <FieldLabel text="%cz.afrosoft.whattoeat.common.ingredient"
+                                GridPane.columnIndex="0"
+                                GridPane.rowIndex="1"
+                    />
+                    <TextField fx:id="ingredientField"
+                               GridPane.columnIndex="1"
+                               GridPane.rowIndex="1"
+                    />
+                    <FieldLabel text="%cz.afrosoft.whattoeat.dayDietDialog.amount"
+                                GridPane.columnIndex="2"
+                                GridPane.rowIndex="1"
+                    />
+                    <IntegerField fx:id="amountField"
+                                  GridPane.columnIndex="3"
+                                  GridPane.rowIndex="1"
+                    />
+
                     <TableView fx:id="mealTable"
                                GridPane.columnIndex="0"
-                               GridPane.rowIndex="1"
+                               GridPane.rowIndex="2"
                                GridPane.columnSpan="4"
                     >
                         <columns>
-                            <TableColumn fx:id="recipeColumn" text="%cz.afrosoft.whattoeat.common.recipe"/>
+                            <TableColumn fx:id="eatableColumn" text="%cz.afrosoft.whattoeat.dayDietDialog.eatableName"/>
                             <TableColumn fx:id="servingsColumn" text="%cz.afrosoft.whattoeat.common.servings"/>
+                            <TableColumn fx:id="amountColumn" text="%cz.afrosoft.whattoeat.dayDietDialog.amount"/>
                             <TableColumn fx:id="removeColumn"/>
                         </columns>
                     </TableView>
@@ -80,7 +101,7 @@
                     </HBox>
                     <TableView fx:id="recipeTable"
                                GridPane.columnIndex="4"
-                               GridPane.rowIndex="1"
+                               GridPane.rowIndex="2"
                     >
                         <columns>
                             <TableColumn fx:id="nameColumn" text="%cz.afrosoft.whattoeat.recipes.table.header.name" prefWidth="200" />

@@ -15,6 +15,8 @@ import java.util.Set;
  */
 public interface IngredientService {
 
+    Ingredient getById(Integer id);
+
     /**
      * @return (NotNull) Return all ingredients defined in application.
      */

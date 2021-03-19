@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
@@ -15,11 +16,15 @@ final class MealImpl implements Meal {
     private final Integer id;
     private final float servings;
     private final RecipeRef recipe;
+    private final IngredientRef ingredient;
+    private final int amount;
 
-    private MealImpl(final Integer id, final float servings, final RecipeRef recipe) {
+    private MealImpl(final Integer id, final float servings, final RecipeRef recipe, final IngredientRef ingredient, int amount) {
         this.id = id;
         this.servings = servings;
         this.recipe = recipe;
+        this.ingredient = ingredient;
+        this.amount = amount;
     }
 
     @Override
@@ -35,6 +40,16 @@ final class MealImpl implements Meal {
     @Override
     public RecipeRef getRecipe() {
         return recipe;
+    }
+
+    @Override
+    public IngredientRef getIngredient() {
+        return ingredient;
+    }
+
+    @Override
+    public int getAmount() {
+        return amount;
     }
 
     @Override
@@ -66,7 +81,9 @@ final class MealImpl implements Meal {
         return new ToStringBuilder(this)
             .append("id", id)
             .append("servings", servings)
+            .append("amount", amount)
             .append("recipe", recipe)
+            .append("ingredient", ingredient)
             .toString();
     }
 
@@ -75,6 +92,8 @@ final class MealImpl implements Meal {
         private final Integer id;
         private Float servings;
         private RecipeRef recipe;
+        private IngredientRef ingredient;
+        private int amount;
 
         public Builder() {
             this.id = null;
@@ -101,6 +120,28 @@ final class MealImpl implements Meal {
         }
 
         @Override
+        public Optional<IngredientRef> getIngredient() {
+            return Optional.ofNullable(ingredient);
+        }
+
+        @Override
+        public Optional<Integer> getAmount() {
+            return Optional.of(amount);
+        }
+
+        @Override
+        public Builder setIngredient(final IngredientRef ingredientRef) {
+            this.ingredient = ingredientRef;
+            return this;
+        }
+
+        @Override
+        public Builder setAmount(final int amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        @Override
         public Builder setServings(final float servings) {
             Validate.isTrue(servings >= 0, "Number of servings cannot be negative number.");
             this.servings = servings;
@@ -109,7 +150,6 @@ final class MealImpl implements Meal {
 
         @Override
         public Builder setRecipe(final RecipeRef recipeRef) {
-            Validate.notNull(recipeRef);
             this.recipe = recipeRef;
             return this;
         }
@@ -117,9 +157,11 @@ final class MealImpl implements Meal {
         Meal build() {
             Validate.notNull(id);
             Validate.notNull(servings);
-            Validate.notNull(recipe);
+            // only one of recipe or ingredient can be set
+            Validate.isTrue(recipe != null || ingredient != null);
+            Validate.isTrue(recipe == null || ingredient == null);
 
-            return new MealImpl(id, servings, recipe);
+            return new MealImpl(id, servings, recipe, ingredient, amount);
         }
 
         @Override
@@ -127,7 +169,9 @@ final class MealImpl implements Meal {
             return new ToStringBuilder(this)
                 .append("id", id)
                 .append("servings", servings)
+                .append("amount", amount)
                 .append("recipe", recipe)
+                .append("ingredient", ingredient)
                 .toString();
         }
     }

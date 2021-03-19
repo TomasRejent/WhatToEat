@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientRefService;
 import org.apache.commons.lang3.Validate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,8 @@ import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealService;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 
+import java.util.Optional;
+
 /**
  * @author Tomas Rejent
  */
@@ -25,6 +28,8 @@ class MealServiceImpl implements MealService {
     @Autowired
     private RecipeRefService recipeRefService;
     @Autowired
+    private IngredientRefService ingredientRefService;
+    @Autowired
     private MealRepository repository;
 
     @Override
@@ -33,8 +38,10 @@ class MealServiceImpl implements MealService {
         Validate.notNull(entity);
 
         return new MealImpl.Builder(entity.getId())
-            .setServings(entity.getServings())
-            .setRecipe(recipeRefService.fromEntity(entity.getRecipe()))
+            .setServings(Optional.ofNullable(entity.getServings()).orElse(0f))
+            .setAmount(Optional.ofNullable(entity.getAmount()).orElse(0))
+            .setRecipe(Optional.ofNullable(entity.getRecipe()).map(recipeRefService::fromEntity).orElse(null))
+            .setIngredient(Optional.ofNullable(entity.getIngredient()).map(ingredientRefService::fromEntity).orElse(null))
             .build();
     }
 
@@ -55,7 +62,9 @@ class MealServiceImpl implements MealService {
 
         return new MealImpl.Builder(meal.getId())
             .setServings(meal.getServings())
-            .setRecipe(meal.getRecipe());
+                .setAmount(meal.getAmount())
+            .setRecipe(meal.getRecipe())
+                .setIngredient(meal.getIngredient());
     }
 
     @Override
@@ -64,7 +73,9 @@ class MealServiceImpl implements MealService {
 
         return new MealImpl.Builder()
                 .setServings(meal.getServings())
-                .setRecipe(meal.getRecipe());
+                .setAmount(meal.getAmount())
+                .setRecipe(meal.getRecipe())
+                .setIngredient(meal.getIngredient());
     }
 
     @Override
@@ -74,7 +85,9 @@ class MealServiceImpl implements MealService {
 
         return new MealImpl.Builder(mealEntity.getId())
             .setServings(mealEntity.getServings())
-            .setRecipe(recipeRefService.fromEntity(mealEntity.getRecipe()));
+            .setAmount(Optional.ofNullable(mealEntity.getAmount()).orElse(0))
+            .setRecipe(Optional.ofNullable(mealEntity.getRecipe()).map(recipeRefService::fromEntity).orElse(null))
+            .setIngredient(Optional.ofNullable(mealEntity.getIngredient()).map(ingredientRefService::fromEntity).orElse(null));
     }
 
     @Override
@@ -83,8 +96,11 @@ class MealServiceImpl implements MealService {
         Validate.notNull(mealUpdateObject);
 
         MealEntity mealEntity = mealUpdateObject.getId().map(repository::getOne).orElse(new MealEntity());
-        mealEntity.setServings(mealUpdateObject.getServings().get())
-            .setRecipe(recipeRefService.toEntity(mealUpdateObject.getRecipe().get()));
+        mealEntity
+                .setServings(mealUpdateObject.getServings().orElse(0f))
+                .setAmount(mealUpdateObject.getAmount().orElse(0))
+                .setRecipe(mealUpdateObject.getRecipe().map(recipeRefService::toEntity).orElse(null))
+                .setIngredient(mealUpdateObject.getIngredient().map(ingredientRefService::toEntity).orElse(null));
 
         return mealEntity;
     }

@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.diet.shopping.logic.service.impl;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
@@ -26,18 +28,26 @@ class ShoppingListServiceImpl implements ShoppingListService {
     @Autowired
     private RecipeService recipeService;
 
+    @Autowired
+    private IngredientService ingredientService;
+
     @Override
     public ShoppingItems createShoppingItems(final Collection<Meal> meals) {
         Validate.notNull(meals);
 
         ShoppingItemsImpl.Builder builder = new ShoppingItemsImpl.Builder();
         for (Meal meal : meals) {
-            float servings = meal.getServings();
-            Recipe recipe = recipeService.getRecipeById(meal.getRecipe().getId());
-            Set<RecipeIngredientRef> ingredientRefs = recipe.getIngredients();
-            Collection<RecipeIngredient> recipeIngredients = recipeService.loadRecipeIngredients(ingredientRefs);
-            for (RecipeIngredient ingredient : recipeIngredients) {
-                builder.addItem(ingredient.getIngredient(), ingredient.getQuantity() * servings);
+            if(meal.getRecipe() != null){
+                float servings = meal.getServings();
+                Recipe recipe = recipeService.getRecipeById(meal.getRecipe().getId());
+                Set<RecipeIngredientRef> ingredientRefs = recipe.getIngredients();
+                Collection<RecipeIngredient> recipeIngredients = recipeService.loadRecipeIngredients(ingredientRefs);
+                for (RecipeIngredient ingredient : recipeIngredients) {
+                    builder.addItem(ingredient.getIngredient(), ingredient.getQuantity() * servings);
+                }
+            } else { // ingredient
+                Ingredient ingredient = ingredientService.getById(meal.getIngredient().getId());
+                builder.addItem(ingredient, (float) meal.getAmount());
             }
         }
         return builder.build();

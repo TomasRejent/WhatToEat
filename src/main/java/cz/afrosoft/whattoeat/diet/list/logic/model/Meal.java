@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.logic.model;
 
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.IdEntity;
 
@@ -16,8 +17,18 @@ public interface Meal extends IdEntity, MealRef {
     float getServings();
 
     /**
-     * @return (NotNull) Recipe of this meal.
+     * @return Amount of meal in grams.
+     */
+    int getAmount();
+
+    /**
+     * @return Recipe of this meal. Can be null if meal is defined by ingredient.
      */
     RecipeRef getRecipe();
+
+    /**
+     * @return Ingredient of this meal. Can be null if meal is defined by recipe.
+     */
+    IngredientRef getIngredient();
 
 }

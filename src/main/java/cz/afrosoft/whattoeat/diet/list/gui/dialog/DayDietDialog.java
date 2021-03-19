@@ -2,6 +2,10 @@ package cz.afrosoft.whattoeat.diet.list.gui.dialog;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
+import cz.afrosoft.whattoeat.cookbook.ingredient.data.IngredientFilter;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsService;
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
@@ -10,10 +14,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
 import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
-import cz.afrosoft.whattoeat.core.gui.component.FloatField;
-import cz.afrosoft.whattoeat.core.gui.component.KeywordField;
-import cz.afrosoft.whattoeat.core.gui.component.MultiSelect;
-import cz.afrosoft.whattoeat.core.gui.component.RemoveButton;
+import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
@@ -59,11 +60,17 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     @FXML
     private FloatField servingsField;
     @FXML
+    private TextField ingredientField;
+    @FXML
+    private IntegerField amountField;
+    @FXML
     private TableView<MealUpdateObject> mealTable;
     @FXML
-    private TableColumn<MealUpdateObject, String> recipeColumn;
+    private TableColumn<MealUpdateObject, String> eatableColumn;
     @FXML
     private TableColumn<MealUpdateObject, Float> servingsColumn;
+    @FXML
+    private TableColumn<MealUpdateObject, Integer> amountColumn;
     @FXML
     private TableColumn<MealUpdateObject, Void> removeColumn;
 
@@ -108,12 +115,17 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     @Autowired
     private RecipeService recipeService;
     @Autowired
+    private IngredientService ingredientService;
+    @Autowired
     private CookbookService cookbookService;
     @Autowired
     private NutritionFactsService nutritionFactsService;
 
     private final NamedEntitySuggestionProvider<Recipe> recipeSuggestionProvider = new NamedEntitySuggestionProvider<>();
     private final Property<Recipe> selectedRecipe = new SimpleObjectProperty<>();
+
+    private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
+    private final Property<Ingredient> selectedIngredient = new SimpleObjectProperty<>();
 
     @PostConstruct
     private void initialize() {
@@ -184,8 +196,11 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     }
 
     private void setupTableColumns() {
-        recipeColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(StringUtils.EMPTY)));
+        eatableColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(
+            mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(mealUpdateObject.getIngredient().map(IngredientRef::getName).orElse(StringUtils.EMPTY)))
+        );
         servingsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getServings().orElse(0f)));
+        amountColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getAmount().orElse(0)));
         removeColumn.setCellFactory(param -> new RemoveCell<>(applicationContext.getBean(RemoveButton.class)));
 
         nameColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(RecipeDataForDayDietDialog::getRecipe));
@@ -228,28 +243,80 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
             }
         });
 
+        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
+        AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientField, ingredientSuggestionProvider, ingredientConverter);
+        ingredientBinding.setOnAutoCompleted(event -> pickIngredient(event.getCompletion()));
+
+        ingredientField.setOnKeyPressed(event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                String ingredientName = ingredientField.getText();
+                ingredientService.findByName(ingredientName).ifPresent(
+                    this::pickIngredient
+                );
+            }
+        });
+
         servingsField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                float servings = servingsField.getFloatOrZero();
-
-                mealTable.getItems().add(
-                    mealService.getMealCreateObject()
-                        .setRecipe(selectedRecipe.getValue())
-                        .setServings(servings)
-                );
-                selectedRecipe.setValue(null);
-                recipeField.setText(StringUtils.EMPTY);
-                servingsField.setText(StringUtils.EMPTY);
+                this.addMeal();
                 recipeField.requestFocus();
+                event.consume();
+            }
+        });
+
+        amountField.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                this.addMeal();
+                ingredientField.requestFocus();
                 event.consume();
             }
         });
     }
 
+    private void addMeal(){
+        float servings = servingsField.getFloatOrZero();
+        int amount = amountField.getIntOrZero();
+
+        Recipe selectedRecipeValue = selectedRecipe.getValue();
+        if(selectedRecipeValue != null){
+            amount = Optional.ofNullable(selectedRecipeValue.getDefaultServingWeight()).map(Math::round).orElse(0);
+        }
+
+        mealTable.getItems().add(
+            mealService.getMealCreateObject()
+                .setRecipe(selectedRecipeValue)
+                .setServings(servings)
+                .setAmount(amount)
+                .setIngredient(selectedIngredient.getValue())
+        );
+        selectedRecipe.setValue(null);
+        recipeField.setText(StringUtils.EMPTY);
+        ingredientField.setText(StringUtils.EMPTY);
+        servingsField.setText(StringUtils.EMPTY);
+        amountField.setText(StringUtils.EMPTY);
+    }
+
     private void pickRecipe(final Recipe recipe) {
         Validate.notNull(recipe);
+        selectedIngredient.setValue(null);
         selectedRecipe.setValue(recipe);
         servingsField.requestFocus();
+    }
+
+    private void pickIngredient(final Ingredient ingredient){
+        Validate.notNull(ingredient);
+        if(!ingredient.isEdible() || !ingredient.isPurchasable()){
+            DialogUtils.showInfoDialog(
+                I18n.getText("cz.afrosoft.whattoeat.dayDietDialog.illegalIngredientHeader"),
+                I18n.getText("cz.afrosoft.whattoeat.dayDietDialog.illegalIngredient")
+            );
+            return;
+        }
+
+        selectedRecipe.setValue(null);
+        servingsField.setText(StringUtils.EMPTY);
+        selectedIngredient.setValue(ingredient);
+        amountField.requestFocus();
     }
 
     private List<MealUpdateObject> fillUpdateObject() {
@@ -258,7 +325,9 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
     private void clearDialog() {
         recipeField.setText(StringUtils.EMPTY);
+        ingredientField.setText(StringUtils.EMPTY);
         servingsField.setText(StringUtils.EMPTY);
+        amountField.setText(StringUtils.EMPTY);
         mealTable.getItems().clear();
     }
 
@@ -268,6 +337,12 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
     private void setupDynamicFieldOptions() {
         recipeSuggestionProvider.setPossibleSuggestions(recipeService.getAllRecipes());
+        ingredientSuggestionProvider.setPossibleSuggestions(ingredientService.getFilteredIngredients(
+            new IngredientFilter.Builder()
+                .setEdible(true)
+                .setPurchasable(true)
+                .build()
+        ));
     }
 
     public Optional<List<MealUpdateObject>> editMeals(final List<Meal> meals) {

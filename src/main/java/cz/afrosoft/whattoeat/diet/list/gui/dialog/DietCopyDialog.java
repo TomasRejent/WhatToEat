@@ -93,6 +93,7 @@ public class DietCopyDialog extends Dialog<DietCopyParams> {
     private DietCopyParams getDataFromFields(){
         DietCopyParams params = new DietCopyParams();
         params.setDietName(newDietNameField.getText());
+        params.setUser(userField.getValue());
         params.setStartDate(startDate.getValue());
         params.setBreakfastsParams(new MealCopyParams(copyBreakfastsField.isSelected(), breakfastsServingsField.getFloatOrZero()));
         params.setSnacksParams(new MealCopyParams(copyMorningSnacksField.isSelected(), morningSnacksServingsField.getFloatOrZero()));

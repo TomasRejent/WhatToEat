@@ -1,5 +1,8 @@
 package cz.afrosoft.whattoeat.diet.list.gui.table;
 
+import cz.afrosoft.whattoeat.core.gui.I18n;
+import javafx.scene.Node;
+import javafx.scene.control.Label;
 import org.apache.commons.lang3.Validate;
 import org.springframework.context.ApplicationContext;
 
@@ -36,7 +39,19 @@ public class MealsCell extends TableCell<DayDiet, List<Meal>> {
         layout.getChildren().clear();
 
         if (item != null) {
-            item.forEach(meal -> layout.getChildren().add(applicationContext.getBean(MealLink.class, meal)));
+            item.forEach(meal -> layout.getChildren().add(
+                getMealComponent(meal)
+            ));
+        }
+    }
+
+    private Node getMealComponent(final Meal meal){
+        if(meal.getRecipe() != null) {
+            return applicationContext.getBean(MealLink.class, meal);
+        } else {
+            return new Label(
+                "(" + meal.getAmount() + I18n.getText("cz.afrosoft.whattoeat.ingredientUnit.weight") + ") " + meal.getIngredient().getName()
+            );
         }
     }
 }
