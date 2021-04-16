@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.diet.list.logic.service;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.IngredientMap;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 
 import java.util.Optional;
@@ -21,6 +22,8 @@ public interface MealUpdateObject {
 
     Optional<IngredientRef> getIngredient();
 
+    Optional<IngredientMap> getIngredientMap();
+
     MealUpdateObject setServings(float servings);
 
     MealUpdateObject setRecipe(RecipeRef recipeRef);
@@ -28,4 +31,6 @@ public interface MealUpdateObject {
     MealUpdateObject setIngredient(IngredientRef ingredientRef);
 
     MealUpdateObject setAmount(int amount);
+
+    MealUpdateObject setIngredientMap(IngredientMap ingredientMap);
 }

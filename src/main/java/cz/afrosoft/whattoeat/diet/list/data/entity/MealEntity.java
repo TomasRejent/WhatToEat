@@ -34,6 +34,9 @@ public class MealEntity {
     @ManyToOne
     private IngredientEntity ingredient;
 
+    @OneToOne
+    private IngredientMapEntity ingredientMap;
+
     public Integer getId() {
         return id;
     }
@@ -76,6 +79,15 @@ public class MealEntity {
 
     public MealEntity setIngredient(final IngredientEntity ingredient) {
         this.ingredient = ingredient;
+        return this;
+    }
+
+    public IngredientMapEntity getIngredientMap() {
+        return ingredientMap;
+    }
+
+    public MealEntity setIngredientMap(final IngredientMapEntity ingredientMap) {
+        this.ingredientMap = ingredientMap;
         return this;
     }
 

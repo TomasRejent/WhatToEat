@@ -1,7 +1,9 @@
 package cz.afrosoft.whattoeat.diet.list.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
+import cz.afrosoft.whattoeat.diet.list.logic.model.IngredientMap;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.service.MealUpdateObject;
 import org.apache.commons.lang3.Validate;
@@ -18,13 +20,15 @@ final class MealImpl implements Meal {
     private final RecipeRef recipe;
     private final IngredientRef ingredient;
     private final int amount;
+    private final IngredientMap ingredientMap;
 
-    private MealImpl(final Integer id, final float servings, final RecipeRef recipe, final IngredientRef ingredient, int amount) {
+    private MealImpl(final Integer id, final float servings, final RecipeRef recipe, final IngredientRef ingredient, int amount, IngredientMap ingredientMap) {
         this.id = id;
         this.servings = servings;
         this.recipe = recipe;
         this.ingredient = ingredient;
         this.amount = amount;
+        this.ingredientMap = ingredientMap;
     }
 
     @Override
@@ -50,6 +54,11 @@ final class MealImpl implements Meal {
     @Override
     public int getAmount() {
         return amount;
+    }
+
+    @Override
+    public Optional<IngredientMap> getIngredientMap() {
+        return Optional.ofNullable(ingredientMap);
     }
 
     @Override
@@ -94,6 +103,7 @@ final class MealImpl implements Meal {
         private RecipeRef recipe;
         private IngredientRef ingredient;
         private int amount;
+        private IngredientMap ingredientMap;
 
         public Builder() {
             this.id = null;
@@ -154,6 +164,15 @@ final class MealImpl implements Meal {
             return this;
         }
 
+        public Optional<IngredientMap> getIngredientMap() {
+            return Optional.ofNullable(ingredientMap);
+        }
+
+        public Builder setIngredientMap(final IngredientMap ingredientMap) {
+            this.ingredientMap = ingredientMap;
+            return this;
+        }
+
         Meal build() {
             Validate.notNull(id);
             Validate.notNull(servings);
@@ -161,7 +180,7 @@ final class MealImpl implements Meal {
             Validate.isTrue(recipe != null || ingredient != null);
             Validate.isTrue(recipe == null || ingredient == null);
 
-            return new MealImpl(id, servings, recipe, ingredient, amount);
+            return new MealImpl(id, servings, recipe, ingredient, amount, ingredientMap);
         }
 
         @Override

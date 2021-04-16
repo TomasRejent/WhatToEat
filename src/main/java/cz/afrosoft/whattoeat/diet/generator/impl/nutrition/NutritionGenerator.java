@@ -6,10 +6,8 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeRefService;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
-import cz.afrosoft.whattoeat.diet.generator.model.Generator;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
-import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
-import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
+import cz.afrosoft.whattoeat.core.util.NumberUtils;
+import cz.afrosoft.whattoeat.diet.generator.model.*;
 import cz.afrosoft.whattoeat.diet.list.data.entity.DayDietEntity;
 import cz.afrosoft.whattoeat.diet.list.data.entity.MealEntity;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
@@ -39,6 +37,12 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
      */
     private static final int RECIPE_EXCLUSION_TIME_LIMIT = 14;
     private static final float DEFAULT_SERVINGS = 1;
+
+    private static final float BREAKFAST_NUTRITION_PERCENTAGE = 0.2f;
+    private static final float SNACK_NUTRITION_PERCENTAGE = 0.1f;
+    private static final float LUNCH_NUTRITION_PERCENTAGE = 0.35f;
+    private static final float AFTERNOON_SNACK_NUTRITION_PERCENTAGE = 0.1f;
+    private static final float DINNER_NUTRITION_PERCENTAGE = 0.25f;
 
     private NutritionGeneratorParams parameters;
 
@@ -116,6 +120,26 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         return sideDish;
     }
 
+    private boolean areNutritionFactsWithinRange(MealNutritionFacts nutritionFacts, float typeCoefficient){
+        return Arrays.stream(NutritionFactType.values()).allMatch(type -> isNutritionFactWithinRange(nutritionFacts.getByType(type), parameters.getByType(type), typeCoefficient));
+    }
+
+    private boolean isNutritionFactWithinRange(Float mealNutritionFactValue, NutritionCriteria criteria, float typeCoefficient){
+        if(mealNutritionFactValue == null) {
+            return true;
+        }
+        return NumberUtils.isWithinRange(mealNutritionFactValue, criteria.getTargetAmount()*typeCoefficient, criteria.getAboveTolerance(), criteria.getBelowTolerance());
+    }
+
+    private Recipe pickRecipeWithinNutritionRange(RecipePool pool, float typeCoefficient){
+        Optional<Recipe> matchingRecipe = pool.getAvailableRecipes().stream().filter(recipe -> {
+            MealNutritionFacts nutritionFacts = nutritionFactsMap.get(recipe);
+            return areNutritionFactsWithinRange(nutritionFacts, typeCoefficient);
+        }).findAny();
+
+        return matchingRecipe.map(pool::takeRecipe).orElse(pool.takeRandom());
+    }
+
     private void generateDay(DayDietEntity dayDiet, List<DayDietEntity> allGeneratedDays){
         if(this.generateLunch && (!this.lunchPool.isEmpty() || this.subsequentDay)){
             if(this.subsequentDay){
@@ -123,7 +147,7 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                         allGeneratedDays.get(allGeneratedDays.size() - 1).getLunch().stream().map(this::copyMealEntity).collect(Collectors.toList())
                 );
             } else {
-                Recipe recipe = lunchPool.takeRandom();
+                Recipe recipe = pickRecipeWithinNutritionRange(lunchPool, LUNCH_NUTRITION_PERCENTAGE);
                 Optional<RecipeRef> sideDish = getSideDishIfDefined(recipe);
                 List<RecipeRef> lunchRecipes = new ArrayList<>();
                 lunchRecipes.add(recipe);
@@ -133,23 +157,25 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         }
 
         if(this.generateBreakfast && !this.breakfastPool.isEmpty()){
-            dayDiet.setBreakfast(List.of(createMealEntity(breakfastPool.takeRandom())));
+            dayDiet.setBreakfast(List.of(createMealEntity(pickRecipeWithinNutritionRange(breakfastPool, BREAKFAST_NUTRITION_PERCENTAGE))));
         }
 
         if(this.generateSnack && !this.snackPool.isEmpty()){
-            dayDiet.setSnack(List.of(createMealEntity(snackPool.takeRandom())));
+            dayDiet.setSnack(List.of(createMealEntity(pickRecipeWithinNutritionRange(snackPool, SNACK_NUTRITION_PERCENTAGE))));
         }
 
         if(this.generateAfternoonSnack && !this.afternoonSnackPool.isEmpty()){
-            dayDiet.setAfternoonSnack(List.of(createMealEntity(afternoonSnackPool.takeRandom())));
+            dayDiet.setAfternoonSnack(List.of(createMealEntity(pickRecipeWithinNutritionRange(afternoonSnackPool, AFTERNOON_SNACK_NUTRITION_PERCENTAGE))));
         }
 
         if(this.generateDinner && !this.dinnerPool.isEmpty()){
-            dayDiet.setDinner(List.of(createMealEntity(dinnerPool.takeRandom())));
+            dayDiet.setDinner(List.of(createMealEntity(pickRecipeWithinNutritionRange(dinnerPool, DINNER_NUTRITION_PERCENTAGE))));
         }
 
         this.subsequentDay = !this.subsequentDay;
     }
+
+
 
     private MealEntity createMealEntity(RecipeRef recipe){
         return new MealEntity()
@@ -165,7 +191,8 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         this.lunchPool = createPool(parameters.getLunchFilter(), recipesFromPreviousDiets);
         this.afternoonSnackPool = createPool(parameters.getAfternoonSnackFilter(), recipesFromPreviousDiets);
         this.dinnerPool = createPool(parameters.getDinnerFilter(), recipesFromPreviousDiets);
-        // TODO - enable when nutrition facts are used. Commented for performance now. this.nutritionFactsMap = getNutritionFactsForRecipes();
+
+        this.nutritionFactsMap = getNutritionFactsForRecipes();
 
         this.generateBreakfast = parameters.getDishes().contains(MealTime.BREAKFAST);
         this.generateSnack = parameters.getDishes().contains(MealTime.MORNING_SNACK);

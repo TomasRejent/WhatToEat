@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.diet.generator.impl.nutrition;
 
 import cz.afrosoft.whattoeat.core.gui.Labeled;
+import cz.afrosoft.whattoeat.diet.generator.model.NutritionFactType;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -50,5 +51,32 @@ public enum NutritionCriteriaType implements Labeled {
     @Override
     public String getLabelKey() {
         return labelKey;
+    }
+
+    public static NutritionCriteria getNutritionCriteriaByType(NutritionFactType type){
+        switch (type){
+            case ENERGY:
+                return ENERGY.toDefaultNutritionCriteria();
+            case FAT:
+                return FAT.toDefaultNutritionCriteria();
+            case SATURATED_FAT:
+                return SATURATED_FAT.toDefaultNutritionCriteria();
+            case CARBOHYDRATE:
+                return CARBOHYDRATE.toDefaultNutritionCriteria();
+            case SUGAR:
+                return SUGAR.toDefaultNutritionCriteria();
+            case PROTEIN:
+                return PROTEIN.toDefaultNutritionCriteria();
+            case SALT:
+                return SALT.toDefaultNutritionCriteria();
+            case FIBRE:
+                return FIBER.toDefaultNutritionCriteria();
+            default:
+                throw new IllegalArgumentException("Unsupported type: " + type);
+        }
+    }
+
+    private NutritionCriteria toDefaultNutritionCriteria(){
+        return new NutritionCriteria(this, this.defaultAmount, this.defaultAboveTolerance, this.defaultBelowTolerance, Math.round(this.defaultPriority));
     }
 }

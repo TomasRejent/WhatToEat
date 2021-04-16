@@ -106,7 +106,7 @@ public class RecipeController implements Initializable {
         setupSelectionHandler();
         cookbookFilter.getItems().addAll(cookbookService.getAllCookbookRefs());
         typeFilter.getItems().addAll(RecipeType.values());
-        recipeTable.getItems().addAll(recipeService.getAllRecipes());
+        // recipeTable.getItems().addAll(recipeService.getAllRecipes());
     }
 
     /**

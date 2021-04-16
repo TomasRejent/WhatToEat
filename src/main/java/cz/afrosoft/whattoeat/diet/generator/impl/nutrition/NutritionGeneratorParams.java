@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorParameters;
+import cz.afrosoft.whattoeat.diet.generator.model.NutritionFactType;
 import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 
 import java.time.LocalDate;
@@ -96,5 +97,28 @@ public class NutritionGeneratorParams extends BasicGeneratorParams {
 
     public RecipeFilter getDinnerFilter() {
         return dinnerFilter;
+    }
+
+    public NutritionCriteria getByType(NutritionFactType type){
+        switch (type){
+            case ENERGY:
+                return getEnergyCriteria();
+            case FAT:
+                return getFatCriteria();
+            case SATURATED_FAT:
+                return getSaturatedFatCriteria();
+            case CARBOHYDRATE:
+                return getCarbohydrateCriteria();
+            case SUGAR:
+                return getSugarCriteria();
+            case PROTEIN:
+                return getProteinCriteria();
+            case SALT:
+                return  getSaltCriteria();
+            case FIBRE:
+                return getFiberCriteria();
+            default:
+                throw new IllegalArgumentException("Unsupported nutrition fact type: " + type);
+        }
     }
 }

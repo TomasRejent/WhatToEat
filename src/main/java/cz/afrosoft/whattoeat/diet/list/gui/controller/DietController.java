@@ -34,10 +34,8 @@ import org.springframework.stereotype.Component;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.temporal.WeekFields;
-import java.util.Comparator;
-import java.util.Locale;
-import java.util.Optional;
-import java.util.ResourceBundle;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * @author Tomas Rejent
@@ -92,8 +90,7 @@ public class DietController implements Initializable {
         LOGGER.info("Initializing diet controller");
         setupColumns();
         setupRowListeners();
-
-        dietTable.getItems().addAll(dietService.getAllDiets());
+        dietTable.getItems().addAll(dietService.getAllDiets().stream().limit(10).collect(Collectors.toList())); // TODO optimize to do limit in DB
         viewButton.setDisable(true);
         deleteButton.setDisable(true);
         copyButton.setDisable(true);

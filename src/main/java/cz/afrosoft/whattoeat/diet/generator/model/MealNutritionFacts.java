@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.diet.generator.model;
 
+import org.apache.commons.lang3.Validate;
+
 /**
  * @author Tomas Rejent
  */
@@ -103,6 +105,61 @@ public class MealNutritionFacts {
 
     public MealNutritionFacts setNutritionFactMissing(final boolean nutritionFactMissing) {
         this.nutritionFactMissing = nutritionFactMissing;
+        return this;
+    }
+
+    public Float getByType(NutritionFactType type){
+        Validate.notNull(type);
+
+        switch (type){
+            case ENERGY:
+                return getEnergy();
+            case FAT:
+                return getFat();
+            case SATURATED_FAT:
+                return getSaturatedFat();
+            case CARBOHYDRATE:
+                return getCarbohydrate();
+            case SUGAR:
+                return getSugar();
+            case PROTEIN:
+                return getProtein();
+            case SALT:
+                return getSalt();
+            case FIBRE:
+                return getFibre();
+            default:
+                throw new IllegalArgumentException("Unsupported nutrition fact type: " + type);
+        }
+    }
+
+    public MealNutritionFacts setByType(NutritionFactType type, Float value){
+        switch (type){
+            case ENERGY:
+                setEnergy(value);
+                break;
+            case FAT:
+                setFat(value);
+                break;
+            case SATURATED_FAT:
+                setSaturatedFat(value);
+                break;
+            case CARBOHYDRATE:
+                setCarbohydrate(value);
+                break;
+            case SUGAR:
+                setSugar(value);
+                break;
+            case PROTEIN:
+                setProtein(value);
+                break;
+            case SALT:
+                setSalt(value);
+                break;
+            case FIBRE:
+                setFibre(value);
+                break;
+        }
         return this;
     }
 }

@@ -14,7 +14,10 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredientRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.service.RecipeService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.util.NumberUtils;
+import cz.afrosoft.whattoeat.diet.generator.impl.nutrition.NutritionCriteriaType;
 import cz.afrosoft.whattoeat.diet.generator.model.MealNutritionFacts;
+import cz.afrosoft.whattoeat.diet.generator.model.NutritionFactType;
 import cz.afrosoft.whattoeat.diet.list.logic.model.DayDiet;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Meal;
 import cz.afrosoft.whattoeat.diet.list.logic.model.RecipeDataForDayDietDialog;
@@ -34,6 +37,8 @@ import java.util.stream.Collectors;
 public class NutritionFactsServiceImpl implements NutritionFactsService {
 
     private static final String TOTAL_KEY = "cz.afrosoft.whattoeat.common.total";
+    private static final String TARGET_KEY = "cz.afrosoft.whattoeat.common.target";
+    private static final String DELTA_KEY = "cz.afrosoft.whattoeat.common.delta";
 
     @Autowired
     private RecipeService recipeService;
@@ -237,7 +242,11 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
         for(Meal meal : meals){
             result.add(getMealNutritionFacts(meal));
         }
-        result.add(0, createTotalItem(result));
+        MealNutritionFacts totalItem = createTotalItem(result);
+        MealNutritionFacts targetItem = createTargetItem();
+        result.add(0, totalItem);
+        result.add(1, targetItem);
+        result.add(2, createDeltaItem(totalItem, targetItem));
         return result;
     }
 
@@ -289,6 +298,30 @@ public class NutritionFactsServiceImpl implements NutritionFactsService {
                 .setProtein(protein)
                 .setSalt(salt)
                 .setFibre(fibre);
+    }
+
+    private MealNutritionFacts createTargetItem(){
+        return new MealNutritionFacts()
+            .setMealName(I18n.getText(TARGET_KEY))
+            .setNutritionFactMissing(false)
+            .setEnergy(NutritionCriteriaType.ENERGY.getDefaultAmount())
+            .setFat(NutritionCriteriaType.FAT.getDefaultAmount())
+            .setSaturatedFat(NutritionCriteriaType.SATURATED_FAT.getDefaultAmount())
+            .setCarbohydrate(NutritionCriteriaType.CARBOHYDRATE.getDefaultAmount())
+            .setSugar(NutritionCriteriaType.SUGAR.getDefaultAmount())
+            .setProtein(NutritionCriteriaType.PROTEIN.getDefaultAmount())
+            .setSalt(NutritionCriteriaType.SALT.getDefaultAmount())
+            .setFibre(NutritionCriteriaType.FIBER.getDefaultAmount());
+    }
+
+    private MealNutritionFacts createDeltaItem(MealNutritionFacts totalItem, MealNutritionFacts targetItem){
+        MealNutritionFacts result = new MealNutritionFacts().setMealName(I18n.getText(DELTA_KEY));
+        Arrays.stream(NutritionFactType.values()).forEach(type -> {
+            float totalValue = Optional.ofNullable(totalItem.getByType(type)).orElse(0f);
+            float targetValue = Optional.ofNullable(targetItem.getByType(type)).orElse(0f);
+            result.setByType(type, totalValue - targetValue);
+        });
+        return result;
     }
 
     private List<Meal> extractMealsFromDayDiet(final DayDiet dayDiet){
