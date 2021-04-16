@@ -90,7 +90,7 @@ public class DietController implements Initializable {
         LOGGER.info("Initializing diet controller");
         setupColumns();
         setupRowListeners();
-        dietTable.getItems().addAll(dietService.getAllDiets().stream().limit(10).collect(Collectors.toList())); // TODO optimize to do limit in DB
+        dietTable.getItems().addAll(dietService.getAllDiets().stream().sorted(Comparator.comparing(Diet::getFrom).reversed()).limit(10).collect(Collectors.toList())); // TODO optimize to do limit in DB
         viewButton.setDisable(true);
         deleteButton.setDisable(true);
         copyButton.setDisable(true);

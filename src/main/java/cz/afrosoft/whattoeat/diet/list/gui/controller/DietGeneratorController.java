@@ -16,10 +16,7 @@ import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.Pane;
 import org.apache.commons.lang3.Validate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,7 +52,7 @@ public class DietGeneratorController implements Initializable {
     @FXML
     private ComboBox<GeneratorType> generatorField;
     @FXML
-    private Pane generatorGuiPane;
+    private ScrollPane generatorGuiPane;
 
     private GeneratorGui<?> generatorGui;
 
@@ -78,7 +75,11 @@ public class DietGeneratorController implements Initializable {
         cookbookFilter.setConverter(ComboBoxUtils.createStringConverter(cookbookFilter, CookbookRef::getName));
         dishesFilter.getItems().addAll(MealTime.values());
         ComboBoxUtils.initLabeledCheckComboBox(dishesFilter);
+        dishesFilter.getCheckModel().check(MealTime.BREAKFAST);
+        dishesFilter.getCheckModel().check(MealTime.MORNING_SNACK);
         dishesFilter.getCheckModel().check(MealTime.LUNCH);
+        dishesFilter.getCheckModel().check(MealTime.AFTERNOON_SNACK);
+        dishesFilter.getCheckModel().check(MealTime.DINNER);
     }
 
     private void setupUserComboBox(){
@@ -92,8 +93,7 @@ public class DietGeneratorController implements Initializable {
             if (newValue != null) {
                 generatorGui = generatorService.getGuiForGenerator(newValue);
                 generatorGui.getNode().ifPresent(node -> {
-                    generatorGuiPane.getChildren().clear();
-                    generatorGuiPane.getChildren().addAll(node);
+                    generatorGuiPane.setContent(node);
                 });
             }
         });

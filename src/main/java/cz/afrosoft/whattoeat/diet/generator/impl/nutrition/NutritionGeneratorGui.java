@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.diet.generator.impl.nutrition;
 
 import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.component.RecipeFilterComponent;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorGui;
@@ -10,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
 
+import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.Optional;
 import java.util.Set;
@@ -52,6 +54,15 @@ public class NutritionGeneratorGui extends GridPane implements GeneratorGui<Nutr
     private LocalDate to;
     private Set<MealTime> dishes;
     private User user;
+
+    @PostConstruct
+    private void init(){
+        breakfastFilter.setRecipeFilter(new RecipeFilter.Builder().setType(Set.of(RecipeType.BREAKFAST)).build());
+        snackFilter.setRecipeFilter(new RecipeFilter.Builder().setType(Set.of(RecipeType.SNACK)).build());
+        lunchFilter.setRecipeFilter(new RecipeFilter.Builder().setType(Set.of(RecipeType.MAIN_DISH)).build());
+        afternoonSnackFilter.setRecipeFilter(new RecipeFilter.Builder().setType(Set.of(RecipeType.SNACK)).build());
+        dinnerFilter.setRecipeFilter(new RecipeFilter.Builder().setType(Set.of(RecipeType.DINNER)).build());
+    }
 
     @Override
     public void setFilter(final RecipeFilter filter) {

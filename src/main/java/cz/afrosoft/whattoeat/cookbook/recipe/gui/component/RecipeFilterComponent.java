@@ -69,6 +69,20 @@ public class RecipeFilterComponent extends GridPane implements Builder<RecipeFil
                 .build();
     }
 
+    public void setRecipeFilter(RecipeFilter filter){
+        nameFilter.setText(filter.getName().orElse(""));
+        cookbookFilter.getCheckModel().clearChecks();
+        filter.getCookbooks().ifPresent(cookbookRefs -> {
+            cookbookRefs.forEach(cookbookRef -> cookbookFilter.getCheckModel().check(cookbookRef));
+        });
+        typeFilter.getCheckModel().clearChecks();
+        filter.getType().ifPresent(recipeTypes -> recipeTypes.forEach(
+            recipeType -> typeFilter.getCheckModel().check(recipeType)
+        ));
+        keywordField.clearSelectedKeywords();
+        filter.getKeywords().ifPresent(keywords -> keywordField.setSelectedKeywords(keywords));
+    }
+
     private ChangeListener<Boolean> createNameFieldVisibleListener(){
         return (observable, oldValue, newValue) -> {
             if (BooleanUtils.isTrue(newValue)) {

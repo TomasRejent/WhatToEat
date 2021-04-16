@@ -8,12 +8,12 @@ import org.apache.commons.lang3.StringUtils;
  * @author Tomas Rejent
  */
 public enum NutritionCriteriaType implements Labeled {
-    ENERGY(7859, 5, 7, 7, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.energy"),
-    FAT(56.5f, 1, 1, 8, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.fat"),
-    SATURATED_FAT(20.7f, 6, 15, 15, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.saturatedFat"),
-    CARBOHYDRATE(185, 4, 10, 10, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.carbohydrate"),
+    ENERGY(7761, 5, 7, 7, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.energy"),
+    FAT(76f, 1, 1, 8, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.fat"),
+    SATURATED_FAT(27.8f, 6, 15, 15, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.saturatedFat"),
+    CARBOHYDRATE(183, 4, 10, 10, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.carbohydrate"),
     SUGAR(32.9f, 8, 20, 35, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.sugar"),
-    PROTEIN(148, 2, 8, 8, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.protein"),
+    PROTEIN(100, 2, 8, 8, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.protein"),
     SALT(5, 3, 5, 5, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.salt"),
     FIBER(27.5f, 7, 15, 25, "cz.afrosoft.whattoeat.diet.generator.nutritionSalvation.fiber");
 
