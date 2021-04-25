@@ -2,6 +2,8 @@ package cz.afrosoft.whattoeat.diet.generator.model;
 
 import org.apache.commons.lang3.Validate;
 
+import java.util.Optional;
+
 /**
  * @author Tomas Rejent
  */
@@ -161,5 +163,13 @@ public class MealNutritionFacts {
                 break;
         }
         return this;
+    }
+
+    public static MealNutritionFacts add(MealNutritionFacts facts1, MealNutritionFacts facts2){
+        MealNutritionFacts result = new MealNutritionFacts();
+        for(NutritionFactType type : NutritionFactType.values()){
+            result.setByType(type, Optional.ofNullable(facts1.getByType(type)).orElse(0f) + Optional.ofNullable(facts2.getByType(type)).orElse(0f));
+        }
+        return result;
     }
 }

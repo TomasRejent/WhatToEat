@@ -1,5 +1,7 @@
 package cz.afrosoft.whattoeat.diet.list.gui.controller;
 
+import cz.afrosoft.whattoeat.cookbook.recipe.data.RecipeFilter;
+import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeType;
 import cz.afrosoft.whattoeat.cookbook.user.lodic.model.User;
 import cz.afrosoft.whattoeat.cookbook.user.lodic.service.UserService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
@@ -11,9 +13,12 @@ import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.diet.generator.impl.BasicGeneratorParams;
+import cz.afrosoft.whattoeat.diet.generator.impl.nutrition.NutritionCriteriaType;
+import cz.afrosoft.whattoeat.diet.generator.impl.nutrition.NutritionGeneratorParams;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 import cz.afrosoft.whattoeat.diet.list.gui.dialog.DietCopyDialog;
 import cz.afrosoft.whattoeat.diet.list.logic.model.Diet;
+import cz.afrosoft.whattoeat.diet.list.logic.model.MealTime;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietCreateObject;
 import cz.afrosoft.whattoeat.diet.list.logic.service.DietService;
 import cz.afrosoft.whattoeat.diet.shopping.gui.dialog.ShoppingListDialog;
@@ -48,6 +53,8 @@ public class DietController implements Initializable {
 
     private static final String DELETE_CONFIRM_HEADER = "cz.afrosoft.whattoeat.common.confirm.delete";
     private static final String DELETE_CONFIRM_TEXT = "cz.afrosoft.whattoeat.dietview.delete.confirm";
+
+    private static final int DIET_VIEW_LIMIT = 10;
 
     @FXML
     private TableView<Diet> dietTable;
@@ -90,7 +97,7 @@ public class DietController implements Initializable {
         LOGGER.info("Initializing diet controller");
         setupColumns();
         setupRowListeners();
-        dietTable.getItems().addAll(dietService.getAllDiets().stream().sorted(Comparator.comparing(Diet::getFrom).reversed()).limit(10).collect(Collectors.toList())); // TODO optimize to do limit in DB
+        dietTable.getItems().addAll(dietService.getAllDiets().stream().sorted(Comparator.comparing(Diet::getFrom).reversed()).limit(DIET_VIEW_LIMIT).collect(Collectors.toList())); // TODO optimize to do limit in DB
         viewButton.setDisable(true);
         deleteButton.setDisable(true);
         copyButton.setDisable(true);
@@ -191,11 +198,27 @@ public class DietController implements Initializable {
                         .setFrom(from)
                         .setTo(to)
                         .setUser(alex)
-                        .setGeneratorParams(new BasicGeneratorParams(from, to, null, null, alex))
-                        .setGenerator(GeneratorType.NONE);
+                        .setGeneratorParams(
+                            new NutritionGeneratorParams(from, to, alex, null, Set.of(MealTime.values()),
+                                NutritionCriteriaType.ENERGY.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.FAT.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.SATURATED_FAT.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.CARBOHYDRATE.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.SUGAR.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.PROTEIN.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.SALT.toDefaultNutritionCriteria(),
+                                NutritionCriteriaType.FIBER.toDefaultNutritionCriteria(),
+                                new RecipeFilter.Builder().setType(Set.of(RecipeType.BREAKFAST)).build(),
+                                new RecipeFilter.Builder().setType(Set.of(RecipeType.SNACK)).build(),
+                                new RecipeFilter.Builder().setType(Set.of(RecipeType.MAIN_DISH)).build(),
+                                new RecipeFilter.Builder().setType(Set.of(RecipeType.SNACK)).build(),
+                                new RecipeFilter.Builder().setType(Set.of(RecipeType.DINNER)).build()
+                            ))
+                        .setGenerator(GeneratorType.NUTRITION_SALVATION);
 
                 dietService.create(dietCreateObject);
-                dietTable.getItems().addAll(dietService.getAllDiets());
+                dietTable.getItems().clear();
+                dietTable.getItems().addAll(dietService.getAllDiets().stream().sorted(Comparator.comparing(Diet::getFrom).reversed()).limit(DIET_VIEW_LIMIT).collect(Collectors.toList())); // TODO optimize to do limit in DB
             });
         });
     }

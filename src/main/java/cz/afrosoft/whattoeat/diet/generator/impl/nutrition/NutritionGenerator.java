@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -92,8 +93,8 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         List<DayDietEntity> dayDiets = new LinkedList<>();
         for (LocalDate day = parameters.getFrom(); !day.isAfter(parameters.getTo()); day = day.plusDays(1)) {
             DayDietEntity dayDiet = new DayDietEntity();
-            generateDay(dayDiet, dayDiets);
             dayDiet.setDay(day);
+            generateDay(dayDiet, dayDiets);
             dayDiets.add(dayDiet);
         }
 
@@ -156,19 +157,57 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         return chosenRecipe;
     }
 
+    private LunchRecipes pickLunchRecipesWithinNutritionRange(){
+        Recipe lunchRecipe = null;
+        Recipe sideDishRecipe = null;
+        for(Recipe checkedLunchRecipe : lunchPool.getAvailableRecipes()){
+            Set<RecipeRef> sideDishes = checkedLunchRecipe.getSideDishes();
+            MealNutritionFacts lunchNutritionFacts = nutritionFactsMap.get(checkedLunchRecipe);
+            if(sideDishes.isEmpty()){
+                if(areNutritionFactsWithinRange(lunchNutritionFacts, LUNCH_NUTRITION_PERCENTAGE)){
+                    lunchRecipe = checkedLunchRecipe;
+                    break;
+                }
+            } else {
+                for(RecipeRef sideDishRef : sideDishes){
+                    Recipe checkedSideDishRecipe = recipeService.getRecipeById(sideDishRef.getId());
+                    if(!nutritionFactsMap.containsKey(checkedSideDishRecipe)){
+                        nutritionFactsMap.put(checkedSideDishRecipe, nutritionFactsService.getMealNutritionFacts(checkedSideDishRecipe, DEFAULT_SERVINGS));
+                    }
+                    MealNutritionFacts sideDishNutritionFacts = nutritionFactsMap.get(checkedSideDishRecipe);
+                    if(areNutritionFactsWithinRange(MealNutritionFacts.add(lunchNutritionFacts, sideDishNutritionFacts), LUNCH_NUTRITION_PERCENTAGE)){
+                        lunchRecipe = checkedLunchRecipe;
+                        sideDishRecipe = checkedSideDishRecipe;
+                    }
+                }
+            }
+        }
+
+        if(lunchRecipe == null){
+            lunchRecipe = lunchPool.takeRandom();
+            sideDishRecipe = getSideDishIfDefined(lunchRecipe).map(recipeRef -> recipeService.getRecipeById(recipeRef.getId())).orElse(null);
+        }
+        removeFromPools(lunchRecipe);
+
+        return new LunchRecipes()
+            .setLunch(lunchRecipe)
+            .setSideDish(sideDishRecipe);
+    }
+
     private void generateDay(DayDietEntity dayDiet, List<DayDietEntity> allGeneratedDays){
+        DayOfWeek dayOfWeek = dayDiet.getDay().getDayOfWeek();
+        if(dayOfWeek.equals(DayOfWeek.SUNDAY) || dayOfWeek.equals(DayOfWeek.MONDAY)){// Sunday is day with one-day lunch, this is specific for personal usage and will be moved to config later
+            this.subsequentDay = false;
+        }
+
         if(this.generateLunch && (!this.lunchPool.isEmpty() || this.subsequentDay)){
             if(this.subsequentDay){
                 dayDiet.setLunch(
                         allGeneratedDays.get(allGeneratedDays.size() - 1).getLunch().stream().map(this::copyMealEntity).collect(Collectors.toList())
                 );
             } else {
-                Recipe recipe = pickRecipeWithinNutritionRange(lunchPool, LUNCH_NUTRITION_PERCENTAGE);
-                Optional<RecipeRef> sideDish = getSideDishIfDefined(recipe);
-                List<RecipeRef> lunchRecipes = new ArrayList<>();
-                lunchRecipes.add(recipe);
-                sideDish.ifPresent(lunchRecipes::add);
-                dayDiet.setLunch(lunchRecipes.stream().map(this::createMealEntity).collect(Collectors.toList()));
+                LunchRecipes lunchRecipes = pickLunchRecipesWithinNutritionRange();
+                dayDiet.setLunch(lunchRecipes.getLunchRecipes().stream().map(this::createMealEntity).collect(Collectors.toList()));
             }
         }
 
@@ -238,6 +277,7 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                 .stream()
                 .filter((diet -> parameters.getUser().equals(diet.getUser()) && isInInterval(diet, excludeLimit, now)))
                 .flatMap(diet -> dietService.getDietMealsInInterval(diet, excludeLimit, now).stream())
+                .filter(meal -> meal.getRecipe() != null) // filtering for case where previous diets contains ingredients in meals instead of recipes
                 .map(meal -> recipeService.getRecipeById(meal.getRecipe().getId()))
                 .collect(Collectors.toSet());
     }
@@ -251,5 +291,36 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
     private RecipePool createPool(RecipeFilter filter, Set<Recipe> recipesFromPreviousDiets){
         Set<Recipe> filteredRecipes = recipeService.getFilteredRecipes(filter);
         return new RecipePool(filteredRecipes, recipesFromPreviousDiets);
+    }
+
+    private class LunchRecipes{
+
+        private Optional<Recipe> lunch = Optional.empty();
+        private Optional<Recipe> sideDish = Optional.empty();
+        private Optional<Recipe> soup = Optional.empty();
+
+        public LunchRecipes setLunch(Recipe lunch){
+            this.lunch = Optional.ofNullable(lunch);
+            return this;
+        }
+
+        public LunchRecipes setSideDish(Recipe sideDish){
+            this.sideDish = Optional.ofNullable(sideDish);
+            return this;
+        }
+
+        public LunchRecipes setSoup(Recipe soup){
+            this.soup = Optional.ofNullable(soup);
+            return this;
+        }
+
+        public List<Recipe> getLunchRecipes(){
+            ArrayList<Recipe> recipes = new ArrayList<>(4);
+            this.lunch.ifPresent(recipes::add);
+            this.sideDish.ifPresent(recipes::add);
+            this.soup.ifPresent(recipes::add);
+            return recipes;
+        }
+
     }
 }

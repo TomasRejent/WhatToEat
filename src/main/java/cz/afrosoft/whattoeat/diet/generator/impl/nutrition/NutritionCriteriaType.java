@@ -76,7 +76,7 @@ public enum NutritionCriteriaType implements Labeled {
         }
     }
 
-    private NutritionCriteria toDefaultNutritionCriteria(){
+    public NutritionCriteria toDefaultNutritionCriteria(){
         return new NutritionCriteria(this, this.defaultAmount, this.defaultAboveTolerance, this.defaultBelowTolerance, Math.round(this.defaultPriority));
     }
 }
