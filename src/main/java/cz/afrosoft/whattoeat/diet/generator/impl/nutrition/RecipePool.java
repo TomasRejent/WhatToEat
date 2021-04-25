@@ -38,6 +38,13 @@ public class RecipePool {
         return takenRecipe;
     }
 
+    public void removeRecipe(Recipe recipe){
+        if(availablePool.contains(recipe)){
+            availablePool.remove(recipe);
+            usedRecipes.add(recipe);
+        }
+    }
+
     public Recipe takeRecipe(Recipe recipe){
         if(!availablePool.contains(recipe)){
             throw new IllegalArgumentException("Specified recipe is not present in available recipe pool: " + recipe);

@@ -100,6 +100,20 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         return dayDiets;
     }
 
+    /**
+     * Removes this recipe from all existing pools so it is not used repeatedly.
+     * @param recipe
+     */
+    private void removeFromPools(Recipe recipe){
+        Validate.notNull(recipe);
+
+        breakfastPool.removeRecipe(recipe);
+        snackPool.removeRecipe(recipe);
+        lunchPool.removeRecipe(recipe);
+        afternoonSnackPool.removeRecipe(recipe);
+        dinnerPool.removeRecipe(recipe);
+    }
+
     private MealEntity copyMealEntity(MealEntity mealEntity){
         return new MealEntity()
                 .setServings(mealEntity.getServings())
@@ -137,7 +151,9 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
             return areNutritionFactsWithinRange(nutritionFacts, typeCoefficient);
         }).findAny();
 
-        return matchingRecipe.map(pool::takeRecipe).orElse(pool.takeRandom());
+        Recipe chosenRecipe = matchingRecipe.map(pool::takeRecipe).orElse(pool.takeRandom());
+        removeFromPools(chosenRecipe);
+        return chosenRecipe;
     }
 
     private void generateDay(DayDietEntity dayDiet, List<DayDietEntity> allGeneratedDays){
