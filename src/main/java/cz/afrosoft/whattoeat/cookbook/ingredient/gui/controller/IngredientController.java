@@ -17,12 +17,10 @@ import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -92,10 +90,23 @@ public class IngredientController implements Initializable {
     public void initialize(final URL url, final ResourceBundle rb) {
         LOGGER.debug("Initializing ingredient controller");
         setupColumnCellFactories();
+        setupRowListeners();
         setupFilter();
         disableIngredientActionButtons(true);
         setupSelectionHandler();
         ingredientTable.getItems().addAll(ingredientService.getAllIngredients());
+    }
+
+    private void setupRowListeners() {
+        ingredientTable.setRowFactory(param -> {
+            TableRow<Ingredient> row = new TableRow<>();
+            row.addEventHandler(MouseEvent.MOUSE_CLICKED, event -> {
+                if (!row.isEmpty() && event.getClickCount() == 2) {
+                    this.editIngredient();
+                }
+            });
+            return row;
+        });
     }
 
     /**
