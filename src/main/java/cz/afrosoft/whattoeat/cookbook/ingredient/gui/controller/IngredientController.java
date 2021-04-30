@@ -7,12 +7,14 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientUnit;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.core.gui.I18n;
+import cz.afrosoft.whattoeat.core.gui.component.BoolCombo;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
 import cz.afrosoft.whattoeat.core.gui.table.LabeledCell;
 import cz.afrosoft.whattoeat.core.gui.table.NutritionFactsIconCell;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -51,6 +53,16 @@ public class IngredientController implements Initializable {
 
     @FXML
     private TextField nameFilter;
+    @FXML
+    private TextField manufacturerFilter;
+    @FXML
+    private BoolCombo purchasableFilter;
+    @FXML
+    private BoolCombo edibleFilter;
+    @FXML
+    private BoolCombo nutritionFactsFilter;
+    @FXML
+    private BoolCombo generalFilter;
 
     @FXML
     private TableView<Ingredient> ingredientTable;
@@ -124,11 +136,13 @@ public class IngredientController implements Initializable {
      * Setup filter fields.
      */
     private void setupFilter() {
-        nameFilter.addEventHandler(KeyEvent.KEY_PRESSED, event -> {
+        EventHandler<KeyEvent> keyHandler = event -> {
             if (event.getCode() == KeyCode.ENTER) {
                 filterIngredients();
             }
-        });
+        };
+        nameFilter.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
+        manufacturerFilter.addEventHandler(KeyEvent.KEY_PRESSED, keyHandler);
     }
 
     /**
@@ -191,6 +205,11 @@ public class IngredientController implements Initializable {
 
         IngredientFilter filter = new IngredientFilter.Builder()
                 .setName(nameFilter.getText())
+                .setManufacturer(manufacturerFilter.getText())
+                .setPurchasable(purchasableFilter.getBoolValue())
+                .setEdible(edibleFilter.getBoolValue())
+                .setHasNutritionFacts(nutritionFactsFilter.getBoolValue())
+                .setGeneral(generalFilter.getBoolValue())
                 .build();
         ingredientTable.getItems().clear();
         ingredientTable.getItems().addAll(ingredientService.getFilteredIngredients(filter));

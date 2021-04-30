@@ -9,10 +9,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.Predicate;
-import javax.persistence.criteria.Root;
+import javax.persistence.criteria.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -25,9 +22,11 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
     private static final String ID = "id";
     private static final String NAME = "name";
+    private static final String MANUFACTURER = "manufacturer";
     private static final String GENERAL = "general";
     private static final String EDIBLE = "edible";
     private static final String PURCHASABLE = "purchasable";
+    private static final String NUTRITION_FACTS = "nutritionFacts";
 
     @PersistenceContext
     private EntityManager entityManager;
@@ -43,6 +42,8 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
 
         //filtering by name
         filter.getName().ifPresent(name -> queryPredicates.add(filterByName(name, builder, queryRoot)));
+        //filtering by manufacturer
+        filter.getManufacturer().ifPresent(name -> queryPredicates.add(filterByManufacturer(name, builder, queryRoot)));
         //filtering by flag if ingredient is general or particular
         filter.getGeneral().ifPresent(general -> queryPredicates.add(filterByGeneral(general, builder, queryRoot)));
         //filtering by exclusion of ids
@@ -51,6 +52,8 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
         filter.getIsEdible().ifPresent(edible -> queryPredicates.add(filterByEdible(edible, builder, queryRoot)));
         //filtering by flag if ingredient is purchasable in shop or not
         filter.getIsPurchasable().ifPresent(purchasable -> queryPredicates.add(filterByPurchasable(purchasable, builder, queryRoot)));
+        //filtering by flag if ingredient has specified nutrition facts. Nutrition fact may not be fully filled, only their existence is checked
+        filter.getHasNutritionFacts().ifPresent(hasNutritionFacts -> queryPredicates.add(filterByHasNutritionFacts(hasNutritionFacts, builder, queryRoot)));
 
         query.where(queryPredicates.toArray(new Predicate[queryPredicates.size()]));
         TypedQuery<IngredientEntity> typedQuery = entityManager.createQuery(query);
@@ -62,6 +65,13 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
                 builder.lower(
                         queryRoot.get(NAME)),
                 "%" + name.toLowerCase() + "%");
+    }
+
+    private Predicate filterByManufacturer(final String manufacturer, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot) {
+        return builder.like(
+            builder.lower(
+                queryRoot.get(MANUFACTURER)),
+            "%" + manufacturer.toLowerCase() + "%");
     }
 
     private Predicate filterByGeneral(final Boolean general, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
@@ -90,5 +100,10 @@ class IngredientRepositoryImpl implements IngredientRepositoryCustom {
         } else {
             return builder.isFalse(queryRoot.get(PURCHASABLE));
         }
+    }
+
+    private Predicate filterByHasNutritionFacts(final Boolean hasNutritionFacts, final CriteriaBuilder builder, final Root<IngredientEntity> queryRoot){
+        Path<Object> nutritionFactsPath = queryRoot.get(NUTRITION_FACTS);
+        return hasNutritionFacts ? nutritionFactsPath.isNotNull() : nutritionFactsPath.isNull();
     }
 }

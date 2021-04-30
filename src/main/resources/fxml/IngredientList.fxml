@@ -12,10 +12,20 @@
         styleClass="ingredient-container"
         fx:controller="cz.afrosoft.whattoeat.cookbook.ingredient.gui.controller.IngredientController">
     <top>
-        <HBox styleClass="filter-bar">
+        <HBox styleClass="filter-bar" >
             <Label text="%cz.afrosoft.whattoeat.common.filter"/>
             <Label text="%cz.afrosoft.whattoeat.common.name"/>
-            <TextField fx:id="nameFilter"/>
+            <TextField fx:id="nameFilter" />
+            <Label text="%cz.afrosoft.whattoeat.ingredients.table.header.manufacturer"/>
+            <TextField fx:id="manufacturerFilter" />
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.purchasable"/>
+            <BoolCombo fx:id="purchasableFilter"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.edible"/>
+            <BoolCombo fx:id="edibleFilter"/>
+            <Label text="%cz.afrosoft.whattoeat.nutritionFacts"/>
+            <BoolCombo fx:id="nutritionFactsFilter"/>
+            <Label text="%cz.afrosoft.whattoeat.ingredient.dialog.general"/>
+            <BoolCombo fx:id="generalFilter"/>
             <HBox>
                 <SearchButton fx:id="filterSubmitButton"
                               onAction="#filterIngredients"/>

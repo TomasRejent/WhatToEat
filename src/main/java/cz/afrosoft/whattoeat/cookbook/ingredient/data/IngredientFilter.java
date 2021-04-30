@@ -16,17 +16,21 @@ import java.util.Set;
 public final class IngredientFilter {
 
     private final String name;
+    private final String manufacturer;
     private final Boolean general;
     private final Set<Integer> excludedIds;
     private final Boolean isEdible;
     private final Boolean isPurchasable;
+    private final Boolean hasNutritionFacts;
 
-    private IngredientFilter(final String name, final Boolean general, final Set<Integer> excludedIds, final Boolean isEdible, final Boolean isPurchasable) {
+    private IngredientFilter(final String name, final String manufacturer, final Boolean general, final Set<Integer> excludedIds, final Boolean isEdible, final Boolean isPurchasable, final Boolean hasNutritionFacts) {
         this.name = name;
+        this.manufacturer = manufacturer;
         this.general = general;
         this.excludedIds = excludedIds;
         this.isEdible = isEdible;
         this.isPurchasable = isPurchasable;
+        this.hasNutritionFacts = hasNutritionFacts;
     }
 
     /**
@@ -34,6 +38,10 @@ public final class IngredientFilter {
      */
     public Optional<String> getName() {
         return Optional.ofNullable(name);
+    }
+
+    public Optional<String> getManufacturer(){
+        return Optional.ofNullable(manufacturer);
     }
 
     public Optional<Boolean> getGeneral(){
@@ -56,21 +64,31 @@ public final class IngredientFilter {
         return Optional.ofNullable(isPurchasable);
     }
 
+    public Optional<Boolean> getHasNutritionFacts(){
+        return Optional.ofNullable(hasNutritionFacts);
+    }
+
     @Override
     public String toString() {
         return new ToStringBuilder(this, ToStringStyle.SHORT_PREFIX_STYLE)
                 .append("name", name)
+                .append("manufacturer", manufacturer)
                 .append("general", general)
+                .append("isPurchasable", isPurchasable)
+                .append("isEdible", isEdible)
+                .append("hasNutritionFacts", hasNutritionFacts)
                 .toString();
     }
 
     public static class Builder {
 
         private String name;
+        private String manufacturer;
         private Boolean general;
         private Set<Integer> excludedIds;
         private Boolean isEdible;
         private Boolean isPurchasable;
+        private Boolean hasNutritionFacts;
 
         /**
          * @param name (Nullable) Name to filter by. If null, empty or blank value is specified, then ingredients are not filtered by name.
@@ -81,6 +99,15 @@ public final class IngredientFilter {
                 this.name = null;
             } else {
                 this.name = name;
+            }
+            return this;
+        }
+
+        public Builder setManufacturer(final String manufacturer){
+            if(StringUtils.isBlank(manufacturer)){
+                this.manufacturer = null;
+            } else {
+                this.manufacturer = manufacturer;
             }
             return this;
         }
@@ -106,13 +133,18 @@ public final class IngredientFilter {
             return this;
         }
 
+        public Builder setHasNutritionFacts(final Boolean hasNutritionFacts){
+            this.hasNutritionFacts = hasNutritionFacts;
+            return this;
+        }
+
         /**
          * Builds filter from this builder with previously specified filtering criteria.
          *
          * @return (NotNull)
          */
         public IngredientFilter build() {
-            return new IngredientFilter(name, general, excludedIds, isEdible, isPurchasable);
+            return new IngredientFilter(name, manufacturer, general, excludedIds, isEdible, isPurchasable, hasNutritionFacts);
         }
     }
 }
