@@ -1,6 +1,7 @@
 package cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.impl;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -16,12 +17,14 @@ public class IngredientRefImpl implements IngredientRef {
 
     private final Integer id;
     private final String name;
+    private final String manufacturer;
 
-    public IngredientRefImpl(final Integer id, final String name) {
+    public IngredientRefImpl(final Integer id, final String name, final String manufacturer) {
         Validate.notNull(id);
         Validate.notEmpty(name);
         this.id = id;
         this.name = name;
+        this.manufacturer = manufacturer;
     }
 
     @Override
@@ -32,6 +35,20 @@ public class IngredientRefImpl implements IngredientRef {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getManufacturer() {
+        return manufacturer;
+    }
+
+    @Override
+    public String getFullName(){
+        if(StringUtils.isNotEmpty(getManufacturer())){
+            return getName() + "(" + getManufacturer() + ")";
+        } else {
+            return getName();
+        }
     }
 
     @Override

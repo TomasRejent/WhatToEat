@@ -7,6 +7,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.NutritionFactsUpd
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.UnitConversionUpdateObject;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeRef;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
@@ -69,6 +70,15 @@ final class IngredientImpl implements Ingredient {
     @Override
     public String getName() {
         return name;
+    }
+
+    @Override
+    public String getFullName(){
+        if(StringUtils.isNotEmpty(getManufacturer())){
+            return getName() + "(" + getManufacturer() + ")";
+        } else {
+            return getName();
+        }
     }
 
     @Override

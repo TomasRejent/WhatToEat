@@ -52,7 +52,7 @@ public class IngredientQuantityTable extends TableView<IngredientQuantity> {
     private void setupColumnCellFactories() {
         quantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getQuantity, 0f));
         quantityColumn.setCellFactory(param -> new IngredientQuantityCell(quantityService));
-        nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(IngredientQuantity::getName));
+        nameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(IngredientQuantity::getFullName));
         priceColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(IngredientQuantity::getPrice, 0f));
         nutritionFactsColumn.setCellFactory(column -> new NutritionFactsIconCell<>());
         nutritionFactsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper((ingredientQuantity) -> ingredientQuantity.getIngredient().getNutritionFacts(), null));

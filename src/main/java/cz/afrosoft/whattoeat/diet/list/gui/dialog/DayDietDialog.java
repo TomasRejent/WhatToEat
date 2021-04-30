@@ -17,6 +17,7 @@ import cz.afrosoft.whattoeat.core.gui.combobox.ComboBoxUtils;
 import cz.afrosoft.whattoeat.core.gui.component.*;
 import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
+import cz.afrosoft.whattoeat.core.gui.suggestion.GenericSuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.table.*;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
@@ -124,7 +125,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
     private final NamedEntitySuggestionProvider<Recipe> recipeSuggestionProvider = new NamedEntitySuggestionProvider<>();
     private final Property<Recipe> selectedRecipe = new SimpleObjectProperty<>();
 
-    private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
+    private final GenericSuggestionProvider<Ingredient> ingredientSuggestionProvider = new GenericSuggestionProvider<>(IngredientRef::getFullName);
     private final Property<Ingredient> selectedIngredient = new SimpleObjectProperty<>();
 
     @PostConstruct
@@ -197,7 +198,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
 
     private void setupTableColumns() {
         eatableColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(
-            mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(mealUpdateObject.getIngredient().map(IngredientRef::getName).orElse(StringUtils.EMPTY)))
+            mealUpdateObject -> mealUpdateObject.getRecipe().map(RecipeRef::getName).orElse(mealUpdateObject.getIngredient().map(IngredientRef::getFullName).orElse(StringUtils.EMPTY)))
         );
         servingsColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getServings().orElse(0f)));
         amountColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(mealUpdateObject -> mealUpdateObject.getAmount().orElse(0)));
@@ -243,7 +244,7 @@ public class DayDietDialog extends Dialog<List<MealUpdateObject>> {
             }
         });
 
-        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
+        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getFullName, string -> null);
         AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientField, ingredientSuggestionProvider, ingredientConverter);
         ingredientBinding.setOnAutoCompleted(event -> pickIngredient(event.getCompletion()));
 

@@ -12,4 +12,14 @@ import cz.afrosoft.whattoeat.core.logic.model.NamedEntity;
  */
 public interface IngredientRef extends IdEntity, NamedEntity {
 
+    /**
+     * @return Gets name of manufacturer.
+     */
+    String getManufacturer();
+
+    /**
+     * @return Gets full name which is combination of name and manufacturer.
+     */
+    String getFullName();
+
 }

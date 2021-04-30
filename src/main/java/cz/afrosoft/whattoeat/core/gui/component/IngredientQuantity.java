@@ -2,6 +2,7 @@ package cz.afrosoft.whattoeat.core.gui.component;
 
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.Validate;
 
 import java.util.Set;
@@ -48,6 +49,13 @@ class IngredientQuantity {
 
     public String getName() {
         return ingredient.getName();
+    }
+
+    /**
+     * @return Gets name of ingredient including manufacturer.
+     */
+    public String getFullName(){
+        return ingredient.getFullName();
     }
 
     public Set<Keyword> getKeywords() {

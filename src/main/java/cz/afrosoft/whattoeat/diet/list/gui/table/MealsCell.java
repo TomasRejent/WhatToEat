@@ -50,7 +50,7 @@ public class MealsCell extends TableCell<DayDiet, List<Meal>> {
             return applicationContext.getBean(MealLink.class, meal);
         } else {
             return new Label(
-                "(" + meal.getAmount() + I18n.getText("cz.afrosoft.whattoeat.ingredientUnit.weight") + ") " + meal.getIngredient().getName()
+                "(" + meal.getAmount() + I18n.getText("cz.afrosoft.whattoeat.ingredientUnit.weight") + ") " + meal.getIngredient().getFullName()
             );
         }
     }

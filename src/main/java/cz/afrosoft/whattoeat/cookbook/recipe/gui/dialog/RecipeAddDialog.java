@@ -4,6 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.CookbookRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.service.CookbookService;
 import cz.afrosoft.whattoeat.cookbook.ingredient.gui.dialog.IngredientDialog;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.Ingredient;
+import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.IngredientRef;
 import cz.afrosoft.whattoeat.cookbook.ingredient.logic.service.IngredientService;
 import cz.afrosoft.whattoeat.cookbook.recipe.gui.table.IngredientQuantityCell;
 import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.Recipe;
@@ -21,6 +22,7 @@ import cz.afrosoft.whattoeat.core.gui.component.support.FXMLComponent;
 import cz.afrosoft.whattoeat.core.gui.dialog.util.DialogUtils;
 import cz.afrosoft.whattoeat.core.gui.list.ListBindingFactory;
 import cz.afrosoft.whattoeat.core.gui.suggestion.ComboBoxSuggestionFactory;
+import cz.afrosoft.whattoeat.core.gui.suggestion.GenericSuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.suggestion.NamedEntitySuggestionProvider;
 import cz.afrosoft.whattoeat.core.gui.table.CellValueFactory;
 import cz.afrosoft.whattoeat.core.gui.table.KeywordCell;
@@ -148,7 +150,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
     @Autowired
     private ListBindingFactory listBindingFactory;
 
-    private final NamedEntitySuggestionProvider<Ingredient> ingredientSuggestionProvider = new NamedEntitySuggestionProvider<>();
+    private final GenericSuggestionProvider<Ingredient> ingredientSuggestionProvider = new GenericSuggestionProvider<>(Ingredient::getFullName);
 
     /**
      * Holds createOrUpdate object when creating or editing recipe.
@@ -233,7 +235,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
             }
         });
 
-        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getName, string -> null);
+        StringConverter<Ingredient> ingredientConverter = ComboBoxUtils.createAsymmetricStringConverter(Ingredient::getFullName, string -> null);
         AutoCompletionBinding<Ingredient> ingredientBinding = TextFields.bindAutoCompletion(ingredientNameField, ingredientSuggestionProvider, ingredientConverter);
         ingredientBinding.setOnAutoCompleted(event -> pickIngredient(event.getCompletion()));
 
@@ -335,7 +337,7 @@ public class RecipeAddDialog extends Dialog<RecipeUpdateObject> {
 
     private void setupIngredientTable() {
         ingredientTable.setEditable(true);
-        ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getName).orElse(StringUtils.EMPTY)));
+        ingredientNameColumn.setCellValueFactory(CellValueFactory.newStringReadOnlyWrapper(riuo -> riuo.getIngredient().map(Ingredient::getFullName).orElse(StringUtils.EMPTY)));
         ingredientQuantityColumn.setCellValueFactory(CellValueFactory.newReadOnlyWrapper(riuo -> riuo.getQuantity().orElse(null), 0F));
         ingredientQuantityColumn.setCellFactory(param -> new IngredientQuantityCell(() -> ingredientServingsField.getFloat()));
         ingredientQuantityColumn.setEditable(true);
