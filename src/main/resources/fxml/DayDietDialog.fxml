@@ -23,10 +23,10 @@
                         stylesheets="@../styles/RecipeAddDialog.css"
                 >
                     <columnConstraints>
-                        <ColumnConstraints hgrow="NEVER" minWidth="50" />
-                        <ColumnConstraints hgrow="ALWAYS"/>
-                        <ColumnConstraints hgrow="NEVER" minWidth="50" />
-                        <ColumnConstraints hgrow="NEVER" maxWidth="100" />
+                        <ColumnConstraints hgrow="NEVER" minWidth="30" />
+                        <ColumnConstraints hgrow="ALWAYS" minWidth="75"/>
+                        <ColumnConstraints hgrow="NEVER" minWidth="30" />
+                        <ColumnConstraints hgrow="NEVER" minWidth="35" maxWidth="100" />
                         <ColumnConstraints hgrow="ALWAYS"/>
                     </columnConstraints>
                     <rowConstraints>
@@ -91,6 +91,12 @@
                         <MultiSelect fx:id="cookbookFilter" maxWidth="100" HBox.hgrow="SOMETIMES"/>
                         <FieldLabel text="%cz.afrosoft.whattoeat.common.type" minWidth="40" HBox.hgrow="NEVER"/>
                         <MultiSelect fx:id="typeFilter" maxWidth="100" HBox.hgrow="SOMETIMES" />
+                    </HBox>
+                    <HBox styleClass="filter-bar"
+                          GridPane.columnIndex="4"
+                          GridPane.rowIndex="1"
+                          alignment="CENTER_LEFT"
+                    >
                         <KeywordField fx:id="keywordFilter" keywordType="RECIPE_KEYWORDS" HBox.hgrow="ALWAYS"/>
                         <HBox>
                             <SearchButton fx:id="filterSubmitButton"
