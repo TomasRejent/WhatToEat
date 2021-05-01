@@ -31,6 +31,10 @@ public class RecipePool {
     }
 
     public Recipe takeRandom(){
+        if(availablePool.isEmpty()){
+            return null;
+        }
+
         int index = random.nextInt(availablePool.size());
         Recipe takenRecipe = availablePool.toArray(new Recipe[0])[index];
         availablePool.remove(takenRecipe);

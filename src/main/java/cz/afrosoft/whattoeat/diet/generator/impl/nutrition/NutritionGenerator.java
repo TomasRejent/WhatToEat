@@ -153,7 +153,9 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
         }).findAny();
 
         Recipe chosenRecipe = matchingRecipe.map(pool::takeRecipe).orElse(pool.takeRandom());
-        removeFromPools(chosenRecipe);
+        if(chosenRecipe != null){
+            removeFromPools(chosenRecipe);
+        }
         return chosenRecipe;
     }
 
