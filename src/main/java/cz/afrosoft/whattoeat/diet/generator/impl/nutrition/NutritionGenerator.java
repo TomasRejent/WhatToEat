@@ -183,6 +183,9 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                         break;
                     }
                 }
+                if(lunchRecipe != null){
+                    break;
+                }
             }
         }
 
@@ -274,12 +277,12 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
     }
 
     private Set<Recipe> getRecipesFromPreviousDiets(){
-        LocalDate now = LocalDate.now();
-        LocalDate excludeLimit = now.minusDays(RECIPE_EXCLUSION_TIME_LIMIT);
+        LocalDate newDietFrom = parameters.getFrom();
+        LocalDate excludeLimit = newDietFrom.minusDays(RECIPE_EXCLUSION_TIME_LIMIT);
         return dietService.getAllDiets()
                 .stream()
-                .filter((diet -> parameters.getUser().equals(diet.getUser()) && isInInterval(diet, excludeLimit, now)))
-                .flatMap(diet -> dietService.getDietMealsInInterval(diet, excludeLimit, now).stream())
+                .filter((diet -> parameters.getUser().equals(diet.getUser()) && isInInterval(diet, excludeLimit, newDietFrom)))
+                .flatMap(diet -> dietService.getDietMealsInInterval(diet, excludeLimit, newDietFrom).stream())
                 .filter(meal -> meal.getRecipe() != null) // filtering for case where previous diets contains ingredients in meals instead of recipes
                 .map(meal -> recipeService.getRecipeById(meal.getRecipe().getId()))
                 .collect(Collectors.toSet());
