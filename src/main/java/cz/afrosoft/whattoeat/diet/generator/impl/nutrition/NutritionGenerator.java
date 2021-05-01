@@ -178,6 +178,7 @@ public class NutritionGenerator implements Generator<NutritionGeneratorParams> {
                     if(areNutritionFactsWithinRange(MealNutritionFacts.add(lunchNutritionFacts, sideDishNutritionFacts), LUNCH_NUTRITION_PERCENTAGE)){
                         lunchRecipe = checkedLunchRecipe;
                         sideDishRecipe = checkedSideDishRecipe;
+                        break;
                     }
                 }
             }
