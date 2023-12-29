@@ -5,7 +5,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Represents one meal in diet. This adds number of servings (quantity) property to recipe. Quantity is needed for

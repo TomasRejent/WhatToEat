@@ -2,7 +2,7 @@ package cz.afrosoft.whattoeat.core.data;
 
 import org.apache.commons.lang3.Validate;
 
-import javax.persistence.AttributeConverter;
+import jakarta.persistence.AttributeConverter;
 
 /**
  * Base class for {@link AttributeConverter} of {@link IdEnum}. This implementation allows null values to be converted

@@ -4,7 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.UnitConversion;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Entity for {@link UnitConversion}.

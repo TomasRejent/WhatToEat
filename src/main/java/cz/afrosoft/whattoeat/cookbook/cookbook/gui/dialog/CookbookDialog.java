@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.HashSet;
 import java.util.Optional;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.AuthorRef;
 import cz.afrosoft.whattoeat.cookbook.cookbook.logic.model.Cookbook;

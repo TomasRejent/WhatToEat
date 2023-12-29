@@ -16,7 +16,7 @@ import java.lang.annotation.Target;
  * <p>Both Spring {@link org.springframework.beans.factory.annotation.Autowired} dependencies and fields marked with {@link javafx.fxml.FXML}
  * are injected to marked class.</p>
  *
- * <p>Component class can use injected fields to do its initialization in method marked with {@link javax.annotation.PostConstruct}.</p>
+ * <p>Component class can use injected fields to do its initialization in method marked with {@link jakarta.annotation.PostConstruct}.</p>
  *
  * <p>If component uses custom properties it is recommended that it also implements {@link javafx.util.Builder} and that build method returns component itself.
  * Reason for this is that FXML Loader sets properties to builder, not constructed component. While this approach is valid it would require definition of specific

@@ -3,7 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.user.data.entity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * @author Tomas Rejent

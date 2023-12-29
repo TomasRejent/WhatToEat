@@ -4,7 +4,7 @@ import cz.afrosoft.whattoeat.core.logic.model.Keyword;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Entity representing {@link Keyword}.

@@ -7,7 +7,7 @@ import org.apache.commons.lang3.builder.ToStringStyle;
 import java.time.LocalDate;
 import java.util.List;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;
 

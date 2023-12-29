@@ -4,7 +4,7 @@
 
     <groupId>cz.afrosoft</groupId>
     <artifactId>WhatToEat</artifactId>
-    <version>0.1.0-SNAPSHOT</version>
+    <version>0.2.0-SNAPSHOT</version>
     <packaging>jar</packaging>
 
     <name>WhatToEat</name>
@@ -13,12 +13,12 @@
         <!-- Properties shared for all profiles -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <mainClass>cz.afrosoft.whattoeat.Main</mainClass>
-        <hsqldb.version>2.4.0</hsqldb.version>
-        <commonslang.version>3.7</commonslang.version>
-        <logback.version>1.2.3</logback.version>
-        <xmlbind.version>2.3.0</xmlbind.version>
+        <hsqldb.version>2.7.2</hsqldb.version>
+        <commonslang.version>3.14.0</commonslang.version>
+        <logback.version>1.4.14</logback.version>
+        <xmlbind.version>2.3.1</xmlbind.version>
         <!-- current jdk profile specific properties -->
-        <default.spring.boot.version>2.7.9</default.spring.boot.version>
+        <default.spring.boot.version>3.2.1</default.spring.boot.version>
         <default.controlsfx.version>11.2.0</default.controlsfx.version>
         <!-- jdk9 profile specific properties -->
         <jdk9.spring.boot.version>2.0.0.RELEASE</jdk9.spring.boot.version>
@@ -94,7 +94,7 @@
                 <dependency>
                     <groupId>org.apache.commons</groupId>
                     <artifactId>commons-collections4</artifactId>
-                    <version>4.3</version>
+                    <version>4.4</version>
                 </dependency>
 
                 <!-- Logging -->
@@ -113,8 +113,7 @@
                         <artifactId>maven-compiler-plugin</artifactId>
                         <version>3.11.0</version>
                         <configuration>
-                            <!-- Try to update java release target after updating spring boot to v3+ -->
-                            <release>19</release>
+                            <release>21</release>
                         </configuration>
                     </plugin>
                     <!-- Plugin for packing dependencies into app jar. -->

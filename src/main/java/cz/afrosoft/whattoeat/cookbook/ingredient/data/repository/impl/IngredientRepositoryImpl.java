@@ -6,10 +6,10 @@ import cz.afrosoft.whattoeat.cookbook.ingredient.data.repository.IngredientRepos
 import org.apache.commons.lang3.Validate;
 import org.springframework.stereotype.Repository;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.*;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.persistence.TypedQuery;
+import jakarta.persistence.criteria.*;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;

@@ -9,7 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import org.apache.commons.lang3.Validate;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.util.function.Consumer;
 
 /**

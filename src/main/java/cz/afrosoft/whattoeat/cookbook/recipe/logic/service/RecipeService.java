@@ -21,7 +21,7 @@ public interface RecipeService {
      *
      * @param id (NotNull)
      * @return (NotNull) Recipe wit specified id.
-     * @throws javax.persistence.EntityNotFoundException When recipe with specified id does not exist.
+     * @throws jakarta.persistence.EntityNotFoundException When recipe with specified id does not exist.
      */
     Recipe getRecipeById(Integer id);
 

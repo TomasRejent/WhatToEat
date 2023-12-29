@@ -3,8 +3,8 @@ package cz.afrosoft.whattoeat.core.data;
 import java.sql.Date;
 import java.time.LocalDate;
 
-import javax.persistence.AttributeConverter;
-import javax.persistence.Converter;
+import jakarta.persistence.AttributeConverter;
+import jakarta.persistence.Converter;
 
 /**
  * Converter for persisting {@link LocalDate}.

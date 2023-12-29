@@ -1,6 +1,6 @@
 package cz.afrosoft.whattoeat.diet.list.data;
 
-import javax.persistence.Converter;
+import jakarta.persistence.Converter;
 
 import cz.afrosoft.whattoeat.core.data.IdEnumConverter;
 import cz.afrosoft.whattoeat.diet.generator.model.GeneratorType;

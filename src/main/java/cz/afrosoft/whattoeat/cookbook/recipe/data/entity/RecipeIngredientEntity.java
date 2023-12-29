@@ -5,7 +5,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.logic.model.RecipeIngredient;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Entity for {@link RecipeIngredient}.

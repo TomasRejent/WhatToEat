@@ -4,7 +4,7 @@ import cz.afrosoft.whattoeat.cookbook.recipe.data.entity.RecipeIngredientEntity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Map;
 
 /**

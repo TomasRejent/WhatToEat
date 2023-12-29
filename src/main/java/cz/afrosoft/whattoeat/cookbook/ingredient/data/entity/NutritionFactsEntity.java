@@ -3,7 +3,7 @@ package cz.afrosoft.whattoeat.cookbook.ingredient.data.entity;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 /**
  * Entity for {@link cz.afrosoft.whattoeat.cookbook.ingredient.logic.model.NutritionFacts}.

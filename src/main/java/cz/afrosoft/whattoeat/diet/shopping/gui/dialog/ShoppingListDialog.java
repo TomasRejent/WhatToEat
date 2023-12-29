@@ -16,7 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Modality;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.List;

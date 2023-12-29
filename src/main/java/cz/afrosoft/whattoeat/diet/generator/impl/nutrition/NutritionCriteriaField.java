@@ -14,7 +14,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.util.Builder;
 
-import javax.annotation.PostConstruct;
+import jakarta.annotation.PostConstruct;
 
 /**
  * @author Tomas Rejent
