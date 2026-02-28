@@ -1,5 +1,6 @@
 package cz.afrosoft.whattoeat;
 
+import cz.afrosoft.whattoeat.core.logic.service.ConfigService;
 import org.apache.commons.lang3.Validate;
 import org.hsqldb.DatabaseManager;
 import org.slf4j.Logger;
@@ -158,11 +159,14 @@ public class Main extends Application {
     private void switchToMainStage(final Stage stage, final Stage splashStage) {
         LOGGER.info("Switching to main window.");
         long time = System.nanoTime();
-        Scene scene = new Scene(rootPane);
+        ConfigService configService = applicationContext.getBean(ConfigService.class);
+        Scene scene = new Scene(rootPane, configService.getMainWindowWidth(), configService.getMainWindowHeight());
         scene.getStylesheets().add("/styles/Application.css");
 
         stage.setTitle(I18n.getText("cz.afrosoft.whattoeat.title"));
         stage.setScene(scene);
+        stage.setX(configService.getMainWindowPositionX());
+        stage.setY(configService.getMainWindowPositionY());
         stage.show();
         splashStage.hide();
         LOGGER.info("Screen switch in {}ms", (System.nanoTime() - time) * 0.000001);
