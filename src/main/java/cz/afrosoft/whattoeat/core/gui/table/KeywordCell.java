@@ -3,9 +3,14 @@ package cz.afrosoft.whattoeat.core.gui.table;
 import cz.afrosoft.whattoeat.Main;
 import cz.afrosoft.whattoeat.core.gui.component.KeywordLabel;
 import cz.afrosoft.whattoeat.core.logic.model.Keyword;
+import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.control.ContentDisplay;
 import javafx.scene.control.TableCell;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.paint.Paint;
 
 import java.util.Collection;
 
@@ -21,7 +26,8 @@ public class KeywordCell<S> extends TableCell<S, Collection<Keyword>> {
     public KeywordCell() {
         setContentDisplay(ContentDisplay.GRAPHIC_ONLY);
         setGraphic(keywordLabelContainer);
-        keywordLabelContainer.setPrefHeight(getHeight());
+        // TODO this is not responsive solution but it saves space for default use case
+        this.setPrefHeight(keywordLabelContainer.getHeight());
     }
 
     @Override
