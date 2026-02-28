@@ -1,7 +1,6 @@
 package cz.afrosoft.whattoeat.core.logic.service;
 
 import cz.afrosoft.whattoeat.core.data.exception.DataLoadException;
-import cz.afrosoft.whattoeat.core.data.util.LocationUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -34,7 +33,7 @@ public final class ConfigServiceImpl implements ConfigService{
     private ConfigServiceImpl() {
         properties = new Properties(createDefaultProperties());
 
-        try (FileInputStream inputStream = new FileInputStream(LocationUtils.getConfigFile())){
+        try (FileInputStream inputStream = new FileInputStream("config.properties")) {
             properties.load(inputStream);
         } catch (DataLoadException | IOException ex) {
             LOGGER.warn("Cannot load configuration. Default configuration will be used.", ex);
